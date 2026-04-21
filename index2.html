@@ -269,34 +269,28 @@
     ══════════════════════════════════════ */
     .page-canvas {
       background: #0d110c;
-      /* extra scroll space for the pin timeline */
-      padding-bottom: 0;
     }
 
     /* ══════════════════════════════════════
-       HERO — ROUNDED FLOATING CARD
+       HERO — ROUNDED FLOATING CARD (now normal flow)
     ══════════════════════════════════════ */
     .hero-wrapper {
-      position: sticky;
-      top: 0;
+      position: relative;
       z-index: 10;
       padding: 16px 16px 0;
-      height: 100vh;               /* sticky occupies viewport height */
-      will-change: transform;
+      height: auto;
     }
 
     .hero {
       border-radius: var(--hero-r);
       overflow: hidden;
       position: relative;
-      height: calc(100vh - 16px);
+      min-height: 100vh;
       display: grid;
       grid-template-columns: 1fr 1fr;
       align-items: center;
       background: var(--ivory);
-      transform-origin: top center;
-      will-change: transform, opacity;
-      /* Cinematic depth shadow */
+      transform-origin: center;
       box-shadow:
         0 0 0 1px rgba(255,255,255,0.05),
         0 40px 100px rgba(0,0,0,0.55),
@@ -326,15 +320,6 @@
     .hero-vignette {
       position: absolute; inset: 0; pointer-events: none; z-index: 1;
       background: radial-gradient(ellipse 130% 130% at 50% 50%, transparent 52%, rgba(26,24,20,0.07) 100%);
-    }
-
-    /* Blur overlay — animated by GSAP on scroll */
-    .hero-blur-layer {
-      position: absolute; inset: 0; z-index: 6; pointer-events: none;
-      opacity: 0; border-radius: var(--hero-r);
-      background: rgba(247,244,239,0.0);
-      will-change: opacity, backdrop-filter;
-      /* CSS transitions disabled on this — GSAP controls it */
     }
 
     /* Orbs */
@@ -515,19 +500,24 @@
     }
 
     /* ══════════════════════════════════════
-       VIDEO SECTION — rises from below
+       VIDEO SECTION — normalized, normal flow
     ══════════════════════════════════════ */
     .video-section {
-      position: relative; z-index: 5;
+      position: relative;
+      z-index: 5;
       min-height: 100vh;
-      display: flex; align-items: center; justify-content: flex-start;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
       overflow: hidden;
-      will-change: transform, opacity;
+      transform: none;
+      opacity: 1;
+      margin: 0;
     }
 
     .video-bg { position: absolute; inset: 0; z-index: 0; }
 
-    /* Animated gradient fallback (replace with <video> when you have one) */
+    /* Animated gradient fallback */
     .video-bg-gradient {
       position: absolute; inset: 0;
       background:
@@ -542,7 +532,6 @@
       to   { filter: hue-rotate(8deg) brightness(1.04); }
     }
 
-    /* Particle dots for depth */
     .video-particles {
       position: absolute; inset: 0; z-index: 1; pointer-events: none;
       background-image:
@@ -555,7 +544,6 @@
         radial-gradient(1.5px 1.5px at 55% 80%, rgba(122,184,112,0.15) 0%, transparent 100%);
     }
 
-    /* Cinematic overlay */
     .video-overlay {
       position: absolute; inset: 0; z-index: 2;
       background:
@@ -563,7 +551,6 @@
         linear-gradient(to top, rgba(8,14,7,0.6) 0%, transparent 55%);
     }
 
-    /* Edge blur vignette */
     .video-edge-blur {
       position: absolute; inset: 0; z-index: 3; pointer-events: none;
       box-shadow:
@@ -571,7 +558,6 @@
         inset 0 -60px 80px rgba(8,14,7,0.5);
     }
 
-    /* Video content */
     .video-content {
       position: relative; z-index: 4;
       padding: 80px 72px; max-width: 660px;
@@ -650,7 +636,6 @@
 
     .btn-video-ghost:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.9); transform: translateY(-2px); }
 
-    /* Stats block */
     .video-stats {
       position: absolute; bottom: 52px; right: 72px;
       display: flex; gap: 36px; z-index: 4;
@@ -666,7 +651,6 @@
     .video-stat-num span { font-size: 16px; color: rgba(122,184,112,0.8); }
     .video-stat-label { font-size: 10.5px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.06em; }
 
-    /* Depth line (cinematic separator) */
     .video-depth-line {
       position: absolute; top: 0; left: 0; right: 0; z-index: 10;
       height: 1px;
@@ -808,35 +792,76 @@
   <!-- ════ PAGE CANVAS ════ -->
   <div class="page-canvas">
 
-    <!-- ─── STICKY HERO WRAPPER ─── -->
+    <!-- VIDEO SECTION (FIRST) -->
+    <section class="video-section" id="video-section">
+      <div class="video-depth-line"></div>
+      <div class="video-bg">
+        <div class="video-bg-gradient"></div>
+        <div class="video-particles"></div>
+        <video class="video-el" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;">
+          <source src="197489-905015030.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-overlay"></div>
+      <div class="video-edge-blur"></div>
+      <div class="video-content">
+        <div class="video-eyebrow">
+          <div class="video-eyebrow-dot"></div>
+          <span class="video-eyebrow-text">Our Impact in the World</span>
+        </div>
+        <h2 class="video-headline">
+          Life sciences<br/>that <em>regenerate</em><br/>the earth.
+        </h2>
+        <p class="video-desc">
+          From rainforest-derived actives to lab-fermented compounds, every molecule we create is designed with planetary health as the primary constraint — not an afterthought.
+        </p>
+        <div class="video-actions">
+          <a href="#" class="btn-video-primary">
+            <span class="play-icon"><svg width="8" height="9" viewBox="0 0 8 9" fill="white"><path d="M1 1l6 3.5L1 8V1z"/></svg></span>
+            Watch Our Story
+          </a>
+          <a href="#" class="btn-video-ghost">Read Impact Report</a>
+        </div>
+      </div>
+      <div class="video-stats">
+        <div class="video-stat-item">
+          <div class="video-stat-num">12<span>M+</span></div>
+          <div class="video-stat-label">kg CO₂ Offset</div>
+        </div>
+        <div class="video-stat-item">
+          <div class="video-stat-num">62<span>+</span></div>
+          <div class="video-stat-label">Countries Reached</div>
+        </div>
+        <div class="video-stat-item">
+          <div class="video-stat-num">2030</div>
+          <div class="video-stat-label">Net-Zero Target</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HERO SECTION (BELOW VIDEO) -->
     <div class="hero-wrapper" id="hero-wrapper">
       <section class="hero" id="hero">
         <div class="hero-bg"></div>
         <div class="hero-grid"></div>
         <div class="hero-vignette"></div>
-        <div class="hero-blur-layer" id="hero-blur-layer"></div>
-
         <div class="hero-orb hero-orb-1" id="orb1"></div>
         <div class="hero-orb hero-orb-2" id="orb2"></div>
         <div class="hero-orb hero-orb-3" id="orb3"></div>
 
-        <!-- Left content -->
         <div class="hero-content">
           <div class="hero-label">
             <div class="hero-label-dot"></div>
             <span class="hero-label-text">Sustainable Biotechnology</span>
           </div>
-
           <h1 class="hero-headline">
             <span class="line">Science that</span>
             <span class="line">works <em>with</em></span>
             <span class="line">nature.</span>
           </h1>
-
           <p class="hero-desc">
             We harness the living world — precisely engineering biology to create ingredients and compounds that are as clean for the planet as they are powerful for human health.
           </p>
-
           <div class="hero-actions">
             <a href="#" class="btn-primary">
               Explore Our Science
@@ -846,63 +871,25 @@
             </a>
             <a href="#" class="btn-secondary">View Pipeline</a>
           </div>
-
           <div class="hero-trust">
-            <div class="trust-stat">
-              <div class="trust-number">98<span>%</span></div>
-              <div class="trust-label">Renewable Inputs</div>
-            </div>
+            <div class="trust-stat"><div class="trust-number">98<span>%</span></div><div class="trust-label">Renewable Inputs</div></div>
             <div class="trust-divider"></div>
-            <div class="trust-stat">
-              <div class="trust-number">3.2<span>B+</span></div>
-              <div class="trust-label">Molecules Screened</div>
-            </div>
+            <div class="trust-stat"><div class="trust-number">3.2<span>B+</span></div><div class="trust-label">Molecules Screened</div></div>
             <div class="trust-divider"></div>
-            <div class="trust-stat">
-              <div class="trust-number">40<span>+</span></div>
-              <div class="trust-label">Patents Filed</div>
-            </div>
+            <div class="trust-stat"><div class="trust-number">40<span>+</span></div><div class="trust-label">Patents Filed</div></div>
           </div>
         </div>
 
-        <!-- Right visual -->
         <div class="hero-visual">
           <div class="visual-card">
             <div class="floating-tag tag-1">
               <div class="tag-label">Purity Level</div>
               <div class="tag-value">99.7%</div>
               <div class="tag-sub">Fermentation Grade</div>
-              <div class="tag-bar">
-                <div class="tag-bar-item filled"></div>
-                <div class="tag-bar-item filled"></div>
-                <div class="tag-bar-item filled"></div>
-                <div class="tag-bar-item filled"></div>
-                <div class="tag-bar-item"></div>
-              </div>
+              <div class="tag-bar"><div class="tag-bar-item filled"></div><div class="tag-bar-item filled"></div><div class="tag-bar-item filled"></div><div class="tag-bar-item filled"></div><div class="tag-bar-item"></div></div>
             </div>
-
             <svg viewBox="0 0 420 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-              <defs>
-                <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
-                  <stop offset="0%" stop-color="#dde8d9" stop-opacity="0.55"/>
-                  <stop offset="100%" stop-color="#c8d9c3" stop-opacity="0.18"/>
-                </radialGradient>
-                <linearGradient id="stemGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#4a6741"/>
-                  <stop offset="100%" stop-color="#2b3d27"/>
-                </linearGradient>
-                <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stop-color="#5a7a50"/>
-                  <stop offset="100%" stop-color="#3d5736"/>
-                </linearGradient>
-                <linearGradient id="leafGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#6a8a60"/>
-                  <stop offset="100%" stop-color="#4a6741"/>
-                </linearGradient>
-                <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#2b3d27" flood-opacity="0.13"/>
-                </filter>
-              </defs>
+              <defs><radialGradient id="bgGrad" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#dde8d9" stop-opacity="0.55"/><stop offset="100%" stop-color="#c8d9c3" stop-opacity="0.18"/></radialGradient><linearGradient id="stemGrad" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#4a6741"/><stop offset="100%" stop-color="#2b3d27"/></linearGradient><linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#5a7a50"/><stop offset="100%" stop-color="#3d5736"/></linearGradient><linearGradient id="leafGrad2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#6a8a60"/><stop offset="100%" stop-color="#4a6741"/></linearGradient><filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#2b3d27" flood-opacity="0.13"/></filter></defs>
               <rect x="60" y="40" width="300" height="480" rx="150" fill="url(#bgGrad)" filter="url(#softShadow)"/>
               <circle cx="210" cy="280" r="160" fill="none" stroke="rgba(74,103,65,0.09)" stroke-width="1"/>
               <circle cx="210" cy="280" r="120" fill="none" stroke="rgba(74,103,65,0.07)" stroke-width="1"/>
@@ -921,15 +908,12 @@
               <path d="M210 480 C230 492 258 498 278 490" stroke="url(#stemGrad)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.55"/>
               <path d="M210 480 C200 500 190 510 172 512" stroke="url(#stemGrad)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.35"/>
               <path d="M210 480 C220 502 230 514 248 518" stroke="url(#stemGrad)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.35"/>
-              <circle cx="148" cy="338" r="4" fill="rgba(74,103,65,0.2)"/>
-              <circle cx="270" cy="320" r="3" fill="rgba(74,103,65,0.15)"/>
-              <circle cx="155" cy="195" r="3" fill="rgba(74,103,65,0.18)"/>
-              <circle cx="264" cy="168" r="4" fill="rgba(74,103,65,0.12)"/>
+              <circle cx="148" cy="338" r="4" fill="rgba(74,103,65,0.2)"/><circle cx="270" cy="320" r="3" fill="rgba(74,103,65,0.15)"/>
+              <circle cx="155" cy="195" r="3" fill="rgba(74,103,65,0.18)"/><circle cx="264" cy="168" r="4" fill="rgba(74,103,65,0.12)"/>
               <circle cx="170" cy="110" r="2.5" fill="rgba(74,103,65,0.15)"/>
               <line x1="148" y1="338" x2="210" y2="310" stroke="rgba(74,103,65,0.11)" stroke-width="1" stroke-dasharray="3,3"/>
               <line x1="270" y1="320" x2="212" y2="290" stroke="rgba(74,103,65,0.09)" stroke-width="1" stroke-dasharray="3,3"/>
             </svg>
-
             <div class="floating-tag tag-2">
               <div class="tag-label">Carbon Impact</div>
               <div class="tag-value">−82%</div>
@@ -938,104 +922,35 @@
           </div>
         </div>
 
-        <!-- Scroll cue -->
         <div class="scroll-hint" id="scroll-hint">
           <span class="scroll-hint-text">Scroll</span>
           <div class="scroll-hint-line"></div>
         </div>
-
       </section>
-    </div><!-- /hero-wrapper -->
+    </div>
 
-    <!-- ─── VIDEO SECTION ─── -->
-    <section class="video-section" id="video-section">
-      <div class="video-depth-line"></div>
+  </div>
 
-      <div class="video-bg">
-        <div class="video-bg-gradient"></div>
-        <div class="video-particles"></div>
-        
-          ↓ Swap in a real video:
-          <video class="video-el" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;">
-            <source src="197489-905015030.mp4" type="video/mp4">
-          </video>
-       
-      </div>
-
-      <div class="video-overlay"></div>
-      <div class="video-edge-blur"></div>
-
-      <div class="video-content">
-        <div class="video-eyebrow">
-          <div class="video-eyebrow-dot"></div>
-          <span class="video-eyebrow-text">Our Impact in the World</span>
-        </div>
-
-        <h2 class="video-headline">
-          Life sciences<br/>that <em>regenerate</em><br/>the earth.
-        </h2>
-
-        <p class="video-desc">
-          From rainforest-derived actives to lab-fermented compounds, every molecule we create is designed with planetary health as the primary constraint — not an afterthought.
-        </p>
-
-        <div class="video-actions">
-          <a href="#" class="btn-video-primary">
-            <span class="play-icon">
-              <svg width="8" height="9" viewBox="0 0 8 9" fill="white"><path d="M1 1l6 3.5L1 8V1z"/></svg>
-            </span>
-            Watch Our Story
-          </a>
-          <a href="#" class="btn-video-ghost">Read Impact Report</a>
-        </div>
-      </div>
-
-      <div class="video-stats">
-        <div class="video-stat-item">
-          <div class="video-stat-num">12<span>M+</span></div>
-          <div class="video-stat-label">kg CO₂ Offset</div>
-        </div>
-        <div class="video-stat-item">
-          <div class="video-stat-num">62<span>+</span></div>
-          <div class="video-stat-label">Countries Reached</div>
-        </div>
-        <div class="video-stat-item">
-          <div class="video-stat-num">2030</div>
-          <div class="video-stat-label">Net-Zero Target</div>
-        </div>
-      </div>
-    </section><!-- /video-section -->
-
-  </div><!-- /page-canvas -->
-
-
-  <!-- ════ JS ════ -->
   <script>
   (function () {
     'use strict';
 
     gsap.registerPlugin(ScrollTrigger);
 
-    /* ────────────────────────────
-       NAVBAR — scroll state
-    ──────────────────────────── */
+    // Navbar scroll state
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', function () {
       navbar.classList.toggle('scrolled', window.scrollY > 30);
     }, { passive: true });
 
-    /* ────────────────────────────
-       HAMBURGER
-    ──────────────────────────── */
+    // Hamburger
     const hamburger  = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
-
     hamburger.addEventListener('click', function (e) {
       e.stopPropagation();
       hamburger.classList.toggle('active');
       mobileMenu.classList.toggle('open');
     });
-
     document.addEventListener('click', function (e) {
       if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
         hamburger.classList.remove('active');
@@ -1043,9 +958,7 @@
       }
     });
 
-    /* ────────────────────────────
-       MOBILE DROPDOWNS (single-open accordion)
-    ──────────────────────────── */
+    // Mobile dropdowns
     document.querySelectorAll('.mobile-nav-link[data-target]').forEach(function (btn) {
       btn.addEventListener('click', function (e) {
         e.stopPropagation();
@@ -1058,9 +971,7 @@
       });
     });
 
-    /* ────────────────────────────
-       DESKTOP DROPDOWN — click fallback for touch
-    ──────────────────────────── */
+    // Desktop dropdown fallback
     document.querySelectorAll('.nav-item').forEach(function (item) {
       var btn = item.querySelector('button.nav-link');
       if (!btn) return;
@@ -1071,128 +982,51 @@
         if (!wasOpen) item.classList.add('open');
       });
     });
-
     document.addEventListener('click', function () {
       document.querySelectorAll('.nav-item.open').forEach(function (i) { i.classList.remove('open'); });
     });
 
-    /* ────────────────────────────
-       LOAD ANIMATION — entry sequence
-    ──────────────────────────── */
+    // Load animations: hero elements + subtle video fade (normal scroll reveal)
     window.addEventListener('load', function () {
-
+      // Hero entrance timeline (unchanged)
       var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-
       tl.from('.navbar',           { y: -20, opacity: 0, duration: 0.85 })
-        .to('.hero-label',         { opacity: 1, duration: 0 },               '-=0.4')
-        .from('.hero-label',       { y: 18,  duration: 0.8 },                 '<')
-        .to('.hero-headline',      { opacity: 1, duration: 0 },               '-=0.55')
+        .to('.hero-label',         { opacity: 1, duration: 0 }, '-=0.4')
+        .from('.hero-label',       { y: 18,  duration: 0.8 }, '<')
+        .to('.hero-headline',      { opacity: 1, duration: 0 }, '-=0.55')
         .from('.hero-headline .line', { y: 26, opacity: 0, duration: 0.88, stagger: 0.09 }, '<0.05')
-        .to('.hero-desc',          { opacity: 1, duration: 0 },               '-=0.5')
+        .to('.hero-desc',          { opacity: 1, duration: 0 }, '-=0.5')
         .from('.hero-desc',        { y: 16, duration: 0.8, ease: 'power2.out' }, '<')
-        .to('.hero-actions',       { opacity: 1, duration: 0 },               '-=0.4')
+        .to('.hero-actions',       { opacity: 1, duration: 0 }, '-=0.4')
         .from('.hero-actions',     { y: 13, duration: 0.75, ease: 'power2.out' }, '<')
-        .to('.hero-trust',         { opacity: 1, duration: 0 },               '-=0.36')
+        .to('.hero-trust',         { opacity: 1, duration: 0 }, '-=0.36')
         .from('.hero-trust',       { y: 11, duration: 0.75, ease: 'power2.out' }, '<')
-        .to('.visual-card',        { opacity: 1, duration: 0 },               '-=0.8')
+        .to('.visual-card',        { opacity: 1, duration: 0 }, '-=0.8')
         .from('.visual-card',      { x: 22, duration: 1.0, ease: 'power2.out' }, '<')
-        .to('.tag-1',              { opacity: 1, duration: 0.65 },            '-=0.36')
-        .from('.tag-1',            { x: -12, y: -6, duration: 0.65 },        '<')
-        .to('.tag-2',              { opacity: 1, duration: 0.65 },            '-=0.5')
-        .from('.tag-2',            { x: 12, y: 6, duration: 0.65 },          '<')
+        .to('.tag-1',              { opacity: 1, duration: 0.65 }, '-=0.36')
+        .from('.tag-1',            { x: -12, y: -6, duration: 0.65 }, '<')
+        .to('.tag-2',              { opacity: 1, duration: 0.65 }, '-=0.5')
+        .from('.tag-2',            { x: 12, y: 6, duration: 0.65 }, '<')
         .to('#scroll-hint',        { opacity: 1, duration: 0.6, ease: 'power2.out' }, '-=0.2');
 
-      /* Orb idle float — never conflicts with scroll because transform:translateZ(0) isolates layers */
+      // Orb float animations
       gsap.to('#orb1', { y: -32, duration: 6.3, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.4 });
       gsap.to('#orb2', { y:  22, duration: 7.2, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 0.8 });
       gsap.to('#orb3', { y: -16, duration: 5.4, repeat: -1, yoyo: true, ease: 'sine.inOut', delay: 1.2 });
-    });
 
-    /* ────────────────────────────
-       SCROLL CINEMATIC EFFECT
-       ONE ScrollTrigger, ONE timeline
-       Hero shrinks + blurs → video rises from below
-    ──────────────────────────── */
-
-    /* Pre-set video section below viewport */
-    gsap.set('#video-section', { y: '45%', opacity: 0 });
-
-    /* Pre-set video inner elements */
-    gsap.set('.video-eyebrow',  { y: 22, opacity: 0 });
-    gsap.set('.video-headline', { y: 32, opacity: 0 });
-    gsap.set('.video-desc',     { y: 22, opacity: 0 });
-    gsap.set('.video-actions',  { y: 18, opacity: 0 });
-    gsap.set('.video-stats',    { y: 18, opacity: 0 });
-
-    var scrollTL = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.page-canvas',
-        start: 'top top',
-        end: '+=130%',
-        scrub: 1.4,
-        invalidateOnRefresh: true
-      }
-    });
-
-    scrollTL
-      /* ── Hero scales down, fades, blurs ── */
-      .to('#hero', {
-        scale: 0.88,
-        opacity: 0.5,
-        borderRadius: '56px',
+      // Optional simple fade-in for video content when it enters viewport (no scrub, no pin)
+      gsap.from('.video-content', {
+        y: 40,
+        opacity: 0,
         duration: 1,
-        ease: 'power2.inOut'
-      }, 0)
-
-      /* Blur overlay brightens hero-blur-layer (CSS backdrop-filter can't be tweened,
-         so we use a semi-white overlay as a proxy — visually identical to blur) */
-      .to('#hero-blur-layer', {
-        opacity: 1,
-        backgroundColor: 'rgba(247,244,239,0.28)',
-        duration: 0.9,
-        ease: 'power2.inOut'
-      }, 0)
-
-      /* Scroll hint disappears */
-      .to('#scroll-hint', {
-        opacity: 0, y: 8,
-        duration: 0.22, ease: 'power1.in'
-      }, 0)
-
-      /* ── Video rises from below, enters frame ── */
-      .to('#video-section', {
-        y: '0%',
-        opacity: 1,
-        duration: 1.3,
-        ease: 'power3.out'
-      }, 0.04)
-
-      /* ── Video content staggered reveal ── */
-      .to('.video-eyebrow', {
-        y: 0, opacity: 1,
-        duration: 0.5, ease: 'power2.out'
-      }, 0.38)
-
-      .to('.video-headline', {
-        y: 0, opacity: 1,
-        duration: 0.55, ease: 'power2.out'
-      }, 0.48)
-
-      .to('.video-desc', {
-        y: 0, opacity: 1,
-        duration: 0.5, ease: 'power2.out'
-      }, 0.57)
-
-      .to('.video-actions', {
-        y: 0, opacity: 1,
-        duration: 0.45, ease: 'power2.out'
-      }, 0.64)
-
-      .to('.video-stats', {
-        y: 0, opacity: 1,
-        duration: 0.45, ease: 'power2.out'
-      }, 0.70);
-
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '.video-section',
+          start: 'top 80%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
   }());
   </script>
 
