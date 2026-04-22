@@ -11,7 +11,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
         rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
@@ -32,9 +31,12 @@
             --sage-deep: #2b3d27;
             --stone: #242323;
             --ink: #1a1a18;
+            --accent: #c4a882;
             --nav-h: 72px;
             --hero-r: 40px;
             --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+            --pad: 64px;
+            --footer-h: 420px;
         }
 
         html {
@@ -281,6 +283,7 @@
             inset: 0;
             background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.32) 50%, transparent 100%);
             transform: translateX(-100%);
+            transition: transform 0.55s var(--ease-out);
         }
 
         .nav-cta:hover {
@@ -290,7 +293,6 @@
 
         .nav-cta:hover::after {
             transform: translateX(100%);
-            transition: transform 0.55s var(--ease-out);
         }
 
         .hamburger {
@@ -337,7 +339,6 @@
             transform: translateY(-6.5px) rotate(-45deg);
         }
 
-        /* Mobile menu slides in from left */
         .mobile-overlay {
             position: fixed;
             inset: 0;
@@ -433,7 +434,30 @@
 
         /* ── PAGE CANVAS ── */
         .page-canvas {
+            position: relative;
+            z-index: 5;
             background: #0d110c;
+            /* same as body */
+        }
+
+        .video-section {
+            background: #0d110c;
+        }
+
+        .hero-wrapper {
+            background: #f7f4ef;
+        }
+
+        .page3 {
+            background: #f7f4ef;
+        }
+
+        .page4 {
+            background: #E4DBC4;
+        }
+
+        .page5 {
+            background: #E4DBC4;
         }
 
         /* ── VIDEO SECTION ── */
@@ -497,10 +521,10 @@
             background: #7ab870;
             border-radius: 50%;
             box-shadow: 0 0 0 3px rgba(122, 184, 112, 0.25);
-            animation: pulse 2.4s ease-in-out infinite;
+            animation: dotPulse 2.4s ease-in-out infinite;
         }
 
-        @keyframes pulse {
+        @keyframes dotPulse {
 
             0%,
             100% {
@@ -576,6 +600,7 @@
             inset: 0;
             background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transform: translateX(-100%);
+            transition: transform 0.58s var(--ease-out);
         }
 
         .btn-video-primary:hover {
@@ -586,7 +611,6 @@
 
         .btn-video-primary:hover::after {
             transform: translateX(100%);
-            transition: transform 0.58s var(--ease-out);
         }
 
         .play-icon {
@@ -684,7 +708,6 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             align-items: center;
-            
         }
 
         .hero-bg {
@@ -699,7 +722,6 @@
             z-index: 7;
             padding: 10px 52px 70px 78px;
             max-width: 600px;
-            margin-bottom: 200px;
         }
 
         .hero-headline {
@@ -763,6 +785,7 @@
             inset: 0;
             background: linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.38) 50%, transparent 100%);
             transform: translateX(-100%);
+            transition: transform 0.6s var(--ease-out);
         }
 
         .btn-primary:hover {
@@ -773,7 +796,6 @@
 
         .btn-primary:hover::after {
             transform: translateX(100%);
-            transition: transform 0.6s var(--ease-out);
         }
 
         .btn-primary svg {
@@ -815,7 +837,6 @@
             align-items: center;
             justify-content: center;
             height: 100%;
-            margin-bottom: 200px;
         }
 
         .visual-card {
@@ -949,7 +970,8 @@
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            transition: border 0.3s ease;
+            border: 1px solid transparent;
+            transition: border-color 0.3s ease;
         }
 
         .page3 .card i {
@@ -964,7 +986,6 @@
             font-size: 22px;
             font-weight: 600;
             color: #000;
-            transition: transform 0.4s ease;
         }
 
         .page3 .card_content {
@@ -981,7 +1002,7 @@
             line-height: 1.5;
             margin-top: 1px;
             transform: translateY(25px);
-            transition: all 0.4s ease;
+            transition: transform 0.4s ease, opacity 0.4s ease;
         }
 
         .page3 .card_img {
@@ -991,7 +1012,7 @@
             overflow: hidden;
             opacity: 0;
             transform: scale(1.05);
-            transition: all 0.5s ease;
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .page3 .card_img img {
@@ -1017,7 +1038,7 @@
         }
 
         .page3 .card:hover {
-            border: 1px solid rgba(94, 253, 62, 0.3);
+            border-color: rgba(94, 253, 62, 0.3);
         }
 
         .page3 .card.pink {
@@ -1036,6 +1057,505 @@
             background: linear-gradient(125deg, #5a8a50 0%, #5efd3e 100%);
         }
 
+        /* ── PAGE 4 ── */
+        .page4 {
+            width: 100%;
+            min-height: 100vh;
+            padding: 100px 80px;
+            background: #E4DBC4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page4_header {
+            text-align: center;
+            max-width: 900px;
+            margin-bottom: 60px;
+        }
+
+        .page4_header h1 {
+            font-size: clamp(42px, 5vw, 72px);
+            font-weight: 500;
+            color: #1a1f0f;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .page4_header p {
+            font-size: 16px;
+            color: #2f3523;
+            line-height: 1.7;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .page4_grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .page4_card {
+            background: #d9d6cf;
+            border-radius: 22px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            height: 140px;
+            transition: transform 0.3s ease;
+        }
+
+        .page4_card:hover {
+            transform: translateY(-6px);
+        }
+
+        .icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid #1a1f0f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .icon i {
+            font-size: 28px;
+            color: #1a1f0f;
+        }
+
+        .page4_card h3 {
+            font-size: 20px;
+            font-weight: 500;
+            color: #1a1f0f;
+        }
+
+        /* ── PAGE 5 ── */
+        .page5 {
+            width: 100%;
+            min-height: 100vh;
+            background: url('image.png') no-repeat center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page5::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+
+        .page5 .overlay {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .page5 h1 {
+            font-size: 42px;
+            font-weight: 500;
+            color: #1c2b14;
+            line-height: 1.3;
+            margin-bottom: 30px;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .page5 button {
+            padding: 14px 30px;
+            border: none;
+            background: #000;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .page5 button::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: #1c2b14;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+            z-index: -1;
+        }
+
+        .page5 button:hover::before {
+            transform: scaleX(1);
+        }
+
+        .page5 button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ── MAIN CONTAINER & FOOTER SECTION ── */
+        .container {
+            position: relative;
+            z-index: 10;
+            background: var(--cream);
+            min-height: 100vh;
+            margin-bottom: var(--footer-h);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            /* padding: 50px ; */
+        }
+
+        .content-layout {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            padding: 40px;
+            align-items: center;
+            min-height: 80vh;
+            width: 90%;
+            /* border: 2px solid red; */
+            background-color: #d9d8c9;
+            margin: 30px auto;
+            /* height: 10vh; */
+            border-radius: 70px;
+        }
+
+        .text-side {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 24px;
+            height: 100%;
+        }
+
+        .bottom-text {
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(48px, 5.5vw, 86px);
+            font-weight: 300;
+            line-height: 1.05;
+            color: var(--ink);
+            letter-spacing: -0.025em;
+            opacity: 0;
+            animation: fadeUp 1s 0.3s forwards;
+        }
+
+        .bottom-text em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .bottom-sub {
+            font-size: 12px;
+            font-weight: 400;
+            color: #999;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            opacity: 0;
+            animation: fadeUp 1s 0.5s forwards;
+        }
+
+        .bottom-sub::before {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 1px;
+            background: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .video-side {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 70%;
+            opacity: 0;
+            animation: fadeIn 1.2s 0.4s forwards;
+        }
+
+        .video-frame {
+            position: relative;
+            width: 100%;
+            height: 78vh;
+            max-height: 660px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .video-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(196, 168, 130, 0.12) 0%, transparent 50%, rgba(14, 14, 14, 0.12) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .video-frame::after {
+            content: '';
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            width: 36px;
+            height: 36px;
+            border-top: 1.5px solid rgba(255, 255, 255, 0.4);
+            border-right: 1.5px solid rgba(255, 255, 255, 0.4);
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .video-frame video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: saturate(0.85) contrast(1.05);
+        }
+
+        .video-tag {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .video-tag::before {
+            content: '';
+            display: block;
+            width: 6px;
+            height: 6px;
+            background: #fff;
+            border-radius: 50%;
+            animation: tagPulse 2s infinite;
+        }
+
+        .deco-line {
+            position: absolute;
+            left: var(--pad);
+            top: 50%;
+            transform: translateY(-50%);
+            width: 1px;
+            height: 140px;
+            background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: var(--footer-h);
+            z-index: 0;
+            background: var(--ink);
+            color: #fff;
+            display: grid;
+            grid-template-rows: 1fr auto;
+            padding: 48px var(--pad) 32px;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: 'BIOVENTURE';
+            position: absolute;
+            bottom: -8px;
+            right: -8px;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 150px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.025);
+            line-height: 1;
+            pointer-events: none;
+            letter-spacing: -0.04em;
+            user-select: none;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .footer-brand h2 {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 26px;
+            font-weight: 300;
+            line-height: 1.25;
+            color: #fff;
+            margin-bottom: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .footer-brand h2 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            line-height: 1.75;
+            color: #fff;
+            max-width: 260px;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .social-links a {
+            width: 34px;
+            height: 34px;
+            border: 1px solid #222;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 13px;
+            transition: border-color 0.3s, color 0.3s, background 0.3s;
+        }
+
+        .social-links a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(196, 168, 130, 0.06);
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-col h4 {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #fff;
+            margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #1c1c1c;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-links a {
+            font-size: 13.5px;
+            font-weight: 300;
+            color: #ffff;
+            text-decoration: none;
+            transition: color 0.25s, padding-left 0.25s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid #1c1c1c;
+        }
+
+        .footer-bottom p {
+            font-size: 11.5px;
+            color: #fff;
+            letter-spacing: 0.07em;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .footer-bottom-links a {
+            font-size: 11.5px;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: 0.07em;
+            transition: color 0.25s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #fff;
+        }
+
+        /* ── KEYFRAMES ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes tagPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.7);
+            }
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 1100px) {
             .hero {
@@ -1044,6 +1564,40 @@
 
             .hero-content {
                 padding: 60px 36px 60px 48px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            :root {
+                --pad: 40px;
+            }
+
+            .content-layout {
+                gap: 32px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+
+            .deco-line {
+                display: none;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .page4 {
+                padding: 70px 30px;
+            }
+
+            .page4_grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page4_card {
+                height: auto;
+                padding: 28px;
             }
         }
 
@@ -1077,7 +1631,6 @@
                 padding: 72px 28px 40px;
                 max-width: 100%;
                 text-align: center;
-                margin-bottom: 0;
             }
 
             .hero-desc {
@@ -1113,6 +1666,54 @@
 
             .page3_cards {
                 grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --pad: 28px;
+            }
+
+            .content-layout {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                gap: 36px;
+                padding-top: 48px;
+                padding-bottom: 56px;
+            }
+
+            .text-side {
+                height: auto;
+            }
+
+            .video-side {
+                height: 56vw;
+                min-height: 240px;
+            }
+
+            .video-frame {
+                width: 100%;
+                height: 100%;
+                max-height: unset;
+            }
+
+            footer {
+                padding: 36px var(--pad) 24px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+
+            footer::before {
+                font-size: 72px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
             }
         }
 
@@ -1181,236 +1782,42 @@
             .video-desc {
                 font-size: 14px;
             }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .page5 h1 {
+                font-size: 22px;
+            }
+
+            .page5 button {
+                width: 100%;
+                max-width: 250px;
+            }
         }
 
-        /* ================= PAGE 4 ================= */
+        @media (max-width: 1024px) {
+            .page5 h1 {
+                font-size: 34px;
+            }
+        }
 
-.page4 {
-  width: 100%;
-  min-height: 100vh;
-  padding: 100px 80px;
-  background: #E4DBC4;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+        @media (max-width: 768px) {
+            .page5 {
+                padding: 60px 20px;
+            }
 
-/* ===== HEADER ===== */
+            .page5 h1 {
+                font-size: 26px;
+                line-height: 1.4;
+            }
 
-.page4_header {
-  text-align: center;
-  max-width: 900px;
-  margin-bottom: 60px;
-}
-
-.page4_header h1 {
-  font-size: clamp(42px, 5vw, 72px);
-  font-weight: 500;
-  color: #1a1f0f;
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
-
-.page4_header p {
-  font-size: 16px;
-  color: #2f3523;
-  line-height: 1.7;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-/* ===== GRID ===== */
-
-.page4_grid {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
-}
-
-/* ===== CARD ===== */
-
-.page4_card {
-  background: #d9d6cf;
-  border-radius: 22px;
-  padding: 40px;
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  height: 140px;
-  transition: transform 0.3s ease;
-}
-
-.page4_card:hover {
-  transform: translateY(-6px);
-}
-
-/* ===== ICON (placeholder circle style) ===== */
-/* ICON BOX */
-
-.icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  border: 2px solid #1a1f0f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-/* Remix icon */
-.icon i {
-  font-size: 28px;
-  color: #1a1f0f;
-  z-index: 2;
-}
-
-
-
-/* ===== TEXT ===== */
-
-.page4_card h3 {
-  font-size: 20px;
-  font-weight: 500;
-  color: #1a1f0f;
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media (max-width: 900px) {
-  .page4 {
-    padding: 70px 30px;
-  }
-
-  .page4_grid {
-    grid-template-columns: 1fr;
-  }
-
-  .page4_card {
-    height: auto;
-    padding: 28px;
-  }
-}
-
-
-/* Page 5 Section */
-.page5 {
-  width: 100%;
-  min-height: 100vh;
-
-  /* 🔥 ADD YOUR IMAGE HERE */
-  background: url('image.png') no-repeat center/cover;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Beige Overlay */
-.page5::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  /* background: rgba(217, 216, 201, 0.85); */
-  z-index: 1;
-}
-
-/* Content */
-.page5 .overlay {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  max-width: 900px;
-  width: 100%;
-}
-
-/* Heading */
-.page5 h1 {
-  font-size: 42px;
-  font-weight: 500;
-  color: #1c2b14;
-  line-height: 1.3;
-  margin-bottom: 30px;
-  font-family: 'Playfair Display', serif;
-}
-
-/* Button */
-.page5 button {
-  padding: 14px 30px;
-  border: none;
-  background: #000;
-  color: #fff;
-  font-size: 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  letter-spacing: 1px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-/* Hover Fill */
-.page5 button::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #1c2b14;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s ease;
-  z-index: -1;
-}
-
-.page5 button:hover::before {
-  transform: scaleX(1);
-}
-
-/* Lift Effect */
-.page5 button:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-/* ================= */
-/* RESPONSIVE */
-/* ================= */
-
-@media (max-width: 1024px) {
-  .page5 h1 {
-    font-size: 34px;
-  }
-}
-
-@media (max-width: 768px) {
-  .page5 {
-    padding: 60px 20px;
-  }
-
-  .page5 h1 {
-    font-size: 26px;
-    line-height: 1.4;
-  }
-
-  .page5 button {
-    padding: 12px 24px;
-    font-size: 13px;
-  }
-}
-
-@media (max-width: 480px) {
-  .page5 h1 {
-    font-size: 22px;
-  }
-
-  .page5 button {
-    width: 100%;
-    max-width: 250px;
-  }
-}
+            .page5 button {
+                padding: 12px 24px;
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 
@@ -1534,504 +1941,598 @@
         <a href="#" class="mobile-cta">Partner With Us →</a>
     </div>
 
-    <!-- PAGE CANVAS -->
-    <div class="page-canvas">
 
-        <!-- VIDEO SECTION -->
-        <section class="video-section" id="video-section">
-            <div class="video-depth-line"></div>
-            <div class="video-bg">
-                <video autoplay muted loop playsinline
-                    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;">
-                    <source src="197489-905015030.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-overlay"></div>
-            <div class="video-edge-blur"></div>
-            <div class="video-content">
-                <div class="video-eyebrow">
-                    <div class="video-eyebrow-dot"></div>
-                    <span class="video-eyebrow-text">Our Impact in the World</span>
-                </div>
-                <h2 class="video-headline">
-                    Life sciences that <br><em>regenerate</em> the earth.
-                </h2>
-                <p class="video-desc">
-                    From rainforest-derived actives to lab-fermented compounds, every molecule we create is designed
-                    with planetary health as the primary constraint — not an afterthought.
-                </p>
-                <div class="video-actions">
-                    <a href="#" class="btn-video-primary">
-                        <span class="play-icon"><svg width="8" height="9" viewBox="0 0 8 9" fill="white">
-                                <path d="M1 1l6 3.5L1 8V1z" />
-                            </svg></span>
-                        Watch Our Story
-                    </a>
-                    <a href="#" class="btn-video-ghost">Read Impact Report</a>
-                </div>
-            </div>
-            <div class="video-stats">
-                <div class="video-stat-item">
-                    <div class="video-stat-num">12<span>M+</span></div>
-                    <div class="video-stat-label">kg CO₂ Offset</div>
-                </div>
-                <div class="video-stat-item">
-                    <div class="video-stat-num">62<span>+</span></div>
-                    <div class="video-stat-label">Countries Reached</div>
-                </div>
-                <div class="video-stat-item">
-                    <div class="video-stat-num">2030</div>
-                    <div class="video-stat-label">Net-Zero Target</div>
-                </div>
-            </div>
-        </section>
 
-        <!-- HERO SECTION -->
-        <div class="hero-wrapper" id="hero-wrapper">
-            <section class="hero" id="hero">
-                <div class="hero-bg"></div>
-                <div class="hero-content">
-                    <h1 class="hero-headline">
-                        <span class="line">Science that</span>
-                        <span class="line">works <em>with nature</em></span>
-                    </h1>
-                    <p class="hero-desc">
-                        We harness the living world — precisely engineering biology to create ingredients and compounds
-                        that are as clean for the planet as they are powerful for human health.
-                    </p>
-                    <div class="hero-actions">
-                        <a href="#" class="btn-primary">
-                            Explore Our Science
-                            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <line x1="2" y1="7" x2="12" y2="7" />
-                                <polyline points="8 3 12 7 8 11" />
-                            </svg>
-                        </a>
-                        <a href="#" class="btn-secondary">View Pipeline</a>
+    <!-- MAIN / FOOTER SECTION -->
+    <main>
+        <div class="container">
+
+            <!-- PAGE CANVAS -->
+            <div class="page-canvas">
+
+                <!-- VIDEO SECTION -->
+                <section class="video-section" id="video-section">
+                    <div class="video-depth-line"></div>
+                    <div class="video-bg">
+                        <video autoplay muted loop playsinline
+                            style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;">
+                            <source src="197489-905015030.mp4" type="video/mp4">
+                        </video>
                     </div>
-                </div>
+                    <div class="video-overlay"></div>
+                    <div class="video-edge-blur"></div>
+                    <div class="video-content">
+                        <div class="video-eyebrow">
+                            <div class="video-eyebrow-dot"></div>
+                            <span class="video-eyebrow-text">Our Impact in the World</span>
+                        </div>
+                        <h2 class="video-headline">
+                            Life sciences that <br><em>regenerate</em> the earth.
+                        </h2>
+                        <p class="video-desc">
+                            From rainforest-derived actives to lab-fermented compounds, every molecule we create is
+                            designed
+                            with planetary health as the primary constraint — not an afterthought.
+                        </p>
+                        <div class="video-actions">
+                            <a href="#" class="btn-video-primary">
+                                <span class="play-icon"><svg width="8" height="9" viewBox="0 0 8 9" fill="white">
+                                        <path d="M1 1l6 3.5L1 8V1z" />
+                                    </svg></span>
+                                Watch Our Story
+                            </a>
+                            <a href="#" class="btn-video-ghost">Read Impact Report</a>
+                        </div>
+                    </div>
+                    <div class="video-stats">
+                        <div class="video-stat-item">
+                            <div class="video-stat-num">12<span>M+</span></div>
+                            <div class="video-stat-label">kg CO₂ Offset</div>
+                        </div>
+                        <div class="video-stat-item">
+                            <div class="video-stat-num">62<span>+</span></div>
+                            <div class="video-stat-label">Countries Reached</div>
+                        </div>
+                        <div class="video-stat-item">
+                            <div class="video-stat-num">2030</div>
+                            <div class="video-stat-label">Net-Zero Target</div>
+                        </div>
+                    </div>
+                </section>
 
-                <div class="hero-visual">
-                    <div class="visual-card">
-                        <div class="floating-tag tag-1">
-                            <div class="tag-label">Purity Level</div>
-                            <div class="tag-value">99.7%</div>
-                            <div class="tag-sub">Fermentation Grade</div>
-                            <div class="tag-bar">
-                                <div class="tag-bar-item filled"></div>
-                                <div class="tag-bar-item filled"></div>
-                                <div class="tag-bar-item filled"></div>
-                                <div class="tag-bar-item filled"></div>
-                                <div class="tag-bar-item"></div>
+                <!-- HERO SECTION -->
+                <div class="hero-wrapper" id="hero-wrapper">
+                    <section class="hero" id="hero">
+                        <div class="hero-bg"></div>
+                        <div class="hero-content">
+                            <h1 class="hero-headline">
+                                <span class="line">Science that</span>
+                                <span class="line">works <em>with nature</em></span>
+                            </h1>
+                            <p class="hero-desc">
+                                We harness the living world — precisely engineering biology to create ingredients and
+                                compounds
+                                that are as clean for the planet as they are powerful for human health.
+                            </p>
+                            <div class="hero-actions">
+                                <a href="#" class="btn-primary">
+                                    Explore Our Science
+                                    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="2" y1="7" x2="12" y2="7" />
+                                        <polyline points="8 3 12 7 8 11" />
+                                    </svg>
+                                </a>
+                                <a href="#" class="btn-secondary">View Pipeline</a>
                             </div>
                         </div>
-                        <svg viewBox="0 0 420 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
-                            <defs>
-                                <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
-                                    <stop offset="0%" stop-color="#dde8d9" stop-opacity="0.55" />
-                                    <stop offset="100%" stop-color="#c8d9c3" stop-opacity="0.18" />
-                                </radialGradient>
-                                <linearGradient id="stemGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" stop-color="#4a6741" />
-                                    <stop offset="100%" stop-color="#2b3d27" />
-                                </linearGradient>
-                                <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#5a7a50" />
-                                    <stop offset="100%" stop-color="#3d5736" />
-                                </linearGradient>
-                                <linearGradient id="leafGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
-                                    <stop offset="0%" stop-color="#6a8a60" />
-                                    <stop offset="100%" stop-color="#4a6741" />
-                                </linearGradient>
-                                <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#2b3d27"
-                                        flood-opacity="0.13" />
-                                </filter>
-                            </defs>
-                            <rect x="60" y="40" width="300" height="480" rx="150" fill="url(#bgGrad)"
-                                filter="url(#softShadow)" />
-                            <circle cx="210" cy="280" r="160" fill="none" stroke="rgba(74,103,65,0.09)"
-                                stroke-width="1" />
-                            <circle cx="210" cy="280" r="120" fill="none" stroke="rgba(74,103,65,0.07)"
-                                stroke-width="1" />
-                            <circle cx="210" cy="280" r="80" fill="none" stroke="rgba(74,103,65,0.05)"
-                                stroke-width="1" />
-                            <path d="M210 480 C210 420 206 380 210 300 C214 220 206 160 210 100" stroke="url(#stemGrad)"
-                                stroke-width="3" fill="none" stroke-linecap="round" />
-                            <path
-                                d="M208 310 C170 290 120 260 100 220 C130 210 175 230 210 250 C208 270 208 290 208 310Z"
-                                fill="url(#leafGrad1)" opacity="0.92" />
-                            <path d="M208 310 C170 285 130 255 105 222" stroke="rgba(255,255,255,0.3)" stroke-width="1"
-                                fill="none" />
-                            <path
-                                d="M212 290 C250 265 298 235 320 195 C290 182 245 205 212 228 C212 248 212 268 212 290Z"
-                                fill="url(#leafGrad2)" opacity="0.88" />
-                            <path d="M212 290 C252 262 296 230 318 197" stroke="rgba(255,255,255,0.22)" stroke-width="1"
-                                fill="none" />
-                            <path
-                                d="M208 220 C178 200 145 175 132 145 C158 140 190 162 210 185 C210 197 208 210 208 220Z"
-                                fill="url(#leafGrad1)" opacity="0.82" />
-                            <path d="M208 220 C178 198 150 174 134 147" stroke="rgba(255,255,255,0.26)" stroke-width="1"
-                                fill="none" />
-                            <path
-                                d="M212 200 C240 178 268 155 278 128 C252 122 224 143 212 168 C212 178 212 190 212 200Z"
-                                fill="url(#leafGrad2)" opacity="0.78" />
-                            <path
-                                d="M208 155 C192 138 172 118 162 100 C182 96 204 115 210 135 C210 142 208 150 208 155Z"
-                                fill="url(#leafGrad1)" opacity="0.72" />
-                            <path d="M212 140 C228 122 248 104 256 88 C236 82 216 100 212 120 C212 127 212 133 212 140Z"
-                                fill="url(#leafGrad2)" opacity="0.68" />
-                            <path d="M210 480 C190 490 162 495 140 485" stroke="url(#stemGrad)" stroke-width="2"
-                                fill="none" stroke-linecap="round" opacity="0.55" />
-                            <path d="M210 480 C230 492 258 498 278 490" stroke="url(#stemGrad)" stroke-width="2"
-                                fill="none" stroke-linecap="round" opacity="0.55" />
-                            <circle cx="148" cy="338" r="4" fill="rgba(74,103,65,0.2)" />
-                            <circle cx="270" cy="320" r="3" fill="rgba(74,103,65,0.15)" />
-                            <circle cx="155" cy="195" r="3" fill="rgba(74,103,65,0.18)" />
-                            <circle cx="264" cy="168" r="4" fill="rgba(74,103,65,0.12)" />
-                            <line x1="148" y1="338" x2="210" y2="310" stroke="rgba(74,103,65,0.11)" stroke-width="1"
-                                stroke-dasharray="3,3" />
-                            <line x1="270" y1="320" x2="212" y2="290" stroke="rgba(74,103,65,0.09)" stroke-width="1"
-                                stroke-dasharray="3,3" />
-                        </svg>
-                        <div class="floating-tag tag-2">
-                            <div class="tag-label">Carbon Impact</div>
-                            <div class="tag-value">−82%</div>
-                            <div class="tag-sub">vs. conventional</div>
+
+                        <div class="hero-visual">
+                            <div class="visual-card">
+                                <div class="floating-tag tag-1">
+                                    <div class="tag-label">Purity Level</div>
+                                    <div class="tag-value">99.7%</div>
+                                    <div class="tag-sub">Fermentation Grade</div>
+                                    <div class="tag-bar">
+                                        <div class="tag-bar-item filled"></div>
+                                        <div class="tag-bar-item filled"></div>
+                                        <div class="tag-bar-item filled"></div>
+                                        <div class="tag-bar-item filled"></div>
+                                        <div class="tag-bar-item"></div>
+                                    </div>
+                                </div>
+                                <svg viewBox="0 0 420 560" xmlns="http://www.w3.org/2000/svg"
+                                    style="width:100%;height:100%">
+                                    <defs>
+                                        <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+                                            <stop offset="0%" stop-color="#dde8d9" stop-opacity="0.55" />
+                                            <stop offset="100%" stop-color="#c8d9c3" stop-opacity="0.18" />
+                                        </radialGradient>
+                                        <linearGradient id="stemGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#4a6741" />
+                                            <stop offset="100%" stop-color="#2b3d27" />
+                                        </linearGradient>
+                                        <linearGradient id="leafGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#5a7a50" />
+                                            <stop offset="100%" stop-color="#3d5736" />
+                                        </linearGradient>
+                                        <linearGradient id="leafGrad2" x1="100%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="#6a8a60" />
+                                            <stop offset="100%" stop-color="#4a6741" />
+                                        </linearGradient>
+                                        <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#2b3d27"
+                                                flood-opacity="0.13" />
+                                        </filter>
+                                    </defs>
+                                    <rect x="60" y="40" width="300" height="480" rx="150" fill="url(#bgGrad)"
+                                        filter="url(#softShadow)" />
+                                    <circle cx="210" cy="280" r="160" fill="none" stroke="rgba(74,103,65,0.09)"
+                                        stroke-width="1" />
+                                    <circle cx="210" cy="280" r="120" fill="none" stroke="rgba(74,103,65,0.07)"
+                                        stroke-width="1" />
+                                    <circle cx="210" cy="280" r="80" fill="none" stroke="rgba(74,103,65,0.05)"
+                                        stroke-width="1" />
+                                    <path d="M210 480 C210 420 206 380 210 300 C214 220 206 160 210 100"
+                                        stroke="url(#stemGrad)" stroke-width="3" fill="none" stroke-linecap="round" />
+                                    <path
+                                        d="M208 310 C170 290 120 260 100 220 C130 210 175 230 210 250 C208 270 208 290 208 310Z"
+                                        fill="url(#leafGrad1)" opacity="0.92" />
+                                    <path d="M208 310 C170 285 130 255 105 222" stroke="rgba(255,255,255,0.3)"
+                                        stroke-width="1" fill="none" />
+                                    <path
+                                        d="M212 290 C250 265 298 235 320 195 C290 182 245 205 212 228 C212 248 212 268 212 290Z"
+                                        fill="url(#leafGrad2)" opacity="0.88" />
+                                    <path d="M212 290 C252 262 296 230 318 197" stroke="rgba(255,255,255,0.22)"
+                                        stroke-width="1" fill="none" />
+                                    <path
+                                        d="M208 220 C178 200 145 175 132 145 C158 140 190 162 210 185 C210 197 208 210 208 220Z"
+                                        fill="url(#leafGrad1)" opacity="0.82" />
+                                    <path d="M208 220 C178 198 150 174 134 147" stroke="rgba(255,255,255,0.26)"
+                                        stroke-width="1" fill="none" />
+                                    <path
+                                        d="M212 200 C240 178 268 155 278 128 C252 122 224 143 212 168 C212 178 212 190 212 200Z"
+                                        fill="url(#leafGrad2)" opacity="0.78" />
+                                    <path
+                                        d="M208 155 C192 138 172 118 162 100 C182 96 204 115 210 135 C210 142 208 150 208 155Z"
+                                        fill="url(#leafGrad1)" opacity="0.72" />
+                                    <path
+                                        d="M212 140 C228 122 248 104 256 88 C236 82 216 100 212 120 C212 127 212 133 212 140Z"
+                                        fill="url(#leafGrad2)" opacity="0.68" />
+                                    <path d="M210 480 C190 490 162 495 140 485" stroke="url(#stemGrad)" stroke-width="2"
+                                        fill="none" stroke-linecap="round" opacity="0.55" />
+                                    <path d="M210 480 C230 492 258 498 278 490" stroke="url(#stemGrad)" stroke-width="2"
+                                        fill="none" stroke-linecap="round" opacity="0.55" />
+                                    <circle cx="148" cy="338" r="4" fill="rgba(74,103,65,0.2)" />
+                                    <circle cx="270" cy="320" r="3" fill="rgba(74,103,65,0.15)" />
+                                    <circle cx="155" cy="195" r="3" fill="rgba(74,103,65,0.18)" />
+                                    <circle cx="264" cy="168" r="4" fill="rgba(74,103,65,0.12)" />
+                                    <line x1="148" y1="338" x2="210" y2="310" stroke="rgba(74,103,65,0.11)"
+                                        stroke-width="1" stroke-dasharray="3,3" />
+                                    <line x1="270" y1="320" x2="212" y2="290" stroke="rgba(74,103,65,0.09)"
+                                        stroke-width="1" stroke-dasharray="3,3" />
+                                </svg>
+                                <div class="floating-tag tag-2">
+                                    <div class="tag-label">Carbon Impact</div>
+                                    <div class="tag-value">−82%</div>
+                                    <div class="tag-sub">vs. conventional</div>
+                                </div>
+                            </div>
                         </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- PAGE 3 -->
+            <div class="page3">
+                <div class="page3_title">
+                    <h1>Advanced Biotechnology Solutions<br>Built for Real-World Impact</h1>
+                </div>
+
+                <div class="page3_info_wrap">
+
+                    <div class="page3_info">
+                        <p>Advanced biotechnology research focused on innovation, precision, and real-world impact.</p>
+                        <span>Explore Research</span>
+                    </div>
+
+                    <div class="page3_info">
+                        <p>Cutting-edge lab solutions designed to enhance healthcare, sustainability, and life sciences.
+                        </p>
+                        <span>View Solutions</span>
+                    </div>
+
+                    <div class="page3_info">
+                        <p>AI-powered diagnostics and smart systems transforming modern medical and biological analysis.
+                        </p>
+                        <span>Discover Technology</span>
+                    </div>
+
+                    <div class="page3_info">
+                        <p>Scalable biotech platforms built for faster innovation, global reach, and sustainable growth.
+                        </p>
+                        <span>Browse Platform</span>
+                    </div>
+
+                </div>
+
+                <div class="page3_cards">
+                    <div class="card pink">
+                        <i class="ri-instagram-line"></i>
+                        <div class="card_content">
+                            <h3>Biotech Innovation</h3>
+                            <p>Advanced research solutions designed for precision, efficiency, and real-world impact.
+                            </p>
+                        </div>
+                        <div class="card_img"><img src="img1.jpg" alt="Hero Section" /></div>
+                    </div>
+                    <div class="card green">
+                        <i class="ri-lightbulb-flash-line"></i>
+                        <div class="card_content">
+                            <h3>Smart Diagnostics</h3>
+                            <p>AI-powered systems delivering accurate analysis and faster medical insights.</p>
+                        </div>
+                        <div class="card_img"><img src="img2.jpg" alt="Services Section" /></div>
+                    </div>
+                    <div class="card yellow">
+                        <i class="ri-bar-chart-box-line"></i>
+                        <div class="card_content">
+                            <h3>Sustainable Solutions</h3>
+                            <p>Eco-friendly biotech innovations driving a healthier and greener future.</p>
+                        </div>
+                        <div class="card_img"><img src="img3.jpg" alt="Landing Page" /></div>
+                    </div>
+                    <div class="card white">
+                        <i class="ri-search-eye-line"></i>
+                        <div class="card_content">
+                            <h3>Lab Technology</h3>
+                            <p>Next-gen laboratory tools enhancing precision, automation, and performance.</p>
+                        </div>
+                        <div class="card_img"><img src="img4.jpg" alt="Components" /></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE 4 -->
+            <section class="page4">
+                <div class="page4_header">
+                    <h1>Drive profitable, responsible<br>growth</h1>
+                    <p>
+                        Create product differentiation, competitive advantage, and lasting value with biotechnology –
+                        while
+                        reducing environmental impact and emissions.
+                    </p>
+                </div>
+
+                <div class="page4_grid">
+                    <div class="page4_card">
+                        <div class="icon"><i class="ri-flask-line"></i></div>
+                        <h3>Custom renewable chemistry</h3>
+                    </div>
+                    <div class="page4_card">
+                        <div class="icon"><i class="ri-node-tree"></i></div>
+                        <h3>Resilient supply chains</h3>
+                    </div>
+                    <div class="page4_card">
+                        <div class="icon"><i class="ri-line-chart-line"></i></div>
+                        <h3>Unparalleled product consistency</h3>
+                    </div>
+                    <div class="page4_card">
+                        <div class="icon"><i class="ri-earth-line"></i></div>
+                        <h3>Reduced ecological impact</h3>
                     </div>
                 </div>
             </section>
-        </div>
-    </div>
 
-    <!-- PAGE 3 -->
-    <div class="page3">
-        <div class="page3_title">
-            <h1>Production-First UI Sections<br>Built for Real Projects</h1>
-        </div>
+            <!-- PAGE 5 -->
+            <section class="page5">
+                <div class="overlay">
+                    <h1 class="reveal-text">
+                        See how our partners have unlocked <br />
+                        value with our platform
+                    </h1>
+                    <button class="reveal-btn">LEARN MORE</button>
+                </div>
+            </section>
+            <div class="deco-line"></div>
 
-        <div class="page3_info_wrap">
-            <div class="page3_info">
-                <p>High-impact hero layouts with clear structure and smooth animations.</p>
-                <span>View Components</span>
-            </div>
-            <div class="page3_info">
-                <p>Clean sections to present features or services with clarity.</p>
-                <span>Explore Sections</span>
-            </div>
-            <div class="page3_info">
-                <p>Complete landing page layouts designed for conversion.</p>
-                <span>See Layouts</span>
-            </div>
-            <div class="page3_info">
-                <p>Reusable UI components for building faster and smarter.</p>
-                <span>Browse Library</span>
-            </div>
-        </div>
+            <div class="content-layout">
+                <div class="text-side">
+                    <div>
+                        <div class="bottom-text">
+                            Drive <em>profitable,</em><br>responsible<br>growth.
+                        </div>
+                        <div class="bottom-sub">Biotechnology for a better future</div>
+                    </div>
+                </div>
 
-        <div class="page3_cards">
-            <div class="card pink">
-                <i class="ri-instagram-line"></i>
-                <div class="card_content">
-                    <h3>Hero Section</h3>
-                    <p>Powerful headline with clear action focus.</p>
+                <div class="video-side">
+                    <div class="video-frame">
+                        <video autoplay loop muted playsinline>
+                            <source src="197489-905015030.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-tag">Live — Research Lab Feed</div>
+                    </div>
                 </div>
-                <div class="card_img"><img src="/img2/card1.png" alt="Hero Section" /></div>
-            </div>
-            <div class="card green">
-                <i class="ri-lightbulb-flash-line"></i>
-                <div class="card_content">
-                    <h3>Services Section</h3>
-                    <p>Showcasing key services with clean visuals.</p>
-                </div>
-                <div class="card_img"><img src="/img2/card2.png" alt="Services Section" /></div>
-            </div>
-            <div class="card yellow">
-                <i class="ri-bar-chart-box-line"></i>
-                <div class="card_content">
-                    <h3>Landing Page</h3>
-                    <p>Designed to convert visitors into users.</p>
-                </div>
-                <div class="card_img"><img src="/img2/card3.png" alt="Landing Page" /></div>
-            </div>
-            <div class="card white">
-                <i class="ri-search-eye-line"></i>
-                <div class="card_content">
-                    <h3>20+ Components</h3>
-                    <p>Reusable UI components for faster development.</p>
-                </div>
-                <div class="card_img"><img src="/img2/card4.png" alt="Components" /></div>
             </div>
         </div>
-    </div>
 
+        <!-- Sticky Footer -->
+        <footer>
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <h2>Building a <em>healthier</em><br>tomorrow, today.</h2>
+                    <p>We are a passionate team of scientists and investors dedicated to responsible biotech innovation
+                        that creates lasting impact for people and planet.</p>
+                    <div class="social-links">
+                        <a href="#" title="X / Twitter">𝕏</a>
+                        <a href="#" title="LinkedIn">in</a>
+                        <a href="#" title="Instagram">◉</a>
+                        <a href="#" title="Facebook">ƒ</a>
+                    </div>
+                </div>
 
+                <div class="footer-col">
+                    <h4>Navigate</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Our Research</a></li>
+                        <li><a href="#">Pipeline</a></li>
+                        <li><a href="#">Portfolio</a></li>
+                        <li><a href="#">Impact Report</a></li>
+                    </ul>
+                </div>
 
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Leadership</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Investors</a></li>
+                    </ul>
+                </div>
 
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Get in Touch</a></li>
+                        <li><a href="#">Partnerships</a></li>
+                        <li><a href="#">Media Enquiries</a></li>
+                        <li><a href="#">Legal</a></li>
+                    </ul>
+                </div>
+            </div>
 
-<section class="page4">
-
-  <div class="page4_header">
-    <h1>Drive profitable, responsible<br>growth</h1>
-    <p>
-      Create product differentiation, competitive advantage, and lasting value with biotechnology – while
-      reducing environmental impact and emissions.
-    </p>
-  </div>
-
-  <div class="page4_grid">
-
-    <div class="page4_card">
-      <div class="icon"><i class="ri-flask-line"></i></div>
-      <h3>Custom renewable chemistry</h3>
-    </div>
-
-    <div class="page4_card">
-      <div class="icon"><i class="ri-node-tree"></i></div>
-      <h3>Resilient supply chains</h3>
-    </div>
-
-    <div class="page4_card">
-      <div class="icon"><i class="ri-line-chart-line"></i></div>
-      <h3>Unparalleled product consistency</h3>
-    </div>
-
-    <div class="page4_card">
-      <div class="icon"><i class="ri-earth-line"></i></div>
-      <h3>Reduced ecological impact</h3>
-    </div>
-
-  </div>
-
-</section>
-
-<section class="page5">
-  <div class="overlay">
-    <h1 class="reveal-text">
-      See how our partners have unlocked <br />
-      value with our platform
-    </h1>
-
-    <button class="reveal-btn">LEARN MORE</button>
-  </div>
-</section>
-
+            <div class="footer-bottom">
+                <p>© 2026 BioVenture. All rights reserved.</p>
+                <ul class="footer-bottom-links">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Cookie Settings</a></li>
+                </ul>
+            </div>
+        </footer>
+    </main>
 
     <script>
+        /**
+   * Veridian — GSAP Scroll Reveal System
+   * Reusable, performant, bidirectional reveal animations.
+   * Requires: GSAP 3 + ScrollTrigger plugin
+   */
+
         (function () {
             'use strict';
 
-            gsap.registerPlugin(ScrollTrigger);
+            /* ── Guard: wait for DOM ── */
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
 
-            var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            var isMobile = window.innerWidth <= 560;
+            function init() {
+                /* ── Register plugin ── */
+                gsap.registerPlugin(ScrollTrigger);
 
-            /* ── REUSABLE REVEAL FUNCTION ── */
-            function reveal(selector, options) {
+                /* ── Respect reduced-motion preference ── */
+                const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
                 if (prefersReduced) return;
-                var defaults = {
-                    y: 60,
+
+                /* ── Global defaults ── */
+                const DEFAULTS = {
+                    y: 80,
                     opacity: 0,
-                    duration: isMobile ? 0.7 : 1,
+                    duration: 1,
                     ease: 'power3.out',
-                    stagger: 0.12,
-                    trigger: selector,
-                    start: 'top 80%'
+                    stagger: 0,           // per-element stagger when multiple share a trigger
+                    start: 'top 85%',
+                    toggleActions: 'play reverse play reverse',
                 };
-                var opts = Object.assign({}, defaults, options);
 
-                gsap.from(selector, {
-                    y: opts.y,
-                    opacity: opts.opacity,
-                    duration: opts.duration,
-                    ease: opts.ease,
-                    stagger: opts.stagger,
-                    scrollTrigger: {
-                        trigger: opts.trigger,
-                        start: opts.start,
-                        toggleActions: 'play reverse play reverse'
-                    }
-                });
-            }
+                /* ─────────────────────────────────────────────
+                 * Core reveal function
+                 * @param {string|Element|NodeList} target  – what to animate
+                 * @param {object}                  options – overrides DEFAULTS
+                 * ───────────────────────────────────────────── */
+                function revealFrom(target, options = {}) {
+                    const cfg = Object.assign({}, DEFAULTS, options);
+                    const els = resolveElements(target);
+                    if (!els.length) return;
 
-            /* ── NAVBAR ENTRANCE ── */
-            gsap.from('.navbar', {
-                y: -20,
-                opacity: 0,
-                duration: 0.85,
-                ease: 'power3.out',
-                delay: 0.1
-            });
+                    /* Use first element as trigger unless explicitly overridden */
+                    const triggerEl = cfg.triggerEl || els[0].closest('section, .page3, .page4, .page5, .container, .content-layout') || els[0];
 
-            /* ── NAVBAR SCROLL STATE ── */
-            window.addEventListener('scroll', function () {
-                document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 30);
-            }, { passive: true });
+                    gsap.fromTo(
+                        els,
+                        { y: cfg.y, opacity: cfg.opacity },
+                        {
+                            y: 0,
+                            opacity: 1,
+                            duration: cfg.duration,
+                            ease: cfg.ease,
+                            stagger: cfg.stagger,
+                            scrollTrigger: {
+                                trigger: triggerEl,
+                                start: cfg.start,
+                                toggleActions: cfg.toggleActions,
+                            },
+                        }
+                    );
+                }
 
-            /* ── HAMBURGER & MOBILE MENU ── */
-            var hamburger = document.getElementById('hamburger');
-            var mobileMenu = document.getElementById('mobile-menu');
-            var overlay = document.getElementById('mobile-overlay');
+                /* ─────────────────────────────────────────────
+                 * Batch-reveal all `.reveal` elements
+                 * Groups siblings that share a direct parent so
+                 * they stagger together naturally.
+                 * ───────────────────────────────────────────── */
+                function revealAll() {
+                    const allReveal = document.querySelectorAll('.reveal');
+                    if (!allReveal.length) return;
 
-            function openMenu() {
-                hamburger.classList.add('active');
-                mobileMenu.classList.add('open');
-                overlay.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeMenu() {
-                hamburger.classList.remove('active');
-                mobileMenu.classList.remove('open');
-                overlay.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-
-            hamburger.addEventListener('click', function (e) {
-                e.stopPropagation();
-                mobileMenu.classList.contains('open') ? closeMenu() : openMenu();
-            });
-
-            overlay.addEventListener('click', closeMenu);
-
-            /* ── MOBILE DROPDOWNS ── */
-            document.querySelectorAll('.mobile-nav-link[data-target]').forEach(function (btn) {
-                btn.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    var id = btn.getAttribute('data-target');
-                    var target = document.getElementById(id);
-                    if (!target) return;
-                    var wasOpen = target.classList.contains('open');
-                    document.querySelectorAll('.mobile-dropdown.open').forEach(function (d) { d.classList.remove('open'); });
-                    if (!wasOpen) target.classList.add('open');
-                });
-            });
-
-            /* ── DESKTOP DROPDOWNS ── */
-            document.querySelectorAll('.nav-item').forEach(function (item) {
-                var btn = item.querySelector('button.nav-link');
-                if (!btn) return;
-                btn.addEventListener('click', function (e) {
-                    e.stopPropagation();
-                    var wasOpen = item.classList.contains('open');
-                    document.querySelectorAll('.nav-item.open').forEach(function (o) { o.classList.remove('open'); });
-                    if (!wasOpen) item.classList.add('open');
-                });
-            });
-
-            document.addEventListener('click', function () {
-                document.querySelectorAll('.nav-item.open').forEach(function (i) { i.classList.remove('open'); });
-            });
-
-            /* ── VIDEO SECTION REVEALS ── */
-            reveal('.video-eyebrow', { trigger: '.video-section', start: 'top 75%', stagger: 0, y: 30 });
-            reveal('.video-headline', { trigger: '.video-section', start: 'top 75%', y: 40, stagger: 0, duration: 1.1 });
-            reveal('.video-desc', { trigger: '.video-section', start: 'top 75%', y: 30, stagger: 0, duration: 0.9 });
-            reveal('.video-actions', { trigger: '.video-section', start: 'top 75%', y: 25, stagger: 0.12, duration: 0.8 });
-            reveal('.video-stat-item', { trigger: '.video-stats', start: 'top 92%', y: 20, stagger: 0.12, duration: 0.7 });
-
-            /* ── HERO SECTION REVEALS ── */
-            reveal('.hero-headline .line', { trigger: '.hero', start: 'top 80%', y: 35, stagger: 0.1, duration: 0.9 });
-            reveal('.hero-desc', { trigger: '.hero', start: 'top 80%', y: 25, stagger: 0, duration: 0.85 });
-            reveal('.hero-actions', { trigger: '.hero', start: 'top 80%', y: 20, stagger: 0.1, duration: 0.8 });
-
-            if (!prefersReduced) {
-                gsap.from('.hero-visual', {
-                    x: 30,
-                    opacity: 0,
-                    duration: 1.1,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: '.hero',
-                        start: 'top 80%',
-                        toggleActions: 'play reverse play reverse'
-                    }
-                });
-
-                gsap.from(['.tag-1', '.tag-2'], {
-                    opacity: 0,
-                    y: 14,
-                    duration: 0.7,
-                    stagger: 0.2,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: '.hero-visual',
-                        start: 'top 85%',
-                        toggleActions: 'play reverse play reverse'
-                    }
-                });
-            }
-
-            /* ── PAGE 3 REVEALS ── */
-            reveal('.page3_title h1', {
-                trigger: '.page3',
-                start: 'top 78%',
-                y: 60,
-                stagger: 0,
-                duration: 0.95
-            });
-
-            reveal('.page3_info', {
-                trigger: '.page3_info_wrap',
-                start: 'top 82%',
-                y: 45,
-                stagger: 0.12,
-                duration: 0.8
-            });
-
-            reveal('.page3_cards .card', {
-                trigger: '.page3_cards',
-                start: 'top 85%',
-                y: 70,
-                stagger: 0.15,
-                duration: isMobile ? 0.65 : 0.85
-            });
-
-            /* ── CARD HOVER LIFT ── */
-            if (!isMobile) {
-                document.querySelectorAll('.page3_cards .card').forEach(function (card) {
-                    card.addEventListener('mouseenter', function () {
-                        gsap.to(card, { y: -12, scale: 1.03, duration: 0.35, ease: 'power3.out' });
+                    /* Group by parent so stagger feels intentional */
+                    const groups = new Map();
+                    allReveal.forEach(el => {
+                        const key = el.parentElement;
+                        if (!groups.has(key)) groups.set(key, []);
+                        groups.get(key).push(el);
                     });
-                    card.addEventListener('mouseleave', function () {
-                        gsap.to(card, { y: 0, scale: 1, duration: 0.35, ease: 'power3.out' });
+
+                    groups.forEach((els, parent) => {
+                        const isMany = els.length > 1;
+                        revealFrom(els, {
+                            stagger: isMany ? 0.13 : 0,
+                            triggerEl: parent,
+                        });
                     });
-                });
+                }
+
+                /* ─────────────────────────────────────────────
+                 * Section-specific reveals
+                 * (covers elements that may not carry .reveal)
+                 * ───────────────────────────────────────────── */
+                function revealSections() {
+
+                    /* VIDEO SECTION */
+                    revealFrom('.video-eyebrow', { triggerEl: '#video-section', y: 40, duration: 0.8, start: 'top 80%' });
+                    revealFrom('.video-headline', { triggerEl: '#video-section', y: 80, duration: 1.1, start: 'top 80%' });
+                    revealFrom('.video-desc', { triggerEl: '#video-section', y: 60, duration: 0.95, start: 'top 80%' });
+                    revealFrom('.video-actions > *', {
+                        triggerEl: '#video-section',
+                        y: 50, duration: 0.85, stagger: 0.12, start: 'top 80%',
+                    });
+                    revealFrom('.video-stat-item', {
+                        triggerEl: '.video-stats',
+                        y: 30, duration: 0.7, stagger: 0.14, start: 'top 92%',
+                    });
+
+                    /* HERO SECTION */
+                    revealFrom('.hero-headline .line', {
+                        triggerEl: '#hero',
+                        y: 60, duration: 0.9, stagger: 0.1, start: 'top 82%',
+                    });
+                    revealFrom('.hero-desc', { triggerEl: '#hero', y: 50, duration: 0.85, start: 'top 82%' });
+                    revealFrom('.hero-actions > *', {
+                        triggerEl: '#hero',
+                        y: 40, duration: 0.8, stagger: 0.12, start: 'top 82%',
+                    });
+                    revealFrom('.hero-visual', {
+                        triggerEl: '#hero',
+                        y: 0, opacity: 0,   /* slide from right instead */
+                        duration: 1.1, start: 'top 82%',
+                    });
+                    /* Override hero-visual to use x-axis */
+                    gsap.fromTo(
+                        '.hero-visual',
+                        { x: 50, opacity: 0 },
+                        {
+                            x: 0, opacity: 1, duration: 1.15, ease: 'power3.out',
+                            scrollTrigger: {
+                                trigger: '#hero',
+                                start: 'top 82%',
+                                toggleActions: 'play reverse play reverse',
+                            },
+                        }
+                    );
+                    revealFrom('.floating-tag', {
+                        triggerEl: '.hero-visual',
+                        y: 20, duration: 0.7, stagger: 0.18, start: 'top 88%',
+                    });
+
+                    /* PAGE 3 */
+                    revealFrom('.page3_title h1', {
+                        triggerEl: '.page3_title',
+                        y: 80, duration: 1, start: 'top 85%',
+                    });
+                    revealFrom('.page3_info', {
+                        triggerEl: '.page3_info_wrap',
+                        y: 60, duration: 0.85, stagger: 0.13, start: 'top 85%',
+                    });
+                    revealFrom('.page3_cards .card', {
+                        triggerEl: '.page3_cards',
+                        y: 80, duration: 0.9, stagger: 0.15, start: 'top 85%',
+                    });
+
+                    /* PAGE 4 */
+                    revealFrom('.page4_header h1', { triggerEl: '.page4_header', y: 70, duration: 1, start: 'top 85%' });
+                    revealFrom('.page4_header p', { triggerEl: '.page4_header', y: 50, duration: 0.9, start: 'top 85%' });
+                    revealFrom('.page4_card', {
+                        triggerEl: '.page4_grid',
+                        y: 80, duration: 0.9, stagger: 0.14, start: 'top 85%',
+                    });
+
+                    /* PAGE 5 */
+                    revealFrom('.reveal-text', {
+                        triggerEl: '.page5',
+                        y: 80, duration: 1.2, start: 'top 80%',
+                    });
+                    revealFrom('.reveal-btn', {
+                        triggerEl: '.page5',
+                        y: 50, duration: 1, start: 'top 80%',
+                    });
+
+                    /* BOTTOM CONTENT LAYOUT */
+                    revealFrom('.bottom-text', { triggerEl: '.content-layout', y: 60, duration: 1, start: 'top 85%' });
+                    revealFrom('.bottom-sub', { triggerEl: '.content-layout', y: 40, duration: 0.8, start: 'top 85%' });
+                    revealFrom('.video-side', { triggerEl: '.content-layout', y: 50, duration: 1, start: 'top 85%' });
+                }
+
+                /* ─────────────────────────────────────────────
+                 * Card hover lift (GSAP-only, no CSS transform)
+                 * ───────────────────────────────────────────── */
+                function initCardHover() {
+                    document.querySelectorAll('.page3_cards .card, .page4_card').forEach(card => {
+                        card.addEventListener('mouseenter', () =>
+                            gsap.to(card, { y: -10, scale: 1.03, duration: 0.35, ease: 'power3.out' })
+                        );
+                        card.addEventListener('mouseleave', () =>
+                            gsap.to(card, { y: 0, scale: 1, duration: 0.35, ease: 'power3.out' })
+                        );
+                    });
+                }
+
+                /* ── Utility: resolve selector / NodeList / Element ── */
+                function resolveElements(target) {
+                    if (typeof target === 'string') return [...document.querySelectorAll(target)];
+                    if (target instanceof Element) return [target];
+                    if (target instanceof NodeList || Array.isArray(target)) return [...target];
+                    return [];
+                }
+
+                /* ─────────────────────────────────────────────
+                 * Run everything
+                 * ───────────────────────────────────────────── */
+                revealAll();       // handles any .reveal class added to HTML
+                revealSections();  // named section reveals (no .reveal class needed)
+                initCardHover();
+
+                /* Expose globally for optional manual use */
+                window.VeridianReveal = { revealFrom };
             }
 
         }());
-
-
-        gsap.registerPlugin(ScrollTrigger);
-
-/* Text Animation */
-gsap.from(".reveal-text", {
-  scrollTrigger: {
-    trigger: ".page5",
-    start: "top 75%",
-  },
-  opacity: 0,
-  scale: 0.85,
-  y: 60,
-  duration: 1.2,
-  ease: "power3.out"
-});
-
-/* Button Animation */
-gsap.from(".reveal-btn", {
-  scrollTrigger: {
-    trigger: ".page5",
-    start: "top 75%",
-  },
-  opacity: 0,
-  scale: 0.9,
-  y: 40,
-  delay: 0.2,
-  duration: 1,
-  ease: "power3.out"
-});
     </script>
 
 </body>
