@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Veridian — Sustainable Biotechnology</title>
+    <title>MOLMENT BIOTECH</title>
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
@@ -39,7 +40,7 @@
             --ink: #1a1a1a;
             --muted: #666;
             --accent: #7ab870;
-            --nav-h: 72px;
+            --nav-h: 82px;
             --hero-r: 40px;
             --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
             --pad: 64px;
@@ -52,7 +53,7 @@
 
         body {
             font-family: 'DM Sans', sans-serif;
-            background: var(--light-yellow);
+             background: var(--light-yellow);
             color: var(--ink);
             overflow-x: hidden;
         }
@@ -99,35 +100,19 @@
             gap: 10px;
         }
 
-        .nav-logo-mark {
-            width: 28px;
-            height: 28px;
-            background: linear-gradient(135deg, var(--sage) 0%, var(--sage-deep) 100%);
-            border-radius: 50% 50% 50% 12px;
-            flex-shrink: 0;
+        .nav-logo-mark img {
+            width: 180px;
         }
 
-        .nav-logo-text {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 22px;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            color: var(--ink);
-        }
 
-        .nav-logo-text span {
-            background: linear-gradient(110deg, var(--sage) 0%, var(--sage-deep) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+
 
         .nav-links {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
             list-style: none;
         }
 
@@ -140,7 +125,7 @@
             align-items: center;
             gap: 5px;
             padding: 8px 14px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 400;
             letter-spacing: 0.01em;
             color: var(--stone);
@@ -169,6 +154,7 @@
             stroke-width: 2;
             stroke-linecap: round;
             stroke-linejoin: round;
+
         }
 
         .nav-item:hover .chevron,
@@ -179,7 +165,7 @@
 
         .dropdown {
             position: absolute;
-            top: calc(100% + 5px);
+            top: calc(100% + 1px);
             left: 50%;
             transform: translateX(-50%) translateY(-10px) scale(0.96);
             min-width: 210px;
@@ -187,7 +173,7 @@
             backdrop-filter: blur(28px);
             border: 1px solid rgba(107, 191, 115, 0.18);
             border-radius: 16px;
-            box-shadow: 0 20px 60px rgba(46, 125, 50, 0.1), 0 2px 8px rgba(46, 125, 50, 0.05);
+            /* box-shadow: 0 20px 60px rgba(46, 125, 50, 0.1), 0 2px 8px rgba(46, 125, 50, 0.05); */
             padding: 8px;
             opacity: 0;
             pointer-events: none;
@@ -295,7 +281,7 @@
         }
 
         .nav-cta:hover {
-            box-shadow: 0 8px 24px rgba(46, 125, 50, 0.36);
+            /* box-shadow: 0 8px 24px rgba(46, 125, 50, 0.36); */
             filter: brightness(1.06);
         }
 
@@ -532,8 +518,15 @@
         }
 
         @keyframes dotPulse {
-            0%, 100% { box-shadow: 0 0 0 3px rgba(107, 191, 115, 0.25); }
-            50% { box-shadow: 0 0 0 7px rgba(107, 191, 115, 0.08); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 3px rgba(107, 191, 115, 0.25);
+            }
+
+            50% {
+                box-shadow: 0 0 0 7px rgba(107, 191, 115, 0.08);
+            }
         }
 
         .video-eyebrow-text {
@@ -697,11 +690,12 @@
         .hero-wrapper {
             position: relative;
             z-index: 10;
-            padding: 16px 16px 0;
+            padding: 35px 30px;
+             background: var(--light-yellow);
         }
 
         .hero {
-            border-radius: var(--hero-r);
+             background: var(--light-yellow);
             overflow: hidden;
             position: relative;
             height: 80vh;
@@ -712,9 +706,10 @@
 
         .hero-bg {
             position: absolute;
+            border-radius: 24px;
             inset: 0;
             z-index: 0;
-            background: linear-gradient(135deg, var(--light-green) 0%, var(--light-yellow-2) 100%);
+            background: var(--light-green);
         }
 
         .hero-content {
@@ -909,154 +904,190 @@
             background: var(--sage);
         }
 
-        /* ── PAGE 3 ── */
-        .page3 {
-            width: 100%;
-            min-height: 100vh;
-            padding: 80px 90px;
-            background: var(--light-yellow);
-            margin-top: 60px;
-        }
+       
+/* ── PAGE 3 ── */
+.page3 {
+    width: 100%;
+    min-height: 100vh;
+    padding: 80px 90px;
+    background: var(--light-yellow);
+    /* margin-top: 60px; */
+}
 
-        .page3_title {
-            margin-bottom: 50px;
-            color: var(--ink);
-        }
+.page3_title {
+    margin-bottom: 50px;
+    color: var(--ink);
+}
 
-        .page3_title h1 {
-            font-size: clamp(32px, 4vw, 56px);
-            font-weight: 700;
-            line-height: 1.1;
-            color: var(--ink);
-        }
+.page3_title h1 {
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+}
 
-        .page3_info_wrap {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            padding-bottom: 35px;
-        }
+.page3_info_wrap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding-bottom: 35px;
+}
 
-        .page3_info p {
-            font-size: 14px;
-            color: var(--stone);
-            line-height: 1.6;
-            margin-bottom: 12px;
-        }
+.page3_info p {
+    font-size: 14px;
+    color: var(--stone);
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
 
-        .page3_info span {
-            font-size: 13px;
-            color: var(--sage-mid);
-            opacity: 0.9;
-            cursor: pointer;
-            border-bottom: 1px solid rgba(74, 145, 80, 0.35);
-            transition: opacity 0.2s;
-        }
+.page3_info span {
+    font-size: 13px;
+    color: var(--sage-mid);
+    opacity: 0.9;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(74, 145, 80, 0.35);
+    transition: opacity 0.2s;
+}
 
-        .page3_info span:hover {
-            opacity: 1;
-        }
+.page3_info span:hover {
+    opacity: 1;
+}
 
-        .page3_cards {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-        }
+/* GRID */
+.page3_cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
 
-        .page3 .card {
-            height: 300px;
-            border-radius: 24px;
-            padding: 28px;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            border: 1px solid transparent;
-            transition: border-color 0.3s ease;
-        }
+/* CARD BASE */
+.page3 .card {
+    height: 300px;
+    border-radius: 14px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
 
-        .page3 .card i {
-            font-size: 36px;
-            color: var(--sage-deep);
-            margin-bottom: 18px;
-            display: inline-block;
-            transition: opacity 0.4s ease;
-        }
+/* IMAGE DEFAULT (VISIBLE) */
+.page3 .card_img {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
 
-        .page3 .card h3 {
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--ink);
-        }
+.page3 .card_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
 
-        .page3 .card_content {
-            position: absolute;
-            left: 28px;
-            right: 28px;
-            bottom: 48px;
-            transition: opacity 0.4s ease;
-        }
+/* CONTENT (HIDDEN INITIALLY) */
+.page3 .card_content {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    padding: 28px;
 
-        .page3 .card p {
-            font-size: 14px;
-            color: var(--stone);
-            line-height: 1.5;
-            margin-top: 1px;
-            transform: translateY(25px);
-            transition: transform 0.4s ease, opacity 0.4s ease;
-        }
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 
-        .page3 .card_img {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            overflow: hidden;
-            opacity: 0;
-            transform: scale(1.05);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
 
-        .page3 .card_img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+/* ICON (HIDDEN INITIALLY) */
+.page3 .card i {
+    position: absolute;
+    left: 28px;
+    top: 20px; /* 👈 is value ko adjust karo (50–90 range) */
 
-        .page3 .card_img::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-        }
+    z-index: 3;
+    font-size: 36px;
+    color: var(--sage-deep);
 
-        .page3 .card:hover .card_img {
-            opacity: 1;
-            transform: scale(1);
-        }
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
 
-        .page3 .card:hover .card_content,
-        .page3 .card:hover i {
-            opacity: 0;
-        }
+/* SHOW ICON ON HOVER */
+.page3 .card:hover i {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* TEXT */
+.page3 .card_content h3 {
+    color: #000;
+    font-size: 20px;
+    font-weight: 600;
+}
 
-        .page3 .card:hover {
-            border-color: rgba(107, 191, 115, 0.4);
-        }
+.page3 .card_content p {
+    color: var(--sage-deep);
+    font-size: 14px;
+    margin-top: 6px;
+}
 
-        .page3 .card.pink {
-            background: linear-gradient(125deg, #d5f0d8 0%, #b2e0b8 100%);
-        }
+/* GREEN OVERLAY */
+.page3 .card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #dff5e1, #b2e0b8);
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
-        .page3 .card.green {
-            background: linear-gradient(125deg, #c8eecc 0%, #a8deb0 100%);
-        }
+/* HOVER EFFECT */
+.page3 .card:hover {
+    /* transform: scale(1.03); */
+}
 
-        .page3 .card.yellow {
-            background: linear-gradient(125deg, #e8f5d8 0%, #c8e8b2 100%);
-        }
+/* SHOW GREEN */
+.page3 .card:hover::before {
+    opacity: 1;
+}
 
-        .page3 .card.white {
-            background: linear-gradient(125deg, #f0f8e8 0%, #d8f0c8 100%);
-        }
+/* IMAGE HIDE */
+.page3 .card:hover .card_img {
+    opacity: 0;
+}
 
+/* IMAGE ZOOM */
+.page3 .card:hover .card_img img {
+    /* transform: scale(1.08); */
+}
+
+/* SHOW TEXT */
+.page3 .card:hover .card_content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+
+/* OPTIONAL CARD COLORS (KEEP SAME) */
+.page3 .card.pink {
+    background: linear-gradient(125deg, #d5f0d8 0%, #b2e0b8 100%);
+}
+
+.page3 .card.green {
+    background: linear-gradient(125deg, #c8eecc 0%, #a8deb0 100%);
+}
+
+.page3 .card.yellow {
+    background: linear-gradient(125deg, #e8f5d8 0%, #c8e8b2 100%);
+}
+
+.page3 .card.white {
+    background: linear-gradient(125deg, #f0f8e8 0%, #d8f0c8 100%);
+}
         /* ── PAGE 4 ── */
         .page4 {
             width: 100%;
@@ -1159,9 +1190,12 @@
             inset: 0;
             background-image: url("image.png");
             z-index: 1;
-            background-size: cover;       /* full fit */
-    background-position: center;  /* center align */
-    background-repeat: no-repeat; /* no repeat */
+            background-size: cover;
+            /* full fit */
+            background-position: center;
+            /* center align */
+            background-repeat: no-repeat;
+            /* no repeat */
         }
 
         .page5 .overlay {
@@ -1170,7 +1204,7 @@
             text-align: center;
             max-width: 900px;
             width: 100%;
-            
+
         }
 
         .page5 h1 {
@@ -1318,7 +1352,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 60%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
             border-radius: inherit;
             pointer-events: none;
         }
@@ -1670,7 +1704,7 @@
         .footer-brand p {
             font-size: 13px;
             line-height: 1.75;
-            color: rgba(255,255,255,0.65);
+            color: rgba(255, 255, 255, 0.65);
             max-width: 260px;
             margin-bottom: 20px;
         }
@@ -1683,12 +1717,12 @@
         .social-links a {
             width: 34px;
             height: 34px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
             text-decoration: none;
             font-size: 13px;
             transition: border-color 0.3s, color 0.3s, background 0.3s;
@@ -1710,10 +1744,10 @@
             font-weight: 500;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
             margin-bottom: 16px;
             padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.07);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
         }
 
         .footer-links {
@@ -1726,7 +1760,7 @@
         .footer-links a {
             font-size: 13.5px;
             font-weight: 300;
-            color: rgba(255,255,255,0.55);
+            color: rgba(255, 255, 255, 0.55);
             text-decoration: none;
             transition: color 0.25s, padding-left 0.25s;
             display: inline-block;
@@ -1742,12 +1776,12 @@
             align-items: center;
             justify-content: space-between;
             padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.07);
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
         }
 
         .footer-bottom p {
             font-size: 11.5px;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
             letter-spacing: 0.07em;
         }
 
@@ -1759,7 +1793,7 @@
 
         .footer-bottom-links a {
             font-size: 11.5px;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
             text-decoration: none;
             letter-spacing: 0.07em;
             transition: color 0.25s;
@@ -1771,18 +1805,39 @@
 
         /* ── KEYFRAMES ── */
         @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes tagPulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.7); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.7);
+            }
         }
 
         /* ── RESPONSIVE ── */
@@ -1790,90 +1845,296 @@
             .hero {
                 grid-template-columns: 1.15fr 0.85fr;
             }
+
             .hero-content {
                 padding: 60px 36px 60px 48px;
             }
         }
 
         @media (max-width: 1024px) {
-            :root { --pad: 40px; }
-            .content-layout { gap: 32px; }
-            .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
-            .deco-line { display: none; }
-            .combined-section { padding: 80px 48px; }
-            .combined-grid { gap: 40px; }
-            .why-molmet-side { padding-left: 0; }
+            :root {
+                --pad: 40px;
+            }
+
+            .content-layout {
+                gap: 32px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+
+            .deco-line {
+                display: none;
+            }
+
+            .combined-section {
+                padding: 80px 48px;
+            }
+
+            .combined-grid {
+                gap: 40px;
+            }
+
+            .why-molmet-side {
+                padding-left: 0;
+            }
         }
 
         @media (max-width: 900px) {
-            .page4 { padding: 70px 30px; }
-            .page4_grid { grid-template-columns: 1fr; }
-            .page4_card { height: auto; padding: 28px; }
-            .combined-grid { grid-template-columns: 1fr; gap: 48px; }
-            .combined-divider { display: none; }
-            .why-molmet-side { padding-left: 0; }
-            .why-molmet-title { margin-top: 0; }
+            .page4 {
+                padding: 70px 30px;
+            }
+
+            .page4_grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page4_card {
+                height: auto;
+                padding: 28px;
+            }
+
+            .combined-grid {
+                grid-template-columns: 1fr;
+                gap: 48px;
+            }
+
+            .combined-divider {
+                display: none;
+            }
+
+            .why-molmet-side {
+                padding-left: 0;
+            }
+
+            .why-molmet-title {
+                margin-top: 0;
+            }
         }
 
         @media (max-width: 860px) {
-            .nav-links, .nav-cta-wrap { display: none; }
-            .hamburger { display: flex; }
-            :root { --hero-r: 24px; }
-            .hero-wrapper { padding: 10px 10px 0; }
-            .hero { grid-template-columns: 1fr; align-content: center; height: auto; min-height: 80vh; }
-            .hero-content { padding: 72px 28px 40px; max-width: 100%; text-align: center; }
-            .hero-desc { margin-left: auto; margin-right: auto; }
-            .hero-actions { justify-content: center; }
-            .hero-visual { display: none; }
-            .video-content { padding: 60px 28px; }
-            .video-stats { right: 28px; bottom: 32px; gap: 20px; }
-            .page3 { padding: 60px 28px; }
-            .page3_info_wrap { grid-template-columns: 1fr 1fr; }
-            .page3_cards { grid-template-columns: 1fr 1fr; }
+
+            .nav-links,
+            .nav-cta-wrap {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            :root {
+                --hero-r: 24px;
+            }
+
+            .hero-wrapper {
+                padding: 10px 10px 0;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                align-content: center;
+                height: auto;
+                min-height: 80vh;
+            }
+
+            .hero-content {
+                padding: 72px 28px 40px;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero-desc {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .video-content {
+                padding: 60px 28px;
+            }
+
+            .video-stats {
+                right: 28px;
+                bottom: 32px;
+                gap: 20px;
+            }
+
+            .page3 {
+                padding: 60px 28px;
+            }
+
+            .page3_info_wrap {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .page3_cards {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 768px) {
-            :root { --pad: 28px; }
-            .content-layout { grid-template-columns: 1fr; min-height: auto; gap: 36px; padding-top: 48px; padding-bottom: 56px; }
-            .text-side { height: auto; }
-            .video-side { height: 56vw; min-height: 240px; }
-            .video-frame { width: 100%; height: 100%; max-height: unset; }
-            footer { padding: 36px var(--pad) 24px; }
-            .footer-top { grid-template-columns: 1fr 1fr; gap: 24px; }
-            footer::before { font-size: 72px; }
-            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 12px; }
-            .combined-section { padding: 60px 28px; }
-            .bio-cards-grid { grid-template-columns: 1fr 1fr; }
+            :root {
+                --pad: 28px;
+            }
+
+            .content-layout {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                gap: 36px;
+                padding-top: 48px;
+                padding-bottom: 56px;
+            }
+
+            .text-side {
+                height: auto;
+            }
+
+            .video-side {
+                height: 56vw;
+                min-height: 240px;
+            }
+
+            .video-frame {
+                width: 100%;
+                height: 100%;
+                max-height: unset;
+            }
+
+            footer {
+                padding: 36px var(--pad) 24px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+
+            footer::before {
+                font-size: 72px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+
+            .combined-section {
+                padding: 60px 28px;
+            }
+
+            .bio-cards-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 560px) {
-            .navbar { padding: 0 20px; }
-            .hero-content { padding: 64px 18px 36px; }
-            .hero-headline { font-size: 36px; }
-            .video-stats { flex-direction: column; gap: 10px; right: 18px; bottom: 24px; }
-            .page3 { padding: 48px 18px; }
-            .page3_title h1 { font-size: 32px; }
-            .page3_info_wrap, .page3_cards { grid-template-columns: 1fr; }
-            .page3_cards { gap: 16px; }
-            .video-content { padding: 48px 18px; margin-top: 72px; }
-            .bio-cards-grid { grid-template-columns: 1fr; }
-            .combined-section { padding: 48px 18px; }
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .hero-content {
+                padding: 64px 18px 36px;
+            }
+
+            .hero-headline {
+                font-size: 36px;
+            }
+
+            .video-stats {
+                flex-direction: column;
+                gap: 10px;
+                right: 18px;
+                bottom: 24px;
+            }
+
+            .page3 {
+                padding: 48px 18px;
+            }
+
+            .page3_title h1 {
+                font-size: 32px;
+            }
+
+            .page3_info_wrap,
+            .page3_cards {
+                grid-template-columns: 1fr;
+            }
+
+            .page3_cards {
+                gap: 16px;
+            }
+
+            .video-content {
+                padding: 48px 18px;
+                margin-top: 72px;
+            }
+
+            .bio-cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .combined-section {
+                padding: 48px 18px;
+            }
         }
 
         @media (max-width: 480px) {
-            .hero-headline { font-size: 32px; }
-            .hero-desc { font-size: 14px; }
-            .btn-primary, .btn-secondary { font-size: 13px; padding: 12px 20px; }
-            .video-headline { font-size: 34px; }
-            .video-desc { font-size: 14px; }
-            .footer-top { grid-template-columns: 1fr; }
-            .page5 h1 { font-size: 22px; }
+            .hero-headline {
+                font-size: 32px;
+            }
+
+            .hero-desc {
+                font-size: 14px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                font-size: 13px;
+                padding: 12px 20px;
+            }
+
+            .video-headline {
+                font-size: 34px;
+            }
+
+            .video-desc {
+                font-size: 14px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .page5 h1 {
+                font-size: 22px;
+            }
         }
 
         @media (max-width: 768px) {
-            .page5 { padding: 60px 20px; }
-            .page5 h1 { font-size: 26px; line-height: 1.4; }
-            .page5 button { padding: 12px 24px; font-size: 13px; }
+            .page5 {
+                padding: 60px 20px;
+            }
+
+            .page5 h1 {
+                font-size: 26px;
+                line-height: 1.4;
+            }
+
+            .page5 button {
+                padding: 12px 24px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -1883,68 +2144,121 @@
     <!-- NAVBAR -->
     <nav class="navbar" id="navbar">
         <a href="#" class="nav-logo">
-            <div class="nav-logo-mark"></div>
-            <span class="nav-logo-text"><span>Veridian</span></span>
+            <div class="nav-logo-mark">
+                <img src="logo.png" alt="">
+            </div>
+
         </a>
 
         <ul class="nav-links">
+
             <li class="nav-item">
                 <button class="nav-link">
-                    Science
-                    <svg class="chevron" viewBox="0 0 12 12">
-                        <polyline points="2 4 6 8 10 4" />
-                    </svg>
+                    About
+                    <i class="ri-arrow-down-s-line"></i>
                 </button>
                 <div class="dropdown">
-                    <div class="dropdown-label">Research Areas</div>
-                    <a href="#" class="dropdown-link"><span class="dropdown-icon">🧬</span>Fermentation Science</a>
-                    <a href="#" class="dropdown-link"><span class="dropdown-icon">🌱</span>Plant Biology</a>
-                    <a href="#" class="dropdown-link"><span class="dropdown-icon">⚗️</span>Synthetic Biology</a>
+                    <div class="dropdown-label">About Veridian</div>
+                    <a href="#" class="dropdown-link"><i class="ri-compass-3-line"></i>Vision & Mission</a>
+                    <a href="#" class="dropdown-link"><i class="ri-user-star-line"></i>Leadership</a>
+                    <a href="#" class="dropdown-link"><i class="ri-building-4-line"></i>Infrastructure</a>
+                    <a href="#" class="dropdown-link"><i class="ri-lightbulb-line"></i>Approach</a>
+                    <a href="#" class="dropdown-link"><i class="ri-global-line"></i>Network</a>
                 </div>
             </li>
+
+            <!-- DISCOVERY -->
             <li class="nav-item">
                 <button class="nav-link">
-                    Products
-                    <svg class="chevron" viewBox="0 0 12 12">
-                        <polyline points="2 4 6 8 10 4" />
-                    </svg>
+                    Discovery
+                    <i class="ri-arrow-down-s-line"></i>
                 </button>
                 <div class="dropdown">
-                    <div class="dropdown-label">Portfolio</div>
-                    <a href="#" class="dropdown-link"><span class="dropdown-icon">💊</span>Wellness & Health</a>
-                    <a href="#" class="dropdown-link"><span class="dropdown-icon">✨</span>Cosmetic Actives</a>
-                    <a href="#" class="dropdown-link"><span class="dropdown-icon">⚡</span>Performance</a>
+                    <div class="dropdown-label">Explore Discovery</div>
+                    <a href="#" class="dropdown-link"><i class="ri-microscope-line"></i>Bioprospecting</a>
+                    <a href="#" class="dropdown-link"><i class="ri-flask-line"></i>Molecule Discovery</a>
+                    <a href="#" class="dropdown-link"><i class="ri-settings-3-line"></i>Strain Engineering</a>
+                    <a href="#" class="dropdown-link"><i class="ri-database-2-line"></i>Natural Libraries</a>
                 </div>
             </li>
+
+            <!-- COLLABORATE -->
             <li class="nav-item">
                 <button class="nav-link">
-                    Company
-                    <svg class="chevron" viewBox="0 0 12 12">
-                        <polyline points="2 4 6 8 10 4" />
-                    </svg>
+                    Collaborate
+                    <i class="ri-arrow-down-s-line"></i>
                 </button>
                 <div class="dropdown">
-                    <a href="#" class="dropdown-link"><span class="dropdown-icon">🏛</span>About Veridian</a>
-                    <a href="#" class="dropdown-link"><span class="dropdown-icon">🌍</span>Impact Report</a>
-                    <a href="#" class="dropdown-link"><span class="dropdown-icon">🤝</span>Partners</a>
+                    <div class="dropdown-label">Partner With Us</div>
+                    <a href="#" class="dropdown-link"><i class="ri-building-line"></i>Industry Partnerships</a>
+                    <a href="#" class="dropdown-link"><i class="ri-government-line"></i>Institutional Collaboration</a>
+                    <a href="#" class="dropdown-link"><i class="ri-handshake-line"></i>Co-development</a>
+                    <a href="#" class="dropdown-link"><i class="ri-funds-line"></i>Sponsored Research</a>
+                    <a href="#" class="dropdown-link"><i class="ri-exchange-line"></i>Tech Transfer</a>
                 </div>
             </li>
-            <li class="nav-item"><a href="#" class="nav-link">Sustainability</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Insights</a></li>
+
+            <!-- CRO & SOLUTIONS -->
+            <li class="nav-item">
+                <button class="nav-link">
+                    CRO & Solutions
+                    <i class="ri-arrow-down-s-line"></i>
+                </button>
+                <div class="dropdown">
+                    <div class="dropdown-label">R&D Solutions</div>
+                    <a href="#" class="dropdown-link"><i class="ri-briefcase-line"></i>Contract Research</a>
+                    <a href="#" class="dropdown-link"><i class="ri-tools-line"></i>Assay Development</a>
+                    <a href="#" class="dropdown-link"><i class="ri-search-eye-line"></i>Bioactivity Screening</a>
+                    <a href="#" class="dropdown-link"><i class="ri-test-tube-line"></i>In-vitro Models</a>
+                </div>
+            </li>
+
+
+
+            <!-- BIOLOGICAL ASSETS -->
+            <li class="nav-item">
+                <button class="nav-link">
+                    Biological Assets
+                    <i class="ri-arrow-down-s-line"></i>
+                </button>
+                <div class="dropdown">
+                    <div class="dropdown-label">Our Assets</div>
+                    <a href="#" class="dropdown-link"><i class="ri-dna-line"></i>Culture Library</a>
+                    <a href="#" class="dropdown-link"><i class="ri-flask-fill"></i>Metabolite Platform</a>
+                    <a href="#" class="dropdown-link"><i class="ri-archive-line"></i>Discovery Collection</a>
+                    <a href="#" class="dropdown-link"><i class="ri-links-line"></i>Strain Access</a>
+                </div>
+            </li>
+
+            <!-- ABOUT -->
+
+
+            <!-- INSIGHTS -->
+            <li class="nav-item">
+                <button class="nav-link">
+                    Insights
+                    <i class="ri-arrow-down-s-line"></i>
+                </button>
+                <div class="dropdown">
+                    <div class="dropdown-label">Knowledge Hub</div>
+                    <a href="#" class="dropdown-link"><i class="ri-article-line"></i>Blogs</a>
+                    <a href="#" class="dropdown-link"><i class="ri-file-text-line"></i>Whitepapers</a>
+                    <a href="#" class="dropdown-link"><i class="ri-bar-chart-line"></i>Research Highlights</a>
+                    <a href="#" class="dropdown-link"><i class="ri-lightbulb-flash-line"></i>Perspectives</a>
+                </div>
+            </li>
+
         </ul>
 
+        <!-- CTA -->
         <div class="nav-cta-wrap">
             <a href="#" class="nav-cta">
-                Partner With Us
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"
-                    stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="2" y1="10" x2="10" y2="2" />
-                    <polyline points="4 2 10 2 10 8" />
-                </svg>
+                Contact Us
+                <i class="ri-arrow-right-up-line"></i>
             </a>
         </div>
 
-        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <button class="hamburger" id="hamburger">
             <span></span><span></span><span></span>
         </button>
     </nav>
@@ -1954,45 +2268,95 @@
 
     <!-- Mobile menu -->
     <div class="mobile-menu" id="mobile-menu">
+
+        <!-- ABOUT -->
         <div class="mobile-nav-item">
-            <button class="mobile-nav-link" data-target="mob-science">Science
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="2 4 6 8 10 4" />
-                </svg>
+            <button class="mobile-nav-link" data-target="mob-about">
+                About <i class="ri-arrow-down-s-line"></i>
             </button>
-            <div class="mobile-dropdown" id="mob-science">
-                <a href="#" class="mobile-dropdown-link">Fermentation Science</a>
-                <a href="#" class="mobile-dropdown-link">Plant Biology</a>
-                <a href="#" class="mobile-dropdown-link">Synthetic Biology</a>
+            <div class="mobile-dropdown" id="mob-about">
+                <a href="#" class="mobile-dropdown-link"><i class="ri-compass-3-line"></i>Vision & Mission</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-user-star-line"></i>Leadership</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-building-4-line"></i>Infrastructure</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-lightbulb-line"></i>Approach</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-global-line"></i>Network</a>
             </div>
         </div>
+
+        <!-- DISCOVERY -->
         <div class="mobile-nav-item">
-            <button class="mobile-nav-link" data-target="mob-products">Products
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="2 4 6 8 10 4" />
-                </svg>
+            <button class="mobile-nav-link" data-target="mob-discovery">
+                Discovery <i class="ri-arrow-down-s-line"></i>
             </button>
-            <div class="mobile-dropdown" id="mob-products">
-                <a href="#" class="mobile-dropdown-link">Wellness & Health</a>
-                <a href="#" class="mobile-dropdown-link">Cosmetics</a>
-                <a href="#" class="mobile-dropdown-link">Performance</a>
+            <div class="mobile-dropdown" id="mob-discovery">
+                <a href="#" class="mobile-dropdown-link"><i class="ri-microscope-line"></i>Bioprospecting</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-flask-line"></i>Molecule Discovery</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-settings-3-line"></i>Strain Engineering</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-database-2-line"></i>Natural Libraries</a>
             </div>
         </div>
+
+        <!-- CRO & SOLUTIONS -->
         <div class="mobile-nav-item">
-            <button class="mobile-nav-link" data-target="mob-company">Company
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="2 4 6 8 10 4" />
-                </svg>
+            <button class="mobile-nav-link" data-target="mob-cro">
+                CRO & Solutions <i class="ri-arrow-down-s-line"></i>
             </button>
-            <div class="mobile-dropdown" id="mob-company">
-                <a href="#" class="mobile-dropdown-link">About Veridian</a>
-                <a href="#" class="mobile-dropdown-link">Impact Report</a>
-                <a href="#" class="mobile-dropdown-link">Partners</a>
+            <div class="mobile-dropdown" id="mob-cro">
+                <a href="#" class="mobile-dropdown-link"><i class="ri-briefcase-line"></i>Contract Research</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-tools-line"></i>Assay Development</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-search-eye-line"></i>Bioactivity Screening</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-test-tube-line"></i>In-vitro Models</a>
             </div>
         </div>
-        <div class="mobile-nav-item"><a href="#" class="mobile-nav-link">Sustainability</a></div>
-        <div class="mobile-nav-item"><a href="#" class="mobile-nav-link">Insights</a></div>
-        <a href="#" class="mobile-cta">Partner With Us →</a>
+
+        <!-- COLLABORATE -->
+        <div class="mobile-nav-item">
+            <button class="mobile-nav-link" data-target="mob-collab">
+                Collaborate <i class="ri-arrow-down-s-line"></i>
+            </button>
+            <div class="mobile-dropdown" id="mob-collab">
+                <a href="#" class="mobile-dropdown-link"><i class="ri-building-line"></i>Industry Partnerships</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-government-line"></i>Institutional
+                    Collaboration</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-handshake-line"></i>Co-development</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-funds-line"></i>Sponsored Research</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-exchange-line"></i>Tech Transfer</a>
+            </div>
+        </div>
+
+        <!-- BIOLOGICAL ASSETS -->
+        <div class="mobile-nav-item">
+            <button class="mobile-nav-link" data-target="mob-assets">
+                Biological Assets <i class="ri-arrow-down-s-line"></i>
+            </button>
+            <div class="mobile-dropdown" id="mob-assets">
+                <a href="#" class="mobile-dropdown-link"><i class="ri-dna-line"></i>Culture Library</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-flask-fill"></i>Metabolite Platform</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-archive-line"></i>Discovery Collection</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-links-line"></i>Strain Access</a>
+            </div>
+        </div>
+
+
+
+        <!-- INSIGHTS -->
+        <div class="mobile-nav-item">
+            <button class="mobile-nav-link" data-target="mob-insights">
+                Insights <i class="ri-arrow-down-s-line"></i>
+            </button>
+            <div class="mobile-dropdown" id="mob-insights">
+                <a href="#" class="mobile-dropdown-link"><i class="ri-article-line"></i>Blogs</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-file-text-line"></i>Whitepapers</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-bar-chart-line"></i>Research Highlights</a>
+                <a href="#" class="mobile-dropdown-link"><i class="ri-lightbulb-flash-line"></i>Perspectives</a>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <a href="#" class="mobile-cta">
+            Partner With Us <i class="ri-arrow-right-up-line"></i>
+        </a>
+
     </div>
 
     <!-- MAIN -->
@@ -2014,14 +2378,15 @@
                     <div class="video-content">
                         <div class="video-eyebrow">
                             <div class="video-eyebrow-dot"></div>
-                            <span class="video-eyebrow-text">Our Impact in the World</span>
+                            <span class="video-eyebrow-text">ISO certified company</span>
                         </div>
                         <h2 class="video-headline">
-                            Life sciences that <br><em>regenerate</em> the earth.
+                            Exploring Nature’s <br><em> Secret Microbial</em> Wealth
                         </h2>
                         <p class="video-desc">
-                            From rainforest-derived actives to lab-fermented compounds, every molecule we create is
-                            designed with planetary health as the primary constraint — not an afterthought.
+                            Applied biotech discovery platform focused on uncovering bioactive molecules from nature’s
+                            hidden microbial wealth through contract research, strategic collaborations, and
+                            innovation-driven scientific exploration.
                         </p>
                         <div class="video-actions">
                             <a href="#" class="btn-video-primary">
@@ -2030,7 +2395,7 @@
                                     </svg></span>
                                 Watch Our Story
                             </a>
-                            <a href="#" class="btn-video-ghost">Read Impact Report</a>
+                            <a href="#" class="btn-video-ghost">Explore Our Platforms </a>
                         </div>
                     </div>
                     <div class="video-stats">
@@ -2059,8 +2424,9 @@
                                 <span class="line">works <em>with nature</em></span>
                             </h1>
                             <p class="hero-desc">
-                                We harness the living world — precisely engineering biology to create ingredients and
-                                compounds that are as clean for the planet as they are powerful for human health.
+                                A complete biotech pipeline - from microbial bioprospecting to bioactive molecule
+                                discovery
+                                integrating validation and collaboration, all under one roof.
                             </p>
                             <div class="hero-actions">
                                 <a href="#" class="btn-primary">
@@ -2078,9 +2444,9 @@
                         <div class="hero-visual">
                             <div class="visual-card">
                                 <div class="floating-tag tag-1">
-                                    <div class="tag-label">Purity Level</div>
-                                    <div class="tag-value">99.7%</div>
-                                    <div class="tag-sub">Fermentation Grade</div>
+                                    <div class="tag-label">An Integrated </div>
+                                    <div class="tag-value">Discovery &</div>
+                                    <div class="tag-sub">Translation Engine</div>
                                     <div class="tag-bar">
                                         <div class="tag-bar-item filled"></div>
                                         <div class="tag-bar-item filled"></div>
@@ -2089,7 +2455,8 @@
                                         <div class="tag-bar-item"></div>
                                     </div>
                                 </div>
-                                <svg viewBox="0 0 420 560" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+                                <svg viewBox="0 0 420 560" xmlns="http://www.w3.org/2000/svg"
+                                    style="width:100%;height:100%">
                                     <defs>
                                         <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
                                             <stop offset="0%" stop-color="#dde8d9" stop-opacity="0.55" />
@@ -2108,36 +2475,61 @@
                                             <stop offset="100%" stop-color="#4a9150" />
                                         </linearGradient>
                                         <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                            <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#2e7d32" flood-opacity="0.1" />
+                                            <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#2e7d32"
+                                                flood-opacity="0.1" />
                                         </filter>
                                     </defs>
-                                    <rect x="60" y="40" width="300" height="480" rx="150" fill="url(#bgGrad)" filter="url(#softShadow)" />
-                                    <circle cx="210" cy="280" r="160" fill="none" stroke="rgba(74,145,80,0.09)" stroke-width="1" />
-                                    <circle cx="210" cy="280" r="120" fill="none" stroke="rgba(74,145,80,0.07)" stroke-width="1" />
-                                    <circle cx="210" cy="280" r="80" fill="none" stroke="rgba(74,145,80,0.05)" stroke-width="1" />
-                                    <path d="M210 480 C210 420 206 380 210 300 C214 220 206 160 210 100" stroke="url(#stemGrad)" stroke-width="3" fill="none" stroke-linecap="round" />
-                                    <path d="M208 310 C170 290 120 260 100 220 C130 210 175 230 210 250 C208 270 208 290 208 310Z" fill="url(#leafGrad1)" opacity="0.92" />
-                                    <path d="M208 310 C170 285 130 255 105 222" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none" />
-                                    <path d="M212 290 C250 265 298 235 320 195 C290 182 245 205 212 228 C212 248 212 268 212 290Z" fill="url(#leafGrad2)" opacity="0.88" />
-                                    <path d="M212 290 C252 262 296 230 318 197" stroke="rgba(255,255,255,0.22)" stroke-width="1" fill="none" />
-                                    <path d="M208 220 C178 200 145 175 132 145 C158 140 190 162 210 185 C210 197 208 210 208 220Z" fill="url(#leafGrad1)" opacity="0.82" />
-                                    <path d="M208 220 C178 198 150 174 134 147" stroke="rgba(255,255,255,0.26)" stroke-width="1" fill="none" />
-                                    <path d="M212 200 C240 178 268 155 278 128 C252 122 224 143 212 168 C212 178 212 190 212 200Z" fill="url(#leafGrad2)" opacity="0.78" />
-                                    <path d="M208 155 C192 138 172 118 162 100 C182 96 204 115 210 135 C210 142 208 150 208 155Z" fill="url(#leafGrad1)" opacity="0.72" />
-                                    <path d="M212 140 C228 122 248 104 256 88 C236 82 216 100 212 120 C212 127 212 133 212 140Z" fill="url(#leafGrad2)" opacity="0.68" />
-                                    <path d="M210 480 C190 490 162 495 140 485" stroke="url(#stemGrad)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.55" />
-                                    <path d="M210 480 C230 492 258 498 278 490" stroke="url(#stemGrad)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.55" />
+                                    <rect x="60" y="40" width="300" height="480" rx="150" fill="url(#bgGrad)"
+                                        filter="url(#softShadow)" />
+                                    <circle cx="210" cy="280" r="160" fill="none" stroke="rgba(74,145,80,0.09)"
+                                        stroke-width="1" />
+                                    <circle cx="210" cy="280" r="120" fill="none" stroke="rgba(74,145,80,0.07)"
+                                        stroke-width="1" />
+                                    <circle cx="210" cy="280" r="80" fill="none" stroke="rgba(74,145,80,0.05)"
+                                        stroke-width="1" />
+                                    <path d="M210 480 C210 420 206 380 210 300 C214 220 206 160 210 100"
+                                        stroke="url(#stemGrad)" stroke-width="3" fill="none" stroke-linecap="round" />
+                                    <path
+                                        d="M208 310 C170 290 120 260 100 220 C130 210 175 230 210 250 C208 270 208 290 208 310Z"
+                                        fill="url(#leafGrad1)" opacity="0.92" />
+                                    <path d="M208 310 C170 285 130 255 105 222" stroke="rgba(255,255,255,0.3)"
+                                        stroke-width="1" fill="none" />
+                                    <path
+                                        d="M212 290 C250 265 298 235 320 195 C290 182 245 205 212 228 C212 248 212 268 212 290Z"
+                                        fill="url(#leafGrad2)" opacity="0.88" />
+                                    <path d="M212 290 C252 262 296 230 318 197" stroke="rgba(255,255,255,0.22)"
+                                        stroke-width="1" fill="none" />
+                                    <path
+                                        d="M208 220 C178 200 145 175 132 145 C158 140 190 162 210 185 C210 197 208 210 208 220Z"
+                                        fill="url(#leafGrad1)" opacity="0.82" />
+                                    <path d="M208 220 C178 198 150 174 134 147" stroke="rgba(255,255,255,0.26)"
+                                        stroke-width="1" fill="none" />
+                                    <path
+                                        d="M212 200 C240 178 268 155 278 128 C252 122 224 143 212 168 C212 178 212 190 212 200Z"
+                                        fill="url(#leafGrad2)" opacity="0.78" />
+                                    <path
+                                        d="M208 155 C192 138 172 118 162 100 C182 96 204 115 210 135 C210 142 208 150 208 155Z"
+                                        fill="url(#leafGrad1)" opacity="0.72" />
+                                    <path
+                                        d="M212 140 C228 122 248 104 256 88 C236 82 216 100 212 120 C212 127 212 133 212 140Z"
+                                        fill="url(#leafGrad2)" opacity="0.68" />
+                                    <path d="M210 480 C190 490 162 495 140 485" stroke="url(#stemGrad)" stroke-width="2"
+                                        fill="none" stroke-linecap="round" opacity="0.55" />
+                                    <path d="M210 480 C230 492 258 498 278 490" stroke="url(#stemGrad)" stroke-width="2"
+                                        fill="none" stroke-linecap="round" opacity="0.55" />
                                     <circle cx="148" cy="338" r="4" fill="rgba(74,145,80,0.2)" />
                                     <circle cx="270" cy="320" r="3" fill="rgba(74,145,80,0.15)" />
                                     <circle cx="155" cy="195" r="3" fill="rgba(74,145,80,0.18)" />
                                     <circle cx="264" cy="168" r="4" fill="rgba(74,145,80,0.12)" />
-                                    <line x1="148" y1="338" x2="210" y2="310" stroke="rgba(74,145,80,0.11)" stroke-width="1" stroke-dasharray="3,3" />
-                                    <line x1="270" y1="320" x2="212" y2="290" stroke="rgba(74,145,80,0.09)" stroke-width="1" stroke-dasharray="3,3" />
+                                    <line x1="148" y1="338" x2="210" y2="310" stroke="rgba(74,145,80,0.11)"
+                                        stroke-width="1" stroke-dasharray="3,3" />
+                                    <line x1="270" y1="320" x2="212" y2="290" stroke="rgba(74,145,80,0.09)"
+                                        stroke-width="1" stroke-dasharray="3,3" />
                                 </svg>
                                 <div class="floating-tag tag-2">
-                                    <div class="tag-label">Carbon Impact</div>
-                                    <div class="tag-value">−82%</div>
-                                    <div class="tag-sub">vs. conventional</div>
+                                    <div class="tag-label">Bioprospecting India’s</div>
+                                    <div class="tag-value">underexplored</div>
+                                    <div class="tag-sub">Ecosystems</div>
                                 </div>
                             </div>
                         </div>
@@ -2148,25 +2540,27 @@
             <!-- PAGE 3 -->
             <div class="page3">
                 <div class="page3_title">
-                    <h1>Advanced Biotechnology Solutions<br>Built for Real-World Impact</h1>
+                    <h1>Our Biological Asset Base<br>Built for Real-World Impact</h1>
                 </div>
 
                 <div class="page3_info_wrap">
                     <div class="page3_info">
-                        <p>Advanced biotechnology research focused on innovation, precision, and real-world impact.</p>
-                        <span>Explore Research</span>
+                        <p>We develop curated microbial libraries and bioactive extracts for diverse biotech
+                            applications.</p>
+                        <span>Microbial Culture Library</span>
                     </div>
                     <div class="page3_info">
-                        <p>Cutting-edge lab solutions designed to enhance healthcare, sustainability, and life sciences.</p>
-                        <span>View Solutions</span>
+                        <p>Enabling scalable metabolite production for efficient bioactive compound development.</p>
+                        <span>Metabolite Production Platform</span>
                     </div>
                     <div class="page3_info">
-                        <p>AI-powered diagnostics and smart systems transforming modern medical and biological analysis.</p>
-                        <span>Discover Technology</span>
+                        <p>Curated discovery collection featuring diverse bioactive compounds for advanced research.</p>
+                        <span>Discovery Collection</span>
                     </div>
                     <div class="page3_info">
-                        <p>Scalable biotech platforms built for faster innovation, global reach, and sustainable growth.</p>
-                        <span>Browse Platform</span>
+                        <p>Rare and novel microbial isolates supporting breakthrough bioactive discoveries and
+                            innovation.</p>
+                        <span>Rare & Novel Isolates</span>
                     </div>
                 </div>
 
@@ -2174,32 +2568,32 @@
                     <div class="card pink">
                         <i class="ri-instagram-line"></i>
                         <div class="card_content">
-                            <h3>Biotech Innovation</h3>
-                            <p>Advanced research solutions designed for precision, efficiency, and real-world impact.</p>
+                            <h3>Culture Library</h3>
+                            <p>Curated microbial strains for research use.</p>
                         </div>
-                        <div class="card_img"><img src="img1.jpg" alt="Hero Section" /></div>
+                        <div class="card_img"><img src="img11.jpg" alt="Hero Section" /></div>
                     </div>
                     <div class="card green">
                         <i class="ri-lightbulb-flash-line"></i>
                         <div class="card_content">
-                            <h3>Smart Diagnostics</h3>
-                            <p>AI-powered systems delivering accurate analysis and faster medical insights.</p>
+                            <h3>Metabolite Platform</h3>
+                            <p>Scalable production of valuable bioactive compounds.</p>
                         </div>
                         <div class="card_img"><img src="img2.jpg" alt="Services Section" /></div>
                     </div>
                     <div class="card yellow">
                         <i class="ri-bar-chart-box-line"></i>
                         <div class="card_content">
-                            <h3>Sustainable Solutions</h3>
-                            <p>Eco-friendly biotech innovations driving a healthier and greener future.</p>
+                            <h3>Discovery Collection</h3>
+                            <p>Diverse bioactive compounds for innovation research.</p>
                         </div>
                         <div class="card_img"><img src="img3.jpg" alt="Landing Page" /></div>
                     </div>
                     <div class="card white">
                         <i class="ri-search-eye-line"></i>
                         <div class="card_content">
-                            <h3>Lab Technology</h3>
-                            <p>Next-gen laboratory tools enhancing precision, automation, and performance.</p>
+                            <h3>Novel Isolates</h3>
+                            <p>Rare microbes enabling breakthrough scientific discoveries.</p>
                         </div>
                         <div class="card_img"><img src="img4.jpg" alt="Components" /></div>
                     </div>
@@ -2304,7 +2698,8 @@
                                 </div>
                                 <div class="why-point-text">
                                     <strong>Access to underexplored microbial ecosystems</strong>
-                                    <span>Proprietary access to remote and rare biological environments others cannot reach.</span>
+                                    <span>Proprietary access to remote and rare biological environments others cannot
+                                        reach.</span>
                                 </div>
                             </div>
                             <div class="why-point">
@@ -2313,7 +2708,8 @@
                                 </div>
                                 <div class="why-point-text">
                                     <strong>Integrated discovery-to-validation platform</strong>
-                                    <span>Seamless pipeline from initial screening through validated bioactive leads.</span>
+                                    <span>Seamless pipeline from initial screening through validated bioactive
+                                        leads.</span>
                                 </div>
                             </div>
                             <div class="why-point">
@@ -2322,7 +2718,8 @@
                                 </div>
                                 <div class="why-point-text">
                                     <strong>Strong academic + applied research foundation</strong>
-                                    <span>Deep partnerships with leading research institutions and field scientists.</span>
+                                    <span>Deep partnerships with leading research institutions and field
+                                        scientists.</span>
                                 </div>
                             </div>
                             <div class="why-point">
@@ -2340,7 +2737,8 @@
                                 </div>
                                 <div class="why-point-text">
                                     <strong>Rapid experimental execution</strong>
-                                    <span>Lean, expert teams move from hypothesis to results in weeks, not quarters.</span>
+                                    <span>Lean, expert teams move from hypothesis to results in weeks, not
+                                        quarters.</span>
                                 </div>
                             </div>
                         </div>
@@ -2648,4 +3046,5 @@
     </script>
 
 </body>
+
 </html>
