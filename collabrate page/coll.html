@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Collaborate — Molmet Biotech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <style>
+    :root {
+      --clr-dark: #0f1f1c;
+      --clr-dark-2: #173630;
+      --clr-dark-3: #1e4a40;
+      --clr-sage: #4d8c6a;
+      --clr-accent: #7ecba1;
+      --clr-bg: #F2FFF3;
+      --clr-bg-2: #e8f7eb;
+      --clr-bg-3: #daf0de;
+      --clr-bg-4: #f9fffe;
+      --clr-surface: #ffffff;
+      --clr-text: #173630;
+      --clr-text-2: #2d5045;
+      --clr-text-muted: #5a7a70;
+      --clr-text-faint: #8aaba3;
+      --clr-on-dark: #F2FFF3;
+      --clr-on-dark-2: rgba(242,255,243,0.72);
+      --clr-on-dark-3: rgba(242,255,243,0.42);
+      --ff-display: 'Fraunces','Palatino Linotype',serif;
+      --ff-body: 'DM Sans','Arial',sans-serif;
+      --nav-h: 80px;
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 48px;
+      --radius-full: 100px;
+      --ease-out: cubic-bezier(0.22,1,0.36,1);
+      --shadow-sm: 0 2px 12px rgba(23,54,48,0.08);
+      --shadow-md: 0 8px 32px rgba(23,54,48,0.12);
+    }
+
+    *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff-body); font-size: 16px; line-height: 1.6; color: var(--clr-text); background: var(--clr-bg); overflow-x: hidden; }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: 0.4;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    h1,h2,h3,h4,h5 { font-family: var(--ff-display); font-weight: 500; line-height: 1.1; color: var(--clr-text); }
+    h1 { font-size: clamp(40px,5.5vw,78px); }
+    h2 { font-size: clamp(32px,4vw,60px); }
+    h3 { font-size: clamp(20px,2.2vw,28px); }
+    h4 { font-size: clamp(16px,1.5vw,20px); }
+    p { font-size: clamp(14px,1.1vw,16px); line-height: 1.75; color: var(--clr-text-2); font-weight: 300; }
+
+    /* ── NAVBAR ── */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 56px; background: rgba(242,255,243,0.88); backdrop-filter: blur(24px); border-bottom: 1px solid rgba(110,175,136,0.15); transition: background 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out); }
+    .navbar.scrolled { background: rgba(242,255,243,0.97); box-shadow: var(--shadow-sm); }
+    .nav-logo { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; }
+    .nav-logo img { width: 180px; }
+    .nav-links { flex: 1; display: flex; justify-content: center; align-items: center; gap: 2px; }
+    .nav-item { position: relative; }
+    .nav-link { display: flex; align-items: center; gap: 4px; padding: 7px 14px; font-family: var(--ff-body); font-size: 13.5px; font-weight: 400; color: var(--clr-text-2); border-radius: var(--radius-sm); background: none; border: none; cursor: pointer; transition: color 0.2s, background 0.2s; white-space: nowrap; }
+    .nav-link:hover { color: var(--clr-dark-2); background: rgba(23,54,48,0.06); }
+    .nav-link i { font-size: 13px; opacity: 0.5; transition: transform 0.25s var(--ease-out); }
+    .nav-item:hover .nav-link i { transform: rotate(180deg); opacity: 0.8; }
+    .nav-link.active { color: var(--clr-dark-2); background: rgba(23,54,48,0.07); font-weight: 500; }
+    .dropdown { position: absolute; top: calc(100% + 4px); left: 50%; transform: translateX(-50%) translateY(-8px) scale(0.97); min-width: 220px; background: rgba(249,255,254,0.98); backdrop-filter: blur(32px); border: 1px solid rgba(110,175,136,0.2); border-radius: var(--radius-md); padding: 8px; opacity: 0; pointer-events: none; transition: opacity 0.22s var(--ease-out), transform 0.22s var(--ease-out); transform-origin: top center; box-shadow: var(--shadow-md); }
+    .nav-item:hover .dropdown { opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0) scale(1); }
+    .dropdown-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--clr-text-faint); padding: 8px 12px 4px; }
+    .dropdown-link { display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: var(--radius-sm); font-size: 13px; color: var(--clr-text-2); transition: background 0.15s, color 0.15s; }
+    .dropdown-link i { font-size: 14px; color: var(--clr-sage); width: 16px; text-align: center; }
+    .dropdown-link:hover { background: rgba(23,54,48,0.06); color: var(--clr-dark-2); }
+    .dropdown-link.active-link { background: rgba(77,140,106,0.1); color: var(--clr-dark-2); font-weight: 500; }
+    .nav-cta-wrap { flex: 0 0 auto; margin-left: 16px; }
+    .nav-cta { display: inline-flex; align-items: center; gap: 6px; padding: 9px 22px; background: linear-gradient(135deg,var(--clr-dark-2) 0%,var(--clr-dark-3) 100%); color: var(--clr-on-dark); font-family: var(--ff-body); font-size: 13px; font-weight: 500; border-radius: var(--radius-full); transition: filter 0.25s, transform 0.25s var(--ease-out); overflow: hidden; position: relative; }
+    .nav-cta::after { content:''; position:absolute; inset:0; background:linear-gradient(120deg,transparent,rgba(255,255,255,0.22),transparent); transform:translateX(-100%); transition:transform 0.55s var(--ease-out); }
+    .nav-cta:hover { filter:brightness(1.12); transform:translateY(-1px); }
+    .nav-cta:hover::after { transform:translateX(100%); }
+    .hamburger { display:none; flex-direction:column; justify-content:center; align-items:center; gap:5px; width:40px; height:40px; background:none; border:none; cursor:pointer; margin-left:auto; border-radius:var(--radius-sm); transition:background 0.2s; padding:4px; }
+    .hamburger:hover { background:rgba(23,54,48,0.07); }
+    .hamburger span { display:block; width:20px; height:1.5px; background:var(--clr-text); border-radius:2px; transition:transform 0.3s var(--ease-out),opacity 0.3s; }
+    .hamburger.active span:nth-child(1) { transform:translateY(6.5px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity:0; transform:scaleX(0); }
+    .hamburger.active span:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); }
+    .mobile-overlay { position:fixed; inset:0; background:rgba(15,31,28,0.3); z-index:890; opacity:0; pointer-events:none; transition:opacity 0.35s var(--ease-out); }
+    .mobile-overlay.open { opacity:1; pointer-events:all; }
+    .mobile-menu { position:fixed; top:0; left:-100%; bottom:0; width:min(300px,85vw); background:rgba(242,255,243,0.98); backdrop-filter:blur(24px); border-right:1px solid rgba(110,175,136,0.18); padding:calc(var(--nav-h) + 20px) 24px 32px; transition:left 0.38s var(--ease-out); z-index:900; overflow-y:auto; }
+    .mobile-menu.open { left:0; }
+    .mobile-nav-item { border-bottom:1px solid rgba(23,54,48,0.07); }
+    .mobile-nav-link { display:flex; align-items:center; justify-content:space-between; padding:14px 4px; font-size:15px; font-weight:400; color:var(--clr-text); background:none; border:none; font-family:var(--ff-body); width:100%; cursor:pointer; }
+    .mobile-dropdown { display:none; padding:4px 0 10px; }
+    .mobile-dropdown.open { display:block; }
+    .mobile-dropdown-link { display:block; padding:9px 12px; font-size:13px; color:var(--clr-text-2); border-radius:var(--radius-sm); transition:background 0.15s; }
+    .mobile-dropdown-link:hover { background:rgba(23,54,48,0.06); color:var(--clr-dark-2); }
+    .mobile-cta { display:block; margin-top:24px; padding:13px; text-align:center; background:linear-gradient(135deg,var(--clr-dark-2),var(--clr-dark-3)); color:var(--clr-on-dark); border-radius:var(--radius-md); font-weight:500; font-size:14px; }
+
+    /* ── BUTTONS ── */
+    .btn-primary { display:inline-flex; align-items:center; gap:10px; padding:14px 32px; background:linear-gradient(135deg,var(--clr-dark-2) 0%,var(--clr-dark-3) 100%); color:var(--clr-on-dark); font-family:var(--ff-body); font-size:14px; font-weight:500; border-radius:var(--radius-full); border:1px solid rgba(242,255,243,0.35); cursor:pointer; box-shadow:0 4px 24px rgba(23,54,48,0.4); transition:transform 0.25s var(--ease-out),box-shadow 0.25s var(--ease-out),filter 0.25s; position:relative; overflow:hidden; }
+    .btn-primary::after { content:''; position:absolute; inset:0; background:linear-gradient(120deg,transparent,rgba(255,255,255,0.25),transparent); transform:translateX(-100%); transition:transform 0.55s var(--ease-out); }
+    .btn-primary:hover { transform:translateY(-3px); box-shadow:0 14px 40px rgba(23,54,48,0.45); filter:brightness(1.1); }
+    .btn-primary:hover::after { transform:translateX(100%); }
+    .btn-ghost { display:inline-flex; align-items:center; gap:8px; padding:14px 26px; color:rgba(242,255,243,0.9); font-family:var(--ff-body); font-size:14px; font-weight:400; border-radius:var(--radius-full); border:1px solid rgba(242,255,243,0.2); background:rgba(242,255,243,0.06); backdrop-filter:blur(8px); transition:background 0.22s,border-color 0.22s,transform 0.22s var(--ease-out); }
+    .btn-ghost:hover { background:rgba(242,255,243,0.12); border-color:rgba(242,255,243,0.35); transform:translateY(-2px); }
+    .btn-outline { display:inline-flex; align-items:center; gap:8px; padding:13px 26px; color:var(--clr-dark-2); font-family:var(--ff-body); font-size:14px; font-weight:400; border-radius:var(--radius-full); border:1px solid rgba(23,54,48,0.25); background:rgba(23,54,48,0.05); transition:background 0.22s,border-color 0.22s,transform 0.22s; }
+    .btn-outline:hover { background:rgba(23,54,48,0.1); border-color:rgba(23,54,48,0.4); transform:translateY(-2px); }
+
+    /* ── SECTION TAG ── */
+    .section-tag { display:inline-flex; align-items:center; gap:7px; padding:5px 13px 5px 9px; background:rgba(23,54,48,0.07); border:1px solid rgba(23,54,48,0.12); border-radius:var(--radius-full); margin-bottom:18px; }
+    .section-tag-dot { width:5px; height:5px; border-radius:50%; background:var(--clr-sage); }
+    .section-tag-text { font-size:10.5px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--clr-sage); }
+    .section-tag.light { background:rgba(242,255,243,0.1); border-color:rgba(242,255,243,0.15); }
+    .section-tag.light .section-tag-dot { background:var(--clr-accent); }
+    .section-tag.light .section-tag-text { color:var(--clr-on-dark-2); }
+
+    /* ══════════════════════════════
+       HERO — full-bleed, centered
+    ══════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--clr-dark-2);
+    }
+
+    /* Background photo */
+    .hero-bg-img {
+      position: absolute; inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1579165466741-7f35e4755660?w=2000&q=80');
+      background-size: cover;
+      background-position: center 30%;
+      opacity: 0.18;
+    }
+
+    /* Subtle dark vignette so text pops */
+    .hero-vignette {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at center, transparent 30%, rgba(15,31,28,0.55) 100%);
+    }
+
+    /* Fine grid lines */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(126,203,161,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(126,203,161,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, transparent 72%);
+    }
+
+    /* Glow blob */
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(126,203,161,0.09) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 760px;
+      padding: calc(var(--nav-h) + 40px) 40px 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 16px 5px 10px;
+      background: rgba(106,175,136,0.15);
+      border: 1px solid rgba(106,175,136,0.3);
+      border-radius: var(--radius-full);
+      animation: fadeUp 0.8s var(--ease-out) 0.1s both;
+    }
+    .hero-eyebrow-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--clr-accent);
+      box-shadow: 0 0 0 3px rgba(126,203,161,0.25);
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{box-shadow:0 0 0 3px rgba(126,203,161,0.25);}50%{box-shadow:0 0 0 8px rgba(126,203,161,0.06);} }
+    .hero-eyebrow span { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(242,255,243,0.65); }
+
+    .hero-headline {
+      font-family: var(--ff-display);
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      animation: fadeUp 0.9s var(--ease-out) 0.22s both;
+    }
+    .hero-headline em { font-style: italic; color: var(--clr-accent); }
+
+    .hero-sub {
+      font-size: clamp(15px, 1.4vw, 18px);
+      color: var(--clr-on-dark-2);
+      font-weight: 300;
+      line-height: 1.75;
+      max-width: 560px;
+      animation: fadeUp 0.9s var(--ease-out) 0.34s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.9s var(--ease-out) 0.46s both;
+    }
+
+    /* Scroll hint */
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0.45;
+      animation: fadeUp 1s var(--ease-out) 0.9s both;
+    }
+    .hero-scroll span { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--clr-on-dark); }
+    .scroll-line { width: 1px; height: 36px; background: linear-gradient(to bottom, var(--clr-accent), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+    @keyframes scrollPulse { 0%,100%{opacity:0.4;transform:scaleY(1);}50%{opacity:1;transform:scaleY(1.15);} }
+
+    /* ══════════════════════════════
+       MODELS
+    ══════════════════════════════ */
+    .models-section {
+      background: var(--clr-dark-2);
+      padding: 100px 80px;
+      position: relative; overflow: hidden;
+    }
+    .models-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 80% 30%,rgba(126,203,161,0.07) 0%,transparent 60%); pointer-events:none; }
+
+    .section-header { text-align:center; margin-bottom:64px; }
+    .section-header h2 { color:var(--clr-on-dark); margin-bottom:12px; }
+    .section-header p { color:var(--clr-on-dark-2); max-width:480px; margin:0 auto; }
+
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .models-grid-bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      max-width: calc(66.66% + 8px);
+    }
+
+    .model-card {
+      background: rgba(242,255,243,0.05);
+      border: 1px solid rgba(242,255,243,0.09);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      position: relative; overflow: hidden;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease-out);
+      cursor: pointer;
+    }
+    .model-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--clr-sage),var(--clr-accent)); transform:scaleX(0); transform-origin:left; transition:transform 0.35s var(--ease-out); }
+    .model-card:hover { background:rgba(242,255,243,0.08); border-color:rgba(126,203,161,0.25); transform:translateY(-5px); }
+    .model-card:hover::after { transform:scaleX(1); }
+    .model-num { font-family:var(--ff-display); font-size:40px; font-weight:300; color:rgba(126,203,161,0.12); line-height:1; margin-bottom:18px; }
+    .model-icon { width:44px; height:44px; background:rgba(126,203,161,0.1); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; margin-bottom:16px; border:1px solid rgba(126,203,161,0.2); }
+    .model-icon i { font-size:20px; color:var(--clr-accent); }
+    .model-card h4 { font-family:var(--ff-display); font-size:16px; font-weight:500; color:var(--clr-on-dark); margin-bottom:10px; }
+    .model-card p { font-size:13px; color:var(--clr-on-dark-3); line-height:1.65; }
+
+    /* ══════════════════════════════
+       WHO WE WORK WITH
+    ══════════════════════════════ */
+    .who-section {
+      background: var(--clr-bg-2);
+      padding: 100px 80px;
+    }
+    .who-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .who-img-wrap { position:relative; }
+    .who-img-main { width:100%; height:440px; border-radius:var(--radius-xl); overflow:hidden; border:1px solid rgba(23,54,48,0.1); }
+    .who-img-main img { width:100%; height:100%; object-fit:cover; transition:transform 0.6s var(--ease-out); }
+    .who-img-main:hover img { transform:scale(1.04); }
+    .who-img-badge { position:absolute; bottom:28px; right:-20px; background:var(--clr-dark-2); border-radius:var(--radius-md); padding:14px 18px; border:1px solid rgba(126,203,161,0.25); box-shadow:var(--shadow-md); display:flex; align-items:center; gap:12px; }
+    .who-img-badge i { font-size:18px; color:var(--clr-accent); }
+    .who-img-badge strong { display:block; font-size:12px; color:var(--clr-on-dark); margin-bottom:2px; }
+    .who-img-badge span { font-size:11px; color:var(--clr-on-dark-3); }
+
+    .who-right h2 { color:var(--clr-dark); margin-bottom:12px; }
+    .who-right > p { margin-bottom:32px; max-width:460px; }
+    .who-grid { display:flex; flex-direction:column; gap:12px; }
+    .who-card {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 20px;
+      background: var(--clr-surface);
+      border: 1px solid rgba(23,54,48,0.08);
+      border-radius: var(--radius-md);
+      transition: background 0.2s, transform 0.2s, border-color 0.2s;
+    }
+    .who-card:hover { background:var(--clr-bg-3); border-color:rgba(77,140,106,0.3); transform:translateX(4px); }
+    .who-card-icon { width:40px; height:40px; min-width:40px; background:var(--clr-bg-3); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; }
+    .who-card-icon i { font-size:17px; color:var(--clr-dark-2); }
+    .who-card-body strong { display:block; font-size:13.5px; font-weight:500; color:var(--clr-dark-2); }
+    .who-card-body span { font-size:12px; color:var(--clr-text-muted); }
+
+    /* ══════════════════════════════
+       FOCUS AREAS
+    ══════════════════════════════ */
+    .focus-section {
+      background: var(--clr-dark);
+      padding: 100px 80px;
+      position: relative; overflow: hidden;
+    }
+    .focus-section::before { content:'FOCUS'; position:absolute; bottom:-20px; right:-8px; font-family:var(--ff-display); font-size:200px; font-weight:600; color:rgba(242,255,243,0.018); line-height:1; pointer-events:none; letter-spacing:-0.04em; }
+
+    .focus-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+    .focus-card {
+      background: rgba(242,255,243,0.04);
+      border: 1px solid rgba(242,255,243,0.09);
+      border-radius: var(--radius-lg);
+      padding: 32px 22px;
+      text-align: center;
+      transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease-out);
+      cursor: pointer;
+    }
+    .focus-card:hover { background:rgba(242,255,243,0.08); border-color:rgba(126,203,161,0.25); transform:translateY(-6px); }
+    .focus-card-icon { width:52px; height:52px; background:rgba(126,203,161,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; border:1px solid rgba(126,203,161,0.2); }
+    .focus-card-icon i { font-size:22px; color:var(--clr-accent); }
+    .focus-card h4 { font-family:var(--ff-display); font-size:14px; font-weight:500; color:var(--clr-on-dark); margin-bottom:6px; }
+    .focus-card p { font-size:11.5px; color:var(--clr-on-dark-3); line-height:1.6; }
+
+    /* ══════════════════════════════
+       CONTACT FORM
+    ══════════════════════════════ */
+    .form-section {
+      background: var(--clr-bg-2);
+      padding: 100px 80px;
+    }
+    .form-inner {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .form-left h2 { color:var(--clr-dark); margin-bottom:14px; }
+    .form-left > p { margin-bottom:32px; max-width:420px; }
+
+    .form-trust { display:flex; flex-direction:column; gap:12px; margin-bottom:32px; }
+    .trust-item { display:flex; align-items:center; gap:12px; }
+    .trust-item i { font-size:15px; color:var(--clr-sage); }
+    .trust-item span { font-size:13px; color:var(--clr-text-muted); }
+
+    .form-contact-row { display:flex; flex-direction:column; gap:10px; }
+    .form-contact-link { display:flex; align-items:center; gap:10px; padding:12px 16px; background:var(--clr-surface); border:1px solid rgba(23,54,48,0.09); border-radius:var(--radius-md); font-size:13px; color:var(--clr-text-2); transition:background 0.2s, border-color 0.2s; }
+    .form-contact-link:hover { background:var(--clr-bg-3); border-color:rgba(77,140,106,0.3); }
+    .form-contact-link i { font-size:15px; color:var(--clr-sage); }
+
+    .form-card {
+      background: var(--clr-surface);
+      border: 1px solid rgba(23,54,48,0.09);
+      border-radius: var(--radius-xl);
+      padding: 44px 40px;
+      box-shadow: var(--shadow-sm);
+    }
+    .form-card h3 { font-family:var(--ff-display); font-size:22px; color:var(--clr-dark); margin-bottom:6px; }
+    .form-card > p { font-size:13px; color:var(--clr-text-muted); margin-bottom:32px; }
+
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .form-group { display:flex; flex-direction:column; gap:6px; margin-bottom:16px; }
+    .form-group label { font-size:11.5px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:var(--clr-text-muted); }
+    .form-group input, .form-group select, .form-group textarea {
+      width:100%; padding:12px 16px;
+      background:var(--clr-bg);
+      border:1px solid rgba(23,54,48,0.14);
+      border-radius:var(--radius-sm);
+      font-family:var(--ff-body); font-size:14px; color:var(--clr-text);
+      outline:none;
+      transition:border-color 0.2s, box-shadow 0.2s;
+      appearance:none; -webkit-appearance:none;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color:var(--clr-sage);
+      box-shadow:0 0 0 3px rgba(77,140,106,0.1);
+    }
+    .form-group input::placeholder, .form-group textarea::placeholder { color:var(--clr-text-faint); }
+    .form-group select { background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a7a70' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; }
+    .form-group textarea { resize:vertical; min-height:110px; }
+    .form-group select option { background:#fff; color:var(--clr-text); }
+
+    .form-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; }
+    .btn-form-primary { display:inline-flex; align-items:center; gap:8px; padding:13px 28px; background:linear-gradient(135deg,var(--clr-dark-2) 0%,var(--clr-dark-3) 100%); color:var(--clr-on-dark); font-family:var(--ff-body); font-size:14px; font-weight:500; border-radius:var(--radius-full); border:none; cursor:pointer; transition:transform 0.25s var(--ease-out),filter 0.25s; flex:1; justify-content:center; }
+    .btn-form-primary:hover { transform:translateY(-2px); filter:brightness(1.1); }
+    .btn-form-secondary { display:inline-flex; align-items:center; gap:8px; padding:13px 22px; background:transparent; color:var(--clr-dark-2); font-family:var(--ff-body); font-size:14px; font-weight:400; border-radius:var(--radius-full); border:1px solid rgba(23,54,48,0.22); cursor:pointer; transition:background 0.2s, border-color 0.2s; }
+    .btn-form-secondary:hover { background:rgba(23,54,48,0.06); border-color:rgba(23,54,48,0.35); }
+
+    /* ══════════════════════════════
+       TRUST STRIP
+    ══════════════════════════════ */
+    .trust-section {
+      background: var(--clr-dark-2);
+      padding: 64px 80px;
+      position: relative; overflow: hidden;
+    }
+    .trust-section::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 50% 50%,rgba(126,203,161,0.06) 0%,transparent 60%); }
+    .trust-inner { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1px 1fr 1px 1fr; gap:48px; align-items:center; }
+    .trust-divider { background:rgba(242,255,243,0.1); height:60px; }
+    .trust-item-main { text-align:center; }
+    .trust-item-main i { font-size:28px; color:var(--clr-accent); margin-bottom:12px; display:block; }
+    .trust-item-main strong { display:block; font-size:16px; color:var(--clr-on-dark); margin-bottom:6px; font-family:var(--ff-display); font-weight:500; }
+    .trust-item-main span { font-size:13px; color:var(--clr-on-dark-3); }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer { background:var(--clr-dark); color:var(--clr-on-dark); padding:64px 80px 36px; position:relative; overflow:hidden; }
+    footer::before { content:'MOLMET'; position:absolute; bottom:-12px; right:-4px; font-family:var(--ff-display); font-size:170px; font-weight:600; color:rgba(242,255,243,0.022); line-height:1; pointer-events:none; letter-spacing:-0.04em; }
+    .footer-top { display:grid; grid-template-columns:1.6fr 1fr 1fr 1fr; gap:48px; margin-bottom:48px; padding-bottom:40px; border-bottom:1px solid rgba(242,255,243,0.07); }
+    .footer-brand h3 { font-family:var(--ff-display); font-size:24px; font-weight:400; line-height:1.25; color:var(--clr-on-dark); margin-bottom:14px; }
+    .footer-brand h3 em { color:var(--clr-accent); }
+    .footer-brand p { font-size:13px; line-height:1.72; color:var(--clr-on-dark-3); max-width:260px; margin-bottom:22px; }
+    .footer-socials { display:flex; gap:8px; }
+    .footer-socials a { width:34px; height:34px; border:1px solid rgba(242,255,243,0.1); border-radius:6px; display:flex; align-items:center; justify-content:center; color:var(--clr-on-dark-3); font-size:13px; font-weight:600; transition:border-color 0.25s,color 0.25s,background 0.25s; }
+    .footer-socials a:hover { border-color:var(--clr-accent); color:var(--clr-accent); background:rgba(126,203,161,0.08); }
+    .footer-col h5 { font-family:var(--ff-body); font-size:10px; font-weight:500; letter-spacing:0.18em; text-transform:uppercase; color:var(--clr-on-dark-3); margin-bottom:18px; padding-bottom:12px; border-bottom:1px solid rgba(242,255,243,0.07); }
+    .footer-col ul { display:flex; flex-direction:column; gap:10px; }
+    .footer-col ul li a { font-size:13.5px; font-weight:300; color:rgba(242,255,243,0.5); transition:color 0.22s,padding-left 0.22s; display:inline-block; }
+    .footer-col ul li a:hover { color:var(--clr-on-dark); padding-left:5px; }
+    .footer-bottom { display:flex; align-items:center; justify-content:space-between; }
+    .footer-bottom p { font-size:11.5px; color:rgba(242,255,243,0.35); letter-spacing:0.06em; }
+    .footer-bottom-links { display:flex; gap:24px; }
+    .footer-bottom-links a { font-size:11.5px; color:rgba(242,255,243,0.35); transition:color 0.22s; }
+    .footer-bottom-links a:hover { color:var(--clr-on-dark); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);} }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1100px){
+      .focus-grid { grid-template-columns:repeat(3,1fr); }
+      .models-grid { grid-template-columns:1fr 1fr; }
+      .models-grid-bottom { max-width:100%; grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:1024px){
+      .who-inner, .form-inner { grid-template-columns:1fr; gap:48px; }
+      .trust-inner { grid-template-columns:1fr 1fr 1fr; }
+      .trust-divider { display:none; }
+      .focus-grid { grid-template-columns:1fr 1fr; }
+      .footer-top { grid-template-columns:1fr 1fr; }
+    }
+    @media(max-width:768px){
+      .models-section,.who-section,.focus-section,.form-section,.trust-section { padding-left:24px; padding-right:24px; }
+      .navbar { padding:0 20px; }
+      .nav-links,.nav-cta-wrap { display:none; }
+      .hamburger { display:flex; }
+      .hero-content { padding: calc(var(--nav-h) + 24px) 24px 60px; }
+      .hero-headline { font-size: clamp(40px, 10vw, 60px); }
+      .models-grid,.models-grid-bottom { grid-template-columns:1fr; }
+      .models-grid-bottom { max-width:100%; }
+      .focus-grid { grid-template-columns:1fr 1fr; }
+      .form-row { grid-template-columns:1fr; }
+      .trust-inner { grid-template-columns:1fr; gap:28px; }
+      .footer-top { grid-template-columns:1fr; }
+      footer { padding:48px 24px 28px; }
+      .footer-bottom { flex-direction:column; align-items:flex-start; gap:12px; }
+      .who-img-badge { right:0; }
+    }
+    @media(max-width:480px){
+      .focus-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar" id="navbar">
+  <a href="#" class="nav-logo">
+    <span><img src="/logo.png" alt="Molmet Biotech" /></span>
+  </a>
+  <ul class="nav-links">
+    <li class="nav-item">
+      <a href="/index.html"><button class="nav-link">Home</button></a>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link">About <i class="ri-arrow-down-s-line"></i></button>
+      <div class="dropdown">
+        <div class="dropdown-label">About Molmet</div>
+        <a href="/aboutpage/about.html#vision" class="dropdown-link"><i class="ri-compass-3-line"></i> Vision & Mission</a>
+        <a href="/aboutpage/about.html#who" class="dropdown-link"><i class="ri-user-star-line"></i> Leadership</a>
+        <a href="/aboutpage/about.html#leadership" class="dropdown-link"><i class="ri-building-4-line"></i> Infrastructure</a>
+        <a href="/aboutpage/about.html#approach" class="dropdown-link"><i class="ri-lightbulb-line"></i> Approach</a>
+        <a href="/aboutpage/about.html#network" class="dropdown-link"><i class="ri-global-line"></i> Network</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link">Discovery <i class="ri-arrow-down-s-line"></i></button>
+      <div class="dropdown">
+        <div class="dropdown-label">Explore Discovery</div>
+        <a href="#" class="dropdown-link"><i class="ri-map-pin-2-line"></i> Microbial Bioprospecting</a>
+        <a href="#" class="dropdown-link"><i class="ri-flask-line"></i> Molecule & Metabolite Discovery</a>
+        <a href="#" class="dropdown-link"><i class="ri-settings-3-line"></i> Strain Engineering & Optimization</a>
+        <a href="#" class="dropdown-link"><i class="ri-database-2-line"></i> Natural Product Libraries</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link active">Collaborate <i class="ri-arrow-down-s-line"></i></button>
+      <div class="dropdown">
+        <div class="dropdown-label">Partner With Us</div>
+        <a href="#models" class="dropdown-link active-link"><i class="ri-building-line"></i> Collaboration Models</a>
+        <a href="#who" class="dropdown-link"><i class="ri-team-line"></i> Who We Work With</a>
+        <a href="#focus" class="dropdown-link"><i class="ri-focus-3-line"></i> Focus Areas</a>
+        <a href="#contact-form" class="dropdown-link"><i class="ri-mail-send-line"></i> Start a Collaboration</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link">CRO & Solutions <i class="ri-arrow-down-s-line"></i></button>
+      <div class="dropdown">
+        <div class="dropdown-label">R&D Solutions</div>
+        <a href="#" class="dropdown-link"><i class="ri-briefcase-line"></i> Contract Research</a>
+        <a href="#" class="dropdown-link"><i class="ri-tools-line"></i> Assay Development</a>
+        <a href="#" class="dropdown-link"><i class="ri-search-eye-line"></i> Bioactivity Screening</a>
+        <a href="#" class="dropdown-link"><i class="ri-test-tube-line"></i> In-vitro Models</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link">Biological Assets <i class="ri-arrow-down-s-line"></i></button>
+      <div class="dropdown">
+        <div class="dropdown-label">Our Assets</div>
+        <a href="#" class="dropdown-link"><i class="ri-dna-line"></i> Culture Library</a>
+        <a href="#" class="dropdown-link"><i class="ri-flask-fill"></i> Metabolite Platform</a>
+        <a href="#" class="dropdown-link"><i class="ri-archive-line"></i> Discovery Collection</a>
+        <a href="#" class="dropdown-link"><i class="ri-links-line"></i> Strain Access</a>
+      </div>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link">Insights <i class="ri-arrow-down-s-line"></i></button>
+      <div class="dropdown">
+        <div class="dropdown-label">Knowledge Hub</div>
+        <a href="#" class="dropdown-link"><i class="ri-article-line"></i> Blogs</a>
+        <a href="#" class="dropdown-link"><i class="ri-file-text-line"></i> Whitepapers</a>
+        <a href="#" class="dropdown-link"><i class="ri-bar-chart-line"></i> Research Highlights</a>
+        <a href="#" class="dropdown-link"><i class="ri-lightbulb-flash-line"></i> Perspectives</a>
+      </div>
+    </li>
+  </ul>
+  <div class="nav-cta-wrap">
+    <a href="#contact-form" class="nav-cta">Start a Collaboration <i class="ri-arrow-right-up-line"></i></a>
+  </div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mobile-overlay" id="mobile-overlay"></div>
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-coll">Collaborate <i class="ri-arrow-down-s-line"></i></button>
+    <div class="mobile-dropdown" id="mob-coll">
+      <a href="#models" class="mobile-dropdown-link">Collaboration Models</a>
+      <a href="#who" class="mobile-dropdown-link">Who We Work With</a>
+      <a href="#focus" class="mobile-dropdown-link">Focus Areas</a>
+      <a href="#contact-form" class="mobile-dropdown-link">Start a Collaboration</a>
+    </div>
+  </div>
+  <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-disc">Discovery <i class="ri-arrow-down-s-line"></i></button>
+    <div class="mobile-dropdown" id="mob-disc">
+      <a href="#" class="mobile-dropdown-link">Microbial Bioprospecting</a>
+      <a href="#" class="mobile-dropdown-link">Molecule Discovery</a>
+      <a href="#" class="mobile-dropdown-link">Strain Engineering</a>
+      <a href="#" class="mobile-dropdown-link">Natural Libraries</a>
+    </div>
+  </div>
+  <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-cro">CRO & Solutions <i class="ri-arrow-down-s-line"></i></button>
+    <div class="mobile-dropdown" id="mob-cro"><a href="#" class="mobile-dropdown-link">Contract Research</a><a href="#" class="mobile-dropdown-link">Assay Development</a></div>
+  </div>
+  <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-assets">Biological Assets <i class="ri-arrow-down-s-line"></i></button>
+    <div class="mobile-dropdown" id="mob-assets"><a href="#" class="mobile-dropdown-link">Culture Library</a><a href="#" class="mobile-dropdown-link">Metabolite Platform</a></div>
+  </div>
+  <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-ins">Insights <i class="ri-arrow-down-s-line"></i></button>
+    <div class="mobile-dropdown" id="mob-ins"><a href="#" class="mobile-dropdown-link">Blogs</a><a href="#" class="mobile-dropdown-link">Research Highlights</a></div>
+  </div>
+  <a href="#contact-form" class="mobile-cta">Start a Collaboration <i class="ri-arrow-right-up-line"></i></a>
+</div>
+
+<main>
+
+  <!-- ══ HERO ══ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-img"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot"></div>
+        <span>Partnership Platform</span>
+      </div>
+
+      <h1 class="hero-headline">
+        Collaborate<br>With <em>Molmet</em>
+      </h1>
+
+      <p class="hero-sub">
+        Breakthrough discoveries emerge at the intersection of diverse expertise and shared vision. We build long-term partnerships that translate microbial science into real-world impact.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#contact-form" class="btn-primary">Propose a Partnership <i class="ri-arrow-right-line"></i></a>
+        <a href="#models" class="btn-ghost">Explore Models <i class="ri-arrow-down-line"></i></a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══ COLLABORATION MODELS ══ -->
+  <section class="models-section" id="models">
+    <div class="section-header">
+      <div class="section-tag light" style="margin:0 auto 16px;"><div class="section-tag-dot"></div><span class="section-tag-text">Collaboration Models</span></div>
+      <h2>Five Ways to Partner</h2>
+      <p>Structured to be accessible at any scale — from targeted research programs to long-term co-development pipelines.</p>
+    </div>
+    <div class="models-grid">
+      <div class="model-card">
+        <div class="model-num">01</div>
+        <div class="model-icon"><i class="ri-funds-line"></i></div>
+        <h4>Sponsored Research</h4>
+        <p>Co-invest in targeted discovery initiatives aligned with specific scientific or commercial objectives.</p>
+      </div>
+      <div class="model-card">
+        <div class="model-num">02</div>
+        <div class="model-icon"><i class="ri-git-merge-line"></i></div>
+        <h4>Co-Development Partnerships</h4>
+        <p>Jointly develop novel bioactive molecules with shared IP structures and bilateral scientific ownership.</p>
+      </div>
+      <div class="model-card">
+        <div class="model-num">03</div>
+        <div class="model-icon"><i class="ri-settings-4-line"></i></div>
+        <h4>Custom Discovery Projects</h4>
+        <p>Tailored pipelines built around your specific R&D challenge — bioprospecting, screening, or validation.</p>
+      </div>
+    </div>
+    <div class="models-grid-bottom">
+      <div class="model-card">
+        <div class="model-num">04</div>
+        <div class="model-icon"><i class="ri-database-2-line"></i></div>
+        <h4>Biological Resource Access</h4>
+        <p>Access to our curated microbial culture library, extract repository, and annotated bioactive datasets.</p>
+      </div>
+      <div class="model-card">
+        <div class="model-num">05</div>
+        <div class="model-icon"><i class="ri-government-line"></i></div>
+        <h4>Grant & Institutional Collaborations</h4>
+        <p>Engagement in national and international research consortiums and publicly funded biotechnology initiatives.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WHO WE WORK WITH ══ -->
+  <section class="who-section" id="who">
+    <div class="who-inner">
+      <div class="who-img-wrap">
+        <div class="who-img-main">
+          <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=80" alt="Partners" loading="lazy" />
+        </div>
+        <div class="who-img-badge">
+          <i class="ri-global-line"></i>
+          <div>
+            <strong>Open to Global Partners</strong>
+            <span>India & International</span>
+          </div>
+        </div>
+      </div>
+      <div class="who-right">
+        <div class="section-tag"><div class="section-tag-dot"></div><span class="section-tag-text">Target Partners</span></div>
+        <h2>Who We Work With</h2>
+        <p>Molmet's ecosystem spans research institutions, industry leaders, government bodies, and emerging enterprises — wherever microbial discovery intersects with strategic intent.</p>
+        <div class="who-grid">
+          <div class="who-card">
+            <div class="who-card-icon"><i class="ri-hospital-line"></i></div>
+            <div class="who-card-body">
+              <strong>Biotech & Pharmaceutical Companies</strong>
+              <span>Drug discovery pipelines and antimicrobial leads.</span>
+            </div>
+          </div>
+          <div class="who-card">
+            <div class="who-card-icon"><i class="ri-plant-line"></i></div>
+            <div class="who-card-body">
+              <strong>Agri-Biotech & Sustainability Organizations</strong>
+              <span>Biopesticides, biofertilizers, and sustainable inputs.</span>
+            </div>
+          </div>
+          <div class="who-card">
+            <div class="who-card-icon"><i class="ri-building-4-line"></i></div>
+            <div class="who-card-body">
+              <strong>Academic & Research Institutions</strong>
+              <span>Co-publication and shared biological asset access.</span>
+            </div>
+          </div>
+          <div class="who-card">
+            <div class="who-card-icon"><i class="ri-government-line"></i></div>
+            <div class="who-card-body">
+              <strong>Government & Funding Bodies</strong>
+              <span>DST/DBT-aligned research and biodiversity mandates.</span>
+            </div>
+          </div>
+          <div class="who-card">
+            <div class="who-card-icon"><i class="ri-rocket-line"></i></div>
+            <div class="who-card-body">
+              <strong>Startups & Innovation Enterprises</strong>
+              <span>Early-stage ventures building on validated discovery assets.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ FOCUS AREAS ══ -->
+  <section class="focus-section" id="focus">
+    <div class="section-header">
+      <div class="section-tag light" style="margin:0 auto 16px;"><div class="section-tag-dot"></div><span class="section-tag-text">Areas of Focus</span></div>
+      <h2>Collaborative Focus Areas</h2>
+      <p>Domains where Molmet's discovery platform intersects most directly with industry needs — where partnership generates the highest leverage.</p>
+    </div>
+    <div class="focus-grid">
+      <div class="focus-card">
+        <div class="focus-card-icon"><i class="ri-shield-cross-line"></i></div>
+        <h4>Antimicrobial Resistance</h4>
+        <p>Novel agents against resistant pathogen panels from underexplored ecosystems.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-card-icon"><i class="ri-heart-pulse-line"></i></div>
+        <h4>Anticancer Discovery</h4>
+        <p>Bioactive metabolites with cytotoxic profiles screened against tumor cell lines.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-card-icon"><i class="ri-seedling-line"></i></div>
+        <h4>Sustainable Agriculture</h4>
+        <p>Microbial inputs for plant growth, soil health, and biocontrol alternatives.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-card-icon"><i class="ri-settings-3-line"></i></div>
+        <h4>Industrial Enzymes</h4>
+        <p>Novel microbial enzymes for biotech, food, textile, and pharma applications.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-card-icon"><i class="ri-earth-line"></i></div>
+        <h4>Environmental Applications</h4>
+        <p>Microbial solutions for bioremediation and ecological restoration programs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ CONTACT FORM ══ -->
+  <section class="form-section" id="contact-form">
+    <div class="form-inner">
+      <div class="form-left">
+        <div class="section-tag"><div class="section-tag-dot"></div><span class="section-tag-text">Start a Collaboration</span></div>
+        <h2>Let's Build Something Together</h2>
+        <p>Every meaningful collaboration begins with a conversation. Tell us about your organization and scientific focus — we'll respond within 48 hours.</p>
+        <div class="form-trust">
+          <div class="trust-item"><i class="ri-time-line"></i><span>Response within 48 hours</span></div>
+          <div class="trust-item"><i class="ri-shield-check-line"></i><span>All inquiries handled in strict confidence</span></div>
+          <div class="trust-item"><i class="ri-global-line"></i><span>Open to national and international partners</span></div>
+          <div class="trust-item"><i class="ri-scales-line"></i><span>No minimum scale — all partnerships considered</span></div>
+        </div>
+        <div class="form-contact-row">
+          <a href="mailto:collaborate@molmetbiotech.com" class="form-contact-link">
+            <i class="ri-mail-line"></i>
+            <span>collaborate@molmetbiotech.com</span>
+          </a>
+          <a href="https://linkedin.com" target="_blank" class="form-contact-link">
+            <i class="ri-linkedin-line"></i>
+            <span>Connect on LinkedIn</span>
+          </a>
+        </div>
+      </div>
+      <div class="form-card">
+        <h3>Collaboration Inquiry</h3>
+        <p>Fill in the details below and our team will reach out to discuss next steps.</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="Full name" />
+          </div>
+          <div class="form-group">
+            <label>Organization</label>
+            <input type="text" placeholder="Company or institution" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Country</label>
+            <input type="text" placeholder="Country of operation" />
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="your@email.com" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Collaboration Interest</label>
+          <select>
+            <option value="" disabled selected>Select a collaboration type</option>
+            <option>Sponsored Research Program</option>
+            <option>Co-Development Partnership</option>
+            <option>Custom Discovery Project</option>
+            <option>Biological Resource Access</option>
+            <option>Grant / Institutional Collaboration</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Project Idea or Requirement</label>
+          <textarea placeholder="Briefly describe your scientific focus, the problem you're working on, or how you envision a collaboration with Molmet..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button class="btn-form-primary">Submit Request <i class="ri-arrow-right-line"></i></button>
+          <button class="btn-form-secondary"><i class="ri-calendar-2-line"></i> Schedule a Call</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ TRUST STRIP ══ -->
+  <section class="trust-section">
+    <div class="trust-inner">
+      <div class="trust-item-main">
+        <i class="ri-compass-3-line"></i>
+        <strong>Open & Science-Driven</strong>
+        <span>Collaborations that translate discovery into real-world impact — on science's terms.</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item-main">
+        <i class="ri-seedling-line"></i>
+        <strong>Long-Term by Design</strong>
+        <span>Every partnership is built to evolve — from first conversation to multi-year discovery relationship.</span>
+      </div>
+      <div class="trust-divider"></div>
+      <div class="trust-item-main">
+        <i class="ri-global-line"></i>
+        <strong>Globally Collaborative</strong>
+        <span>Actively seeking international partners who share our conviction in microbial biodiversity.</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h3>Building a <em>healthier</em><br>tomorrow, today.</h3>
+      <p>A passionate team of scientists and innovators dedicated to responsible biotech discovery that creates lasting impact for people and planet.</p>
+      <div class="footer-socials">
+        <a href="#" title="X/Twitter">𝕏</a>
+        <a href="#" title="LinkedIn">in</a>
+        <a href="#" title="Instagram">◉</a>
+        <a href="#" title="Facebook">ƒ</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Discovery</a></li>
+        <li><a href="#">Collaborate</a></li>
+        <li><a href="#">Portfolio</a></li>
+        <li><a href="#">Impact Report</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Leadership</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Investors</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">Get in Touch</a></li>
+        <li><a href="#">Partnerships</a></li>
+        <li><a href="#">Media Enquiries</a></li>
+        <li><a href="#">Legal</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Molmet Biotech. All rights reserved.</p>
+    <div class="footer-bottom-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Cookie Settings</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); }, { passive: true });
+
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileOverlay = document.getElementById('mobile-overlay');
+  function toggleMobile(open) {
+    hamburger.classList.toggle('active', open);
+    mobileMenu.classList.toggle('open', open);
+    mobileOverlay.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  hamburger.addEventListener('click', () => toggleMobile(!mobileMenu.classList.contains('open')));
+  mobileOverlay.addEventListener('click', () => toggleMobile(false));
+  document.querySelectorAll('.mobile-nav-link[data-target]').forEach(btn => {
+    btn.addEventListener('click', () => { const t = document.getElementById(btn.dataset.target); if (t) t.classList.toggle('open'); });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'fadeUp 0.85s cubic-bezier(0.22,1,0.36,1) forwards';
+        entry.target.style.opacity = '1';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+  ['.model-card', '.who-card', '.focus-card', '.trust-item-main',
+   '.who-img-wrap', '.who-right', '.form-left', '.form-card'].forEach(sel => {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.animationDelay = `${i * 0.07}s`;
+      observer.observe(el);
+    });
+  });
+
+  // Close mobile menu on nav link click
+  document.querySelectorAll('.mobile-dropdown-link').forEach(link => {
+    link.addEventListener('click', () => toggleMobile(false));
+  });
+</script>
+</body>
+</html>
