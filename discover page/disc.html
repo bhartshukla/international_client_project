@@ -41,6 +41,7 @@
       --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
       --shadow-sm: 0 2px 12px rgba(23, 54, 48, 0.08);
       --shadow-md: 0 8px 32px rgba(23, 54, 48, 0.12);
+      --transition: 0.35s var(--ease-out);
     }
 
     *,
@@ -104,7 +105,7 @@
     }
 
     h2 {
-      font-size: clamp(32px, 4vw, 60px);
+      font-size: clamp(28px, 3.5vw, 52px);
     }
 
     h3 {
@@ -112,12 +113,12 @@
     }
 
     h4 {
-      font-size: clamp(16px, 1.5vw, 20px);
+      font-size: clamp(15px, 1.4vw, 18px);
     }
 
     p {
-      font-size: clamp(14px, 1.1vw, 16px);
-      line-height: 1.75;
+      font-size: clamp(14px, 1.1vw, 15.5px);
+      line-height: 1.78;
       color: var(--clr-text-2);
       font-weight: 300;
     }
@@ -456,7 +457,7 @@
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      padding: 14px 32px;
+      padding: 13px 30px;
       background: linear-gradient(135deg, var(--clr-dark-2) 0%, var(--clr-dark-3) 100%);
       color: var(--clr-on-dark);
       font-family: var(--ff-body);
@@ -494,7 +495,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 14px 26px;
+      padding: 13px 26px;
       color: rgba(242, 255, 243, 0.9);
       font-family: var(--ff-body);
       font-size: 14px;
@@ -573,14 +574,13 @@
       color: var(--clr-on-dark-2);
     }
 
-    /* ════════════════════════════════
-           HERO
-        ════════════════════════════════ */
+    /* ═══════════════════════ HERO ═══════════════════════ */
     .hero {
       padding-top: var(--nav-h);
       min-height: 100vh;
-      display: grid;
-      grid-template-rows: 1fr auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: var(--clr-dark-2);
       position: relative;
       overflow: hidden;
@@ -602,7 +602,6 @@
       background: radial-gradient(ellipse at 30% 60%, rgba(126, 203, 161, 0.12) 0%, transparent 65%);
     }
 
-    /* Animated grid lines */
     .hero-grid {
       position: absolute;
       inset: 0;
@@ -621,6 +620,8 @@
       text-align: center;
       padding: 120px 40px 80px;
       gap: 28px;
+      max-width: 960px;
+      margin: 0 auto;
     }
 
     .hero-eyebrow {
@@ -669,17 +670,23 @@
       color: #fff;
       line-height: 1.02;
       letter-spacing: -0.03em;
-      max-width: 900px;
     }
 
-   
+    .hero-subhead {
+      font-family: var(--ff-display);
+      font-size: clamp(17px, 1.9vw, 24px);
+      font-weight: 300;
+      color: var(--clr-accent);
+      font-style: italic;
+      margin-top: -10px;
+    }
 
     .hero-desc {
-      font-size: clamp(15px, 1.3vw, 18px);
+      font-size: clamp(14px, 1.2vw, 17px);
       color: var(--clr-on-dark-2);
-      max-width: 760px;
+      max-width: 720px;
       font-weight: 300;
-      line-height: 1.8;
+      line-height: 1.85;
     }
 
     .hero-actions {
@@ -690,247 +697,52 @@
       justify-content: center;
     }
 
-   
-
-    
-
-  
-
-    
-
-    /* ════════════════════════════════
-           PILLARS (what is discovery)
-        ════════════════════════════════ */
-    .pillars-section {
-      background: var(--clr-bg);
-      padding: 100px 80px;
-    }
-
-    .pillars-header {
-      max-width: 680px;
-      margin-bottom: 64px;
-    }
-
-    .pillars-header h2 {
-      color: var(--clr-dark);
-      margin-bottom: 14px;
-    }
-
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: rgba(23, 54, 48, 0.1);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      border: 1px solid rgba(23, 54, 48, 0.1);
-    }
-
-    .pillar-card {
-      background: var(--clr-surface);
-      padding: 40px 28px;
-      position: relative;
-      transition: background 0.3s, transform 0.3s var(--ease-out);
-      cursor: pointer;
-      overflow: hidden;
-    }
-
-    .pillar-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--clr-sage), var(--clr-accent));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.35s var(--ease-out);
-    }
-
-    .pillar-card:hover {
+    /* ═══════════════════════ S2 — BIOPROSPECTING ═══════════════════════ */
+    .bio-section {
+      padding: 96px 80px;
       background: var(--clr-bg-2);
     }
 
-    .pillar-card:hover::after {
-      transform: scaleX(1);
+    .bio-top-heading {
+      text-align: center;
+      margin-bottom: 60px;
     }
 
-    .pillar-num {
-      font-family: var(--ff-display);
-      font-size: 48px;
-      font-weight: 300;
-      color: rgba(23, 54, 48, 0.07);
-      line-height: 1;
-      margin-bottom: 24px;
-    }
-
-    .pillar-icon {
-      width: 46px;
-      height: 46px;
-      background: var(--clr-bg-3);
-      border-radius: var(--radius-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 18px;
-      border: 1px solid rgba(23, 54, 48, 0.08);
-      transition: background 0.25s, border-color 0.25s;
-    }
-
-    .pillar-card:hover .pillar-icon {
-      background: rgba(77, 140, 106, 0.12);
-      border-color: rgba(77, 140, 106, 0.2);
-    }
-
-    .pillar-icon i {
-      font-size: 20px;
-      color: var(--clr-dark-2);
-    }
-
-    .pillar-card h4 {
-      font-family: var(--ff-display);
-      font-size: 16px;
-      font-weight: 500;
-      color: var(--clr-dark-2);
-      margin-bottom: 10px;
-    }
-
-    .pillar-card p {
-      font-size: 13px;
-      color: var(--clr-text-muted);
-      line-height: 1.65;
-    }
-
-    /* ════════════════════════════════
-           BIOPROSPECTING — SPLIT
-        ════════════════════════════════ */
-    .disc-split {
-      padding: 100px 80px;
-    }
-
-    .disc-split-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-      margin-bottom: 120px;
-    }
-
-    .disc-split-row:last-child {
+    .bio-top-heading h2 {
+      color: var(--clr-dark);
       margin-bottom: 0;
     }
 
-    .disc-split-row.reverse {
-      direction: rtl;
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
     }
 
-    .disc-split-row.reverse>* {
-      direction: ltr;
+    .bio-left p {
+      margin-bottom: 18px;
     }
 
-    .disc-img-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .bio-left .italic-cta {
+      font-style: italic;
+      color: var(--clr-sage);
+      font-weight: 400;
+      margin-top: 8px;
+      margin-bottom: 28px;
+      font-size: clamp(14px, 1.1vw, 15.5px);
     }
 
-    .disc-img-main {
-      width: 100%;
-      height: 480px;
-      border-radius: var(--radius-xl);
-      overflow: hidden;
-      border: 1px solid rgba(23, 54, 48, 0.1);
-    }
+    .bio-right {}
 
-    .disc-img-main img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s var(--ease-out);
-    }
-
-    .disc-img-main:hover img {
-      transform: scale(1.04);
-    }
-
-    .disc-img-float {
-      position: absolute;
-      bottom: -24px;
-      right: -24px;
-      width: 140px;
-      height: 140px;
-      border-radius: 50%;
-      overflow: hidden;
-      border: 4px solid var(--clr-bg);
-    }
-
-    .disc-img-float.left {
-      right: auto;
-      left: -24px;
-    }
-
-    .disc-img-float img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .disc-badge {
-      position: absolute;
-      top: 24px;
-      right: -20px;
-      background: var(--clr-dark-2);
-      border-radius: var(--radius-md);
-      padding: 14px 18px;
-      border: 1px solid rgba(126, 203, 161, 0.25);
-      box-shadow: var(--shadow-md);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .disc-badge.left-badge {
-      right: auto;
-      left: -20px;
-    }
-
-    .disc-badge i {
-      font-size: 18px;
-      color: var(--clr-accent);
-    }
-
-    .disc-badge strong {
-      display: block;
-      font-size: 12px;
-      color: var(--clr-on-dark);
-      margin-bottom: 2px;
-    }
-
-    .disc-badge span {
-      font-size: 11px;
-      color: var(--clr-on-dark-3);
-    }
-
-    .disc-text h2 {
-      color: var(--clr-dark);
-      margin-bottom: 16px;
-    }
-
-    .disc-text>p {
-      margin-bottom: 32px;
-      max-width: 460px;
-    }
-
-    .disc-features {
+    .bio-list {
       display: flex;
       flex-direction: column;
-      gap: 14px;
-      margin-bottom: 36px;
+      gap: 12px;
+      margin-bottom: 32px;
     }
 
-    .disc-feat {
+    .bio-item {
       display: flex;
       align-items: flex-start;
       gap: 14px;
@@ -938,16 +750,35 @@
       background: var(--clr-surface);
       border: 1px solid rgba(23, 54, 48, 0.08);
       border-radius: var(--radius-md);
-      transition: background 0.2s, transform 0.2s, border-color 0.2s;
+      cursor: default;
+      transition: background var(--transition), transform var(--transition), border-color var(--transition);
     }
 
-    .disc-feat:hover {
-      background: var(--clr-bg-2);
-      border-color: rgba(77, 140, 106, 0.3);
+    .bio-item:hover {
+      background: var(--clr-dark-2);
+      border-color: rgba(77, 140, 106, 0.5);
       transform: translateX(4px);
     }
 
-    .disc-feat-icon {
+    .bio-item:hover .bio-icon {
+      background: rgba(126, 203, 161, 0.15);
+      border-color: rgba(126, 203, 161, 0.3);
+    }
+
+    .bio-item:hover .bio-icon i {
+      color: var(--clr-accent);
+      transform: scale(1.18) rotate(-10deg);
+    }
+
+    .bio-item:hover .bio-body strong {
+      color: var(--clr-on-dark);
+    }
+
+    .bio-item:hover .bio-body span {
+      color: var(--clr-on-dark-2);
+    }
+
+    .bio-icon {
       width: 36px;
       height: 36px;
       min-width: 36px;
@@ -957,75 +788,71 @@
       align-items: center;
       justify-content: center;
       margin-top: 1px;
+      border: 1px solid rgba(23, 54, 48, 0.08);
+      transition: background var(--transition), border-color var(--transition);
     }
 
-    .disc-feat-icon i {
+    .bio-icon i {
       font-size: 16px;
       color: var(--clr-dark-2);
+      transition: color var(--transition), transform var(--transition);
     }
 
-    .disc-feat-body strong {
+    .bio-body strong {
       display: block;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 500;
       color: var(--clr-dark-2);
-      margin-bottom: 3px;
+      margin-bottom: 2px;
+      transition: color var(--transition);
     }
 
-    .disc-feat-body span {
-      font-size: 12.5px;
+    .bio-body span {
+      font-size: 12px;
       color: var(--clr-text-muted);
       line-height: 1.5;
+      transition: color var(--transition);
     }
 
-    .disc-stats {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 36px;
+    /* ═══════════════════════ S3 — MOLECULE DISCOVERY ═══════════════════════ */
+    .mol-section {
+      background: var(--clr-bg-4);
+      padding: 96px 80px;
     }
 
-    .disc-stat {
-      padding: 14px 20px;
-      background: var(--clr-surface);
-      border: 1px solid rgba(23, 54, 48, 0.1);
-      border-radius: var(--radius-md);
-      flex: 1;
-      min-width: 110px;
+    .mol-top {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto 64px;
     }
 
-    .disc-stat-num {
-      font-family: var(--ff-display);
-      font-size: 30px;
-      font-weight: 500;
-      color: var(--clr-dark-2);
-      line-height: 1;
-      margin-bottom: 4px;
+    .mol-top h2 {
+      color: var(--clr-dark);
+      margin-bottom: 18px;
     }
 
-    .disc-stat-num sup {
-      font-size: 14px;
+    .mol-top p {
+      margin-bottom: 10px;
+    }
+
+    .mol-top .italic-line {
+      font-style: italic;
       color: var(--clr-sage);
+      font-weight: 400;
+      margin-top: 8px;
     }
 
-    .disc-stat-label {
-      font-size: 10.5px;
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-      color: var(--clr-text-muted);
-    }
-
-    /* ════════════════════════════════
-           PIPELINE — DARK SECTION
-        ════════════════════════════════ */
-    .pipeline-section {
+    /* Pipeline — dark block */
+    .pipeline-block {
       background: var(--clr-dark-2);
-      padding: 100px 80px;
+      border-radius: var(--radius-lg);
+      padding: 64px 60px;
+      margin-bottom: 0;
       position: relative;
       overflow: hidden;
     }
 
-    .pipeline-section::before {
+    .pipeline-block::before {
       content: '';
       position: absolute;
       inset: 0;
@@ -1033,17 +860,18 @@
       pointer-events: none;
     }
 
-    .pipeline-header {
+    .pipeline-block-header {
       text-align: center;
-      margin-bottom: 72px;
+      margin-bottom: 52px;
     }
 
-    .pipeline-header h2 {
+    .pipeline-block-header h2 {
       color: var(--clr-on-dark);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
+      font-size: clamp(24px, 3vw, 42px);
     }
 
-    .pipeline-header p {
+    .pipeline-block-header p {
       color: var(--clr-on-dark-2);
       max-width: 520px;
       margin: 0 auto;
@@ -1059,11 +887,12 @@
     .pipeline-track::before {
       content: '';
       position: absolute;
-      top: 52px;
+      top: 27px;
       left: 10%;
       right: 10%;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(126, 203, 161, 0.3) 20%, rgba(126, 203, 161, 0.3) 80%, transparent);
+      background: linear-gradient(90deg, transparent, rgba(126, 203, 161, 0.3), transparent);
+      pointer-events: none;
     }
 
     .pipeline-step {
@@ -1071,7 +900,7 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      padding: 0 16px;
+      padding: 0 12px;
       position: relative;
     }
 
@@ -1087,7 +916,7 @@
       margin-bottom: 20px;
       position: relative;
       z-index: 2;
-      transition: background 0.3s, border-color 0.3s;
+      transition: background var(--transition), border-color var(--transition);
     }
 
     .pipeline-step:hover .pipeline-num {
@@ -1098,6 +927,11 @@
     .pipeline-num i {
       font-size: 20px;
       color: var(--clr-accent);
+      transition: transform var(--transition);
+    }
+
+    .pipeline-step:hover .pipeline-num i {
+      transform: scale(1.2) rotate(-8deg);
     }
 
     .pipeline-step h4 {
@@ -1114,220 +948,114 @@
       line-height: 1.6;
     }
 
-    /* ════════════════════════════════
-           NATURAL LIBRARIES
-        ════════════════════════════════ */
-    .library-section {
-      background: var(--clr-bg-2);
-      padding: 100px 80px;
+    /* ═══════════════════════ S4 — BIOACTIVITY ═══════════════════════ */
+    .bioact-section {
+      background: var(--clr-bg);
+      padding: 96px 80px;
     }
 
-    .library-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
+    .bioact-top {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 56px;
     }
 
-    .library-left h2 {
+    .bioact-top h2 {
       color: var(--clr-dark);
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
 
-    .library-left>p {
-      margin-bottom: 36px;
-      max-width: 460px;
+    .bioact-top p {
+      margin-bottom: 10px;
     }
 
-    .library-metrics {
+    .bioact-cards {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 36px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
     }
 
-    .lib-metric {
-      padding: 22px 20px;
-      background: var(--clr-surface);
-      border: 1px solid rgba(23, 54, 48, 0.09);
-      border-radius: var(--radius-md);
-      transition: transform 0.25s, border-color 0.25s;
-    }
-
-    .lib-metric:hover {
-      transform: translateY(-3px);
-      border-color: rgba(77, 140, 106, 0.3);
-    }
-
-    .lib-metric-num {
-      font-family: var(--ff-display);
-      font-size: 34px;
-      font-weight: 500;
-      color: var(--clr-dark-2);
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-
-    .lib-metric-num sup {
-      font-size: 16px;
-      color: var(--clr-sage);
-    }
-
-    .lib-metric-label {
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--clr-text-muted);
-    }
-
-    .library-right {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .lib-card {
+    .ba-card {
       background: var(--clr-surface);
       border: 1px solid rgba(23, 54, 48, 0.09);
       border-radius: var(--radius-lg);
       padding: 28px 22px;
-      transition: transform 0.3s var(--ease-out), box-shadow 0.3s, border-color 0.3s;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
     }
 
-    .lib-card:hover {
-      transform: translateY(-6px);
+    .ba-card:hover {
+      transform: translateY(-8px);
       box-shadow: var(--shadow-md);
-      border-color: rgba(77, 140, 106, 0.3);
+      border-color: rgba(77, 140, 106, 0.4);
+      background: var(--clr-dark-2);
     }
 
-    .lib-card i {
-      font-size: 24px;
-      color: var(--clr-sage);
-      margin-bottom: 14px;
-      display: block;
+    .ba-card:hover .ba-icon {
+      background: rgba(126, 203, 161, 0.15);
+      border-color: rgba(126, 203, 161, 0.3);
     }
 
-    .lib-card h4 {
+    .ba-card:hover .ba-icon i {
+      color: var(--clr-accent);
+      transform: scale(1.18) rotate(-10deg);
+    }
+
+    .ba-card:hover h4 {
+      color: var(--clr-on-dark);
+    }
+
+    .ba-card:hover p {
+      color: var(--clr-on-dark-2);
+    }
+
+    .ba-icon {
+      width: 46px;
+      height: 46px;
+      background: var(--clr-bg-3);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      border: 1px solid rgba(23, 54, 48, 0.08);
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .ba-icon i {
+      font-size: 21px;
+      color: var(--clr-dark-2);
+      transition: color var(--transition), transform var(--transition);
+    }
+
+    .ba-card h4 {
       font-family: var(--ff-display);
       font-size: 15px;
       font-weight: 500;
       color: var(--clr-dark-2);
       margin-bottom: 8px;
+      line-height: 1.3;
+      transition: color var(--transition);
     }
 
-    .lib-card p {
+    .ba-card p {
       font-size: 12.5px;
       color: var(--clr-text-muted);
-      line-height: 1.6;
+      line-height: 1.65;
+      transition: color var(--transition);
     }
 
-    /* ════════════════════════════════
-           MOLECULE DISCOVERY — VISUAL
-        ════════════════════════════════ */
-    .molecule-section {
-      background: var(--clr-bg-4);
-      padding: 100px 80px;
-    }
-
-    .molecule-header {
+    /* second row of cards */
+    .bioact-cards-row2 {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: end;
-      margin-bottom: 60px;
-    }
-
-    .molecule-header h2 {
-      color: var(--clr-dark);
-    }
-
-    .molecule-header p {
-      color: var(--clr-text-2);
-    }
-
-    .molecule-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr 1fr;
-      grid-template-rows: auto auto;
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
+      margin-top: 16px;
     }
 
-    .mol-card {
-      background: var(--clr-surface);
-      border: 1px solid rgba(23, 54, 48, 0.08);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      transition: transform 0.3s var(--ease-out), box-shadow 0.3s, border-color 0.3s;
-    }
-
-    .mol-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-md);
-      border-color: rgba(77, 140, 106, 0.3);
-    }
-
-    .mol-card.span-2 {
-      grid-row: span 2;
-    }
-
-    .mol-img {
-      height: 220px;
-      overflow: hidden;
-    }
-
-    .mol-card.span-2 .mol-img {
-      height: 300px;
-    }
-
-    .mol-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s var(--ease-out);
-    }
-
-    .mol-card:hover .mol-img img {
-      transform: scale(1.05);
-    }
-
-    .mol-body {
-      padding: 24px 22px;
-    }
-
-    .mol-tag {
-      display: inline-block;
-      padding: 3px 10px;
-      background: rgba(77, 140, 106, 0.1);
-      border: 1px solid rgba(77, 140, 106, 0.2);
-      border-radius: var(--radius-full);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--clr-sage);
-      margin-bottom: 10px;
-    }
-
-    .mol-body h4 {
-      font-family: var(--ff-display);
-      font-size: 15px;
-      font-weight: 500;
-      color: var(--clr-dark-2);
-      margin-bottom: 6px;
-    }
-
-    .mol-body p {
-      font-size: 12.5px;
-      color: var(--clr-text-muted);
-      line-height: 1.6;
-    }
-
-    /* ════════════════════════════════
-           STRAIN ENGINEERING
-        ════════════════════════════════ */
+    /* ═══════════════════════ S5 — STRAIN IMPROVEMENT ═══════════════════════ */
     .strain-section {
       background: var(--clr-dark);
-      padding: 100px 80px;
+      padding: 96px 80px;
       position: relative;
       overflow: hidden;
     }
@@ -1346,88 +1074,368 @@
       letter-spacing: -0.04em;
     }
 
-    .strain-header {
-      text-align: center;
-      margin-bottom: 72px;
+    .strain-top {
+      margin-bottom: 56px;
     }
 
-    .strain-header h2 {
+    .strain-top h2 {
       color: var(--clr-on-dark);
-      margin-bottom: 14px;
+      margin-bottom: 0;
     }
 
-    .strain-header p {
-      color: var(--clr-on-dark-2);
-      max-width: 520px;
-      margin: 0 auto;
-    }
-
-    .strain-cards {
+    .strain-inner {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .strain-text p {
+      color: var(--clr-on-dark-2);
+      margin-bottom: 16px;
+    }
+
+    .strain-text .accent-italic {
+      font-style: italic;
+      color: var(--clr-accent);
+      font-weight: 400;
+    }
+
+    .strain-text .power-line {
+      font-style: italic;
+      color: var(--clr-on-dark-2);
+      font-size: clamp(13px, 1vw, 15px);
+      margin-top: 8px;
+      border-left: 2px solid var(--clr-accent);
+      padding-left: 16px;
+    }
+
+    .strain-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    .strain-img .img-main {
+      width: 100%;
+      height: 520px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid rgba(126, 203, 161, 0.15);
+    }
+
+    .strain-img .img-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+    }
+
+    .strain-img .img-main:hover img {
+      transform: scale(1.04);
+    }
+
+    /* ═══════════════════════ S6 — BIOBANK ═══════════════════════ */
+    .biobank-section {
+      background: var(--clr-bg-2);
+      padding: 96px 80px;
+    }
+
+    .biobank-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 56px;
+    }
+
+    .biobank-header h2 {
+      color: var(--clr-dark);
+      margin-bottom: 16px;
+    }
+
+    .biobank-header p {
+      margin-bottom: 10px;
+    }
+
+    .biobank-header .italic-line {
+      font-style: italic;
+      color: var(--clr-sage);
+      font-weight: 400;
+      margin-top: 12px;
+    }
+
+    .biobank-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
+      margin-bottom: 56px;
     }
 
-    .strain-card {
-      background: rgba(242, 255, 243, 0.04);
-      border: 1px solid rgba(242, 255, 243, 0.09);
-      border-radius: var(--radius-lg);
-      padding: 36px 28px;
-      transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease-out);
+    .bm-card {
+      padding: 28px 22px;
+      background: var(--clr-surface);
+      border: 1px solid rgba(23, 54, 48, 0.09);
+      border-radius: var(--radius-md);
+      text-align: center;
+      transition: transform var(--transition), border-color var(--transition), background var(--transition), box-shadow var(--transition);
     }
 
-    .strain-card:hover {
-      background: rgba(242, 255, 243, 0.07);
-      border-color: rgba(126, 203, 161, 0.25);
+    .bm-card:hover {
       transform: translateY(-6px);
+      border-color: rgba(77, 140, 106, 0.4);
+      background: var(--clr-dark-2);
+      box-shadow: var(--shadow-md);
     }
 
-    .strain-card-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(126, 203, 161, 0.1);
+    .bm-card:hover .bm-num {
+      color: var(--clr-accent);
+    }
+
+    .bm-card:hover .bm-num sup {
+      color: var(--clr-on-dark-2);
+    }
+
+    .bm-card:hover .bm-label {
+      color: var(--clr-on-dark-3);
+    }
+
+    .bm-num {
+      font-family: var(--ff-display);
+      font-size: 42px;
+      font-weight: 500;
+      color: var(--clr-dark-2);
+      line-height: 1;
+      margin-bottom: 6px;
+      transition: color var(--transition);
+    }
+
+    .bm-num sup {
+      font-size: 18px;
+      color: var(--clr-sage);
+      transition: color var(--transition);
+    }
+
+    .bm-label {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--clr-text-muted);
+      transition: color var(--transition);
+    }
+
+    .biobank-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .bb-card {
+      background: var(--clr-surface);
+      border: 1px solid rgba(23, 54, 48, 0.09);
+      border-radius: var(--radius-lg);
+      padding: 30px 22px;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition), background var(--transition);
+    }
+
+    .bb-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(77, 140, 106, 0.4);
+      background: var(--clr-dark-2);
+    }
+
+    .bb-card:hover .bb-icon {
+      background: rgba(126, 203, 161, 0.15);
+      border-color: rgba(126, 203, 161, 0.3);
+    }
+
+    .bb-card:hover .bb-icon i {
+      color: var(--clr-accent);
+      transform: scale(1.18) rotate(-10deg);
+    }
+
+    .bb-card:hover h4 {
+      color: var(--clr-on-dark);
+    }
+
+    .bb-card:hover p {
+      color: var(--clr-on-dark-2);
+    }
+
+    .bb-icon {
+      width: 46px;
+      height: 46px;
+      background: var(--clr-bg-3);
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 20px;
-      border: 1px solid rgba(126, 203, 161, 0.2);
+      margin-bottom: 14px;
+      border: 1px solid rgba(23, 54, 48, 0.08);
+      transition: background var(--transition), border-color var(--transition);
     }
 
-    .strain-card-icon i {
-      font-size: 22px;
-      color: var(--clr-accent);
+    .bb-icon i {
+      font-size: 21px;
+      color: var(--clr-dark-2);
+      transition: color var(--transition), transform var(--transition);
     }
 
-    .strain-card h4 {
+    .bb-card h4 {
       font-family: var(--ff-display);
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 500;
-      color: var(--clr-on-dark);
-      margin-bottom: 10px;
+      color: var(--clr-dark-2);
+      margin-bottom: 7px;
+      transition: color var(--transition);
     }
 
-    .strain-card p {
-      font-size: 13px;
-      color: var(--clr-on-dark-3);
+    .bb-card p {
+      font-size: 12.5px;
+      color: var(--clr-text-muted);
       line-height: 1.65;
+      transition: color var(--transition);
     }
 
-    /* ════════════════════════════════
-           CTA SECTION
-        ════════════════════════════════ */
-    .cta-section {
-      background: var(--clr-dark-2);
-      padding: 100px 80px;
+    .biobank-cta {
+      text-align: center;
+    }
+
+    /* ═══════════════════════ S7 — APPLICATION AREAS ═══════════════════════ */
+    .app-section {
+      background: var(--clr-bg-4);
+      padding: 96px 80px;
+    }
+
+    .app-inner {
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 64px;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
       align-items: center;
+    }
+
+    .app-text {}
+
+    .app-text h2 {
+      color: var(--clr-dark);
+      margin-bottom: 18px;
+    }
+
+    .app-text>p {
+      margin-bottom: 32px;
+    }
+
+    .app-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .app-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 18px;
+      background: var(--clr-surface);
+      border: 1px solid rgba(23, 54, 48, 0.08);
+      border-radius: var(--radius-md);
+      cursor: default;
+      transition: background var(--transition), transform var(--transition), border-color var(--transition);
+    }
+
+    .app-item:hover {
+      background: var(--clr-dark-2);
+      border-color: rgba(77, 140, 106, 0.5);
+      transform: translateX(4px);
+    }
+
+    .app-item:hover .app-icon {
+      background: rgba(126, 203, 161, 0.15);
+      border-color: rgba(126, 203, 161, 0.3);
+    }
+
+    .app-item:hover .app-icon i {
+      color: var(--clr-accent);
+      transform: scale(1.18) rotate(-10deg);
+    }
+
+    .app-item:hover .app-body strong {
+      color: var(--clr-on-dark);
+    }
+
+    .app-item:hover .app-body span {
+      color: var(--clr-on-dark-2);
+    }
+
+    .app-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      background: var(--clr-bg-3);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+      border: 1px solid rgba(23, 54, 48, 0.08);
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .app-icon i {
+      font-size: 16px;
+      color: var(--clr-dark-2);
+      transition: color var(--transition), transform var(--transition);
+    }
+
+    .app-body strong {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--clr-dark-2);
+      margin-bottom: 2px;
+      transition: color var(--transition);
+    }
+
+    .app-body span {
+      font-size: 12px;
+      color: var(--clr-text-muted);
+      line-height: 1.5;
+      transition: color var(--transition);
+    }
+
+    .app-img {
+      position: relative;
+    }
+
+    .app-img .img-main {
+      width: 100%;
+      height: 480px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid rgba(23, 54, 48, 0.1);
+    }
+
+    .app-img .img-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease-out);
+    }
+
+    .app-img .img-main:hover img {
+      transform: scale(1.04);
+    }
+
+    /* ═══════════════════════ S8 — COLLABORATION ═══════════════════════ */
+    .collab-section {
+      background: var(--clr-dark-2);
+      padding: 96px 80px;
       position: relative;
       overflow: hidden;
     }
 
-    .cta-section::before {
+    .collab-section::before {
       content: '';
       position: absolute;
       inset: 0;
@@ -1435,39 +1443,132 @@
       opacity: 0.08;
     }
 
-    .cta-left {
+    .collab-section::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 40%, rgba(126, 203, 161, 0.08) 0%, transparent 65%);
+    }
+
+    .collab-inner {
       position: relative;
       z-index: 2;
     }
 
-    .cta-left h2 {
-      font-size: clamp(32px, 4vw, 60px);
+    .collab-top {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto 56px;
+    }
+
+    .collab-top h2 {
       color: var(--clr-on-dark);
       margin-bottom: 16px;
     }
 
-    .cta-left h2 em {
+    .collab-top h2 em {
       color: var(--clr-accent);
       font-style: italic;
     }
 
-    .cta-left p {
+    .collab-top>p {
       color: var(--clr-on-dark-2);
-      max-width: 480px;
+      margin-bottom: 10px;
     }
 
-    .cta-right {
-      position: relative;
-      z-index: 2;
+    .collab-top .accent-p {
+      color: var(--clr-accent);
+      font-style: italic;
+      font-weight: 400;
+      margin-top: 6px;
+    }
+
+    .collab-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 52px;
+    }
+
+    .cm-card {
+      background: rgba(242, 255, 243, 0.05);
+      border: 1px solid rgba(242, 255, 243, 0.1);
+      border-radius: var(--radius-lg);
+      padding: 28px 22px;
+      transition: background var(--transition), border-color var(--transition), transform var(--transition);
+    }
+
+    .cm-card:hover {
+      background: rgba(242, 255, 243, 0.1);
+      border-color: rgba(126, 203, 161, 0.35);
+      transform: translateY(-6px);
+    }
+
+    .cm-card:hover .cm-icon {
+      background: rgba(126, 203, 161, 0.15);
+      border-color: rgba(126, 203, 161, 0.3);
+    }
+
+    .cm-card:hover .cm-icon i {
+      color: var(--clr-accent);
+      transform: scale(1.18) rotate(-10deg);
+    }
+
+    .cm-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(242, 255, 243, 0.07);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      border: 1px solid rgba(242, 255, 243, 0.1);
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .cm-icon i {
+      font-size: 19px;
+      color: var(--clr-accent);
+      transition: color var(--transition), transform var(--transition);
+    }
+
+    .cm-card h4 {
+      font-family: var(--ff-display);
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--clr-on-dark);
+      margin-bottom: 6px;
+    }
+
+    .cm-card p {
+      font-size: 12.5px;
+      color: var(--clr-on-dark-3);
+      line-height: 1.6;
+    }
+
+    .collab-bottom {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      align-items: flex-end;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
     }
 
-    /* ════════════════════════════════
-           FOOTER
-        ════════════════════════════════ */
+    .collab-bottom p {
+      color: var(--clr-on-dark-2);
+      max-width: 600px;
+      font-size: clamp(13px, 1vw, 15px);
+    }
+
+    .collab-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ═══════════════════════ FOOTER ═══════════════════════ */
     footer {
       background: var(--clr-dark);
       color: var(--clr-on-dark);
@@ -1603,134 +1704,7 @@
       color: var(--clr-on-dark);
     }
 
-    /* ── RESPONSIVE ── */
-    @media(max-width:1100px) {
-      .pillars-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .pipeline-track {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .pipeline-track::before {
-        display: none;
-      }
-
-      .strain-cards {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media(max-width:1024px) {
-
-      .disc-split-row,
-      .library-inner {
-        grid-template-columns: 1fr;
-      }
-
-      .disc-split-row.reverse {
-        direction: ltr;
-      }
-
-      .molecule-header {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .molecule-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .mol-card.span-2 {
-        grid-row: auto;
-      }
-
-      .cta-section {
-        grid-template-columns: 1fr;
-      }
-
-      .cta-right {
-        align-items: flex-start;
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media(max-width:768px) {
-
-      .pillars-section,
-      .disc-split,
-      .pipeline-section,
-      .library-section,
-      .molecule-section,
-      .strain-section,
-      .cta-section {
-        padding-left: 24px;
-        padding-right: 24px;
-      }
-
-      .navbar {
-        padding: 0 20px;
-      }
-
-      .nav-links,
-      .nav-cta-wrap {
-        display: none;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
-      .hero-inner {
-        padding: 80px 24px 48px;
-      }
-
-      .hero-strip {
-        gap: 20px;
-        padding: 18px 24px;
-      }
-
-      .pillars-grid {
-        grid-template-columns: 1fr;
-        border-radius: var(--radius-md);
-      }
-
-      .pipeline-track {
-        grid-template-columns: 1fr;
-      }
-
-      .strain-cards,
-      .library-right,
-      .library-metrics {
-        grid-template-columns: 1fr;
-      }
-
-      .molecule-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-top {
-        grid-template-columns: 1fr;
-      }
-
-      footer {
-        padding: 48px 24px 28px;
-      }
-
-      .footer-bottom {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-      }
-    }
-
-    /* ── ANIMATIONS ── */
+    /* ═══════════════════════ ANIMATIONS ═══════════════════════ */
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -1763,6 +1737,173 @@
     .fade-up.d4 {
       animation-delay: 0.46s;
     }
+
+    .fade-up.d5 {
+      animation-delay: 0.58s;
+    }
+
+    .reveal {
+      opacity: 0;
+    }
+
+    /* ═══════════════════════ RESPONSIVE ═══════════════════════ */
+    @media(max-width:1200px) {
+
+      .bioact-cards,
+      .bioact-cards-row2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .collab-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .biobank-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .biobank-metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pipeline-track {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .pipeline-block {
+        padding: 48px 40px;
+      }
+    }
+
+    @media(max-width:1024px) {
+
+      .bio-grid,
+      .strain-inner,
+      .app-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .bio-section,
+      .mol-section,
+      .bioact-section,
+      .strain-section,
+      .biobank-section,
+      .app-section,
+      .collab-section {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media(max-width:768px) {
+
+      .bio-section,
+      .mol-section,
+      .bioact-section,
+      .strain-section,
+      .biobank-section,
+      .app-section,
+      .collab-section {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 72px;
+        padding-bottom: 72px;
+      }
+
+      .navbar {
+        padding: 0 20px;
+      }
+
+      .nav-links,
+      .nav-cta-wrap {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-inner {
+        padding: 80px 24px 48px;
+      }
+
+      .pipeline-track {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pipeline-block {
+        padding: 40px 24px;
+      }
+
+      .bioact-cards,
+      .bioact-cards-row2,
+      .collab-cards,
+      .biobank-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .biobank-metrics {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      footer {
+        padding: 48px 24px 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .strain-top {
+        margin-bottom: 40px;
+      }
+    }
+
+    @media(max-width:560px) {
+
+      .bioact-cards,
+      .bioact-cards-row2,
+      .collab-cards,
+      .biobank-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .pipeline-track {
+        grid-template-columns: 1fr;
+      }
+
+      .pipeline-track::before {
+        display: none;
+      }
+
+      .bio-grid {
+        gap: 40px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .strain-btns {
+        flex-direction: column;
+      }
+
+      .collab-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
   </style>
 </head>
 
@@ -1774,105 +1915,148 @@
       <span><img src="/logo.png" alt="Molmet Biotech" /></span>
     </a>
     <ul class="nav-links">
-       <li class="nav-item">
-               <a href="/index.html"> <button class="nav-link">Home</button></a></li>
-
-      <li class="nav-item">
-        <button class="nav-link">About <i class="ri-arrow-down-s-line"></i></button>
+      <li class="nav-item"><a href="/index.html"><button class="nav-link">Home</button></a></li>
+        <li class="nav-item">
+        <a href="/aboutpage/about.html"><button class="nav-link">About <i class="ri-arrow-down-s-line"></i></button></a>
         <div class="dropdown">
           <div class="dropdown-label">About Molment</div>
-          <a href="/aboutpage/about.html#vision" class="dropdown-link"><i class="ri-compass-3-line"></i> Vision & Mission</a>
-          <a href="/aboutpage/about.html#who" class="dropdown-link"><i class="ri-user-star-line"></i> Leadership</a>
-          <a href="/aboutpage/about.html#leadership" class="dropdown-link"><i class="ri-building-4-line"></i> Infrastructure</a>
+          <a href="/aboutpage/about.html#vision" class="dropdown-link"><i class="ri-compass-3-line"></i> Vision &
+            Mission</a>
+          <a href="/aboutpage/about.html#leadership" class="dropdown-link"><i class="ri-user-star-line"></i>
+            Leadership</a>
+          <a href="/aboutpage/about.html#infra" class="dropdown-link"><i class="ri-building-4-line"></i>
+            Infrastructure</a>
           <a href="/aboutpage/about.html#approach" class="dropdown-link"><i class="ri-lightbulb-line"></i> Approach</a>
           <a href="/aboutpage/about.html#network" class="dropdown-link"><i class="ri-global-line"></i> Network</a>
         </div>
       </li>
-      
-      <li class="nav-item">
-        <button class="nav-link">Collaborate <i class="ri-arrow-down-s-line"></i></button>
+     <li class="nav-item">
+        <a href="/collabratepage/colla.html"><button class="nav-link">Collaborate <i
+              class="ri-arrow-down-s-line"></i></button></a>
         <div class="dropdown">
           <div class="dropdown-label">Partner With Us</div>
-          <a href="#" class="dropdown-link"><i class="ri-building-line"></i> Industry Partnerships</a>
-          <a href="#" class="dropdown-link"><i class="ri-government-line"></i> Institutional Collaboration</a>
-          <a href="#" class="dropdown-link"><i class="ri-handshake-line"></i> Co-development</a>
-          <a href="#" class="dropdown-link"><i class="ri-funds-line"></i> Sponsored Research</a>
+          <a href="/collabratepage/colla.html#who" class="dropdown-link"><i class="ri-building-line"></i> Industry
+            Partnerships</a>
+          <a href="/collabratepage/colla.html#approach" class="dropdown-link"><i class="ri-government-line"></i>OUR
+            APPROACH</a>
+          <a href="/collabratepage/colla.html#models" class="dropdown-link"><i class="ri-handshake-line"></i>
+            Collaboration Models</a>
+          <a href="/collabratepage/colla.html#bring" class="dropdown-link"><i class="ri-funds-line"></i>What We
+            Bring</a>
         </div>
       </li>
       <li class="nav-item">
-        <button class="nav-link">CRO & Solutions <i class="ri-arrow-down-s-line"></i></button>
+        <a href="/cropage/cro.html"><button class="nav-link">CRO & Solutions <i
+              class="ri-arrow-down-s-line"></i></button></a>
         <div class="dropdown">
           <div class="dropdown-label">R&D Solutions</div>
-          <a href="#" class="dropdown-link"><i class="ri-briefcase-line"></i> Contract Research</a>
-          <a href="#" class="dropdown-link"><i class="ri-tools-line"></i> Assay Development</a>
-          <a href="#" class="dropdown-link"><i class="ri-search-eye-line"></i> Bioactivity Screening</a>
-          <a href="#" class="dropdown-link"><i class="ri-test-tube-line"></i> In-vitro Models</a>
+          <a href="/cropage/cro.html#capabilities" class="dropdown-link"><i class="ri-briefcase-line"></i> Our
+            Capabilities</a>
+          <a href="/cropage/cro.html#how-we-engage" class="dropdown-link"><i class="ri-tools-line"></i> How We
+            Engage</a>
+          <a href="/cropage/cro.html#best-suited" class="dropdown-link"><i class="ri-search-eye-line"></i> Best Suited
+            For</a>
+          <a href="/cropage/cro.html#contact" class="dropdown-link"><i class="ri-mail-send-line"></i> Submit
+            Requirement</a>
         </div>
       </li>
       <li class="nav-item">
-        <button class="nav-link">Biological Assets <i class="ri-arrow-down-s-line"></i></button>
+        <a href="/bioassestpage/bio.html"><button class="nav-link">Biological Assets <i class="ri-arrow-down-s-line"></i></button></a>
         <div class="dropdown">
           <div class="dropdown-label">Our Assets</div>
-          <a href="#" class="dropdown-link"><i class="ri-dna-line"></i> Culture Library</a>
-          <a href="#" class="dropdown-link"><i class="ri-flask-fill"></i> Metabolite Platform</a>
-          <a href="#" class="dropdown-link"><i class="ri-archive-line"></i> Discovery Collection</a>
-          <a href="#" class="dropdown-link"><i class="ri-links-line"></i> Strain Access</a>
+          <a href="/bioassestpage/bio.html#culture-library" class="dropdown-link"><i class="ri-dna-line"></i> Culture Library</a>
+          <a href="/bioassestpage/bio.html#metabolite-platform" class="dropdown-link"><i class="ri-flask-fill"></i> Metabolite Platform</a>
+          <a href="/bioassestpage/bio.html#discovery-collections" class="dropdown-link"><i class="ri-archive-line"></i> Discovery Collection</a>
+          <a href="/bioassestpage/bio.html#access" class="dropdown-link"><i class="ri-links-line"></i> Strain Access</a>
         </div>
       </li>
       <li class="nav-item">
-        <button class="nav-link">Insights <i class="ri-arrow-down-s-line"></i></button>
+        <a href="/research/reaserchpage.html"><button class="nav-link">Research Exposure  <i class="ri-arrow-down-s-line"></i></button></a>
         <div class="dropdown">
-          <div class="dropdown-label">Knowledge Hub</div>
-          <a href="#" class="dropdown-link"><i class="ri-article-line"></i> Blogs</a>
-          <a href="#" class="dropdown-link"><i class="ri-file-text-line"></i> Whitepapers</a>
-          <a href="#" class="dropdown-link"><i class="ri-bar-chart-line"></i> Research Highlights</a>
-          <a href="#" class="dropdown-link"><i class="ri-lightbulb-flash-line"></i> Perspectives</a>
+          <div class="dropdown-label">Exposure</div>
+          <a href="/research/reaserchpage.html#tracks"class="dropdown-link"><i class="ri-article-line"></i> Program Track</a>
+          <a href="/research/reaserchpage.html#structure" class="dropdown-link"><i class="ri-file-text-line"></i> Program Structure</a>
+          <a href="/research/reaserchpage.html#who" class="dropdown-link"><i class="ri-bar-chart-line"></i>Who Apply </a>
+          <a href="/research/reaserchpage.html#apply" class="dropdown-link"><i class="ri-lightbulb-flash-line"></i> Apply Now</a>
         </div>
       </li>
     </ul>
     <div class="nav-cta-wrap">
-      <a href="#" class="nav-cta">Contact Us <i class="ri-arrow-right-up-line"></i></a>
+      <a href="/collabratepage/colla.html#contact" class="nav-cta">Contact Us <i class="ri-arrow-right-up-line"></i></a>
     </div>
     <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </nav>
 
   <div class="mobile-overlay" id="mobile-overlay"></div>
   <div class="mobile-menu" id="mobile-menu">
-    <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-disc">Discovery <i
-          class="ri-arrow-down-s-line"></i></button>
-      <div class="mobile-dropdown" id="mob-disc">
-        <a href="#bioprospecting" class="mobile-dropdown-link">Microbial Bioprospecting</a>
-        <a href="#molecules" class="mobile-dropdown-link">Molecule & Metabolite Discovery</a>
-        <a href="#strain" class="mobile-dropdown-link">Strain Engineering</a>
-        <a href="#libraries" class="mobile-dropdown-link">Natural Product Libraries</a>
+
+     <div class="mobile-nav-item">
+      <a href="/index.html"><button class="mobile-nav-link" >Home </button></a>
+     
+    </div>
+   
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-link" data-target="mob-about">About <i class="ri-arrow-down-s-line"></i></button>
+      <div class="mobile-dropdown" id="mob-about">
+        <a href="/aboutpage/about.html#vision" class="mobile-dropdown-link">Vision & Mission</a>
+        <a href="/aboutpage/about.html#leadership" class="mobile-dropdown-link">Leadership</a>
+        <a href="/aboutpage/about.html#infra" class="mobile-dropdown-link">Infrastructure</a>
+        <a href="/aboutpage/about.html#approach" class="mobile-dropdown-link">Approach</a>
+        <a href="/aboutpage/about.html#network" class="mobile-dropdown-link">Network</a>
       </div>
     </div>
-    <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-coll">Collaborate <i
-          class="ri-arrow-down-s-line"></i></button>
-      <div class="mobile-dropdown" id="mob-coll"><a href="#" class="mobile-dropdown-link">Industry Partnerships</a><a
-          href="#" class="mobile-dropdown-link">Co-development</a></div>
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-link" data-target="mob-coll">Collaborate <i class="ri-arrow-down-s-line"></i></button>
+      <div class="mobile-dropdown" id="mob-coll">
+        <a href="/collabratepage/colla.html#who" class="mobile-dropdown-link">Industry Partnerships</a>
+        <a href="/collabratepage/colla.html#approach" class="dropdown-link"><i class="ri-government-line"></i>OUR
+          APPROACH</a>
+        <a href="/collabratepage/colla.html#models" class="dropdown-link"><i class="ri-handshake-line"></i>
+          Collaboration Models</a>
+        <a href="/collabratepage/colla.html#bring" class="dropdown-link"><i class="ri-funds-line"></i>What We
+          Bring</a>
+      </div>
     </div>
-    <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-cro">CRO & Solutions <i
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-link" data-target="mob-cro">CRO & Solutions <i
           class="ri-arrow-down-s-line"></i></button>
-      <div class="mobile-dropdown" id="mob-cro"><a href="#" class="mobile-dropdown-link">Contract Research</a><a
-          href="#" class="mobile-dropdown-link">Assay Development</a></div>
+      <div class="mobile-dropdown" id="mob-cro">
+        <a href="/cropage/cro.html#capabilities" class="dropdown-link"><i class="ri-briefcase-line"></i> Our
+          Capabilities</a>
+        <a href="/cropage/cro.html#how-we-engage" class="dropdown-link"><i class="ri-tools-line"></i> How We
+          Engage</a>
+        <a href="/cropage/cro.html#best-suited" class="dropdown-link"><i class="ri-search-eye-line"></i> Best Suited
+          For</a>
+        <a href="/cropage/cro.html#contact" class="dropdown-link"><i class="ri-mail-send-line"></i> Submit
+          Requirement</a>
+      </div>
     </div>
-    <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-assets">Biological Assets <i
+   <div class="mobile-nav-item">
+      <button class="mobile-nav-link" data-target="mob-assets">Biological Assets <i
           class="ri-arrow-down-s-line"></i></button>
-      <div class="mobile-dropdown" id="mob-assets"><a href="#" class="mobile-dropdown-link">Culture Library</a><a
-          href="#" class="mobile-dropdown-link">Metabolite Platform</a></div>
+      <div class="mobile-dropdown" id="mob-assets">
+        <a href="/bioassestpage/bio.html#culture-library" class="dropdown-link"><i class="ri-dna-line"></i> Culture Library</a>
+          <a href="/bioassestpage/bio.html#metabolite-platform" class="dropdown-link"><i class="ri-flask-fill"></i> Metabolite Platform</a>
+          <a href="/bioassestpage/bio.html#discovery-collections" class="dropdown-link"><i class="ri-archive-line"></i> Discovery Collection</a>
+          <a href="/bioassestpage/bio.html#access" class="dropdown-link"><i class="ri-links-line"></i> Strain Access</a>
+      </div>
     </div>
-    <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-ins">Insights <i
-          class="ri-arrow-down-s-line"></i></button>
-      <div class="mobile-dropdown" id="mob-ins"><a href="#" class="mobile-dropdown-link">Blogs</a><a href="#"
-          class="mobile-dropdown-link">Research Highlights</a></div>
+     <div class="mobile-nav-item">
+      <button class="mobile-nav-link" data-target="mob-ins">Research Exposure <i class="ri-arrow-down-s-line"></i></button>
+      <div class="mobile-dropdown" id="mob-ins">
+         <a href="/research/reaserchpage.html#tracks"class="dropdown-link"><i class="ri-article-line"></i> Program Track</a>
+          <a href="/research/reaserchpage.html#structure" class="dropdown-link"><i class="ri-file-text-line"></i> Program Structure</a>
+          <a href="/research/reaserchpage.html#who" class="dropdown-link"><i class="ri-bar-chart-line"></i>Who Apply </a>
+          <a href="/research/reaserchpage.html#apply" class="dropdown-link"><i class="ri-lightbulb-flash-line"></i> Apply Now</a>
+      </div>
     </div>
-    <a href="#" class="mobile-cta">Contact Us <i class="ri-arrow-right-up-line"></i></a>
+    <a href="/collabratepage/colla.html#contact" class="mobile-cta">Contact Us <i
+        class="ri-arrow-right-up-line"></i></a>
   </div>
 
   <main>
 
-    <!-- ══ HERO ══ -->
+    <!-- ══ S1: HERO ══ -->
     <section class="hero">
       <div class="hero-bg-img"></div>
       <div class="hero-grid"></div>
@@ -1881,398 +2065,384 @@
           <div class="hero-eyebrow-dot"></div>
           <span>Discovery Platform</span>
         </div>
-        <h1 class="hero-headline fade-up d2">
-          Discovery at Molmet
-        </h1>
-        <p class="hero-desc fade-up d3">
-          At Molmet Biotech, discovery is not a service — it is our core mission.
-          We focus on identifying novel microorganisms and their metabolites from underexplored ecosystems, translating
-          biodiversity into biologically and commercially relevant solutions.
-
+        <h1 class="hero-headline fade-up d2">Discovery at Molmet</h1>
+        <p class="hero-subhead fade-up d3">Transforming Microbial Diversity into Bioactive Innovation</p>
+        <p class="hero-desc fade-up d4">
+          Molmet Biotech is built on one principle: uncover what biology has yet to reveal.<br>
+          We target underexplored ecosystems to discover novel microorganisms and unique metabolites, translating them
+          into scientifically validated, commercially scalable solutions.
         </p>
-        <div class="hero-actions fade-up d4">
+        <div class="hero-actions fade-up d5">
           <a href="#bioprospecting" class="btn-primary">Explore the Platform <i class="ri-arrow-down-line"></i></a>
           <a href="#pipeline" class="btn-ghost">Discovery Pipeline <i class="ri-arrow-right-line"></i></a>
         </div>
       </div>
-
     </section>
 
-    <!-- ══ DISCOVERY PILLARS ══ -->
-    <section class="pillars-section">
-      <div class="pillars-header">
-        <div class="section-tag">
-          <div class="section-tag-dot"></div><span class="section-tag-text">Discovery Platform</span>
+    <!-- ══ S2: BIOPROSPECTING ══ -->
+    <section class="bio-section" id="bioprospecting">
+      <div class="bio-top-heading reveal">
+        <div class="section-tag" style="display:inline-flex;margin-bottom:16px;">
+          <div class="section-tag-dot"></div><span class="section-tag-text">Bioprospecting</span>
         </div>
-        <h2>Four Dimensions of Discovery</h2>
-        <p>The Molmet discovery platform operates across four integrated dimensions — each a distinct capability,
-          collectively forming one of the most comprehensive microbial discovery pipelines in the region.</p>
+        <h2>Microbial Bioprospecting from Underexplored Ecosystems</h2>
       </div>
-      <div class="pillars-grid">
-        <a href="#bioprospecting" class="pillar-card">
-          <div class="pillar-num">01</div>
-          <div class="pillar-icon"><i class="ri-map-pin-2-line"></i></div>
-          <h4>Microbial Bioprospecting</h4>
-          <p>Systematic field-based collection from underexplored ecosystems — soil, water, extreme habitats — to access
-            rare, unstudied microbial biodiversity.</p>
-        </a>
-        <a href="#molecules" class="pillar-card">
-          <div class="pillar-num">02</div>
-          <div class="pillar-icon"><i class="ri-flask-line"></i></div>
-          <h4>Molecule & Metabolite Discovery</h4>
-          <p>Isolation and characterization of novel bioactive compounds — antimicrobial agents, enzymes, secondary
-            metabolites — with validated biological activity.</p>
-        </a>
-        <a href="#strain" class="pillar-card">
-          <div class="pillar-num">03</div>
-          <div class="pillar-icon"><i class="ri-settings-3-line"></i></div>
-          <h4>Strain Engineering & Optimization</h4>
-          <p>Enhancement and optimization of microbial strains to maximize yield, stability, and reproducibility of
-            commercially relevant metabolites.</p>
-        </a>
-        <a href="#libraries" class="pillar-card">
-          <div class="pillar-num">04</div>
-          <div class="pillar-icon"><i class="ri-database-2-line"></i></div>
-          <h4>Natural Product Libraries</h4>
-          <p>Curated, annotated biological repositories — a growing strategic asset enabling systematic screening across
-            pharma, agri, and industrial targets.</p>
-        </a>
-      </div>
-    </section>
-
-    <!-- ══ BIOPROSPECTING ══ -->
-    <section class="disc-split" id="bioprospecting" style="background:var(--clr-bg-2);">
-      <div class="disc-split-row">
-        <div class="disc-img-wrap">
-          <div class="disc-img-main">
-            <img src="https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=900&q=80"
-              alt="Field Bioprospecting" loading="lazy" />
-          </div>
-          <div class="disc-img-float">
-            <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=200&q=80" alt="Lab"
-              loading="lazy" />
-          </div>
-          <div class="disc-badge">
-            <i class="ri-map-2-line"></i>
-            <div>
-              <strong>Field-to-Lab Pipeline</strong>
-              <span>Ecosystem-driven collection</span>
-            </div>
-          </div>
+      <div class="bio-grid">
+        <div class="bio-left reveal">
+          <p>India's diverse ecological landscapes — particularly Central India — represent a vast and largely untapped
+            reservoir of microbial diversity.</p>
+          <p>At Molmet, we systematically explore these environments to isolate and identify microorganisms with unique
+            metabolic capabilities that hold potential for future biotechnological innovation.</p>
+          <p class="italic-cta">Turning unexplored ecosystems directly into a continuous pipeline of novel microbial
+            assets and proprietary value.</p>
+          <a href="/collabratepage/colla.html" class="btn-primary">Collaborate on Bioprospecting Programs <i
+              class="ri-arrow-right-line"></i></a>
         </div>
-        <div class="disc-text">
-          <div class="section-tag">
-            <div class="section-tag-dot"></div><span class="section-tag-text">01 — Bioprospecting</span>
-          </div>
-          <h2>Microbial Bioprospecting</h2>
-          <p>The discovery pipeline begins where biology is richest — in the field. Molmet conducts systematic sampling
-            across diverse and underexplored environments, targeting microbial communities that remain largely unstudied
-            and scientifically uncharted.</p>
-          <div class="disc-features">
-            <div class="disc-feat">
-              <div class="disc-feat-icon"><i class="ri-map-pin-2-line"></i></div>
-              <div class="disc-feat-body">
-                <strong>Diverse Ecosystem Sampling</strong>
-                <span>Soil, sediment, extreme environments, and freshwater habitats — each a unique reservoir of
-                  undiscovered microbial diversity.</span>
+        <div class="bio-right reveal">
+          <div class="bio-list">
+            <div class="bio-item">
+              <div class="bio-icon"><i class="ri-map-pin-2-line"></i></div>
+              <div class="bio-body">
+                <strong>Targeted Environmental Sampling</strong>
+                <span>Soil, water, and niche habitats — each a unique reservoir of undiscovered microbial
+                  diversity.</span>
               </div>
             </div>
-            <div class="disc-feat">
-              <div class="disc-feat-icon"><i class="ri-file-chart-line"></i></div>
-              <div class="disc-feat-body">
-                <strong>Systematic Collection Protocols</strong>
-                <span>Standardized, reproducible field collection with metadata-rich documentation ensuring scientific
-                  traceability.</span>
+            <div class="bio-item">
+              <div class="bio-icon"><i class="ri-microscope-line"></i></div>
+              <div class="bio-body">
+                <strong>Isolation of Rare & Functionally Diverse Strains</strong>
+                <span>Identifying and capturing rare microbial strains with unique functional profiles for downstream
+                  discovery.</span>
               </div>
             </div>
-            <div class="disc-feat">
-              <div class="disc-feat-icon"><i class="ri-leaf-line"></i></div>
-              <div class="disc-feat-body">
-                <strong>Responsible Access & Compliance</strong>
-                <span>Collection aligned with Nagoya Protocol principles and national biodiversity frameworks.</span>
+            <div class="bio-item">
+              <div class="bio-icon"><i class="ri-file-chart-line"></i></div>
+              <div class="bio-body">
+                <strong>Ecological & Bioactivity-Driven Screening</strong>
+                <span>Systematic screening aligned to ecological context and defined biological activity targets.</span>
+              </div>
+            </div>
+            <div class="bio-item">
+              <div class="bio-icon"><i class="ri-archive-line"></i></div>
+              <div class="bio-body">
+                <strong>Structured Strain Preservation & Cataloguing</strong>
+                <span>Every isolate systematically documented, preserved, and catalogued as a long-term biological
+                  asset.</span>
               </div>
             </div>
           </div>
-          <div class="disc-stats">
-            <div class="disc-stat">
-              <div class="disc-stat-num">200<sup>+</sup></div>
-              <div class="disc-stat-label">Strains Isolated</div>
-            </div>
-            <div class="disc-stat">
-              <div class="disc-stat-num">12<sup>+</sup></div>
-              <div class="disc-stat-label">Ecosystems Sampled</div>
-            </div>
-            <div class="disc-stat">
-              <div class="disc-stat-num">5<sup>+</sup></div>
-              <div class="disc-stat-label">Active Programs</div>
-            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ S3: MOLECULE & METABOLITE DISCOVERY ══ -->
+    <section class="mol-section" id="pipeline">
+      <div class="mol-top reveal">
+        <div class="section-tag" style="display:inline-flex;margin-bottom:16px;">
+          <div class="section-tag-dot"></div><span class="section-tag-text"> Molecule Discovery</span>
+        </div>
+        <h2>Molecule & Metabolite Discovery Platform</h2>
+        <p>Our discovery platform is engineered to systematically identify and validate bioactive metabolites from novel
+          microbial isolates. We integrate targeted screening, analytical profiling, and rigorous functional validation
+          to characterize molecules with defined biological activity. Each discovery is advanced through structured
+          pipelines toward pharmaceutical, agricultural, environmental, and industrial applications.</p>
+        <p style="margin-top:10px;">Our focus is clear — move from molecule identification to application-ready scalable
+          outcomes with precision and purpose.</p>
+        <p class="italic-line" style="margin-top:12px;">From microbes to molecules — we define the drivers of biological
+          activity.</p>
+      </div>
+
+      <!-- Pipeline Visual Block -->
+      <div class="pipeline-block reveal" id="molecules">
+        <div class="pipeline-block-header">
+          <div class="section-tag light" style="display:inline-flex;margin-bottom:14px;">
+            <div class="section-tag-dot"></div><span class="section-tag-text">Discovery Pipeline</span>
+          </div>
+          <h2>From Ecosystem to Validated Lead</h2>
+          <p>A fully integrated, five-stage discovery pipeline — engineered for scientific rigor at every transition
+            from sample to validated bioactive candidate.</p>
+        </div>
+        <div class="pipeline-track">
+          <div class="pipeline-step reveal">
+            <div class="pipeline-num"><i class="ri-map-pin-2-line"></i></div>
+            <h4>Isolation</h4>
+            <p>Systematic sampling and isolation of novel microbial strains from target ecosystems.</p>
+          </div>
+          <div class="pipeline-step reveal">
+            <div class="pipeline-num"><i class="ri-flask-2-line"></i></div>
+            <h4>Cultivation</h4>
+            <p>Controlled cultivation under optimized conditions to maximize growth and metabolite expression.</p>
+          </div>
+          <div class="pipeline-step reveal">
+            <div class="pipeline-num"><i class="ri-flask-line"></i></div>
+            <h4>Extraction</h4>
+            <p>Extraction and fractionation of bioactive metabolites for downstream screening.</p>
+          </div>
+          <div class="pipeline-step reveal">
+            <div class="pipeline-num"><i class="ri-search-eye-line"></i></div>
+            <h4>Screening</h4>
+            <p>In-vitro assays against antimicrobial, anticancer, enzymatic, and industrial activity targets.</p>
+          </div>
+          <div class="pipeline-step reveal">
+            <div class="pipeline-num"><i class="ri-award-line"></i></div>
+            <h4>Validation</h4>
+            <p>Confirmed bioactive leads ready for collaborative development and translation.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ══ PIPELINE ══ -->
-    <section class="pipeline-section" id="pipeline">
-      <div class="pipeline-header">
-        <div class="section-tag light" style="margin:0 auto 16px;">
-          <div class="section-tag-dot"></div><span class="section-tag-text">Discovery Pipeline</span>
+    <!-- ══ S4: BIOACTIVITY & VALIDATION ══ -->
+    <section class="bioact-section" id="bioactivity">
+      <div class="bioact-top reveal">
+        <div class="section-tag" style="display:inline-flex;margin-bottom:16px;">
+          <div class="section-tag-dot"></div><span class="section-tag-text">Bioactivity & Validation</span>
         </div>
-        <h2>From Ecosystem to Validated Lead</h2>
-        <p>A fully integrated, five-stage discovery pipeline — engineered for scientific rigor at every transition from
-          sample to validated bioactive candidate.</p>
+        <h2>Bioactivity Screening & Functional Validation</h2>
+        <p>We employ targeted in-vitro and application-oriented assays to evaluate biological activity and validate the
+          functional potential of discovered metabolites and microbial systems. We prioritize function-led screening to
+          identify candidates with clear translational and industrial applicability. Each validated hit is positioned
+          for downstream development across pharmaceutical, agricultural, environmental, and industrial biotechnology
+          pipelines. Our approach ensures that discovery is aligned with real-world biological relevance.</p>
       </div>
-      <div class="pipeline-track">
-        <div class="pipeline-step">
-          <div class="pipeline-num"><i class="ri-map-pin-2-line"></i></div>
-          <h4>Field Collection</h4>
-          <p>Systematic sampling from target ecosystems with standardized protocols.</p>
+      <!-- Row 1 -->
+      <div class="bioact-cards">
+        <div class="ba-card reveal">
+          <div class="ba-icon"><i class="ri-shield-check-line"></i></div>
+          <h4>Antimicrobial, Antioxidant & Anti-inflammatory Assays</h4>
+          <p>Validated screening against key biological targets across resistant and clinically relevant panels.</p>
         </div>
-        <div class="pipeline-step">
-          <div class="pipeline-num"><i class="ri-microscope-line"></i></div>
-          <h4>Isolation & ID</h4>
-          <p>Microbial isolation, morphological and molecular characterization of novel strains.</p>
+        <div class="ba-card reveal">
+          <div class="ba-icon"><i class="ri-heart-pulse-line"></i></div>
+          <h4>Anticancer & Cytotoxicity Screening</h4>
+          <p>Cytotoxicity evaluation across defined cancer models with precise activity profiling.</p>
         </div>
-        <div class="pipeline-step">
-          <div class="pipeline-num"><i class="ri-flask-line"></i></div>
-          <h4>Metabolite Extraction</h4>
-          <p>Extraction and fractionation of bioactive metabolites for downstream screening.</p>
+        <div class="ba-card reveal">
+          <div class="ba-icon"><i class="ri-dna-line"></i></div>
+          <h4>Enzyme Inhibition & Biochemical Pathway Studies</h4>
+          <p>Enzyme inhibition assays and comprehensive biochemical pathway evaluation for target discovery.</p>
         </div>
-        <div class="pipeline-step">
-          <div class="pipeline-num"><i class="ri-search-eye-line"></i></div>
-          <h4>Bioactivity Screening</h4>
-          <p>In-vitro assays against antimicrobial, anticancer, and enzymatic activity targets.</p>
-        </div>
-        <div class="pipeline-step">
-          <div class="pipeline-num"><i class="ri-award-line"></i></div>
-          <h4>Validated Lead</h4>
-          <p>Confirmed bioactive leads ready for collaborative development and translation.</p>
+        <div class="ba-card reveal">
+          <div class="ba-icon"><i class="ri-settings-3-line"></i></div>
+          <h4>Enzyme Activity & Industrial Biocatalysis Assays</h4>
+          <p>Enzyme activity assays and screening for metabolites with applications in bioprocessing and industrial
+            biotechnology.</p>
         </div>
       </div>
-    </section>
-
-    <!-- ══ MOLECULE DISCOVERY ══ -->
-    <section class="molecule-section" id="molecules">
-      <div class="molecule-header">
-        <div>
-          <div class="section-tag">
-            <div class="section-tag-dot"></div><span class="section-tag-text">02 — Molecule Discovery</span>
-          </div>
-          <h2>Molecule & Metabolite Discovery</h2>
+      <!-- Row 2 -->
+      <div class="bioact-cards-row2">
+        <div class="ba-card reveal">
+          <div class="ba-icon"><i class="ri-flask-2-line"></i></div>
+          <h4>Screening for Bioprocessing Metabolites</h4>
+          <p>Targeted identification of metabolites with defined relevance for industrial bioprocessing applications.
+          </p>
         </div>
-        <p>The core output of the Molmet platform — novel bioactive molecules with validated activity profiles across
-          pharmaceutical, agricultural, and industrial targets. Every lead is characterized, reproducible, and
-          collaboration-ready.</p>
-      </div>
-      <div class="molecule-grid">
-        <div class="mol-card span-2">
-          <div class="mol-img">
-            <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80"
-              alt="Molecule Discovery Lab" loading="lazy" />
-          </div>
-          <div class="mol-body">
-            <span class="mol-tag">Core Capability</span>
-            <h4>Bioactive Metabolite Platform</h4>
-            <p>High-throughput extraction, fractionation, and activity-guided isolation of secondary metabolites from
-              our curated microbial strain collection.</p>
-          </div>
+        <div class="ba-card reveal">
+          <div class="ba-icon"><i class="ri-leaf-line"></i></div>
+          <h4>Plant Growth Promotion & Biopesticidal Assays</h4>
+          <p>Evaluation of microbial strains and metabolites for agricultural innovation and crop protection.</p>
         </div>
-        <div class="mol-card">
-          <div class="mol-img">
-            <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=600&q=80" alt="Antimicrobial"
-              loading="lazy" />
-          </div>
-          <div class="mol-body">
-            <span class="mol-tag">Antimicrobial</span>
-            <h4>Antimicrobial Agents</h4>
-            <p>Novel antibacterial and antifungal compounds screened against resistant and clinically relevant pathogen
-              panels.</p>
-          </div>
+        <div class="ba-card reveal">
+          <div class="ba-icon"><i class="ri-recycle-line"></i></div>
+          <h4>Biological & Chemical Waste Degradation</h4>
+          <p>Environmental sustainability assays for bioremediation and waste degradation applications.</p>
         </div>
-        <div class="mol-card">
-          <div class="mol-img">
-            <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=600&q=80" alt="Enzymes"
-              loading="lazy" />
-          </div>
-          <div class="mol-body">
-            <span class="mol-tag">Industrial Enzymes</span>
-            <h4>Enzyme Discovery</h4>
-            <p>Microbial enzymes with industrial and pharmaceutical applications — identified, characterized, and
-              validated.</p>
-          </div>
+        <div class="ba-card reveal">
+          <div class="ba-icon"><i class="ri-globe-line"></i></div>
+          <h4>Environmental Sustainability Screening</h4>
+          <p>Function-led screening for eco-friendly solutions with direct translational applicability.</p>
         </div>
       </div>
     </section>
 
-    <!-- ══ STRAIN ENGINEERING ══ -->
+    <!-- ══ S5: STRAIN IMPROVEMENT ══ -->
     <section class="strain-section" id="strain">
-      <div class="strain-header">
-        <div class="section-tag light" style="margin:0 auto 16px;">
-          <div class="section-tag-dot"></div><span class="section-tag-text">03 — Strain Engineering</span>
+      <div class="strain-top reveal">
+        <div class="section-tag light" style="display:inline-flex;margin-bottom:16px;">
+          <div class="section-tag-dot"></div><span class="section-tag-text">Strain Improvement</span>
         </div>
-        <h2>Strain Engineering & Optimization</h2>
-        <p>Discovery doesn't end with isolation. Molmet's strain engineering capabilities maximize the potential of each
-          lead — optimizing yield, stability, and scalability for downstream development.</p>
+        <h2>Strain Improvement & Optimization</h2>
       </div>
-      <div class="strain-cards">
-        <div class="strain-card">
-          <div class="strain-card-icon"><i class="ri-dna-line"></i></div>
-          <h4>Genetic Characterization</h4>
-          <p>Comprehensive molecular profiling — 16S rRNA, ITS sequencing, and phylogenetic analysis — establishing the
-            definitive identity and novelty of each isolate.</p>
-        </div>
-        <div class="strain-card">
-          <div class="strain-card-icon"><i class="ri-settings-3-line"></i></div>
-          <h4>Culture Optimization</h4>
-          <p>Systematic optimization of growth conditions, media formulations, and fermentation parameters to maximize
-            metabolite production and strain stability.</p>
-        </div>
-        <div class="strain-card">
-          <div class="strain-card-icon"><i class="ri-line-chart-line"></i></div>
-          <h4>Yield Enhancement</h4>
-          <p>Targeted improvement of biosynthetic output through optimized induction strategies, elicitor screening, and
-            process engineering.</p>
-        </div>
-        <div class="strain-card">
-          <div class="strain-card-icon"><i class="ri-archive-line"></i></div>
-          <h4>Cryopreservation & Banking</h4>
-          <p>Long-term strain preservation with validated viability protocols ensuring reproducibility across research
-            programs and future collaboration.</p>
-        </div>
-        <div class="strain-card">
-          <div class="strain-card-icon"><i class="ri-shield-check-line"></i></div>
-          <h4>Biosafety Classification</h4>
-          <p>Rigorous assessment and documentation of biosafety levels, supporting compliant integration into partner
-            pipelines and regulatory environments.</p>
-        </div>
-        <div class="strain-card">
-          <div class="strain-card-icon"><i class="ri-git-branch-line"></i></div>
-          <h4>Pipeline Integration</h4>
-          <p>Optimized strains delivered as collaboration-ready assets — with full characterization data packages for
-            seamless integration into partner workflows.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ NATURAL LIBRARIES ══ -->
-    <section class="library-section" id="libraries">
-      <div class="library-inner">
-        <div class="library-left">
-          <div class="section-tag">
-            <div class="section-tag-dot"></div><span class="section-tag-text">04 — Natural Product Libraries</span>
-          </div>
-          <h2>Natural Product Libraries</h2>
-          <p>The Molmet biological repository represents years of systematic field collection and laboratory work — a
-            curated, annotated collection of microbial strains, extracts, and purified compounds serving as a strategic
-            discovery asset for partners and collaborators.</p>
-          <div class="library-metrics">
-            <div class="lib-metric">
-              <div class="lib-metric-num">200<sup>+</sup></div>
-              <div class="lib-metric-label">Characterized Strains</div>
-            </div>
-            <div class="lib-metric">
-              <div class="lib-metric-num">50<sup>+</sup></div>
-              <div class="lib-metric-label">Bioactive Extracts</div>
-            </div>
-            <div class="lib-metric">
-              <div class="lib-metric-num">12<sup>+</sup></div>
-              <div class="lib-metric-label">Ecosystems Represented</div>
-            </div>
-            <div class="lib-metric">
-              <div class="lib-metric-num">5<sup>+</sup></div>
-              <div class="lib-metric-label">Microbial Genera</div>
-            </div>
-          </div>
-          <a href="#" class="btn-primary">Request Library Access <i class="ri-arrow-right-line"></i></a>
-        </div>
-        <div class="library-right">
-          <div class="lib-card">
-            <i class="ri-microscope-line"></i>
-            <h4>Strain Collection</h4>
-            <p>Fully characterized microbial isolates with molecular ID, biosafety classification, and ecological
-              metadata.</p>
-          </div>
-          <div class="lib-card">
-            <i class="ri-flask-2-line"></i>
-            <h4>Crude Extract Library</h4>
-            <p>Activity-guided crude extracts pre-screened against multiple target panels and available for partner
-              screening.</p>
-          </div>
-          <div class="lib-card">
-            <i class="ri-test-tube-line"></i>
-            <h4>Purified Compounds</h4>
-            <p>Isolated, structurally characterized bioactive compounds with confirmed purity and validated activity
-              data.</p>
-          </div>
-          <div class="lib-card">
-            <i class="ri-database-2-line"></i>
-            <h4>Annotated Dataset</h4>
-            <p>Comprehensive scientific data packages — phylogenetics, bioassay results, and strain profiles — delivered
-              with every collaboration.</p>
+      <div class="strain-inner">
+        <div class="strain-text reveal">
+          <p>Discovery does not end at identification. We work on optimizing microbial strains and culture conditions to
+            enhance metabolite yield, improve reproducibility, and enable targeted production of desired bioactive
+            compounds.</p>
+          <p>Our approach integrates adaptive evolution, process optimization, and controlled cultivation strategies to
+            unlock full production potential. We ensure consistent performance under scalable conditions, enabling
+            seamless transition to downstream development and commercialization.</p>
+          <p>Each optimized strain is aligned with defined application goals across pharmaceutical and industrial
+            biotechnology.</p>
+          <p class="accent-italic">We don't just discover — we improve.</p>
+          <p class="power-line">A single microbial strain can express multiple metabolites — our focus is to direct that
+            potential toward defined outcomes.</p>
+          <div class="strain-btns">
+            <a href="/collabratepage/colla.html" class="btn-primary">Collaborate With Us <i
+                class="ri-arrow-right-line"></i></a>
+            <a href="#biobank" class="btn-ghost">Explore BioBank <i class="ri-arrow-down-line"></i></a>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ══ SPLIT: WHY DISCOVERY ══ -->
-    <section class="disc-split" id="differentiation" style="background:var(--clr-bg);">
-      <div class="disc-split-row reverse">
-        <div class="disc-img-wrap">
-          <div class="disc-img-main">
-            <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80"
-              alt="Discovery Differentiation" loading="lazy" />
-          </div>
-          <div class="disc-img-float left">
-            <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=200&q=80" alt="Culture"
+        <div class="strain-img reveal">
+          <div class="img-main">
+            <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?w=900&q=80" alt="Strain Optimization"
               loading="lazy" />
           </div>
-          <div class="disc-badge left-badge">
-            <i class="ri-lightbulb-flash-line"></i>
-            <div>
-              <strong>Discovery-First</strong>
-              <span>Not a conventional lab</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ S6: MOLMET BIOBANK ══ -->
+    <section class="biobank-section" id="biobank">
+      <div class="biobank-header reveal">
+        <div class="section-tag" style="display:inline-flex;margin-bottom:16px;">
+          <div class="section-tag-dot"></div><span class="section-tag-text">Molmet BioBank</span>
+        </div>
+        <h2>Molmet BioBank — Microbial Culture Library</h2>
+        <p>Every strain we isolate becomes a long-term asset. We are actively building a curated and expanding
+          repository of microbial strains sourced from diverse ecological niches. This culture library represents a
+          growing biological asset base for discovery, screening, and collaborative innovation.</p>
+        <p style="margin-top:10px;">Each strain is systematically preserved, characterized, and positioned as a reusable
+          asset within our discovery ecosystem. This evolving repository is not just a collection — it is our
+          proprietary foundation for continuous innovation and long-term competitive advantage.</p>
+        <p class="italic-line">A strategic microbial bank built to fuel high-value discovery pipelines.</p>
+      </div>
+
+      <div class="biobank-cards">
+        <div class="bb-card reveal">
+          <div class="bb-icon"><i class="ri-map-2-line"></i></div>
+          <h4>Geographically Distinct Isolates</h4>
+          <p>Strains sourced from geographically and ecologically diverse environments, each carrying unique metabolic
+            profiles for discovery.</p>
+        </div>
+        <div class="bb-card reveal">
+          <div class="bb-icon"><i class="ri-flask-2-line"></i></div>
+          <h4>Rare, Functionally Active Strains</h4>
+          <p>Rare and underexplored microbial strains with confirmed functional activity — selected through rigorous
+            bioactivity-driven screening.</p>
+        </div>
+        <div class="bb-card reveal">
+          <div class="bb-icon"><i class="ri-test-tube-line"></i></div>
+          <h4>Industrially Important Strains</h4>
+          <p>Strains with validated relevance for pharmaceutical, agricultural, industrial, and environmental
+            biotechnology applications.</p>
+        </div>
+        <div class="bb-card reveal">
+          <div class="bb-icon"><i class="ri-database-2-line"></i></div>
+          <h4>Catalogued & Preserved Cultures</h4>
+          <p>Comprehensive scientific data packages — phylogenetics, bioassay results, and strain profiles — delivered
+            with every collaboration.</p>
+        </div>
+      </div>
+      <div class="biobank-cta reveal">
+        <a href="/collabratepage/colla.html" class="btn-primary">Access for Strain & Collaboration <i
+            class="ri-arrow-right-line"></i></a>
+      </div>
+    </section>
+
+    <!-- ══ S7: APPLICATION AREAS ══ -->
+    <section class="app-section" id="applications">
+      <div class="app-inner">
+        <div class="app-text reveal">
+          <div class="section-tag" style="display:inline-flex;margin-bottom:18px;">
+            <div class="section-tag-dot"></div><span class="section-tag-text">Application Potential</span>
+          </div>
+          <h2>Application Potential</h2>
+          <p>The microbes and bioactive molecule investigation through our platform have potential applications across
+            multiple arenas comprising pharmaceutical, industrial, agricultural, and environmental sectors for
+            innovations in development of novel therapeutics, biopesticides, plant growth promoters, enzymes,
+            bio-transformations, bioremediation as well as sustainable eco-friendly solutions.</p>
+          <div class="app-list" style="margin-top:28px;">
+            <div class="app-item">
+              <div class="app-icon"><i class="ri-heart-pulse-line"></i></div>
+              <div class="app-body">
+                <strong>Pharmaceutical</strong>
+                <span>Novel therapeutics, antimicrobials, anticancer agents, and enzyme inhibitors with validated
+                  biological activity.</span>
+              </div>
+            </div>
+            <div class="app-item">
+              <div class="app-icon"><i class="ri-leaf-line"></i></div>
+              <div class="app-body">
+                <strong>Agricultural</strong>
+                <span>Biopesticides and plant growth promoters derived from functionally active microbial
+                  strains.</span>
+              </div>
+            </div>
+            <div class="app-item">
+              <div class="app-icon"><i class="ri-settings-3-line"></i></div>
+              <div class="app-body">
+                <strong>Industrial</strong>
+                <span>Enzymes, bio-transformations, and biocatalysts for industrial biotechnology and bioprocessing
+                  applications.</span>
+              </div>
+            </div>
+            <div class="app-item">
+              <div class="app-icon"><i class="ri-recycle-line"></i></div>
+              <div class="app-body">
+                <strong>Environmental</strong>
+                <span>Bioremediation and sustainable eco-friendly solutions through biological and chemical waste
+                  degradation.</span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="disc-text">
-          <div class="section-tag">
-            <div class="section-tag-dot"></div><span class="section-tag-text">Why Molmet</span>
-          </div>
-          <h2>A Discovery Platform, Not a Conventional Lab</h2>
-          <p>Most microbiology labs study known organisms. Molmet is built to find what no one has found yet — deploying
-            a full discovery infrastructure across field collection, laboratory characterization, and translational
-            pipeline development.</p>
-          <div class="disc-features">
-            <div class="disc-feat">
-              <div class="disc-feat-icon"><i class="ri-compass-3-line"></i></div>
-              <div class="disc-feat-body">
-                <strong>Exploration-Led Research</strong>
-                <span>Discovery begins in the field — not in a catalog. Every strain in our collection was identified
-                  and isolated by Molmet.</span>
-              </div>
-            </div>
-            <div class="disc-feat">
-              <div class="disc-feat-icon"><i class="ri-links-line"></i></div>
-              <div class="disc-feat-body">
-                <strong>End-to-End Pipeline</strong>
-                <span>From ecosystem sampling to validated bioactive lead — a fully integrated, traceable scientific
-                  workflow.</span>
-              </div>
-            </div>
-            <div class="disc-feat">
-              <div class="disc-feat-icon"><i class="ri-handshake-line"></i></div>
-              <div class="disc-feat-body">
-                <strong>Collaboration-Ready Assets</strong>
-                <span>Every discovery is documented, characterized, and packaged for seamless integration into partner
-                  and co-development programs.</span>
-              </div>
-            </div>
+        <div class="app-img reveal">
+          <div class="img-main">
+            <img src="https://images.unsplash.com/photo-1518152006812-edab29b069ac?w=900&q=80" alt="Application Areas"
+              loading="lazy" />
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ══ CTA ══ -->
-
+    <!-- ══ S8: OPEN COLLABORATION ══ -->
+    <section class="collab-section" id="collaboration">
+      <div class="collab-inner">
+        <div class="collab-top reveal">
+          <div class="section-tag light" style="display:inline-flex;margin-bottom:16px;">
+            <div class="section-tag-dot"></div><span class="section-tag-text">Global Collaborations</span>
+          </div>
+          <h2>Open for <em>Global Discovery</em> Collaborations</h2>
+          <p>We actively partner with industries, research institutions, and innovation-driven organizations to
+            co-develop discovery programs, leveraging our microbial assets and integrated capabilities to translate
+            biodiversity into high-value, application-ready solutions.</p>
+          <p class="accent-p">We investigate bioactive molecules with clear functional relevance across pharmaceutical,
+            industrial, agricultural, and environmental sectors.</p>
+        </div>
+        <div class="collab-cards">
+          <div class="cm-card reveal">
+            <div class="cm-icon"><i class="ri-git-merge-line"></i></div>
+            <h4>Joint Discovery Programs</h4>
+            <p>Co-led discovery initiatives leveraging shared scientific capabilities and resources.</p>
+          </div>
+          <div class="cm-card reveal">
+            <div class="cm-icon"><i class="ri-funds-line"></i></div>
+            <h4>Sponsored Research</h4>
+            <p>Industry-sponsored research programs with full scientific execution and deliverable output.</p>
+          </div>
+          <div class="cm-card reveal">
+            <div class="cm-icon"><i class="ri-handshake-line"></i></div>
+            <h4>Co-Development Opportunities</h4>
+            <p>Joint development of molecules, strains, or application-ready solutions for defined markets.</p>
+          </div>
+          <div class="cm-card reveal">
+            <div class="cm-icon"><i class="ri-share-line"></i></div>
+            <h4>Resource Sharing</h4>
+            <p>Access to Molmet's biological assets, screening infrastructure, and scientific expertise.</p>
+          </div>
+        </div>
+        <div class="collab-bottom reveal">
+          <p>Every collaboration begins with a conversation. Reach out to explore how Molmet's discovery platform can be
+            aligned with your innovation goals.</p>
+          <div class="collab-btns">
+            <a href="/collabratepage/colla.html" class="btn-primary">Initiate a Collaboration <i
+                class="ri-arrow-right-up-line"></i></a>
+            <a href="/collabratepage/colla.html" class="btn-ghost">Learn More <i class="ri-arrow-right-line"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
@@ -2357,30 +2527,22 @@
     });
 
     /* Scroll reveal */
-    const observerOpts = { threshold: 0.08, rootMargin: '0px 0px -60px 0px' };
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.style.animation = 'fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) forwards';
-          entry.target.style.opacity = '1';
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.style.animation = 'fadeUp 0.85s cubic-bezier(0.22,1,0.36,1) forwards';
+            entry.target.style.opacity = '1';
+          }, Number(delay));
           observer.unobserve(entry.target);
         }
       });
-    }, observerOpts);
+    }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
 
-    const reveals = [
-      '.pillar-card', '.disc-text', '.disc-img-wrap',
-      '.pipeline-step', '.strain-card',
-      '.lib-card', '.lib-metric',
-      '.mol-card', '.library-left',
-      '.cta-left', '.cta-right'
-    ];
-    reveals.forEach(sel => {
-      document.querySelectorAll(sel).forEach((el, i) => {
-        el.style.opacity = '0';
-        el.style.animationDelay = `${i * 0.09}s`;
-        observer.observe(el);
-      });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.dataset.delay = (i % 5) * 80;
+      observer.observe(el);
     });
   </script>
 </body>
