@@ -1,0 +1,2706 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Molmet Biotech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <style>
+    :root {
+      --clr-dark: #0f1f1c;
+      --clr-dark-2: #173630;
+      --clr-dark-3: #1e4a40;
+      --clr-sage: #4d8c6a;
+      --clr-accent: #7ecba1;
+      --clr-bg: #F2FFF3;
+      --clr-bg-2: #e8f7eb;
+      --clr-bg-3: #daf0de;
+      --clr-bg-4: #f9fffe;
+      --clr-surface: #ffffff;
+      --clr-text: #173630;
+      --clr-text-2: #2d5045;
+      --clr-text-muted: #5a7a70;
+      --clr-text-faint: #8aaba3;
+      --clr-on-dark: #F2FFF3;
+      --clr-on-dark-2: rgba(242, 255, 243, 0.75);
+      --clr-on-dark-3: rgba(242, 255, 243, 0.45);
+      --ff-display: 'Fraunces', 'Palatino Linotype', serif;
+      --ff-body: 'DM Sans', 'Arial', sans-serif;
+      --nav-h: 80px;
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 28px;
+      --radius-xl: 48px;
+      --radius-full: 100px;
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --shadow-sm: 0 2px 12px rgba(23, 54, 48, 0.08);
+      --shadow-md: 0 8px 32px rgba(23, 54, 48, 0.12);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--ff-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--clr-text);
+      background: var(--clr-bg);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: .4;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: var(--ff-display);
+      font-weight: 500;
+      line-height: 1.1;
+      color: var(--clr-text);
+    }
+
+    h1 {
+      font-size: clamp(40px, 5.5vw, 78px);
+    }
+
+    h2 {
+      font-size: clamp(32px, 4vw, 60px);
+    }
+
+    h3 {
+      font-size: clamp(20px, 2.2vw, 28px);
+    }
+
+    h4 {
+      font-size: clamp(16px, 1.5vw, 20px);
+    }
+
+    p {
+      font-size: clamp(14px, 1.1vw, 16px);
+      line-height: 1.75;
+      color: var(--clr-text-2);
+      font-weight: 300;
+    }
+
+    /* ── NAVBAR ── */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 56px;
+      background: rgba(242, 255, 243, 0.88);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(110, 175, 136, 0.15);
+      transition: background .4s var(--ease-out), box-shadow .4s var(--ease-out);
+    }
+
+    .navbar.scrolled {
+      background: rgba(242, 255, 243, 0.97);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .nav-logo {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-logo img {
+      width: 180px;
+    }
+
+    .nav-logo-text {
+      font-family: var(--ff-display);
+      font-size: 22px;
+      font-weight: 500;
+      color: var(--clr-dark-2);
+      letter-spacing: -.02em;
+    }
+
+    .nav-logo-text em {
+      color: var(--clr-sage);
+      font-style: italic;
+    }
+
+    .nav-links {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 14px;
+      font-family: var(--ff-body);
+      font-size: 13.5px;
+      font-weight: 400;
+      color: var(--clr-text-2);
+      border-radius: var(--radius-sm);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color .2s, background .2s;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--clr-dark-2);
+      background: rgba(23, 54, 48, 0.06);
+    }
+
+    .nav-link i {
+      font-size: 13px;
+      opacity: .5;
+      transition: transform .25s var(--ease-out);
+    }
+
+    .nav-item:hover .nav-link i {
+      transform: rotate(180deg);
+      opacity: .8;
+    }
+
+    .dropdown {
+      position: absolute;
+      top: calc(100% + 1px);
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px) scale(0.97);
+      min-width: 220px;
+      background: rgba(249, 255, 254, 0.98);
+      backdrop-filter: blur(32px);
+      border: 1px solid rgba(110, 175, 136, 0.2);
+      border-radius: var(--radius-md);
+      padding: 8px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s var(--ease-out), transform .22s var(--ease-out);
+      transform-origin: top center;
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-item:hover .dropdown {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+
+    .dropdown-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--clr-text-faint);
+      padding: 8px 12px 4px;
+    }
+
+    .dropdown-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      color: var(--clr-text-2);
+      transition: background .15s, color .15s;
+    }
+
+    .dropdown-link i {
+      font-size: 14px;
+      color: var(--clr-sage);
+      width: 16px;
+      text-align: center;
+    }
+
+    .dropdown-link:hover {
+      background: rgba(23, 54, 48, 0.06);
+      color: var(--clr-dark-2);
+    }
+
+    .nav-cta-wrap {
+      flex: 0 0 auto;
+      margin-left: 16px;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 22px;
+      background: linear-gradient(135deg, var(--clr-dark-2) 0%, var(--clr-dark-3) 100%);
+      color: var(--clr-on-dark);
+      font-family: var(--ff-body);
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: var(--radius-full);
+      transition: filter .25s, transform .25s var(--ease-out);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .nav-cta::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+      transform: translateX(-100%);
+      transition: transform .55s var(--ease-out);
+    }
+
+    .nav-cta:hover {
+      filter: brightness(1.12);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta:hover::after {
+      transform: translateX(100%);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: auto;
+      border-radius: var(--radius-sm);
+      transition: background .2s;
+      padding: 4px;
+    }
+
+    .hamburger:hover {
+      background: rgba(23, 54, 48, 0.07);
+    }
+
+    .hamburger span {
+      display: block;
+      width: 20px;
+      height: 1.5px;
+      background: var(--clr-text);
+      border-radius: 2px;
+      transition: transform .3s var(--ease-out), opacity .3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(6.5px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-6.5px) rotate(-45deg);
+    }
+
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 31, 28, 0.3);
+      z-index: 890;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s var(--ease-out);
+    }
+
+    .mobile-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      bottom: 0;
+      width: min(300px, 85vw);
+      background: rgba(242, 255, 243, 0.98);
+      backdrop-filter: blur(24px);
+      border-right: 1px solid rgba(110, 175, 136, 0.18);
+      padding: calc(var(--nav-h) + 20px) 24px 32px;
+      transition: left .38s var(--ease-out);
+      z-index: 900;
+      overflow-y: auto;
+    }
+
+    .mobile-menu.open {
+      left: 0;
+    }
+
+    .mobile-nav-item {
+      border-bottom: 1px solid rgba(23, 54, 48, 0.07);
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 4px;
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--clr-text);
+      background: none;
+      border: none;
+      font-family: var(--ff-body);
+      width: 100%;
+      cursor: pointer;
+    }
+
+    .mobile-dropdown {
+      display: none;
+      padding: 4px 0 10px;
+    }
+
+    .mobile-dropdown.open {
+      display: block;
+    }
+
+    .mobile-dropdown-link {
+      display: block;
+      padding: 9px 12px;
+      font-size: 13px;
+      color: var(--clr-text-2);
+      border-radius: var(--radius-sm);
+      transition: background .15s;
+    }
+
+    .mobile-dropdown-link:hover {
+      background: rgba(23, 54, 48, 0.06);
+      color: var(--clr-dark-2);
+    }
+
+    .mobile-cta {
+      display: block;
+      margin-top: 24px;
+      padding: 13px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--clr-dark-2), var(--clr-dark-3));
+      color: var(--clr-on-dark);
+      border-radius: var(--radius-md);
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--clr-dark-2) 0%, var(--clr-dark-3) 100%);
+      color: var(--clr-on-dark);
+      font-family: var(--ff-body);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(242, 255, 243, 0.35);
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(23, 54, 48, 0.4);
+      transition: transform .25s var(--ease-out), box-shadow .25s var(--ease-out), filter .25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      transform: translateX(-100%);
+      transition: transform .55s var(--ease-out);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 40px rgba(23, 54, 48, 0.45);
+      filter: brightness(1.1);
+    }
+
+    .btn-primary:hover::after {
+      transform: translateX(100%);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 26px;
+      color: rgba(242, 255, 243, 0.9);
+      font-family: var(--ff-body);
+      font-size: 14px;
+      font-weight: 400;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(242, 255, 243, 0.2);
+      background: rgba(242, 255, 243, 0.06);
+      backdrop-filter: blur(8px);
+      transition: background .22s, border-color .22s, transform .22s var(--ease-out);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(242, 255, 243, 0.12);
+      border-color: rgba(242, 255, 243, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 26px;
+      color: var(--clr-dark-2);
+      font-family: var(--ff-body);
+      font-size: 14px;
+      font-weight: 400;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(23, 54, 48, 0.25);
+      background: rgba(23, 54, 48, 0.05);
+      transition: background .22s, border-color .22s, transform .22s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(23, 54, 48, 0.1);
+      border-color: rgba(23, 54, 48, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* ── SECTION TAG ── */
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 5px 13px 5px 9px;
+      background: rgba(23, 54, 48, 0.07);
+      border: 1px solid rgba(23, 54, 48, 0.12);
+      border-radius: var(--radius-full);
+      margin-bottom: 18px;
+    }
+
+    .section-tag-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--clr-sage);
+    }
+
+    .section-tag-text {
+      font-size: 10.5px;
+      font-weight: 500;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--clr-sage);
+    }
+
+    .section-tag.light {
+      background: rgba(242, 255, 243, 0.1);
+      border-color: rgba(242, 255, 243, 0.15);
+    }
+
+    .section-tag.light .section-tag-dot {
+      background: var(--clr-accent);
+    }
+
+    .section-tag.light .section-tag-text {
+      color: var(--clr-on-dark-2);
+    }
+
+    /* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+    .hero {
+      padding-top: var(--nav-h);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--clr-dark-2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1800&q=85');
+      background-size: cover;
+      background-position: center;
+      opacity: .18;
+    }
+
+    .hero-bg-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(126, 203, 161, 0.12) 0%, transparent 60%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 100px 40px 80px;
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+
+
+
+    .hero-headline {
+      font-family: var(--ff-display);
+      font-size: clamp(44px, 7vw, 90px);
+      font-weight: 500;
+      color: #fff;
+      line-height: 1.02;
+      letter-spacing: -.03em;
+    }
+
+
+
+    .hero-sub {
+      font-family: var(--ff-display);
+      font-size: clamp(16px, 1.8vw, 22px);
+      color: var(--clr-accent);
+      font-style: italic;
+      font-weight: 300;
+      letter-spacing: -.01em;
+    }
+
+    .hero-opening {
+      font-size: clamp(14px, 1.2vw, 17px);
+      color: var(--clr-on-dark-2);
+      max-width: 680px;
+      font-weight: 300;
+      line-height: 1.85;
+    }
+
+    .hero-name-note {
+      font-size: clamp(13px, 1.1vw, 15px);
+      color: var(--clr-on-dark-2);
+      max-width: 700px;
+      line-height: 1.8;
+      font-weight: 300;
+      font-style: italic;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    /* ══════════════════════════════════
+   SPLIT SECTIONS
+══════════════════════════════════ */
+    .split-section {
+      padding: 100px 80px;
+    }
+
+    .split-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      margin-bottom: 120px;
+    }
+
+    .split-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .split-row.reverse {
+      direction: rtl;
+    }
+
+    .split-row.reverse>* {
+      direction: ltr;
+    }
+
+    .split-img-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .split-img-circle {
+      width: 480px;
+      height: 480px;
+      max-width: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(23, 54, 48, 0.12);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .split-img-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s var(--ease-out);
+    }
+
+    .split-img-circle:hover img {
+      transform: scale(1.04);
+    }
+
+    .split-img-badge {
+      position: absolute;
+      bottom: 32px;
+      right: -16px;
+      background: var(--clr-dark-2);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      border: 1px solid rgba(126, 203, 161, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .split-img-badge i {
+      font-size: 20px;
+      color: var(--clr-accent);
+    }
+
+    .split-img-badge-text strong {
+      display: block;
+      font-size: 13px;
+      color: var(--clr-on-dark);
+      margin-bottom: 2px;
+    }
+
+    .split-img-badge-text span {
+      font-size: 11px;
+      color: var(--clr-on-dark-3);
+    }
+
+    .split-img-accent {
+      position: absolute;
+      top: 20px;
+      left: -20px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--clr-bg);
+    }
+
+    .split-img-accent img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .split-text h2 {
+      color: var(--clr-dark);
+      margin-bottom: 20px;
+    }
+
+    .split-text>p {
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+
+    /* Mission list */
+    .mission-bullet-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .mission-bullet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--clr-surface);
+      border: 1px solid rgba(23, 54, 48, 0.08);
+      border-radius: var(--radius-md);
+      transition: background .3s, border-color .3s, transform .3s, color .3s;
+      cursor: default;
+    }
+
+    .mission-bullet-item:hover {
+      background: var(--clr-dark-2);
+      border-color: rgba(126, 203, 161, 0.3);
+      transform: translateX(6px);
+    }
+
+    .mission-bullet-item:hover .mbi-icon i {
+      color: #fff;
+    }
+
+    .mission-bullet-item:hover .mbi-text {
+      color: var(--clr-on-dark);
+    }
+
+    .mbi-icon {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      background: var(--clr-bg-3);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .3s;
+    }
+
+    .mission-bullet-item:hover .mbi-icon {
+      background: rgba(126, 203, 161, 0.15);
+    }
+
+    .mbi-icon i {
+      font-size: 15px;
+      color: var(--clr-dark-2);
+      transition: color .3s;
+    }
+
+    .mbi-text {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--clr-text-2);
+      line-height: 1.55;
+      transition: color .3s;
+    }
+
+    /* Who We Are */
+    .who-card {
+      background: var(--clr-surface);
+      border: 1px solid rgba(23, 54, 48, 0.09);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      margin-bottom: 24px;
+    }
+
+    .who-card p {
+      margin-bottom: 20px;
+    }
+
+    .who-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .who-list-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--clr-text-2);
+    }
+
+    .who-list-icon {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      background: var(--clr-bg-3);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .who-list-icon i {
+      font-size: 13px;
+      color: var(--clr-dark-2);
+    }
+
+    .who-strategic {
+      margin-top: 20px;
+      padding: 16px 18px;
+      background: rgba(23, 54, 48, 0.06);
+      border-left: 3px solid var(--clr-sage);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    .who-strategic p {
+      font-size: 13.5px;
+      color: var(--clr-dark-2);
+      font-style: italic;
+      font-weight: 400;
+      margin: 0;
+    }
+
+    /* ══════════════════════════════════
+   SCIENTIFIC APPROACH
+══════════════════════════════════ */
+    .approach-section {
+      background: var(--clr-bg-2);
+      padding: 100px 80px;
+    }
+
+    .approach-inner {
+      display: grid;
+      grid-template-columns: 1fr 520px;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .approach-left h2 {
+      color: var(--clr-dark);
+      margin-bottom: 16px;
+    }
+
+    .approach-left>p {
+      margin-bottom: 40px;
+      max-width: 440px;
+    }
+
+    .approach-timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .a-step {
+      display: flex;
+      gap: 20px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(23, 54, 48, 0.08);
+      transition: padding-left .25s var(--ease-out);
+    }
+
+    .a-step:last-child {
+      border-bottom: none;
+    }
+
+    .a-step:hover {
+      padding-left: 10px;
+    }
+
+    .a-step-num {
+      font-family: var(--ff-display);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--clr-sage);
+      width: 26px;
+      min-width: 26px;
+      padding-top: 3px;
+    }
+
+    .a-step-body strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--clr-dark-2);
+      margin-bottom: 4px;
+    }
+
+    .a-step-body span {
+      font-size: 13px;
+      color: var(--clr-text-muted);
+      line-height: 1.6;
+    }
+
+    .approach-right {
+      position: sticky;
+      top: 120px;
+    }
+
+    .approach-img-stack {
+      position: relative;
+    }
+
+    .approach-img-main {
+      width: 100%;
+      height: 420px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .approach-img-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s var(--ease-out);
+    }
+
+    .approach-img-main:hover img {
+      transform: scale(1.04);
+    }
+
+    .approach-img-small {
+      position: absolute;
+      bottom: -28px;
+      left: -28px;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--clr-bg-2);
+    }
+
+    .approach-img-small img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .approach-badge {
+      position: absolute;
+      top: 24px;
+      right: -16px;
+      background: var(--clr-dark-2);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      border: 1px solid rgba(126, 203, 161, 0.25);
+      box-shadow: var(--shadow-md);
+    }
+
+    .approach-badge i {
+      font-size: 20px;
+      color: var(--clr-accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .approach-badge strong {
+      display: block;
+      font-size: 13px;
+      color: var(--clr-on-dark);
+      margin-bottom: 4px;
+    }
+
+    .approach-badge span {
+      font-size: 11px;
+      color: var(--clr-on-dark-3);
+    }
+
+    /* ══════════════════════════════════
+   INFRASTRUCTURE
+══════════════════════════════════ */
+    .infra-section {
+      background: var(--clr-bg);
+      padding: 100px 80px;
+    }
+
+    .infra-inner {
+      display: grid;
+      grid-template-columns: 1fr 520px;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .infra-left h2 {
+      color: var(--clr-dark);
+      margin-bottom: 20px;
+    }
+
+    .infra-left>p {
+      margin-bottom: 36px;
+      max-width: 460px;
+    }
+
+    .infra-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .infra-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: var(--clr-surface);
+      border: 1px solid rgba(23, 54, 48, 0.08);
+      border-radius: var(--radius-md);
+      transition: background .3s, border-color .3s, transform .3s;
+    }
+
+    .infra-item:hover {
+      background: var(--clr-dark-2);
+      border-color: rgba(126, 203, 161, 0.3);
+      transform: translateX(6px);
+    }
+
+    .infra-item:hover .infra-item-icon i {
+      color: #fff;
+    }
+
+    .infra-item:hover .infra-item-text {
+      color: var(--clr-on-dark);
+    }
+
+    .infra-item-icon {
+      width: 34px;
+      height: 34px;
+      min-width: 34px;
+      background: var(--clr-bg-3);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .3s;
+    }
+
+    .infra-item:hover .infra-item-icon {
+      background: rgba(126, 203, 161, 0.15);
+    }
+
+    .infra-item-icon i {
+      font-size: 15px;
+      color: var(--clr-dark-2);
+      transition: color .3s;
+    }
+
+    .infra-item-text {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--clr-text-2);
+      transition: color .3s;
+    }
+
+    .infra-right {
+      position: sticky;
+      top: 120px;
+    }
+
+    .infra-img-main {
+      width: 100%;
+      height: 420px;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+    }
+
+    .infra-img-main img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s var(--ease-out);
+    }
+
+    .infra-img-main:hover img {
+      transform: scale(1.04);
+    }
+
+    .infra-img-small {
+      margin-top: 16px;
+      width: 100%;
+      height: 180px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .infra-img-small img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s var(--ease-out);
+    }
+
+    .infra-img-small:hover img {
+      transform: scale(1.05);
+    }
+
+    /* ══════════════════════════════════
+   LEADERSHIP
+══════════════════════════════════ */
+    .leader-section {
+      background: var(--clr-dark);
+      padding: 100px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .leader-section::before {
+      content: 'TEAM';
+      position: absolute;
+      top: -20px;
+      right: -8px;
+      font-family: var(--ff-display);
+      font-size: 200px;
+      font-weight: 600;
+      color: rgba(242, 255, 243, 0.018);
+      line-height: 1;
+      pointer-events: none;
+      letter-spacing: -.04em;
+    }
+
+    .leader-header {
+      text-align: center;
+      margin-bottom: 72px;
+    }
+
+    .leader-header h2 {
+      color: var(--clr-on-dark);
+      margin-bottom: 14px;
+    }
+
+    .leader-header p {
+      color: var(--clr-on-dark-2);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .leader-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 72px;
+      align-items: center;
+      padding: 72px 0;
+      border-bottom: 1px solid rgba(242, 255, 243, 0.08);
+    }
+
+    .leader-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .leader-row.reverse {
+      direction: rtl;
+    }
+
+    .leader-row.reverse>* {
+      direction: ltr;
+    }
+
+    .leader-portrait-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .leader-portrait-round {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      border: 3px solid rgba(126, 203, 161, 0.25);
+      box-shadow: 0 0 0 10px rgba(126, 203, 161, 0.05), 0 20px 60px rgba(0, 0, 0, 0.4);
+      flex-shrink: 0;
+    }
+
+    .leader-portrait-round img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(15%);
+      transition: filter .4s;
+    }
+
+    .leader-portrait-round:hover img {
+      filter: grayscale(0%);
+    }
+
+    .leader-portrait-ring {
+      position: absolute;
+      inset: -16px;
+      border-radius: 50%;
+      border: 1px solid rgba(126, 203, 161, 0.15);
+      pointer-events: none;
+    }
+
+    .leader-badge-pill {
+      background: rgba(126, 203, 161, 0.12);
+      border: 1px solid rgba(126, 203, 161, 0.25);
+      border-radius: var(--radius-full);
+      padding: 8px 18px;
+      font-size: 11px;
+      color: var(--clr-accent);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .leader-role {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--clr-accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .leader-role::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--clr-accent);
+    }
+
+    .leader-name {
+      font-family: var(--ff-display);
+      font-size: clamp(28px, 3.5vw, 48px);
+      font-weight: 500;
+      color: var(--clr-on-dark);
+      line-height: 1.05;
+      margin-bottom: 6px;
+    }
+
+    .leader-title {
+      font-size: 14px;
+      color: var(--clr-on-dark-3);
+      margin-bottom: 24px;
+      font-weight: 300;
+    }
+
+    .leader-bio {
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--clr-on-dark-2);
+      margin-bottom: 12px;
+      font-weight: 300;
+    }
+
+    .leader-bio-extra {
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--clr-on-dark-2);
+      font-weight: 300;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .5s var(--ease-out), opacity .4s;
+    }
+
+    .leader-bio-extra.open {
+      max-height: 600px;
+      opacity: 1;
+    }
+
+    .see-more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+      padding: 7px 16px;
+      background: rgba(126, 203, 161, 0.1);
+      border: 1px solid rgba(126, 203, 161, 0.25);
+      border-radius: var(--radius-full);
+      font-size: 12px;
+      color: var(--clr-accent);
+      cursor: pointer;
+      font-family: var(--ff-body);
+      transition: background .2s, border-color .2s;
+    }
+
+    .see-more-btn:hover {
+      background: rgba(126, 203, 161, 0.18);
+      border-color: rgba(126, 203, 161, 0.4);
+    }
+
+    .see-more-btn i {
+      font-size: 13px;
+      transition: transform .35s var(--ease-out);
+    }
+
+    .see-more-btn.open i {
+      transform: rotate(180deg);
+    }
+
+    .leader-vision {
+      margin: 16px 0 20px;
+      padding: 14px 18px;
+      background: rgba(126, 203, 161, 0.07);
+      border-left: 3px solid rgba(126, 203, 161, 0.4);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    }
+
+    .leader-vision p {
+      font-size: 13px;
+      color: var(--clr-on-dark-2);
+      font-style: italic;
+      margin: 0;
+    }
+
+    .leader-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .leader-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border: 1px solid rgba(242, 255, 243, 0.15);
+      border-radius: var(--radius-full);
+      font-size: 13px;
+      color: var(--clr-on-dark-2);
+      transition: border-color .2s, color .2s, background .2s;
+    }
+
+    .leader-link:hover {
+      border-color: rgba(126, 203, 161, 0.4);
+      color: var(--clr-accent);
+      background: rgba(126, 203, 161, 0.07);
+    }
+
+    .leader-link i {
+      font-size: 14px;
+    }
+
+    /* ══════════════════════════════════
+   NETWORK
+══════════════════════════════════ */
+    .network-section {
+      background: var(--clr-bg-2);
+      padding: 100px 80px;
+    }
+
+    .network-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .network-header h2 {
+      color: var(--clr-dark);
+      margin-bottom: 14px;
+    }
+
+    .network-header p {
+      color: var(--clr-text-2);
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .network-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 72px;
+    }
+
+    .n-card {
+      background: var(--clr-surface);
+      border: 1px solid rgba(23, 54, 48, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: background .3s, border-color .3s, transform .3s var(--ease-out);
+    }
+
+    .n-card:hover {
+      background: var(--clr-dark-2);
+      border-color: rgba(126, 203, 161, 0.3);
+      transform: translateY(-8px);
+    }
+
+    .n-card-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--clr-bg-3);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background .3s;
+    }
+
+    .n-card:hover .n-card-icon {
+      background: rgba(126, 203, 161, 0.12);
+    }
+
+    .n-card-icon i {
+      font-size: 22px;
+      color: var(--clr-dark-2);
+      transition: color .3s, transform .4s var(--ease-out);
+    }
+
+    .n-card:hover .n-card-icon i {
+      color: var(--clr-accent);
+      transform: rotateY(180deg);
+    }
+
+    .n-card strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--clr-dark-2);
+      transition: color .3s;
+    }
+
+    .n-card:hover strong {
+      color: var(--clr-on-dark);
+    }
+
+    .n-card span {
+      font-size: 13px;
+      color: var(--clr-text-muted);
+      line-height: 1.6;
+      transition: color .3s;
+    }
+
+    .n-card:hover span {
+      color: var(--clr-on-dark-2);
+    }
+
+    /* ══════════════════════════════════
+   CTA BANNER
+══════════════════════════════════ */
+    .cta-section {
+      background: var(--clr-dark-2);
+      padding: 100px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 60% 50%, rgba(126, 203, 161, 0.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 24px;
+    }
+
+    .cta-inner h2 {
+      color: var(--clr-on-dark);
+      max-width: 700px;
+    }
+
+    .cta-inner h2 em {
+      color: var(--clr-accent);
+      font-style: italic;
+    }
+
+    .cta-inner p {
+      color: var(--clr-on-dark-2);
+      max-width: 560px;
+      font-size: clamp(14px, 1.2vw, 17px);
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .btn-cta-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: rgba(242, 255, 243, 0.1);
+      border: 1px solid rgba(242, 255, 243, 0.2);
+      color: var(--clr-on-dark);
+      font-family: var(--ff-body);
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: var(--radius-full);
+      transition: background .25s, border-color .25s, transform .25s var(--ease-out);
+    }
+
+    .btn-cta-light:hover {
+      background: rgba(242, 255, 243, 0.18);
+      border-color: rgba(242, 255, 243, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* ══════════════════════════════════
+   FOOTER
+══════════════════════════════════ */
+    footer {
+      background: var(--clr-dark);
+      color: var(--clr-on-dark);
+      padding: 64px 80px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: 'MOLMET';
+      position: absolute;
+      bottom: -12px;
+      right: -4px;
+      font-family: var(--ff-display);
+      font-size: 170px;
+      font-weight: 600;
+      color: rgba(242, 255, 243, 0.022);
+      line-height: 1;
+      pointer-events: none;
+      letter-spacing: -.04em;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(242, 255, 243, 0.07);
+    }
+
+    .footer-brand h3 {
+      font-family: var(--ff-display);
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.25;
+      color: var(--clr-on-dark);
+      margin-bottom: 14px;
+    }
+
+    .footer-brand h3 em {
+      color: var(--clr-accent);
+    }
+
+    .footer-brand p {
+      font-size: 13px;
+      line-height: 1.72;
+      color: var(--clr-on-dark-3);
+      max-width: 260px;
+      margin-bottom: 22px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 8px;
+    }
+
+    .footer-socials a {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(242, 255, 243, 0.1);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--clr-on-dark-3);
+      font-size: 13px;
+      font-weight: 600;
+      transition: border-color .25s, color .25s, background .25s;
+    }
+
+    .footer-socials a:hover {
+      border-color: var(--clr-accent);
+      color: var(--clr-accent);
+      background: rgba(126, 203, 161, 0.08);
+    }
+
+    .footer-col h5 {
+      font-family: var(--ff-body);
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--clr-on-dark-3);
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(242, 255, 243, 0.07);
+    }
+
+    .footer-col ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul li a {
+      font-size: 13.5px;
+      font-weight: 300;
+      color: rgba(242, 255, 243, 0.5);
+      transition: color .22s, padding-left .22s;
+      display: inline-block;
+    }
+
+    .footer-col ul li a:hover {
+      color: var(--clr-on-dark);
+      padding-left: 5px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-bottom p {
+      font-size: 11.5px;
+      color: rgba(242, 255, 243, 0.35);
+      letter-spacing: .06em;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-bottom-links a {
+      font-size: 11.5px;
+      color: rgba(242, 255, 243, 0.35);
+      transition: color .22s;
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--clr-on-dark);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp .9s var(--ease-out) forwards;
+    }
+
+    .fade-up.d1 {
+      animation-delay: .1s;
+    }
+
+    .fade-up.d2 {
+      animation-delay: .22s;
+    }
+
+    .fade-up.d3 {
+      animation-delay: .34s;
+    }
+
+    .fade-up.d4 {
+      animation-delay: .46s;
+    }
+
+    .fade-up.d5 {
+      animation-delay: .58s;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:1100px) {
+      .split-img-circle {
+        width: 380px;
+        height: 380px;
+      }
+
+      .leader-portrait-round {
+        width: 240px;
+        height: 240px;
+      }
+
+      .network-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .approach-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .infra-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .infra-right {
+        position: static;
+      }
+
+      .approach-right {
+        position: static;
+      }
+    }
+
+    @media(max-width:1024px) {
+
+      .split-row,
+      .leader-row {
+        grid-template-columns: 1fr;
+      }
+
+      .split-row.reverse,
+      .leader-row.reverse {
+        direction: ltr;
+      }
+
+      .split-img-circle {
+        width: 100%;
+        height: 360px;
+        border-radius: var(--radius-xl);
+      }
+
+      .leader-portrait-wrap {
+        margin: 0 auto;
+      }
+
+      .leader-role {
+        justify-content: center;
+      }
+
+      .leader-links {
+        justify-content: center;
+      }
+
+      .leader-vision {
+        max-width: 560px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .leader-bio,
+      .leader-bio-extra,
+      .leader-title {
+        text-align: left;
+      }
+    }
+
+    @media(max-width:768px) {
+
+      .split-section,
+      .approach-section,
+      .infra-section,
+      .leader-section,
+      .network-section,
+      .cta-section {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 72px;
+        padding-bottom: 72px;
+      }
+
+      .navbar {
+        padding: 0 20px;
+      }
+
+      .nav-links,
+      .nav-cta-wrap {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-inner {
+        padding: 80px 24px 60px;
+      }
+
+      .network-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      footer {
+        padding: 48px 24px 28px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .split-row {
+        margin-bottom: 72px;
+      }
+    }
+
+    @media(max-width:480px) {
+      .network-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .hero-actions a {
+        justify-content: center;
+      }
+
+      .leader-links {
+        flex-direction: column;
+      }
+
+      .cta-actions {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .cta-actions a {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ══ NAVBAR ══ -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-logo">
+      <span><img src="/logo.png" alt="Molmet Biotech" /></span>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-item"><a href="/index.html"><button class="nav-link">Home</button></a></li>
+      <li class="nav-item">
+        <a href="/Discoverypage/dics.html"><button class="nav-link">Discovery <i
+              class="ri-arrow-down-s-line"></i></button></a>
+        <div class="dropdown">
+          <div class="dropdown-label">Explore Discovery</div>
+          <a href="/Discoverypage/dics.html#bioprospecting" class="dropdown-link"><i class="ri-microscope-line"></i>
+            Bioprospecting</a>
+          <a href="/Discoverypage/dics.html#pipeline" class="dropdown-link"><i class="ri-flask-line"></i> Molecule
+            Discovery</a>
+          <a href="/Discoverypage/dics.html#strain" class="dropdown-link"><i class="ri-settings-3-line"></i> Strain
+            Engineering</a>
+          <a href="/Discoverypage/dics.html#biobank" class="dropdown-link"><i class="ri-database-2-line"></i>
+            Biobank</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="/collabratepage/colla.html"><button class="nav-link">Collaborate <i
+              class="ri-arrow-down-s-line"></i></button></a>
+        <div class="dropdown">
+          <div class="dropdown-label">Partner With Us</div>
+          <a href="/collabratepage/colla.html#who" class="dropdown-link"><i class="ri-building-line"></i> Industry
+            Partnerships</a>
+          <a href="/collabratepage/colla.html#approach" class="dropdown-link"><i class="ri-government-line"></i>OUR
+            APPROACH</a>
+          <a href="/collabratepage/colla.html#models" class="dropdown-link"><i class="ri-handshake-line"></i>
+            Collaboration Models</a>
+          <a href="/collabratepage/colla.html#bring" class="dropdown-link"><i class="ri-funds-line"></i>What We
+            Bring</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="/cropage/cro.html"><button class="nav-link">CRO & Solutions <i
+              class="ri-arrow-down-s-line"></i></button></a>
+        <div class="dropdown">
+          <div class="dropdown-label">R&D Solutions</div>
+          <a href="/cropage/cro.html#capabilities" class="dropdown-link"><i class="ri-briefcase-line"></i> Our
+            Capabilities</a>
+          <a href="/cropage/cro.html#how-we-engage" class="dropdown-link"><i class="ri-tools-line"></i> How We
+            Engage</a>
+          <a href="/cropage/cro.html#best-suited" class="dropdown-link"><i class="ri-search-eye-line"></i> Best Suited
+            For</a>
+          <a href="/cropage/cro.html#contact" class="dropdown-link"><i class="ri-mail-send-line"></i> Submit
+            Requirement</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="/bioassestpage/bio.html"><button class="nav-link">Biological Assets <i
+              class="ri-arrow-down-s-line"></i></button></a>
+        <div class="dropdown">
+          <div class="dropdown-label">Our Assets</div>
+          <a href="/bioassestpage/bio.html#culture-library" class="dropdown-link"><i class="ri-dna-line"></i> Culture
+            Library</a>
+          <a href="/bioassestpage/bio.html#metabolite-platform" class="dropdown-link"><i class="ri-flask-fill"></i>
+            Metabolite Platform</a>
+          <a href="/bioassestpage/bio.html#discovery-collections" class="dropdown-link"><i class="ri-archive-line"></i>
+            Discovery Collection</a>
+          <a href="/bioassestpage/bio.html#access" class="dropdown-link"><i class="ri-links-line"></i> Strain Access</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="/research/reaserchpage.html"><button class="nav-link">Research Exposure <i
+              class="ri-arrow-down-s-line"></i></button></a>
+        <div class="dropdown">
+          <div class="dropdown-label">Exposure</div>
+          <a href="/research/reaserchpage.html#tracks" class="dropdown-link"><i class="ri-article-line"></i> Program
+            Track</a>
+          <a href="/research/reaserchpage.html#structure" class="dropdown-link"><i class="ri-file-text-line"></i>
+            Program Structure</a>
+          <a href="/research/reaserchpage.html#who" class="dropdown-link"><i class="ri-bar-chart-line"></i>Who Apply
+          </a>
+          <a href="/research/reaserchpage.html#apply" class="dropdown-link"><i class="ri-lightbulb-flash-line"></i>
+            Apply Now</a>
+        </div>
+      </li>
+    </ul>
+    <div class="nav-cta-wrap">
+      <a href="/collabratepage/colla.html#contact" class="nav-cta">Contact Us <i class="ri-arrow-right-up-line"></i></a>
+    </div>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-nav-item">
+      <a href="/index.html">
+        <button class="mobile-nav-link" data-target="mob-about">Home </button>
+      </a>
+      
+    </div>
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-link" data-target="mob-disc">Discovery <i class="ri-arrow-down-s-line"></i></button>
+      <div class="mobile-dropdown" id="mob-disc">
+        <a href="/Discoverypage/dics.html#bioprospecting" class="mobile-dropdown-link">Bioprospecting</a>
+        <a href="/Discoverypage/dics.html#pipeline" class="mobile-dropdown-link">Molecule Discovery</a>
+        <a href="/Discoverypage/dics.html#strain" class="mobile-dropdown-link">Strain Engineering</a>
+        <a href="/Discoverypage/dics.html#biobank" class="mobile-dropdown-link">Biobank</a>
+
+      </div>
+    </div>
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-link" data-target="mob-coll">Collaborate <i class="ri-arrow-down-s-line"></i></button>
+      <div class="mobile-dropdown" id="mob-coll">
+        <a href="/collabratepage/colla.html#who" class="mobile-dropdown-link">Industry Partnerships</a>
+        <a href="/collabratepage/colla.html#approach" class="dropdown-link"><i class="ri-government-line"></i>OUR
+          APPROACH</a>
+        <a href="/collabratepage/colla.html#models" class="dropdown-link"><i class="ri-handshake-line"></i>
+          Collaboration Models</a>
+        <a href="/collabratepage/colla.html#bring" class="dropdown-link"><i class="ri-funds-line"></i>What We
+          Bring</a>
+      </div>
+    </div>
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-link" data-target="mob-cro">CRO & Solutions <i
+          class="ri-arrow-down-s-line"></i></button>
+      <div class="mobile-dropdown" id="mob-cro">
+        <a href="/cropage/cro.html#capabilities" class="dropdown-link"><i class="ri-briefcase-line"></i> Our
+          Capabilities</a>
+        <a href="/cropage/cro.html#how-we-engage" class="dropdown-link"><i class="ri-tools-line"></i> How We
+          Engage</a>
+        <a href="/cropage/cro.html#best-suited" class="dropdown-link"><i class="ri-search-eye-line"></i> Best Suited
+          For</a>
+        <a href="/cropage/cro.html#contact" class="dropdown-link"><i class="ri-mail-send-line"></i> Submit
+          Requirement</a>
+      </div>
+    </div>
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-link" data-target="mob-assets">Biological Assets <i
+          class="ri-arrow-down-s-line"></i></button>
+      <div class="mobile-dropdown" id="mob-assets">
+        <a href="/bioassestpage/bio.html#culture-library" class="dropdown-link"><i class="ri-dna-line"></i> Culture
+          Library</a>
+        <a href="/bioassestpage/bio.html#metabolite-platform" class="dropdown-link"><i class="ri-flask-fill"></i>
+          Metabolite Platform</a>
+        <a href="/bioassestpage/bio.html#discovery-collections" class="dropdown-link"><i class="ri-archive-line"></i>
+          Discovery Collection</a>
+        <a href="/bioassestpage/bio.html#access" class="dropdown-link"><i class="ri-links-line"></i> Strain Access</a>
+      </div>
+    </div>
+    <div class="mobile-nav-item">
+      <button class="mobile-nav-link" data-target="mob-ins">Research Exposure <i
+          class="ri-arrow-down-s-line"></i></button>
+      <div class="mobile-dropdown" id="mob-ins">
+        <a href="/research/reaserchpage.html#tracks" class="dropdown-link"><i class="ri-article-line"></i> Program
+          Track</a>
+        <a href="/research/reaserchpage.html#structure" class="dropdown-link"><i class="ri-file-text-line"></i> Program
+          Structure</a>
+        <a href="/research/reaserchpage.html#who" class="dropdown-link"><i class="ri-bar-chart-line"></i>Who Apply </a>
+        <a href="/research/reaserchpage.html#apply" class="dropdown-link"><i class="ri-lightbulb-flash-line"></i> Apply
+          Now</a>
+      </div>
+    </div>
+    <a href="#" class="mobile-cta">Contact Us <i class="ri-arrow-right-up-line"></i></a>
+  </div>
+
+  <main>
+
+    <!-- ══ SECTION 1: HERO ══ -->
+    <section class="hero">
+      <div class="hero-bg-img"></div>
+      <div class="hero-inner">
+
+        <h1 class="hero-headline fade-up d2">About Molmet Biotech</h1>
+        <p class="hero-sub fade-up d3">A Discovery-Driven Biotech Research and Innovation Hub</p>
+        <p class="hero-opening fade-up d4">Molmet Biotech Research Pvt Ltd was founded with a clear vision - to unlock
+          the untapped potential of biological systems and translate it into meaningful scientific and industrial
+          solutions.</p>
+        <p class="hero-name-note fade-up d4">The name Molmet reflects our core philosophy - Molecules and Metabolites -
+          representing our focus on discovering, understanding, and harnessing bioactive compounds derived from
+          microbial, plant, and natural sources. We operate at the intersection of discovery, applied research, and
+          collaboration, building a platform that connects biodiversity with innovation and real-world impact.</p>
+        <div class="hero-actions fade-up d5">
+          <a href="#vision" class="btn-primary">Explore Our Vision <i class="ri-arrow-right-line"></i></a>
+          <a href="/collabratepage/colla.html" class="btn-ghost">Collaborate With Us <i
+              class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SECTION 2: OUR VISION — image right ══ -->
+    <section class="split-section" id="vision">
+      <div class="split-row reverse">
+        <div class="split-img-wrap">
+          <div class="split-img-circle">
+            <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=900&q=80" alt="Our Vision" />
+          </div>
+          <div class="split-img-accent">
+            <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=200&q=80" alt="Lab" />
+          </div>
+          <div class="split-img-badge">
+            <i class="ri-global-line"></i>
+            <div class="split-img-badge-text">
+              <strong>Global Vision</strong>
+              <span>Microbial Discovery Hub</span>
+            </div>
+          </div>
+        </div>
+        <div class="split-text">
+          <div class="section-tag">
+            <div class="section-tag-dot"></div><span class="section-tag-text"> Our Vision</span>
+          </div>
+          <h2>Our Vision</h2>
+          <p>To become a globally recognized hub for microbial discovery and bioactive molecules and metabolites
+            innovation, driven by systematic bioprospecting and the development of a robust microbial biobank,
+            contributing to science, sustainability and human well-being.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SECTION 3: OUR MISSION — image left ══ -->
+    <section class="split-section" id="mission" style="padding-top:0;">
+      <div class="split-row">
+        <div class="split-img-wrap">
+          <div class="split-img-circle">
+            <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80" alt="Our Mission" />
+          </div>
+          <div class="split-img-badge" style="right:auto;left:-16px;bottom:36px;">
+            <i class="ri-flag-2-line"></i>
+            <div class="split-img-badge-text">
+              <strong>Our Purpose</strong>
+              <span>Four core commitments</span>
+            </div>
+          </div>
+        </div>
+        <div class="split-text">
+          <div class="section-tag">
+            <div class="section-tag-dot"></div><span class="section-tag-text"> Our Mission</span>
+          </div>
+          <h2>Our Mission</h2>
+          <div class="mission-bullet-list">
+            <div class="mission-bullet-item">
+              <div class="mbi-icon"><i class="ri-search-eye-line"></i></div>
+              <span class="mbi-text">To explore underutilized microbial ecosystems</span>
+            </div>
+            <div class="mission-bullet-item">
+              <div class="mbi-icon"><i class="ri-flask-line"></i></div>
+              <span class="mbi-text">To discover novel bioactive molecules and metabolites</span>
+            </div>
+            <div class="mission-bullet-item">
+              <div class="mbi-icon"><i class="ri-database-2-line"></i></div>
+              <span class="mbi-text">To build valuable biological assets and process-driven assets</span>
+            </div>
+            <div class="mission-bullet-item">
+              <div class="mbi-icon"><i class="ri-git-branch-line"></i></div>
+              <span class="mbi-text">To enable collaborative innovation across industries and environmental
+                domains</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SECTION 4: WHO WE ARE — no image ══ -->
+    <section style="background:var(--clr-dark-2);padding:100px 80px;" id="who">
+      <div style="max-width:900px;margin:0 auto;">
+
+        <h2 style="color:var(--clr-on-dark);margin-bottom:24px;">Who We Are</h2>
+        <p style="color:var(--clr-on-dark-2);margin-bottom:32px;font-size:clamp(15px,1.3vw,18px);max-width:720px;">
+          Molmet Biotech is an applied research-driven organization focused on microbial bioprospecting, molecule
+          discovery, and translational biotechnology.</p>
+        <p style="color:var(--clr-on-dark-3);margin-bottom:32px;font-size:14px;">We integrate:</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:40px;">
+          <div
+            style="background:rgba(242,255,243,0.05);border:1px solid rgba(242,255,243,0.1);border-radius:var(--radius-lg);padding:28px 24px;transition:background .3s,border-color .3s,transform .3s var(--ease-out);cursor:default;"
+            class="who-int-card">
+            <div
+              style="width:44px;height:44px;background:rgba(126,203,161,0.1);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:16px;border:1px solid rgba(126,203,161,0.2);">
+              <i class="ri-map-pin-2-line" style="font-size:20px;color:var(--clr-accent);"></i>
+            </div>
+            <h4 style="color:var(--clr-on-dark);margin-bottom:8px;font-size:16px;">Field-based exploration</h4>
+          </div>
+          <div
+            style="background:rgba(242,255,243,0.05);border:1px solid rgba(242,255,243,0.1);border-radius:var(--radius-lg);padding:28px 24px;transition:background .3s,border-color .3s,transform .3s var(--ease-out);cursor:default;"
+            class="who-int-card">
+            <div
+              style="width:44px;height:44px;background:rgba(126,203,161,0.1);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:16px;border:1px solid rgba(126,203,161,0.2);">
+              <i class="ri-microscope-line" style="font-size:20px;color:var(--clr-accent);"></i>
+            </div>
+            <h4 style="color:var(--clr-on-dark);margin-bottom:8px;font-size:16px;">Laboratory-driven discovery</h4>
+          </div>
+          <div
+            style="background:rgba(242,255,243,0.05);border:1px solid rgba(242,255,243,0.1);border-radius:var(--radius-lg);padding:28px 24px;transition:background .3s,border-color .3s,transform .3s var(--ease-out);cursor:default;"
+            class="who-int-card">
+            <div
+              style="width:44px;height:44px;background:rgba(126,203,161,0.1);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:16px;border:1px solid rgba(126,203,161,0.2);">
+              <i class="ri-briefcase-4-line" style="font-size:20px;color:var(--clr-accent);"></i>
+            </div>
+            <h4 style="color:var(--clr-on-dark);margin-bottom:8px;font-size:16px;">Industry-aligned research execution
+            </h4>
+          </div>
+        </div>
+        <div
+          style="padding:24px 28px;background:rgba(126,203,161,0.07);border-left:3px solid rgba(126,203,161,0.4);border-radius:0 var(--radius-md) var(--radius-md) 0;">
+          <p style="font-size:16px;color:var(--clr-on-dark);font-style:italic;font-weight:400;margin:0;">We are not a
+            conventional laboratory — we are a discovery platform transforming microbial and natural diversity into
+            bioactive molecules and metabolites.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SECTION 5: SCIENTIFIC APPROACH — image right ══ -->
+    <section class="approach-section" id="approach">
+      <div class="approach-inner">
+        <div class="approach-left">
+          <div class="section-tag">
+            <div class="section-tag-dot"></div><span class="section-tag-text">Scientific Approach</span>
+          </div>
+          <h2>Our Scientific Approach</h2>
+          <p>Our work follows a structured and integrated discovery pathway.</p>
+          <div class="approach-timeline">
+            <div class="a-step">
+              <div class="a-step-num">01</div>
+              <div class="a-step-body"><strong>Bioprospecting from geographically diverse ecosystems</strong><span>Field
+                  collection across underexplored environments to access rare microbial diversity.</span></div>
+            </div>
+            <div class="a-step">
+              <div class="a-step-num">02</div>
+              <div class="a-step-body"><strong>Isolation and characterization of microbial
+                  strains</strong><span>Systematic isolation followed by morphological and molecular characterization of
+                  novel strains.</span></div>
+            </div>
+            <div class="a-step">
+              <div class="a-step-num">03</div>
+              <div class="a-step-body"><strong>Screening for bioactive molecules and
+                  metabolites</strong><span>High-throughput activity screening against antimicrobial, anticancer, and
+                  enzyme targets.</span></div>
+            </div>
+            <div class="a-step">
+              <div class="a-step-num">04</div>
+              <div class="a-step-body"><strong>In-vitro validation and functional studies</strong><span>Controlled
+                  laboratory models to validate biological activity and selectivity profiles.</span></div>
+            </div>
+            <div class="a-step">
+              <div class="a-step-num">05</div>
+              <div class="a-step-body"><strong>Translation through collaboration</strong><span>Partnering with industry
+                  and institutions to translate validated leads into development candidates.</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="approach-right">
+          <div class="approach-img-stack">
+            <div class="approach-img-main">
+              <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80"
+                alt="Scientific Research" loading="lazy" />
+            </div>
+            <div class="approach-img-small">
+              <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=300&q=80" alt="Culture"
+                loading="lazy" />
+            </div>
+            <div class="approach-badge">
+              <i class="ri-award-line"></i>
+              <strong>Integrated Pipeline</strong>
+              <span>Field to validated bioactive lead.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SECTION 6: INFRASTRUCTURE — image left ══ -->
+    <section class="infra-section" id="infra">
+      <div class="infra-inner">
+        <div class="infra-right" style="order:-1;">
+          <div class="infra-img-main">
+            <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=900&q=80" alt="Infrastructure"
+              loading="lazy" />
+          </div>
+          <div class="infra-img-small">
+            <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=600&q=80" alt="Lab detail"
+              loading="lazy" />
+          </div>
+        </div>
+        <div class="infra-left">
+
+          <h2>Infrastructure &amp; Capabilities</h2>
+          <p>Our facility is equipped to support multidisciplinary research across:</p>
+          <div class="infra-list">
+            <div class="infra-item">
+              <div class="infra-item-icon"><i class="ri-microscope-line"></i></div>
+              <span class="infra-item-text">Microbiology</span>
+            </div>
+            <div class="infra-item">
+              <div class="infra-item-icon"><i class="ri-dna-line"></i></div>
+              <span class="infra-item-text">Molecular biology</span>
+            </div>
+            <div class="infra-item">
+              <div class="infra-item-icon"><i class="ri-flask-2-line"></i></div>
+              <span class="infra-item-text">Phytochemical and metabolite analysis</span>
+            </div>
+            <div class="infra-item">
+              <div class="infra-item-icon"><i class="ri-test-tube-line"></i></div>
+              <span class="infra-item-text">In-vitro bioactivity screening</span>
+            </div>
+            <div class="infra-item">
+              <div class="infra-item-icon"><i class="ri-heart-pulse-line"></i></div>
+              <span class="infra-item-text">Cell culture and pharmacological evaluation</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SECTION 7: LEADERSHIP ══ -->
+    <section class="leader-section" id="leadership">
+      <div class="leader-header">
+
+
+        <h2><u>Our Leadership</u></h2>
+      </div>
+
+      <!-- Mayank Tenguria — image left -->
+      <div class="leader-row">
+        <div class="leader-portrait-wrap">
+          <div class="leader-portrait-round">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80" alt="Mayank Tenguria"
+              loading="lazy" />
+            <div class="leader-portrait-ring"></div>
+          </div>
+          <div class="leader-badge-pill">Founder & Scientific Director</div>
+        </div>
+        <div class="leader-content">
+          <div class="leader-role">Founder</div>
+          <div class="leader-name">Mayank Tenguria</div>
+          <div class="leader-title">Founder & Scientific Director, Molmet Biotech Research Pvt Ltd</div>
+          <p class="leader-bio">Mayank Tenguria is a researcher and biopreneur with a strong focus on microbial
+            bioprospecting, bioactive molecule and metabolite discovery, and applied biotechnology. He conceptualized
+            and established Molmet Biotech with a clear vision to explore biological diversity and translate it into
+            meaningful scientific, industrial, and societal solutions through the discovery of novel molecules and
+            metabolites.</p>
+          <div class="leader-bio-extra" id="bio-extra-mayank">
+            <p class="leader-bio">His work centers on exploring underutilized microbial ecosystems and natural
+              resources, integrating classical and modern biotechnological approaches — including microbiology,
+              molecular biology, cell culture systems, nanotechnology, and bioanalytical techniques — to generate
+              scientifically robust and application-oriented outcomes.</p>
+            <p class="leader-bio">He has led multiple research initiatives spanning microbial discovery, pharmacological
+              screening, metabolite analysis, and nanoparticle-based systems, with a consistent focus on bridging
+              discovery with real-world applications.</p>
+            <div class="leader-vision">
+              <p>His vision is to build Molmet into a globally recognized discovery platform for bioactive molecules and
+                metabolites, driven by bioprospecting, biological asset development, and collaborative innovation.</p>
+            </div>
+          </div>
+          <button class="see-more-btn" onclick="toggleBio('bio-extra-mayank', this)">See More <i
+              class="ri-arrow-down-s-line"></i></button>
+          <div class="leader-links">
+            <a href="#" class="leader-link"><i class="ri-linkedin-line"></i> LinkedIn Profile</a>
+            <a href="#" class="leader-link"><i class="ri-mail-line"></i> Get in Touch</a>
+            <a href="#" class="leader-link"><i class="ri-article-line"></i> Publications</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dr. Dharmendra — image right -->
+      <div class="leader-row reverse">
+        <div class="leader-portrait-wrap">
+          <div class="leader-portrait-round">
+            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80"
+              alt="Dr. Dharmendra Singh Khichi" loading="lazy" />
+            <div class="leader-portrait-ring"></div>
+          </div>
+          <div class="leader-badge-pill">Executive Director</div>
+        </div>
+        <div class="leader-content">
+          <div class="leader-role">Executive Director</div>
+          <div class="leader-name">Dr. Dharmendra Singh Khichi</div>
+          <div class="leader-title">Executive Director, Agriculture & Agri-Biotech Strategy</div>
+          <p class="leader-bio">Dr. Dharmendra Singh Khichi brings extensive experience in the agriculture sector, with
+            core expertise spanning research and development, product development, and strategic product deployment. His
+            work focuses on aligning scientific innovation with the evolving needs of modern agriculture, with a strong
+            emphasis on sustainability, productivity, and ecological balance.</p>
+          <div class="leader-bio-extra" id="bio-extra-dharmendra">
+            <p class="leader-bio">Dr. Khichi has been actively involved in the development and application of bio-based
+              agricultural solutions, including biofertilizers, biopesticides, biocontrol agents, and functional
+              biochemical formulations. His efforts have contributed to improving agricultural practices and supporting
+              farming communities across diverse regions.</p>
+            <div class="leader-vision">
+              <p>He is committed to advancing sustainable agri-biotech solutions by integrating biological innovation
+                with practical field-level impact.</p>
+            </div>
+          </div>
+          <button class="see-more-btn" onclick="toggleBio('bio-extra-dharmendra', this)">See More <i
+              class="ri-arrow-down-s-line"></i></button>
+          <div class="leader-links">
+            <a href="#" class="leader-link"><i class="ri-linkedin-line"></i> LinkedIn Profile</a>
+            <a href="#" class="leader-link"><i class="ri-mail-line"></i> Get in Touch</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dr. Rajnandani — image left -->
+      <div class="leader-row">
+        <div class="leader-portrait-wrap">
+          <div class="leader-portrait-round">
+            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80"
+              alt="Dr. Rajnandani Katariya" loading="lazy" />
+            <div class="leader-portrait-ring"></div>
+          </div>
+          <div class="leader-badge-pill">Scientist & Consultant</div>
+        </div>
+        <div class="leader-content">
+          <div class="leader-role">Scientist & Consultant</div>
+          <div class="leader-name">Dr. Rajnandani Katariya</div>
+          <div class="leader-title">Ph.D. — Indiana State University, USA</div>
+          <p class="leader-bio">Dr. Rajnandani Katariya is a scientist and consultant with expertise in nanotechnology,
+            cell culture systems, and translational biomedical research. She completed her Ph.D. from Indiana State
+            University, USA.</p>
+          <div class="leader-bio-extra" id="bio-extra-rajnandani">
+            <p class="leader-bio">Her research work focuses on nanoparticle-based systems, anticancer activity
+              evaluation, and cytotoxicity assessment using advanced in-vitro models. She has extensive experience in
+              molecular marker–based oncotherapeutic investigations and experimental validation using biological model
+              systems, including Drosophila melanogaster.</p>
+            <p class="leader-bio">Dr. Katariya contributes to the design and execution of bioactivity screening and
+              cell-based studies, supporting the discovery and evaluation of novel bioactive molecules within Molmet's
+              research and collaboration programs.</p>
+          </div>
+          <button class="see-more-btn" onclick="toggleBio('bio-extra-rajnandani', this)">See More <i
+              class="ri-arrow-down-s-line"></i></button>
+          <div class="leader-links">
+            <a href="#" class="leader-link"><i class="ri-linkedin-line"></i> LinkedIn Profile</a>
+            <a href="#" class="leader-link"><i class="ri-mail-line"></i> Get in Touch</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ayush Kushwaha — image right (no reverse since next) -->
+      <div class="leader-row reverse">
+        <div class="leader-portrait-wrap">
+          <div class="leader-portrait-round">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80" alt="Ayush Kushwaha"
+              loading="lazy" />
+            <div class="leader-portrait-ring"></div>
+          </div>
+          <div class="leader-badge-pill">Scientist & Bio-Asset Manager</div>
+        </div>
+        <div class="leader-content">
+          <div class="leader-role">Scientist & Bio-Asset Manager</div>
+          <div class="leader-name">Ayush Kushwaha</div>
+          <div class="leader-title">M.Sc. Microbiology — Barkatullah University</div>
+          <p class="leader-bio">Ayush Kushwaha is a scientist specializing in microbiology and biological asset
+            management, with a Master's degree in Microbiology from Barkatullah University. His work focuses on the
+            isolation, screening, and characterization of target microbial species, including their molecular
+            identification and evaluation of bioactive potential.</p>
+          <div class="leader-bio-extra" id="bio-extra-ayush">
+            <p class="leader-bio">He has experience in quantitative analysis of metabolites using spectrophotometric
+              methods and chromatographic techniques such as HPLC. Ayush contributes to the development, organization,
+              and maintenance of Molmet's biological asset platform, supporting discovery-driven workflows through
+              systematic management of microbial strains and associated data. His expertise also extends to
+              computational biology approaches that aid in data interpretation and asset optimization.</p>
+          </div>
+          <button class="see-more-btn" onclick="toggleBio('bio-extra-ayush', this)">See More <i
+              class="ri-arrow-down-s-line"></i></button>
+          <div class="leader-links">
+            <a href="#" class="leader-link"><i class="ri-linkedin-line"></i> LinkedIn Profile</a>
+            <a href="#" class="leader-link"><i class="ri-mail-line"></i> Get in Touch</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dr. Ruchi Dubey — image left -->
+      <div class="leader-row">
+        <div class="leader-portrait-wrap">
+          <div class="leader-portrait-round">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Dr. Ruchi Dubey"
+              loading="lazy" />
+            <div class="leader-portrait-ring"></div>
+          </div>
+          <div class="leader-badge-pill">Scientist & Consultant</div>
+        </div>
+        <div class="leader-content">
+          <div class="leader-role">Scientist & Consultant</div>
+          <div class="leader-name">Dr. Ruchi Dubey</div>
+          <div class="leader-title">Ph.D. — Barkatullah University</div>
+          <p class="leader-bio">Dr. Ruchi Dubey is a scientist and consultant with expertise in cell culture systems,
+            molecular biology, and translational pharmacological research. She completed her Ph.D. from Barkatullah
+            University. Her work focuses on cytotoxicity evaluation, gene-based investigations, and in-vitro
+            pharmacological studies using advanced experimental models.</p>
+          <div class="leader-bio-extra" id="bio-extra-ruchi">
+            <p class="leader-bio">She has experience in biological investigations using model systems such as Drosophila
+              melanogaster, supporting mechanistic and functional studies. Dr. Dubey has also contributed to research on
+              the biological impact of microplastics, particularly their potential hazards arising from routine human
+              exposure.</p>
+            <p class="leader-bio">At Molmet, she supports bioactivity screening, molecular investigations, and
+              cell-based validation workflows, contributing to the evaluation of novel bioactive molecules and
+              discovery-driven research programs.</p>
+          </div>
+          <button class="see-more-btn" onclick="toggleBio('bio-extra-ruchi', this)">See More <i
+              class="ri-arrow-down-s-line"></i></button>
+          <div class="leader-links">
+            <a href="#" class="leader-link"><i class="ri-linkedin-line"></i> LinkedIn Profile</a>
+            <a href="#" class="leader-link"><i class="ri-mail-line"></i> Get in Touch</a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ══ SECTION 8: OUR NETWORK ══ -->
+    <section class="network-section" id="network">
+      <div class="network-header">
+        <div class="section-tag" style="margin:0 auto 16px;">
+          <div class="section-tag-dot"></div><span class="section-tag-text"> Our Network</span>
+        </div>
+        <h2>Our Network</h2>
+        <p>We actively engage with researchers, institutions, and industry stakeholders to foster collaborative
+          innovation and expand the scope of discovery.</p>
+      </div>
+      <div class="network-grid">
+        <div class="n-card">
+          <div class="n-card-icon"><i class="ri-building-4-line"></i></div>
+          <strong>Academic & Research Institutions</strong>
+          <span>Collaborating with universities and research centers for foundational discovery programs.</span>
+        </div>
+        <div class="n-card">
+          <div class="n-card-icon"><i class="ri-hospital-line"></i></div>
+          <strong>Pharmaceutical & Biotech Partners</strong>
+          <span>Enabling drug discovery pipelines through bioactive leads and CRO service partnerships.</span>
+        </div>
+        <div class="n-card">
+          <div class="n-card-icon"><i class="ri-plant-line"></i></div>
+          <strong>Agricultural & Industrial Stakeholders</strong>
+          <span>Translating microbial science into sustainable inputs for agriculture and industrial
+            applications.</span>
+        </div>
+        <div class="n-card">
+          <div class="n-card-icon"><i class="ri-government-line"></i></div>
+          <strong>Government & Policy Bodies</strong>
+          <span>Aligning research programs with national biotechnology priorities and regulatory frameworks.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CTA BANNER ══ -->
+    <section class="cta-section">
+      <div class="cta-inner">
+        <div class="section-tag light" style="margin-bottom:8px;">
+          <div class="section-tag-dot"></div><span class="section-tag-text">Building the Future</span>
+        </div>
+        <h2>Building the Future of <em>Microbial Discovery</em></h2>
+        <p>Molmet Biotech is committed to advancing scientific discovery through exploration, innovation, and
+          collaboration — transforming microbial diversity into solutions that matter.</p>
+        <div class="cta-actions">
+          <a href="/Discoverypage/dics.html" class="btn-primary">Explore Our Discovery Platform <i
+              class="ri-arrow-right-line"></i></a>
+          <a href="/collabratepage/colla.html" class="btn-cta-light">Collaborate With Us <i
+              class="ri-arrow-right-line"></i></a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══ FOOTER ══ -->
+  <footer>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <h3>Building a <em>healthier</em><br>tomorrow, today.</h3>
+        <p>A passionate team of scientists and innovators dedicated to responsible biotech discovery that creates
+          lasting impact for people and planet.</p>
+        <div class="footer-socials">
+          <a href="#" title="X/Twitter">𝕏</a>
+          <a href="#" title="LinkedIn">in</a>
+          <a href="#" title="Instagram">◉</a>
+          <a href="#" title="Facebook">ƒ</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Our Research</a></li>
+          <li><a href="#">Pipeline</a></li>
+          <li><a href="#">Portfolio</a></li>
+          <li><a href="#">Impact Report</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Leadership</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Investors</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="#">Get in Touch</a></li>
+          <li><a href="#">Partnerships</a></li>
+          <li><a href="#">Media Enquiries</a></li>
+          <li><a href="#">Legal</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Molmet Biotech. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Settings</a>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .who-int-card:hover {
+      background: rgba(242, 255, 243, 0.08) !important;
+      border-color: rgba(126, 203, 161, 0.3) !important;
+      transform: translateY(-6px) !important;
+    }
+  </style>
+
+  <script>
+    /* Navbar scroll */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 20); }, { passive: true });
+
+    /* Mobile menu */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    function toggleMobile(open) { hamburger.classList.toggle('active', open); mobileMenu.classList.toggle('open', open); mobileOverlay.classList.toggle('open', open); document.body.style.overflow = open ? 'hidden' : ''; }
+    hamburger.addEventListener('click', () => toggleMobile(!mobileMenu.classList.contains('open')));
+    mobileOverlay.addEventListener('click', () => toggleMobile(false));
+    document.querySelectorAll('.mobile-nav-link[data-target]').forEach(btn => {
+      btn.addEventListener('click', () => { const t = document.getElementById(btn.dataset.target); if (t) t.classList.toggle('open'); });
+    });
+
+    /* See More toggle */
+    function toggleBio(id, btn) {
+      const el = document.getElementById(id);
+      const isOpen = el.classList.contains('open');
+      el.classList.toggle('open', !isOpen);
+      btn.classList.toggle('open', !isOpen);
+      btn.innerHTML = isOpen ? 'See More <i class="ri-arrow-down-s-line"></i>' : 'See Less <i class="ri-arrow-up-s-line"></i>';
+    }
+
+    /* Scroll reveal */
+    const revealOpts = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeUp 0.85s cubic-bezier(0.22,1,0.36,1) forwards';
+          entry.target.style.opacity = '1';
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, revealOpts);
+
+    const revealSelectors = [
+      '.split-text', '.split-img-wrap',
+      '.mission-bullet-item', '.a-step',
+      '.infra-item', '.n-card',
+      '.leader-portrait-wrap', '.leader-content',
+      '.cta-inner'
+    ];
+    revealSelectors.forEach(sel => {
+      document.querySelectorAll(sel).forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.animationDelay = `${i * 0.08}s`;
+        revealObserver.observe(el);
+      });
+    });
+
+    /* Who We Are cards stagger */
+    document.querySelectorAll('.who-int-card').forEach((el, i) => {
+      el.style.opacity = '0';
+      el.style.animationDelay = `${i * 0.1}s`;
+      revealObserver.observe(el);
+    });
+  </script>
+</body>
+
+</html>
