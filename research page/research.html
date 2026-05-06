@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Research Exposure — Molmet Biotech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <style>
+        :root {
+            --clr-dark: #0f1f1c;
+            --clr-dark-2: #173630;
+            --clr-dark-3: #1e4a40;
+            --clr-sage: #4d8c6a;
+            --clr-accent: #7ecba1;
+            --clr-bg: #F2FFF3;
+            --clr-bg-2: #e8f7eb;
+            --clr-bg-3: #daf0de;
+            --clr-bg-4: #f9fffe;
+            --clr-surface: #ffffff;
+            --clr-text: #173630;
+            --clr-text-2: #2d5045;
+            --clr-text-muted: #5a7a70;
+            --clr-text-faint: #8aaba3;
+            --clr-on-dark: #F2FFF3;
+            --clr-on-dark-2: rgba(242, 255, 243, 0.75);
+            --clr-on-dark-3: rgba(242, 255, 243, 0.45);
+            --ff-display: 'Fraunces', 'Palatino Linotype', serif;
+            --ff-body: 'DM Sans', 'Arial', sans-serif;
+            --nav-h: 80px;
+            --radius-sm: 10px;
+            --radius-md: 18px;
+            --radius-lg: 28px;
+            --radius-xl: 48px;
+            --radius-full: 100px;
+            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+            --shadow-sm: 0 2px 12px rgba(23, 54, 48, 0.08);
+            --shadow-md: 0 8px 32px rgba(23, 54, 48, 0.12);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--ff-body);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--clr-text);
+            background: var(--clr-bg);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: var(--ff-display);
+            font-weight: 500;
+            line-height: 1.1;
+            color: var(--clr-text);
+        }
+
+        h1 {
+            font-size: clamp(40px, 5.5vw, 78px);
+        }
+
+        h2 {
+            font-size: clamp(32px, 4vw, 60px);
+        }
+
+        h3 {
+            font-size: clamp(20px, 2.2vw, 28px);
+        }
+
+        h4 {
+            font-size: clamp(16px, 1.5vw, 20px);
+        }
+
+        p {
+            font-size: clamp(14px, 1.1vw, 16px);
+            line-height: 1.75;
+            color: var(--clr-text-2);
+            font-weight: 300;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: var(--nav-h);
+            display: flex;
+            align-items: center;
+            padding: 0 56px;
+            background: rgba(242, 255, 243, 0.88);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(110, 175, 136, 0.15);
+            transition: background 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
+        }
+
+        .navbar.scrolled {
+            background: rgba(242, 255, 243, 0.97);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-logo {
+            flex: 0 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-logo img {
+            width: 180px;
+        }
+
+        .nav-logo-text {
+            font-family: var(--ff-display);
+            font-size: 22px;
+            font-weight: 500;
+            color: var(--clr-dark-2);
+            letter-spacing: -0.02em;
+        }
+
+        .nav-logo-text em {
+            color: var(--clr-sage);
+            font-style: italic;
+        }
+
+        .nav-links {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 10px 14px;
+            font-family: var(--ff-body);
+            font-size: 13.5px;
+            font-weight: 400;
+            color: var(--clr-text-2);
+            border-radius: var(--radius-sm);
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.2s, background 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            color: var(--clr-dark-2);
+            background: rgba(23, 54, 48, 0.06);
+        }
+
+        .nav-link i {
+            font-size: 13px;
+            opacity: 0.5;
+            transition: transform 0.25s var(--ease-out);
+        }
+
+        .nav-item:hover .nav-link i {
+            transform: rotate(180deg);
+            opacity: 0.8;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: calc(100% + 1px);
+            left: 50%;
+            transform: translateX(-50%) translateY(-8px) scale(0.97);
+            min-width: 220px;
+            background: rgba(249, 255, 254, 0.98);
+            backdrop-filter: blur(32px);
+            border: 1px solid rgba(110, 175, 136, 0.2);
+            border-radius: var(--radius-md);
+            padding: 8px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.22s var(--ease-out), transform 0.22s var(--ease-out);
+            transform-origin: top center;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            pointer-events: all;
+            transform: translateX(-50%) translateY(0) scale(1);
+        }
+
+        .dropdown-label {
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--clr-text-faint);
+            padding: 8px 12px 4px;
+        }
+
+        .dropdown-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            color: var(--clr-text-2);
+            transition: background 0.15s, color 0.15s;
+        }
+
+        .dropdown-link i {
+            font-size: 14px;
+            color: var(--clr-sage);
+            width: 16px;
+            text-align: center;
+        }
+
+        .dropdown-link:hover {
+            background: rgba(23, 54, 48, 0.06);
+            color: var(--clr-dark-2);
+        }
+
+        .nav-cta-wrap {
+            flex: 0 0 auto;
+            margin-left: 16px;
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 9px 22px;
+            background: linear-gradient(135deg, var(--clr-dark-2) 0%, var(--clr-dark-3) 100%);
+            color: var(--clr-on-dark);
+            font-family: var(--ff-body);
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: var(--radius-full);
+            transition: filter 0.25s, transform 0.25s var(--ease-out);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .nav-cta::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.55s var(--ease-out);
+        }
+
+        .nav-cta:hover {
+            filter: brightness(1.12);
+            transform: translateY(-1px);
+        }
+
+        .nav-cta:hover::after {
+            transform: translateX(100%);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: auto;
+            border-radius: var(--radius-sm);
+            transition: background 0.2s;
+            padding: 4px;
+        }
+
+        .hamburger:hover {
+            background: rgba(23, 54, 48, 0.07);
+        }
+
+        .hamburger span {
+            display: block;
+            width: 20px;
+            height: 1.5px;
+            background: var(--clr-text);
+            border-radius: 2px;
+            transition: transform 0.3s var(--ease-out), opacity 0.3s;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(6.5px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-6.5px) rotate(-45deg);
+        }
+
+        .mobile-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 31, 28, 0.3);
+            z-index: 890;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s var(--ease-out);
+        }
+
+        .mobile-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            bottom: 0;
+            width: min(300px, 85vw);
+            background: rgba(242, 255, 243, 0.98);
+            backdrop-filter: blur(24px);
+            border-right: 1px solid rgba(110, 175, 136, 0.18);
+            padding: calc(var(--nav-h) + 20px) 24px 32px;
+            transition: left 0.38s var(--ease-out);
+            z-index: 900;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+            left: 0;
+        }
+
+        .mobile-nav-item {
+            border-bottom: 1px solid rgba(23, 54, 48, 0.07);
+        }
+
+        .mobile-nav-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 4px;
+            font-size: 15px;
+            font-weight: 400;
+            color: var(--clr-text);
+            background: none;
+            border: none;
+            font-family: var(--ff-body);
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .mobile-dropdown {
+            display: none;
+            padding: 4px 0 10px;
+        }
+
+        .mobile-dropdown.open {
+            display: block;
+        }
+
+        .mobile-dropdown-link {
+            display: block;
+            padding: 9px 12px;
+            font-size: 13px;
+            color: var(--clr-text-2);
+            border-radius: var(--radius-sm);
+            transition: background 0.15s;
+        }
+
+        .mobile-dropdown-link:hover {
+            background: rgba(23, 54, 48, 0.06);
+            color: var(--clr-dark-2);
+        }
+
+        .mobile-cta {
+            display: block;
+            margin-top: 24px;
+            padding: 13px;
+            text-align: center;
+            background: linear-gradient(135deg, var(--clr-dark-2), var(--clr-dark-3));
+            color: var(--clr-on-dark);
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        /* ── BUTTONS ── */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, var(--clr-dark-2) 0%, var(--clr-dark-3) 100%);
+            color: var(--clr-on-dark);
+            font-family: var(--ff-body);
+            font-size: 14px;
+            font-weight: 500;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(242, 255, 243, 0.35);
+            cursor: pointer;
+            box-shadow: 0 4px 24px rgba(23, 54, 48, 0.4);
+            transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), filter 0.25s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.55s var(--ease-out);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 40px rgba(23, 54, 48, 0.45);
+            filter: brightness(1.1);
+        }
+
+        .btn-primary:hover::after {
+            transform: translateX(100%);
+        }
+
+        .btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 26px;
+            color: rgba(242, 255, 243, 0.9);
+            font-family: var(--ff-body);
+            font-size: 14px;
+            font-weight: 400;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(242, 255, 243, 0.2);
+            background: rgba(242, 255, 243, 0.06);
+            backdrop-filter: blur(8px);
+            transition: background 0.22s, border-color 0.22s, transform 0.22s var(--ease-out);
+        }
+
+        .btn-ghost:hover {
+            background: rgba(242, 255, 243, 0.12);
+            border-color: rgba(242, 255, 243, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 26px;
+            color: var(--clr-dark-2);
+            font-family: var(--ff-body);
+            font-size: 14px;
+            font-weight: 400;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(23, 54, 48, 0.25);
+            background: rgba(23, 54, 48, 0.05);
+            transition: background 0.22s, border-color 0.22s, transform 0.22s;
+        }
+
+        .btn-outline:hover {
+            background: rgba(23, 54, 48, 0.1);
+            border-color: rgba(23, 54, 48, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* ── SECTION TAG ── */
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 5px 13px 5px 9px;
+            background: rgba(23, 54, 48, 0.07);
+            border: 1px solid rgba(23, 54, 48, 0.12);
+            border-radius: var(--radius-full);
+            margin-bottom: 18px;
+        }
+
+        .section-tag-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--clr-sage);
+        }
+
+        .section-tag-text {
+            font-size: 10.5px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--clr-sage);
+        }
+
+        .section-tag.light {
+            background: rgba(242, 255, 243, 0.1);
+            border-color: rgba(242, 255, 243, 0.15);
+        }
+
+        .section-tag.light .section-tag-dot {
+            background: var(--clr-accent);
+        }
+
+        .section-tag.light .section-tag-text {
+            color: var(--clr-on-dark-2);
+        }
+
+        /* ════════════════════════════════
+       HERO
+    ════════════════════════════════ */
+        .hero {
+            padding-top: var(--nav-h);
+            min-height: 100vh;
+            display: grid;
+            grid-template-rows: 1fr auto;
+            background: var(--clr-dark-2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-bg-img {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1800&q=85');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.18;
+        }
+
+        .hero-bg-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 60% 40%, rgba(126, 203, 161, 0.12) 0%, transparent 60%);
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 40px 60px;
+            gap: 28px;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px 14px 5px 9px;
+            background: rgba(106, 175, 136, 0.15);
+            border: 1px solid rgba(106, 175, 136, 0.3);
+            border-radius: var(--radius-full);
+        }
+
+        .hero-eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--clr-accent);
+            box-shadow: 0 0 0 3px rgba(126, 203, 161, 0.25);
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 3px rgba(126, 203, 161, 0.25);
+            }
+
+            50% {
+                box-shadow: 0 0 0 8px rgba(126, 203, 161, 0.06);
+            }
+        }
+
+        .hero-eyebrow span {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(242, 255, 243, 0.6);
+        }
+
+        .hero-headline {
+            font-family: var(--ff-display);
+            font-size: clamp(52px, 8vw, 100px);
+            font-weight: 500;
+            color: #fff;
+            line-height: 1.02;
+            letter-spacing: -0.03em;
+            max-width: 900px;
+        }
+
+        .hero-headline em {
+            font-style: italic;
+            color: var(--clr-accent);
+        }
+
+        .hero-desc {
+            font-size: clamp(15px, 1.3vw, 18px);
+            color: var(--clr-on-dark-2);
+            max-width: 560px;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* ════════════════════════════════
+       INTRO SECTION
+    ════════════════════════════════ */
+        .intro-section {
+            background: var(--clr-bg);
+            padding: 100px 80px;
+        }
+
+        .intro-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .intro-left h2 {
+            color: var(--clr-dark);
+            margin-bottom: 20px;
+        }
+
+        .intro-left > p {
+            margin-bottom: 20px;
+            max-width: 480px;
+        }
+
+        .intro-right {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .intro-card {
+            background: var(--clr-surface);
+            border: 1px solid rgba(23, 54, 48, 0.08);
+            border-radius: var(--radius-md);
+            padding: 20px 22px;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            transition: background 0.2s, transform 0.2s, border-color 0.2s;
+        }
+
+        .intro-card:hover {
+            background: var(--clr-bg-2);
+            border-color: rgba(77, 140, 106, 0.3);
+            transform: translateX(4px);
+        }
+
+        .intro-card-icon {
+            width: 36px;
+            height: 36px;
+            min-width: 36px;
+            background: var(--clr-bg-3);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .intro-card-icon i {
+            font-size: 16px;
+            color: var(--clr-dark-2);
+        }
+
+        .intro-card strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--clr-dark-2);
+            margin-bottom: 3px;
+        }
+
+        .intro-card span {
+            font-size: 12.5px;
+            color: var(--clr-text-muted);
+            line-height: 1.55;
+        }
+
+        /* ════════════════════════════════
+       APPROACH SECTION (reused for "Our Approach")
+    ════════════════════════════════ */
+        .approach-section {
+            background: var(--clr-bg-2);
+            padding: 100px 80px;
+        }
+
+        .approach-inner {
+            display: grid;
+            grid-template-columns: 1fr 520px;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .approach-left h2 {
+            color: var(--clr-dark);
+            margin-bottom: 16px;
+        }
+
+        .approach-left > p {
+            margin-bottom: 48px;
+            max-width: 440px;
+        }
+
+        .approach-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .a-step {
+            display: flex;
+            gap: 20px;
+            padding: 24px 0;
+            border-bottom: 1px solid rgba(23, 54, 48, 0.08);
+            transition: padding-left 0.25s var(--ease-out);
+        }
+
+        .a-step:last-child {
+            border-bottom: none;
+        }
+
+        .a-step:hover {
+            padding-left: 8px;
+        }
+
+        .a-step-num {
+            font-family: var(--ff-display);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--clr-sage);
+            width: 26px;
+            min-width: 26px;
+            padding-top: 3px;
+        }
+
+        .a-step-body strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--clr-dark-2);
+            margin-bottom: 5px;
+        }
+
+        .a-step-body span {
+            font-size: 13px;
+            color: var(--clr-text-muted);
+            line-height: 1.6;
+        }
+
+        .approach-right {
+            position: sticky;
+            top: 120px;
+        }
+
+        .approach-img-stack {
+            position: relative;
+        }
+
+        .approach-img-main {
+            width: 100%;
+            height: 420px;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+        }
+
+        .approach-img-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .approach-img-small {
+            position: absolute;
+            bottom: -28px;
+            left: -28px;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--clr-bg-2);
+        }
+
+        .approach-img-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .approach-badge {
+            position: absolute;
+            top: 24px;
+            right: -16px;
+            background: var(--clr-dark-2);
+            border-radius: var(--radius-md);
+            padding: 16px 20px;
+            border: 1px solid rgba(126, 203, 161, 0.25);
+            box-shadow: var(--shadow-md);
+        }
+
+        .approach-badge i {
+            font-size: 20px;
+            color: var(--clr-accent);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .approach-badge strong {
+            display: block;
+            font-size: 13px;
+            color: var(--clr-on-dark);
+            margin-bottom: 4px;
+        }
+
+        .approach-badge span {
+            font-size: 11px;
+            color: var(--clr-on-dark-3);
+        }
+
+        /* ════════════════════════════════
+       PROGRAM TRACKS — MISSION GRID STYLE
+    ════════════════════════════════ */
+        .tracks-section {
+            background: var(--clr-dark-2);
+            padding: 100px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tracks-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 50%, rgba(126, 203, 161, 0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .tracks-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .tracks-header h2 {
+            color: var(--clr-on-dark);
+            margin-bottom: 14px;
+        }
+
+        .tracks-header p {
+            color: var(--clr-on-dark-2);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .tracks-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .track-card {
+            background: rgba(242, 255, 243, 0.05);
+            border: 1px solid rgba(242, 255, 243, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 36px 24px;
+            transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease-out);
+            cursor: pointer;
+        }
+
+        .track-card:hover {
+            background: rgba(242, 255, 243, 0.08);
+            border-color: rgba(126, 203, 161, 0.3);
+            transform: translateY(-6px);
+        }
+
+        .track-card-num {
+            font-family: var(--ff-display);
+            font-size: 52px;
+            font-weight: 300;
+            color: rgba(126, 203, 161, 0.18);
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .track-card-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(126, 203, 161, 0.1);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            border: 1px solid rgba(126, 203, 161, 0.2);
+        }
+
+        .track-card-icon i {
+            font-size: 20px;
+            color: var(--clr-accent);
+        }
+
+        .track-card h4 {
+            font-family: var(--ff-display);
+            font-size: 17px;
+            font-weight: 500;
+            color: var(--clr-on-dark);
+            margin-bottom: 10px;
+        }
+
+        .track-card-focus {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--clr-accent);
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .track-card p {
+            font-size: 13px;
+            color: var(--clr-on-dark-3);
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+
+        .track-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .track-card-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 12px;
+            color: rgba(242, 255, 243, 0.45);
+            line-height: 1.5;
+        }
+
+        .track-card-list li i {
+            font-size: 11px;
+            color: var(--clr-accent);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        /* ════════════════════════════════
+       PROGRAM STRUCTURE
+    ════════════════════════════════ */
+        .structure-section {
+            background: var(--clr-bg-4);
+            padding: 100px 80px;
+        }
+
+        .structure-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .structure-left h2 {
+            color: var(--clr-dark);
+            margin-bottom: 16px;
+        }
+
+        .structure-left > p {
+            margin-bottom: 24px;
+            max-width: 460px;
+        }
+
+        .structure-note {
+            padding: 18px 20px;
+            background: rgba(77, 140, 106, 0.08);
+            border: 1px solid rgba(77, 140, 106, 0.2);
+            border-radius: var(--radius-md);
+            margin-bottom: 32px;
+        }
+
+        .structure-note p {
+            font-size: 13px;
+            color: var(--clr-sage);
+            font-style: italic;
+            margin: 0;
+        }
+
+        .structure-right {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .s-card {
+            background: var(--clr-surface);
+            border: 1px solid rgba(23, 54, 48, 0.09);
+            border-radius: var(--radius-lg);
+            padding: 28px 22px;
+            transition: transform 0.3s var(--ease-out), box-shadow 0.3s, border-color 0.3s;
+        }
+
+        .s-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(77, 140, 106, 0.3);
+        }
+
+        .s-card-icon {
+            width: 42px;
+            height: 42px;
+            background: var(--clr-bg-3);
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+        }
+
+        .s-card-icon i {
+            font-size: 18px;
+            color: var(--clr-dark-2);
+        }
+
+        .s-card h4 {
+            font-family: var(--ff-display);
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--clr-dark);
+            margin-bottom: 8px;
+        }
+
+        .s-card p {
+            font-size: 12.5px;
+            color: var(--clr-text-muted);
+            line-height: 1.55;
+        }
+
+        /* ════════════════════════════════
+       WHO SHOULD APPLY — NETWORK STYLE
+    ════════════════════════════════ */
+        .who-section {
+            background: var(--clr-bg-2);
+            padding: 100px 80px;
+        }
+
+        .who-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: end;
+            margin-bottom: 56px;
+        }
+
+        .who-header h2 {
+            color: var(--clr-dark);
+        }
+
+        .who-header p {
+            color: var(--clr-text-2);
+        }
+
+        .who-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .who-card {
+            background: var(--clr-surface);
+            border: 1px solid rgba(23, 54, 48, 0.08);
+            border-radius: var(--radius-lg);
+            padding: 28px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            transition: background 0.22s, transform 0.22s, border-color 0.22s;
+        }
+
+        .who-card:hover {
+            background: var(--clr-bg);
+            border-color: rgba(77, 140, 106, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .who-card-icon {
+            width: 44px;
+            height: 44px;
+            min-width: 44px;
+            background: var(--clr-bg-3);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .who-card-icon i {
+            font-size: 20px;
+            color: var(--clr-dark-2);
+        }
+
+        .who-card strong {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--clr-dark-2);
+            margin-bottom: 6px;
+        }
+
+        .who-card span {
+            font-size: 12.5px;
+            color: var(--clr-text-muted);
+            line-height: 1.55;
+        }
+
+        /* ════════════════════════════════
+       FINAL CTA
+    ════════════════════════════════ */
+        .cta-section {
+            background: var(--clr-dark-2);
+            padding: 100px 80px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 64px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1800&q=80') center/cover no-repeat;
+            opacity: 0.1;
+        }
+
+        .cta-left {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-left h2 {
+            font-size: clamp(32px, 4vw, 60px);
+            color: var(--clr-on-dark);
+            margin-bottom: 16px;
+        }
+
+        .cta-left h2 em {
+            color: var(--clr-accent);
+            font-style: italic;
+        }
+
+        .cta-left p {
+            color: var(--clr-on-dark-2);
+            max-width: 480px;
+        }
+
+        .cta-right {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-end;
+        }
+
+        /* ════════════════════════════════
+       FOOTER
+    ════════════════════════════════ */
+        footer {
+            background: var(--clr-dark);
+            color: var(--clr-on-dark);
+            padding: 64px 80px 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: 'MOLMET';
+            position: absolute;
+            bottom: -12px;
+            right: -4px;
+            font-family: var(--ff-display);
+            font-size: 170px;
+            font-weight: 600;
+            color: rgba(242, 255, 243, 0.022);
+            line-height: 1;
+            pointer-events: none;
+            letter-spacing: -0.04em;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(242, 255, 243, 0.07);
+        }
+
+        .footer-brand h3 {
+            font-family: var(--ff-display);
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 1.25;
+            color: var(--clr-on-dark);
+            margin-bottom: 14px;
+        }
+
+        .footer-brand h3 em {
+            color: var(--clr-accent);
+        }
+
+        .footer-brand p {
+            font-size: 13px;
+            line-height: 1.72;
+            color: var(--clr-on-dark-3);
+            max-width: 260px;
+            margin-bottom: 22px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 8px;
+        }
+
+        .footer-socials a {
+            width: 34px;
+            height: 34px;
+            border: 1px solid rgba(242, 255, 243, 0.1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--clr-on-dark-3);
+            font-size: 13px;
+            font-weight: 600;
+            transition: border-color 0.25s, color 0.25s, background 0.25s;
+        }
+
+        .footer-socials a:hover {
+            border-color: var(--clr-accent);
+            color: var(--clr-accent);
+            background: rgba(126, 203, 161, 0.08);
+        }
+
+        .footer-col h5 {
+            font-family: var(--ff-body);
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--clr-on-dark-3);
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(242, 255, 243, 0.07);
+        }
+
+        .footer-col ul {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul li a {
+            font-size: 13.5px;
+            font-weight: 300;
+            color: rgba(242, 255, 243, 0.5);
+            transition: color 0.22s, padding-left 0.22s;
+            display: inline-block;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--clr-on-dark);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer-bottom p {
+            font-size: 11.5px;
+            color: rgba(242, 255, 243, 0.35);
+            letter-spacing: 0.06em;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            font-size: 11.5px;
+            color: rgba(242, 255, 243, 0.35);
+            transition: color 0.22s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--clr-on-dark);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1100px) {
+            .tracks-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .intro-inner,
+            .approach-inner,
+            .structure-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .who-header {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .who-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .cta-section {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-right {
+                align-items: flex-start;
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .intro-section,
+            .approach-section,
+            .tracks-section,
+            .structure-section,
+            .who-section,
+            .cta-section {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-links,
+            .nav-cta-wrap {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero-inner {
+                padding: 80px 24px 48px;
+            }
+
+            .tracks-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .who-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .structure-right {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                padding: 48px 24px 28px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up {
+            opacity: 0;
+            animation: fadeUp 0.9s var(--ease-out) forwards;
+        }
+
+        .fade-up.d1 {
+            animation-delay: 0.1s;
+        }
+
+        .fade-up.d2 {
+            animation-delay: 0.22s;
+        }
+
+        .fade-up.d3 {
+            animation-delay: 0.34s;
+        }
+
+        .fade-up.d4 {
+            animation-delay: 0.46s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ══ NAVBAR ══ -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">
+            <span><img src="/logo.png" alt=""></span>
+        </a>
+        <ul class="nav-links">
+            <li class="nav-item">
+                <a href="/index.html"><button class="nav-link">Home</button></a>
+            </li>
+            <li class="nav-item">
+                <a href="/Discoverypage/dics.html"><button class="nav-link">Discovery <i class="ri-arrow-down-s-line"></i></button></a>
+                <div class="dropdown">
+                    <div class="dropdown-label">Explore Discovery</div>
+                    <a href="/Discoverypage/dics.html#bioprospecting" class="dropdown-link"><i class="ri-microscope-line"></i> Bioprospecting</a>
+                    <a href="/Discoverypage/dics.html#molecules" class="dropdown-link"><i class="ri-flask-line"></i> Molecule Discovery</a>
+                    <a href="/Discoverypage/dics.html#strain" class="dropdown-link"><i class="ri-settings-3-line"></i> Strain Engineering</a>
+                    <a href="/Discoverypage/dics.html#libraries" class="dropdown-link"><i class="ri-database-2-line"></i> Natural Libraries</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="/collabratepage/colla.html"><button class="nav-link">Collaborate <i class="ri-arrow-down-s-line"></i></button></a>
+                <div class="dropdown">
+                    <div class="dropdown-label">Partner With Us</div>
+                    <a href="/collabratepage/colla.html#who" class="dropdown-link"><i class="ri-building-line"></i> Industry Partnerships</a>
+                    <a href="/collabratepage/colla.html#we" class="dropdown-link"><i class="ri-government-line"></i> We Collaborate</a>
+                    <a href="/collabratepage/colla.html#models" class="dropdown-link"><i class="ri-handshake-line"></i> Collaboration Models</a>
+                    <a href="/collabratepage/colla.html#bring" class="dropdown-link"><i class="ri-funds-line"></i>What We Bring</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a href="/cropage/cro.html"></a><button class="nav-link">CRO & Solutions <i class="ri-arrow-down-s-line"></i></button>
+                <div class="dropdown">
+                    <div class="dropdown-label">R&D Solutions</div>
+                    <a href="/cropage/cro.html#capabilities" class="dropdown-link"><i class="ri-briefcase-line"></i> Our Capabilities</a>
+                    <a href="/cropage/cro.html#how-we-engage" class="dropdown-link"><i class="ri-tools-line"></i> How We Engage</a>
+                    <a href="/cropage/cro.html#best-suited" class="dropdown-link"><i class="ri-search-eye-line"></i> Best Suited For</a>
+                    <a href="/cropage/cro.html#contact" class="dropdown-link"><i class="ri-mail-send-line"></i> Submit Requirement</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link">Biological Assets <i class="ri-arrow-down-s-line"></i></button>
+                <div class="dropdown">
+                    <div class="dropdown-label">Our Assets</div>
+                    <a href="#" class="dropdown-link"><i class="ri-dna-line"></i> Culture Library</a>
+                    <a href="#" class="dropdown-link"><i class="ri-flask-fill"></i> Metabolite Platform</a>
+                    <a href="#" class="dropdown-link"><i class="ri-archive-line"></i> Discovery Collection</a>
+                    <a href="#" class="dropdown-link"><i class="ri-links-line"></i> Strain Access</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link">Insights <i class="ri-arrow-down-s-line"></i></button>
+                <div class="dropdown">
+                    <div class="dropdown-label">Knowledge Hub</div>
+                    <a href="#" class="dropdown-link"><i class="ri-article-line"></i> Blogs</a>
+                    <a href="#" class="dropdown-link"><i class="ri-file-text-line"></i> Whitepapers</a>
+                    <a href="#" class="dropdown-link"><i class="ri-bar-chart-line"></i> Research Highlights</a>
+                    <a href="#" class="dropdown-link"><i class="ri-lightbulb-flash-line"></i> Perspectives</a>
+                </div>
+            </li>
+        </ul>
+        <div class="nav-cta-wrap">
+            <a href="/collabratepage/colla.html#contact" class="nav-cta">Contact Us <i class="ri-arrow-right-up-line"></i></a>
+        </div>
+        <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </nav>
+
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-about">About <i class="ri-arrow-down-s-line"></i></button>
+            <div class="mobile-dropdown" id="mob-about"><a href="#" class="mobile-dropdown-link">Vision & Mission</a><a href="#" class="mobile-dropdown-link">Who We Are</a><a href="#" class="mobile-dropdown-link">Our Approach</a><a href="#" class="mobile-dropdown-link">Leadership</a><a href="#" class="mobile-dropdown-link">Network</a></div>
+        </div>
+        <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-disc">Discovery <i class="ri-arrow-down-s-line"></i></button>
+            <div class="mobile-dropdown" id="mob-disc"><a href="#" class="mobile-dropdown-link">Bioprospecting</a><a href="#" class="mobile-dropdown-link">Molecule Discovery</a></div>
+        </div>
+        <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-coll">Collaborate <i class="ri-arrow-down-s-line"></i></button>
+            <div class="mobile-dropdown" id="mob-coll"><a href="#" class="mobile-dropdown-link">Industry Partnerships</a><a href="#" class="mobile-dropdown-link">Co-development</a></div>
+        </div>
+        <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-cro">CRO & Solutions <i class="ri-arrow-down-s-line"></i></button>
+            <div class="mobile-dropdown" id="mob-cro"><a href="#" class="mobile-dropdown-link">Contract Research</a><a href="#" class="mobile-dropdown-link">Assay Development</a></div>
+        </div>
+        <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-assets">Biological Assets <i class="ri-arrow-down-s-line"></i></button>
+            <div class="mobile-dropdown" id="mob-assets"><a href="#" class="mobile-dropdown-link">Culture Library</a><a href="#" class="mobile-dropdown-link">Metabolite Platform</a></div>
+        </div>
+        <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-ins">Insights <i class="ri-arrow-down-s-line"></i></button>
+            <div class="mobile-dropdown" id="mob-ins"><a href="#" class="mobile-dropdown-link">Blogs</a><a href="#" class="mobile-dropdown-link">Research Highlights</a></div>
+        </div>
+        <a href="#" class="mobile-cta">Contact Us <i class="ri-arrow-right-up-line"></i></a>
+    </div>
+
+    <main>
+
+        <!-- ══ HERO ══ -->
+        <section class="hero">
+            <div class="hero-bg-img"></div>
+            <div class="hero-inner">
+                <div class="hero-eyebrow fade-up d1">
+                    <div class="hero-eyebrow-dot"></div>
+                    <span>Research Exposure for Students & Scholars</span>
+                </div>
+                <h1 class="hero-headline fade-up d2">
+                    Research <em>Exposure</em><br>Programs
+                </h1>
+                <p class="hero-desc fade-up d3">
+                    We offer limited, high-quality research exposure opportunities aligned with our ongoing discovery and experimental programs. Participants engage with real laboratory workflows across microbial bioprospecting, bioactive discovery, and in-vitro validation systems.
+                </p>
+                <div class="hero-actions fade-up d4">
+                    <a href="#apply" class="btn-primary">Apply Now</a>
+                    <a href="#tracks" class="btn-ghost">Explore Program Tracks <i class="ri-arrow-right-line"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ INTRO ══ -->
+        <section class="intro-section" id="intro">
+            <div class="intro-inner">
+                <div class="intro-left">
+                    <div class="section-tag">
+                        <div class="section-tag-dot"></div><span class="section-tag-text">Introduction</span>
+                    </div>
+                    <h2>Research Exposure for Students and Scholars</h2>
+                    <p>We offer limited, high-quality research exposure opportunities aligned with our ongoing discovery and experimental programs.</p>
+                    <p>Participants engage with real laboratory workflows across microbial bioprospecting, bioactive discovery, and in-vitro validation systems.</p>
+                    <p>Participants may align their exposure with application domains such as pharmaceutical, agricultural, industrial, environmental, and life sciences, within the framework of real bioprospecting and discovery workflows.</p>
+                </div>
+                <div class="intro-right">
+                    <div class="intro-card">
+                        <div class="intro-card-icon"><i class="ri-flask-line"></i></div>
+                        <div>
+                            <strong>Not Routine Training Modules</strong>
+                            <span>These are structured research exposure programs designed to provide hands-on understanding of applied biotechnology and discovery-driven workflows.</span>
+                        </div>
+                    </div>
+                    <div class="intro-card">
+                        <div class="intro-card-icon"><i class="ri-filter-line"></i></div>
+                        <div>
+                            <strong>Selective Participation</strong>
+                            <span>Participation is selective and aligned with ongoing research activities and laboratory capacity.</span>
+                        </div>
+                    </div>
+                    <div class="intro-card">
+                        <div class="intro-card-icon"><i class="ri-microscope-line"></i></div>
+                        <div>
+                            <strong>Real Laboratory Workflows</strong>
+                            <span>Engage directly with active discovery programs spanning bioprospecting, metabolite discovery, and in-vitro validation.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ PROGRAM TRACKS ══ -->
+        <section class="tracks-section" id="tracks">
+            <div class="tracks-header">
+                <div class="section-tag light" style="margin:0 auto 16px;">
+                    <div class="section-tag-dot"></div><span class="section-tag-text">Program Tracks</span>
+                </div>
+                <h2>Program Tracks</h2>
+                <p>Explore our structured research exposure tracks, each designed to immerse participants in a specific domain of applied biotechnology and discovery science.</p>
+            </div>
+            <div class="tracks-grid">
+                <div class="track-card">
+                    <div class="track-card-num">01</div>
+                    <div class="track-card-icon"><i class="ri-map-pin-2-line"></i></div>
+                    <div class="track-card-focus">Focus</div>
+                    <h4>Microbial Bioprospecting & Isolation Track</h4>
+                    <p>Exploration, isolation, and comprehensive characterization of microorganisms from diverse environmental samples.</p>
+                    <ul class="track-card-list">
+                        <li><i class="ri-checkbox-circle-line"></i>Environmental sampling strategies (soil, water, niche habitats)</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Isolation and purification of microbial strains</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Morphological and biochemical characterization</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Molecular identification of microbial strains (16S rRNA for bacteria / ITS for fungi)</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Basic bioinformatics analysis for sequence identification and phylogenetic insights</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Culture preservation and maintenance techniques</li>
+                    </ul>
+                </div>
+                <div class="track-card">
+                    <div class="track-card-num">02</div>
+                    <div class="track-card-icon"><i class="ri-flask-line"></i></div>
+                    <div class="track-card-focus">Focus</div>
+                    <h4>Molecule & Metabolite Discovery Track</h4>
+                    <p>Identification and screening of bioactive metabolites from microbial and plant sources.</p>
+                    <ul class="track-card-list">
+                        <li><i class="ri-checkbox-circle-line"></i>Microbial metabolite extraction techniques</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Phytochemical extraction and fractionation</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Bioactivity-guided screening approaches</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Preliminary identification of active fractions</li>
+                    </ul>
+                </div>
+                <div class="track-card">
+                    <div class="track-card-num">03</div>
+                    <div class="track-card-icon"><i class="ri-settings-3-line"></i></div>
+                    <div class="track-card-focus">Focus</div>
+                    <h4>Metabolite Production & Bioprocess Track</h4>
+                    <p>Optimization of microbial systems for targeted metabolite production.</p>
+                    <ul class="track-card-list">
+                        <li><i class="ri-checkbox-circle-line"></i>Media formulation and optimization</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Fermentation parameter tuning (pH, temperature, nutrients, aeration)</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Strain-specific cultivation strategies</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Understanding multi-metabolite expression in microbial systems</li>
+                    </ul>
+                </div>
+                <div class="track-card">
+                    <div class="track-card-num">04</div>
+                    <div class="track-card-icon"><i class="ri-test-tube-line"></i></div>
+                    <div class="track-card-focus">Focus</div>
+                    <h4>Bioactivity & In-vitro Validation Track</h4>
+                    <p>Functional evaluation of bioactive compounds.</p>
+                    <ul class="track-card-list">
+                        <li><i class="ri-checkbox-circle-line"></i>Antimicrobial assays</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Enzyme inhibition studies</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Cytotoxicity screening methods</li>
+                        <li><i class="ri-checkbox-circle-line"></i>In-vitro pharmacological models</li>
+                    </ul>
+                </div>
+                <div class="track-card">
+                    <div class="track-card-num">05</div>
+                    <div class="track-card-icon"><i class="ri-heart-pulse-line"></i></div>
+                    <div class="track-card-focus">Focus</div>
+                    <h4>Cell Culture & Anticancer Screening Track</h4>
+                    <p>Cell-based evaluation of bioactive molecules.</p>
+                    <ul class="track-card-list">
+                        <li><i class="ri-checkbox-circle-line"></i>Cell culture handling techniques</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Cytotoxicity assays (MTT and related methods)</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Anticancer screening workflows</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Experimental design for cell-based studies</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ PROGRAM STRUCTURE ══ -->
+        <section class="structure-section" id="structure">
+            <div class="structure-inner">
+                <div class="structure-left">
+                    <div class="section-tag">
+                        <div class="section-tag-dot"></div><span class="section-tag-text">Program Structure</span>
+                    </div>
+                    <h2>Program Structure</h2>
+                    <p>Our programs are structured to offer meaningful, immersive research exposure through hands-on laboratory work, guided experimental workflows, and direct integration with ongoing discovery programs.</p>
+                    <div class="structure-note">
+                        <p>Opportunities are limited and curated — we only onboard scholars whose work aligns with our active discovery programs.</p>
+                    </div>
+                </div>
+                <div class="structure-right">
+                    <div class="s-card">
+                        <div class="s-card-icon"><i class="ri-time-line"></i></div>
+                        <h4>Short-term Exposure</h4>
+                        <p>2–4 weeks of focused, hands-on immersion in a selected research track.</p>
+                    </div>
+                    <div class="s-card">
+                        <div class="s-card-icon"><i class="ri-calendar-line"></i></div>
+                        <h4>Medium-term Programs</h4>
+                        <p>4–8 weeks of deeper engagement with guided experimental workflows and discovery programs.</p>
+                    </div>
+                    <div class="s-card">
+                        <div class="s-card-icon"><i class="ri-graduation-cap-line"></i></div>
+                        <h4>Project-based Engagement</h4>
+                        <p>Structured project-based engagement for M.Sc and PhD scholars aligned with ongoing research.</p>
+                    </div>
+                    <div class="s-card">
+                        <div class="s-card-icon"><i class="ri-lightbulb-flash-line"></i></div>
+                        <h4>Concept-to-Application</h4>
+                        <p>Integration with ongoing discovery programs for concept-to-application understanding of applied biotechnology.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ OUR APPROACH ══ -->
+        <section class="approach-section" id="approach">
+            <div class="approach-inner">
+                <div class="approach-left">
+                    <div class="section-tag">
+                        <div class="section-tag-dot"></div><span class="section-tag-text">Our Approach</span>
+                    </div>
+                    <h2>Our Approach</h2>
+                    <p>These are not routine training modules — they are structured research exposure programs designed to provide hands-on understanding of applied biotechnology and discovery-driven workflows.</p>
+                    <div class="approach-timeline">
+                        <div class="a-step">
+                            <div class="a-step-num">01</div>
+                            <div class="a-step-body">
+                                <strong>Hands-on Laboratory Exposure</strong>
+                                <span>Direct participation in active laboratory workflows across microbiology, molecular biology, and bioassay platforms.</span>
+                            </div>
+                        </div>
+                        <div class="a-step">
+                            <div class="a-step-num">02</div>
+                            <div class="a-step-body">
+                                <strong>Guided Experimental Workflows</strong>
+                                <span>Step-by-step guidance through real experimental processes with mentorship from experienced researchers.</span>
+                            </div>
+                        </div>
+                        <div class="a-step">
+                            <div class="a-step-num">03</div>
+                            <div class="a-step-body">
+                                <strong>Concept-to-Application Understanding</strong>
+                                <span>Bridging foundational science with real-world application contexts in pharmaceutical, agricultural, and industrial domains.</span>
+                            </div>
+                        </div>
+                        <div class="a-step">
+                            <div class="a-step-num">04</div>
+                            <div class="a-step-body">
+                                <strong>Integration with Ongoing Discovery Programs</strong>
+                                <span>Participants are embedded within active research programs, working alongside ongoing discovery and validation workflows.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="approach-right">
+                    <div class="approach-img-stack">
+                        <div class="approach-img-main">
+                            <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80" alt="Research Exposure" loading="lazy" />
+                        </div>
+                        <div class="approach-img-small">
+                            <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=300&q=80" alt="Lab Culture" loading="lazy" />
+                        </div>
+                        <div class="approach-badge">
+                            <i class="ri-award-line"></i>
+                            <strong>Discovery-Driven</strong>
+                            <span>Real programs. Real workflows.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ WHO SHOULD APPLY ══ -->
+        <section class="who-section" id="who">
+            <div class="who-header">
+                <div>
+                    <div class="section-tag">
+                        <div class="section-tag-dot"></div><span class="section-tag-text">Eligibility</span>
+                    </div>
+                    <h2>Who Should Apply</h2>
+                </div>
+                <p>We welcome applications from motivated students and early-stage researchers who are passionate about applied biotechnology and discovery-driven science.</p>
+            </div>
+            <div class="who-grid">
+                <div class="who-card">
+                    <div class="who-card-icon"><i class="ri-graduation-cap-line"></i></div>
+                    <div>
+                        <strong>M.Sc Students</strong>
+                        <span>M.Sc Biotechnology, Microbiology, and Life Sciences students seeking hands-on research exposure.</span>
+                    </div>
+                </div>
+                <div class="who-card">
+                    <div class="who-card-icon"><i class="ri-book-open-line"></i></div>
+                    <div>
+                        <strong>PhD Scholars</strong>
+                        <span>PhD scholars looking to deepen their applied research skills within discovery-driven laboratory environments.</span>
+                    </div>
+                </div>
+                <div class="who-card">
+                    <div class="who-card-icon"><i class="ri-microscope-line"></i></div>
+                    <div>
+                        <strong>Early-stage Researchers</strong>
+                        <span>Early-stage researchers interested in applied biotechnology who want to engage with real discovery programs.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ FINAL CTA ══ -->
+        <section class="cta-section" id="apply">
+            <div class="cta-left">
+                <div class="section-tag light" style="margin-bottom:20px;">
+                    <div class="section-tag-dot"></div><span class="section-tag-text">Apply for Research Exposure</span>
+                </div>
+                <h2>Ready to <em>Explore</em><br>Real Research?</h2>
+                <p>Explore opportunities to work alongside ongoing discovery programs and gain real-world laboratory experience.</p>
+            </div>
+            <div class="cta-right">
+                <a href="#" class="btn-primary">Apply Now <i class="ri-arrow-right-line"></i></a>
+                <a href="#" class="btn-ghost">Discuss a Project-Based Program <i class="ri-arrow-right-line"></i></a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ══ FOOTER ══ -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h3>Building a <em>healthier</em><br>tomorrow, today.</h3>
+                <p>A passionate team of scientists and innovators dedicated to responsible biotech discovery that creates lasting impact for people and planet.</p>
+                <div class="footer-socials">
+                    <a href="#" title="X/Twitter">𝕏</a>
+                    <a href="#" title="LinkedIn">in</a>
+                    <a href="#" title="Instagram">◉</a>
+                    <a href="#" title="Facebook">ƒ</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Navigate</h5>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Our Research</a></li>
+                    <li><a href="#">Pipeline</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Impact Report</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Leadership</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Investors</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Contact</h5>
+                <ul>
+                    <li><a href="#">Get in Touch</a></li>
+                    <li><a href="#">Partnerships</a></li>
+                    <li><a href="#">Media Enquiries</a></li>
+                    <li><a href="#">Legal</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Molmet Biotech. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Cookie Settings</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 20);
+        }, { passive: true });
+
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileOverlay = document.getElementById('mobile-overlay');
+        function toggleMobile(open) {
+            hamburger.classList.toggle('active', open);
+            mobileMenu.classList.toggle('open', open);
+            mobileOverlay.classList.toggle('open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        }
+        hamburger.addEventListener('click', () => toggleMobile(!mobileMenu.classList.contains('open')));
+        mobileOverlay.addEventListener('click', () => toggleMobile(false));
+        document.querySelectorAll('.mobile-nav-link[data-target]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const t = document.getElementById(btn.dataset.target);
+                if (t) t.classList.toggle('open');
+            });
+        });
+
+        const observerOpts = { threshold: 0.1, rootMargin: '0px 0px -60px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) forwards';
+                    entry.target.style.opacity = '1';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOpts);
+
+        const reveals = [
+            '.intro-left', '.intro-right',
+            '.track-card', '.a-step',
+            '.s-card', '.who-card',
+            '.approach-img-stack',
+            '.cta-left', '.cta-right'
+        ];
+        reveals.forEach(sel => {
+            document.querySelectorAll(sel).forEach((el, i) => {
+                el.style.opacity = '0';
+                el.style.animationDelay = `${i * 0.1}s`;
+                observer.observe(el);
+            });
+        });
+
+        document.querySelectorAll('.track-card').forEach((el, i) => {
+            el.style.animationDelay = `${i * 0.12}s`;
+        });
+    </script>
+</body>
+
+</html>
