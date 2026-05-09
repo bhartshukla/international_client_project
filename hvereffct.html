@@ -3,1115 +3,1275 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Premium Hover Showcase</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Premium Hover Showcase V2</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* ═══════════ TOKENS ═══════════ */
 :root{
-  --d1:#0f1f1c; --d2:#173630; --d3:#1e4a40;
-  --a1:#4d8c6a; --a2:#7ecba1;
-  --light:#e6f4ec; --lighter:#f0f8f3;
-  --fd:'Cormorant',serif; --fb:'Outfit',sans-serif;
-  --tr:0.5s cubic-bezier(.4,0,.2,1);
-  --tr-fast:0.35s cubic-bezier(.4,0,.2,1);
-  --r:12px;
+  --ink:#080c10;--ink2:#111820;--ink3:#1a2535;
+  --steel:#1e3a5f;--ocean:#0d5c8a;--azure:#1a8fe3;
+  --gold:#c9943a;--gold2:#f0b84a;--cream:#f5f0e8;
+  --fog:#e8edf5;--mist:#f0f4f9;
+  --fd:'Playfair Display',serif;--fb:'DM Sans',sans-serif;--fm:'Space Mono',monospace;
+  --ease:cubic-bezier(.4,0,.2,1);--spring:cubic-bezier(.34,1.56,.64,1);
+  --t:.5s;--tf:.32s;
+  --r:10px;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--d1);font-family:var(--fb);color:var(--a2);overflow-x:hidden;min-width:1100px}
+body{background:var(--ink);font-family:var(--fb);color:var(--fog);overflow-x:hidden;min-width:1100px}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--ink)}
+::-webkit-scrollbar-thumb{background:var(--steel);border-radius:2px}
 
-/* ── Scrollbar ── */
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:var(--d1)}
-::-webkit-scrollbar-thumb{background:var(--d3);border-radius:3px}
-
-/* ══════════════════════════════════════════════════════
-   HERO
-══════════════════════════════════════════════════════ */
+/* ── HERO ── */
 .hero{
-  text-align:center;padding:90px 40px 70px;
-  border-bottom:1px solid rgba(77,140,106,.15);
+  padding:100px 60px 80px;text-align:center;
+  background:linear-gradient(160deg,#0a1525 0%,var(--ink) 60%);
+  border-bottom:1px solid rgba(26,143,227,.12);
   position:relative;overflow:hidden;
 }
 .hero::before{
   content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(30,74,64,.5) 0%, transparent 70%);
+  background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(26,95,143,.25) 0%,transparent 70%);
   pointer-events:none;
 }
-.hero-eyebrow{
-  font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;
-  color:var(--a1);font-weight:600;margin-bottom:22px;
-  display:inline-flex;align-items:center;gap:10px;
+.eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:var(--fm);font-size:.6rem;letter-spacing:.3em;
+  color:var(--azure);margin-bottom:28px;text-transform:uppercase;
 }
-.hero-eyebrow::before,.hero-eyebrow::after{
-  content:'';display:block;width:28px;height:1px;background:var(--a1);
+.eyebrow::before,.eyebrow::after{content:'';width:30px;height:1px;background:var(--azure);opacity:.5}
+.hero h1{font-family:var(--fd);font-size:clamp(3.2rem,7vw,6rem);font-weight:900;line-height:.95;letter-spacing:-.03em;color:var(--mist);margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--gold2)}
+.hero p{font-size:.85rem;color:rgba(200,215,235,.5);letter-spacing:.1em;font-weight:300;max-width:500px;margin:0 auto 40px}
+.hnav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.hnav a{
+  font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:10px 22px;border:1px solid rgba(26,143,227,.3);border-radius:40px;
+  color:var(--azure);text-decoration:none;transition:all .3s;font-weight:700;
 }
-.hero h1{
-  font-family:var(--fd);font-size:clamp(3rem,6vw,5.5rem);
-  font-weight:700;color:var(--lighter);line-height:1;
-  letter-spacing:-.02em;margin-bottom:18px;
-}
-.hero h1 em{font-style:italic;color:var(--a2)}
-.hero p{
-  font-size:.88rem;color:rgba(126,203,161,.55);letter-spacing:.08em;
-  font-weight:300;max-width:480px;margin:0 auto;
-}
-.hero-nav{
-  display:flex;gap:8px;justify-content:center;margin-top:40px;flex-wrap:wrap;
-}
-.hero-nav a{
-  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
-  padding:9px 20px;border:1px solid rgba(77,140,106,.35);
-  border-radius:40px;color:var(--a1);text-decoration:none;
-  transition:all .3s;font-weight:600;
-}
-.hero-nav a:hover{background:var(--a1);color:var(--d1);border-color:var(--a1)}
+.hnav a:hover{background:var(--azure);color:var(--ink);border-color:var(--azure)}
 
-/* ══════════════════════════════════════════════════════
-   LAYOUT WRAPPERS
-══════════════════════════════════════════════════════ */
-.chapter{padding:70px 50px 0}
-.chapter-hd{margin-bottom:52px}
-.chapter-hd h2{
-  font-family:var(--fd);font-size:2.4rem;font-weight:600;
-  font-style:italic;color:var(--lighter);line-height:1;margin-bottom:6px;
-}
-.chapter-hd span{
-  font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--a1);font-weight:600;
-}
-.section{padding:0 50px 56px}
-.row-lbl{
-  font-size:.55rem;letter-spacing:.28em;text-transform:uppercase;
-  color:rgba(77,140,106,.6);margin-bottom:12px;font-weight:700;
-}
-.row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+/* ── LAYOUT ── */
+.chapter{padding:70px 60px 0}
+.chapter h2{font-family:var(--fd);font-size:2.6rem;font-weight:700;font-style:italic;color:var(--mist);line-height:1;margin-bottom:6px}
+.chapter span{font-family:var(--fm);font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--azure);opacity:.7}
+.section{padding:0 60px 60px}
+.rlbl{font-family:var(--fm);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(26,143,227,.5);margin-bottom:14px;font-weight:700}
+.row5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.row4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 
-/* ── Section bg alternation ── */
-.sec-dark{background:var(--d1)}
-.sec-light{background:var(--lighter)}
-.sec-light .chapter-hd h2{color:var(--d1)}
-.sec-light .chapter-hd span{color:var(--a1)}
-.sec-light .row-lbl{color:rgba(30,74,64,.5)}
-
-/* ══════════════════════════════════════════════════════
-   TEXT CARD BASE
-══════════════════════════════════════════════════════ */
-.tc{
-  position:relative;height:220px;border-radius:var(--r);
+/* ── BASE CARD ── */
+.c{
+  position:relative;height:230px;border-radius:var(--r);
   overflow:hidden;cursor:pointer;
-  border:1px solid rgba(126,203,161,.1);
-  box-shadow:0 2px 16px rgba(0,0,0,.25);
-  transition:box-shadow var(--tr);
+  border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 2px 20px rgba(0,0,0,.4);
+  transition:box-shadow var(--t) var(--ease),transform var(--t) var(--ease);
 }
-.tc:hover{box-shadow:0 6px 32px rgba(0,0,0,.4)}
-.tc-fill{position:absolute;inset:0;z-index:2;pointer-events:none}
-.tc-body{
-  position:absolute;inset:0;z-index:4;
-  display:flex;flex-direction:column;justify-content:flex-end;
-  padding:24px 22px 20px;
-}
-.tc-ico{
-  width:32px;height:32px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:12px;transition:background var(--tr),transform var(--tr);
-}
-.tc-ico svg{width:15px;height:15px;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.tc-tag{
-  font-size:.53rem;letter-spacing:.25em;text-transform:uppercase;
-  font-weight:700;margin-bottom:7px;
-  transition:color var(--tr);
-}
-.tc-title{
-  font-family:var(--fd);font-size:1.35rem;font-weight:700;
-  line-height:1.15;transition:color var(--tr);
-}
-.tc-desc{
-  font-size:.7rem;margin-top:6px;font-weight:300;
-  line-height:1.5;transition:color var(--tr),opacity var(--tr);
-}
-
-/* Dark card defaults */
-.tc.dk{background:var(--d2)}
-.tc.dk .tc-tag{color:var(--a1)}
-.tc.dk .tc-title{color:var(--a2)}
-.tc.dk .tc-desc{color:rgba(126,203,161,.45)}
-.tc.dk .tc-ico{background:rgba(77,140,106,.2)}
-.tc.dk .tc-ico svg{stroke:var(--a2)}
-
-/* Light card defaults */
-.tc.lt{background:var(--light);border-color:rgba(30,74,64,.12)}
-.tc.lt .tc-tag{color:var(--a1)}
-.tc.lt .tc-title{color:var(--d1)}
-.tc.lt .tc-desc{color:rgba(15,31,28,.45)}
-.tc.lt .tc-ico{background:rgba(77,140,106,.15)}
-.tc.lt .tc-ico svg{stroke:var(--d3)}
-
-/* ──────── TEXT ROW 1 — Bottom-to-top fill ──────── */
-.tr1 .tc-fill{background:var(--d3);clip-path:inset(100% 0 0 0);transition:clip-path var(--tr)}
-.tr1 .tc:hover .tc-fill{clip-path:inset(0 0 0 0)}
-.tr1 .tc.lt:hover .tc-tag,.tr1 .tc.lt:hover .tc-ico svg{color:var(--a2);stroke:var(--a2)}
-.tr1 .tc.lt:hover .tc-title{color:var(--a2)}
-.tr1 .tc.lt:hover .tc-desc{color:rgba(126,203,161,.6)}
-.tr1 .tc.lt:hover .tc-ico{background:rgba(126,203,161,.15)}
-.tr1 .tc.dk:hover .tc-title{color:var(--lighter)}
-.tr1 .tc.dk:hover .tc-ico{background:rgba(126,203,161,.2)}
-
-/* ──────── TEXT ROW 2 — Top-to-bottom fill ──────── */
-.tr2 .tc-fill{background:var(--a2);clip-path:inset(0 0 100% 0);transition:clip-path var(--tr)}
-.tr2 .tc:hover .tc-fill{clip-path:inset(0 0 0% 0)}
-.tr2 .tc.dk:hover .tc-tag,.tr2 .tc.lt:hover .tc-tag{color:var(--d2)}
-.tr2 .tc.dk:hover .tc-title,.tr2 .tc.lt:hover .tc-title{color:var(--d1)}
-.tr2 .tc.dk:hover .tc-desc,.tr2 .tc.lt:hover .tc-desc{color:rgba(15,31,28,.55)}
-.tr2 .tc:hover .tc-ico{background:rgba(15,31,28,.15)}
-.tr2 .tc:hover .tc-ico svg{stroke:var(--d1)}
-
-/* ──────── TEXT ROW 3 — Left-to-right fill ──────── */
-.tr3 .tc-fill{background:var(--d3);clip-path:inset(0 100% 0 0);transition:clip-path var(--tr)}
-.tr3 .tc:hover .tc-fill{clip-path:inset(0 0% 0 0)}
-.tr3 .tc.lt:hover .tc-title,.tr3 .tc.lt:hover .tc-tag{color:var(--a2)}
-.tr3 .tc.lt:hover .tc-desc{color:rgba(126,203,161,.55)}
-.tr3 .tc.lt:hover .tc-ico svg{stroke:var(--a2)}
-.tr3 .tc.lt:hover .tc-ico{background:rgba(126,203,161,.15)}
-.tr3 .tc.dk:hover .tc-title{color:var(--lighter)}
-
-/* ──────── TEXT ROW 4 — Right-to-left fill ──────── */
-.tr4 .tc-fill{background:var(--a1);clip-path:inset(0 0 0 100%);transition:clip-path var(--tr)}
-.tr4 .tc:hover .tc-fill{clip-path:inset(0 0 0 0%)}
-.tr4 .tc:hover .tc-tag{color:var(--d1)}
-.tr4 .tc:hover .tc-title{color:var(--d1)}
-.tr4 .tc:hover .tc-desc{color:rgba(15,31,28,.6)}
-.tr4 .tc:hover .tc-ico{background:rgba(15,31,28,.2)}
-.tr4 .tc:hover .tc-ico svg{stroke:var(--d1)}
-
-/* ──────── TEXT ROW 5 — Center expand ──────── */
-.tr5 .tc-fill{
-  background:var(--d2);border-radius:50%;
-  width:0;height:0;top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  transition:width .55s cubic-bezier(.4,0,.2,1),height .55s cubic-bezier(.4,0,.2,1);
-}
-.tr5 .tc:hover .tc-fill{width:220%;height:220%}
-.tr5 .tc.lt:hover .tc-title{color:var(--a2)}
-.tr5 .tc.lt:hover .tc-desc{color:rgba(126,203,161,.5)}
-.tr5 .tc.lt:hover .tc-tag{color:var(--a1)}
-.tr5 .tc.lt:hover .tc-ico svg{stroke:var(--a2)}
-.tr5 .tc.lt:hover .tc-ico{background:rgba(126,203,161,.15)}
-.tr5 .tc.dk:hover .tc-title{color:var(--lighter)}
-
-/* ──────── TEXT ROW 6 — Diagonal sweep ──────── */
-.tr6 .tc-fill{
-  background:var(--a1);
-  clip-path:polygon(0 100%,0 100%,0 100%);
-  transition:clip-path .6s cubic-bezier(.4,0,.2,1);
-}
-.tr6 .tc:hover .tc-fill{clip-path:polygon(-5% 105%,105% -5%,105% 105%)}
-.tr6 .tc:hover .tc-tag{color:var(--d1)}
-.tr6 .tc:hover .tc-title{color:var(--d1)}
-.tr6 .tc:hover .tc-desc{color:rgba(15,31,28,.6)}
-.tr6 .tc:hover .tc-ico{background:rgba(15,31,28,.2)}
-.tr6 .tc:hover .tc-ico svg{stroke:var(--d1)}
-
-/* ──────── TEXT ROW 7 — Dual-side fill ──────── */
-.tr7 .fill-l,.tr7 .fill-r{
-  position:absolute;top:0;bottom:0;width:50%;z-index:2;
-  background:var(--d3);pointer-events:none;
-  transition:transform var(--tr);
-}
-.tr7 .fill-l{left:0;transform:translateX(-100%)}
-.tr7 .fill-r{right:0;transform:translateX(100%)}
-.tr7 .tc:hover .fill-l{transform:translateX(0)}
-.tr7 .tc:hover .fill-r{transform:translateX(0)}
-.tr7 .tc.lt:hover .tc-title{color:var(--a2)}
-.tr7 .tc.lt:hover .tc-desc{color:rgba(126,203,161,.5)}
-.tr7 .tc.lt:hover .tc-tag{color:var(--a1)}
-.tr7 .tc.lt:hover .tc-ico svg{stroke:var(--a2)}
-.tr7 .tc.lt:hover .tc-ico{background:rgba(126,203,161,.15)}
-.tr7 .tc.dk:hover .tc-title{color:var(--lighter)}
-
-/* ──────── TEXT ROW 8 — Vertical split ──────── */
-.tr8 .fill-t,.tr8 .fill-b{
-  position:absolute;left:0;right:0;height:50%;z-index:2;
-  background:var(--a2);pointer-events:none;
-  transition:transform var(--tr);
-}
-.tr8 .fill-t{top:0;transform:translateY(-100%)}
-.tr8 .fill-b{bottom:0;transform:translateY(100%)}
-.tr8 .tc:hover .fill-t{transform:translateY(0)}
-.tr8 .tc:hover .fill-b{transform:translateY(0)}
-.tr8 .tc:hover .tc-tag,.tr8 .tc:hover .tc-title,.tr8 .tc:hover .tc-desc{color:var(--d1)}
-.tr8 .tc:hover .tc-ico{background:rgba(15,31,28,.15)}
-.tr8 .tc:hover .tc-ico svg{stroke:var(--d1)}
-
-/* ──────── TEXT ROW 9 — Horizontal split ──────── */
-.tr9 .fill-hl,.tr9 .fill-hr{
-  position:absolute;top:0;bottom:0;width:50%;z-index:2;
-  background:var(--d2);pointer-events:none;
-  transition:transform var(--tr);
-}
-.tr9 .fill-hl{left:0;transform:translateX(-100%)}
-.tr9 .fill-hr{right:0;transform:translateX(100%)}
-.tr9 .tc:hover .fill-hl{transform:translateX(0)}
-.tr9 .tc:hover .fill-hr{transform:translateX(0)}
-.tr9 .tc.lt:hover .tc-title{color:var(--a2)}
-.tr9 .tc.lt:hover .tc-desc{color:rgba(126,203,161,.5)}
-.tr9 .tc.lt:hover .tc-tag{color:var(--a1)}
-.tr9 .tc.lt:hover .tc-ico svg{stroke:var(--a2)}
-.tr9 .tc.lt:hover .tc-ico{background:rgba(126,203,161,.15)}
-.tr9 .tc.dk:hover .tc-title{color:var(--lighter)}
-
-/* ──────── TEXT ROW 10 — Circular fill ──────── */
-.tr10 .tc-fill{
-  background:radial-gradient(circle,var(--d3) 0%,var(--d2) 100%);
-  border-radius:50%;width:0;height:0;
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  transition:width .6s cubic-bezier(.4,0,.2,1),height .6s cubic-bezier(.4,0,.2,1);
-}
-.tr10 .tc:hover .tc-fill{width:230%;height:230%}
-.tr10 .tc.lt:hover .tc-title{color:var(--a2)}
-.tr10 .tc.lt:hover .tc-tag{color:var(--a1)}
-.tr10 .tc.lt:hover .tc-desc{color:rgba(126,203,161,.5)}
-.tr10 .tc.lt:hover .tc-ico svg{stroke:var(--a2)}
-.tr10 .tc.lt:hover .tc-ico{background:rgba(126,203,161,.15)}
-.tr10 .tc.dk:hover .tc-title{color:var(--lighter)}
-
-/* ──────── TEXT ROW 11 — Corner sweep ──────── */
-.tr11 .tc-fill{
-  background:var(--a1);
-  clip-path:polygon(100% 0,100% 0,100% 0);
-  transition:clip-path .62s cubic-bezier(.4,0,.2,1);
-}
-.tr11 .tc:hover .tc-fill{clip-path:polygon(100% 0,-5% 0,-5% 110%,105% 110%)}
-.tr11 .tc:hover .tc-tag{color:var(--d1)}
-.tr11 .tc:hover .tc-title{color:var(--d1)}
-.tr11 .tc:hover .tc-desc{color:rgba(15,31,28,.6)}
-.tr11 .tc:hover .tc-ico{background:rgba(15,31,28,.2)}
-.tr11 .tc:hover .tc-ico svg{stroke:var(--d1)}
-
-/* ──────── TEXT ROW 12 — Underline expansion ──────── */
-.tr12 .tc::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;
-  height:3px;background:var(--a2);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform var(--tr);z-index:5;
-}
-.tr12 .tc-fill{background:var(--d3);clip-path:inset(100% 0 0 0);transition:clip-path var(--tr)}
-.tr12 .tc:hover::after{transform:scaleX(1)}
-.tr12 .tc:hover .tc-fill{clip-path:inset(20% 0 0 0)}
-.tr12 .tc.lt:hover .tc-title{color:var(--a2)}
-.tr12 .tc.lt:hover .tc-tag{color:var(--a1)}
-.tr12 .tc.lt:hover .tc-desc{color:rgba(126,203,161,.55)}
-.tr12 .tc.lt:hover .tc-ico svg{stroke:var(--a2)}
-.tr12 .tc.lt:hover .tc-ico{background:rgba(126,203,161,.15)}
-.tr12 .tc.dk:hover .tc-title{color:var(--lighter)}
-.tr12 .tc.dk:hover .tc-ico{background:rgba(126,203,161,.2)}
-
-/* ══════════════════════════════════════════════════════
-   IMAGE CARD BASE
-══════════════════════════════════════════════════════ */
-.ic{
-  position:relative;height:300px;border-radius:var(--r);
-  overflow:hidden;cursor:pointer;background:var(--d2);
-  border:1px solid rgba(126,203,161,.08);
-  box-shadow:0 4px 22px rgba(0,0,0,.3);
-  transition:box-shadow var(--tr);
-}
-.ic:hover{box-shadow:0 8px 40px rgba(0,0,0,.5)}
-.ic-img{
-  position:absolute;inset:0;
-  background-size:cover;background-position:center;
-  transition:transform .55s cubic-bezier(.4,0,.2,1),filter .5s ease,opacity .5s ease;
-}
-.ic:hover .ic-img{transform:scale(1.06)}
-.ic-fill{position:absolute;inset:0;z-index:2;pointer-events:none}
-.ic-body{
+.c:hover{box-shadow:0 8px 40px rgba(0,0,0,.6)}
+.cfill{position:absolute;inset:0;z-index:2;pointer-events:none}
+.cbody{
   position:absolute;inset:0;z-index:4;
   display:flex;flex-direction:column;justify-content:flex-end;
   padding:22px 20px 18px;
 }
-.ic-tag{font-size:.53rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;color:var(--a1);margin-bottom:5px;transition:color var(--tr)}
-.ic-title{font-family:var(--fd);font-size:1.3rem;font-weight:700;color:var(--a2);line-height:1.2;transition:color var(--tr)}
-.ic-sub{font-size:.68rem;color:rgba(126,203,161,.5);margin-top:4px;font-weight:300;transition:color var(--tr)}
-.ic-ico{
-  width:34px;height:34px;border-radius:50%;
-  background:rgba(77,140,106,.3);
+.ctag{font-family:var(--fm);font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;font-weight:700;margin-bottom:8px;color:var(--azure);transition:color var(--t)}
+.ctitle{font-family:var(--fd);font-size:1.45rem;font-weight:700;line-height:1.1;color:var(--mist);transition:color var(--t),transform var(--t)}
+.cdesc{font-size:.68rem;margin-top:6px;font-weight:300;line-height:1.55;color:rgba(200,215,235,.4);transition:color var(--t),opacity var(--t),transform var(--t)}
+.cico{
+  width:36px;height:36px;border-radius:8px;
   display:flex;align-items:center;justify-content:center;
-  margin-bottom:10px;transition:background var(--tr),transform var(--tr);
+  margin-bottom:14px;background:rgba(26,143,227,.12);
+  transition:background var(--t),transform var(--t);
 }
-.ic-ico svg{width:14px;height:14px;stroke:var(--a2);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:stroke var(--tr)}
+.cico svg{width:16px;height:16px;stroke:var(--azure);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:stroke var(--t),transform var(--t)}
 
-/* images */
+/* dark card base */
+.dk{background:var(--ink2)}
+
+/* ════════════════════════════════════════
+   SECTION 1: MAGNETIC / 3D TILT CARDS
+════════════════════════════════════════ */
+.tilt-card{
+  position:relative;height:230px;border-radius:12px;
+  overflow:visible;cursor:pointer;
+  transform-style:preserve-3d;
+  transition:box-shadow .4s var(--ease);
+  box-shadow:0 4px 24px rgba(0,0,0,.5);
+}
+.tilt-card .inner{
+  position:absolute;inset:0;border-radius:12px;overflow:hidden;
+  background:var(--ink2);border:1px solid rgba(255,255,255,.07);
+  transform-style:preserve-3d;
+  transition:transform .15s linear;
+}
+.tilt-card .shine{
+  position:absolute;inset:0;z-index:10;
+  background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.08) 0%,transparent 60%);
+  opacity:0;transition:opacity .3s;border-radius:12px;pointer-events:none;
+}
+.tilt-card:hover .shine{opacity:1}
+.tilt-card .inner .cbody{z-index:4}
+.tilt-card .glow{
+  position:absolute;inset:-2px;border-radius:14px;z-index:-1;
+  background:conic-gradient(from var(--a,0deg),var(--azure),var(--gold),var(--azure));
+  opacity:0;filter:blur(8px);
+  transition:opacity .4s;
+}
+.tilt-card:hover .glow{opacity:.5}
+.tilt-card .ctag{color:var(--gold2)}
+.tilt-card .cico{background:rgba(201,148,58,.15)}
+.tilt-card .cico svg{stroke:var(--gold2)}
+
+/* ════════════════════════════════════════
+   SECTION 2: GLITCH / SCANLINE EFFECTS
+════════════════════════════════════════ */
+.glitch-card{
+  position:relative;height:230px;border-radius:var(--r);
+  overflow:hidden;cursor:pointer;background:var(--ink2);
+  border:1px solid rgba(26,143,227,.1);
+  box-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.glitch-card .scanlines{
+  position:absolute;inset:0;z-index:6;pointer-events:none;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.15) 2px,rgba(0,0,0,.15) 4px);
+  opacity:0;transition:opacity .3s;
+}
+.glitch-card:hover .scanlines{opacity:1}
+.glitch-card .g-shift{
+  position:absolute;inset:0;z-index:5;pointer-events:none;
+  background:var(--ink3);
+  clip-path:polygon(0 0,100% 0,100% 0,0 0);
+  transition:none;
+}
+.glitch-card .cbody{z-index:7}
+.glitch-card .ctitle{font-family:var(--fm);font-size:1.1rem;letter-spacing:.05em}
+.glitch-card .ctag{color:var(--gold2)}
+.glitch-card .cico{background:rgba(201,148,58,.12);border-radius:4px}
+.glitch-card .cico svg{stroke:var(--gold2)}
+.glitch-card .noise{
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  opacity:0;transition:opacity .3s;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+}
+.glitch-card:hover .noise{opacity:1}
+.glitch-card .accent-bar{
+  position:absolute;top:0;left:0;right:0;height:3px;z-index:8;
+  background:linear-gradient(90deg,var(--azure),var(--gold2),var(--azure));
+  background-size:200%;transform:scaleX(0);transform-origin:left;
+  transition:transform .5s var(--ease),background-position .5s;
+}
+.glitch-card:hover .accent-bar{transform:scaleX(1);background-position:100%}
+
+/* ════════════════════════════════════════
+   SECTION 3: LIQUID / MORPHING FILL
+════════════════════════════════════════ */
+.liquid-card{
+  position:relative;height:230px;border-radius:var(--r);
+  overflow:hidden;cursor:pointer;
+  background:var(--ink2);border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.liquid-card .blob{
+  position:absolute;z-index:2;pointer-events:none;
+  border-radius:40% 60% 70% 30% / 40% 50% 60% 50%;
+  transition:transform .6s var(--ease),width .6s var(--ease),height .6s var(--ease),border-radius .6s var(--ease),opacity .4s;
+  opacity:0;
+}
+.liquid-card:hover .blob{opacity:1}
+.lq1 .blob{background:rgba(26,143,227,.2);width:180%;height:180%;top:-40%;left:-40%}
+.lq1:hover .blob{border-radius:60% 40% 30% 70% / 60% 30% 70% 40%;transform:rotate(60deg) scale(1.1)}
+.lq2 .blob{background:rgba(201,148,58,.18);width:200%;height:200%;top:-50%;left:-50%}
+.lq2:hover .blob{border-radius:30% 70% 50% 50% / 30% 30% 70% 70%;transform:rotate(-45deg) scale(1.05)}
+.lq3 .blob{background:rgba(26,95,143,.25);width:220%;height:220%;top:-60%;left:-60%}
+.lq3:hover .blob{border-radius:70% 30% 30% 70% / 50% 50% 30% 60%;transform:rotate(90deg) scale(1.08)}
+.lq4 .blob{background:rgba(26,143,227,.15);width:190%;height:190%;top:-45%;left:-45%}
+.lq4:hover .blob{border-radius:50% 50% 30% 70% / 60% 40% 60% 40%;transform:rotate(-70deg) scale(1.12)}
+.lq5 .blob{background:rgba(201,148,58,.2);width:210%;height:210%;top:-55%;left:-55%}
+.lq5:hover .blob{border-radius:40% 60% 60% 40% / 40% 30% 60% 50%;transform:rotate(30deg) scale(1.06)}
+.liquid-card .cbody{z-index:4}
+.liquid-card .ctag{color:var(--gold2)}
+.liquid-card .cico{background:rgba(201,148,58,.12)}
+.liquid-card .cico svg{stroke:var(--gold2)}
+.liquid-card:hover .ctitle{color:#fff}
+.liquid-card:hover .cdesc{color:rgba(200,215,235,.6)}
+
+/* ════════════════════════════════════════
+   SECTION 4: GRADIENT WIPE + STAGGER TEXT
+════════════════════════════════════════ */
+.gw-card{
+  position:relative;height:230px;border-radius:var(--r);
+  overflow:hidden;cursor:pointer;
+  background:var(--ink2);border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.gw-card .gwfill{
+  position:absolute;inset:0;z-index:2;
+  background:linear-gradient(135deg,var(--steel) 0%,var(--ocean) 50%,var(--azure) 100%);
+  clip-path:inset(100% 0 0 0);
+  transition:clip-path .55s var(--ease);
+  opacity:.9;
+}
+.gw-card:hover .gwfill{clip-path:inset(0 0 0 0)}
+.gw-card .cbody{z-index:4}
+.gw-card .ctag{transition:color .4s .1s}
+.gw-card .ctitle{transition:color .4s .15s,transform .4s .15s}
+.gw-card .cdesc{transition:color .4s .2s,transform .4s .2s;transform:translateY(4px);opacity:0}
+.gw-card:hover .ctag{color:var(--gold2)}
+.gw-card:hover .ctitle{color:#fff}
+.gw-card:hover .cdesc{color:rgba(240,184,74,.7);transform:translateY(0);opacity:1}
+.gw-card .cico{transition:background .4s,transform .5s var(--spring) .1s}
+.gw-card:hover .cico{background:rgba(240,184,74,.2);transform:scale(1.15) rotate(-5deg)}
+.gw-card:hover .cico svg{stroke:var(--gold2)}
+.gw-card .num{
+  position:absolute;top:18px;right:20px;z-index:5;
+  font-family:var(--fm);font-size:.55rem;letter-spacing:.15em;
+  color:rgba(255,255,255,.15);transition:color .4s,transform .4s;
+}
+.gw-card:hover .num{color:rgba(240,184,74,.5);transform:scale(1.1)}
+
+/* ════════════════════════════════════════
+   SECTION 5: BORDER DRAW + ICON SPIN
+════════════════════════════════════════ */
+.bd-card{
+  position:relative;height:230px;border-radius:var(--r);
+  overflow:hidden;cursor:pointer;
+  background:var(--ink2);
+  box-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.bd-card::before,.bd-card::after{
+  content:'';position:absolute;z-index:3;pointer-events:none;
+  background:var(--azure);transition:none;
+}
+.bd-card::before{top:0;left:0;width:0;height:2px;transition:width .4s var(--ease)}
+.bd-card::after{bottom:0;right:0;width:0;height:2px;transition:width .4s var(--ease) .2s}
+.bd-card .bside-l,.bd-card .bside-r{
+  position:absolute;z-index:3;pointer-events:none;background:var(--azure);
+}
+.bd-card .bside-l{top:0;left:0;width:2px;height:0;transition:height .4s var(--ease) .4s}
+.bd-card .bside-r{bottom:0;right:0;width:2px;height:0;transition:height .4s var(--ease) .6s}
+.bd-card:hover::before{width:100%}
+.bd-card:hover::after{width:100%}
+.bd-card:hover .bside-l{height:100%}
+.bd-card:hover .bside-r{height:100%}
+.bd-card .cbody{z-index:4}
+.bd-card .cico{transition:transform .6s var(--spring),background .4s}
+.bd-card:hover .cico{transform:rotate(360deg) scale(1.15);background:rgba(26,143,227,.25)}
+.bd-card:hover .ctag{color:var(--azure)}
+.bd-card:hover .ctitle{color:#fff}
+.bd-card:hover .cico svg{stroke:var(--azure)}
+.bd-card .ctag{color:rgba(26,143,227,.6)}
+.bd-card .ctitle{color:var(--fog)}
+.bd-card .cdesc{color:rgba(200,215,235,.35)}
+
+/* ════════════════════════════════════════
+   SECTION 6: SPOTLIGHT / CURSOR FOLLOW
+════════════════════════════════════════ */
+.spot-card{
+  position:relative;height:230px;border-radius:var(--r);
+  overflow:hidden;cursor:pointer;
+  background:var(--ink3);border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.spot-card .spotlight{
+  position:absolute;z-index:2;pointer-events:none;
+  width:300px;height:300px;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  opacity:0;
+  transition:opacity .4s;
+}
+.spot-card:hover .spotlight{opacity:1}
+.sp1 .spotlight{background:radial-gradient(circle,rgba(26,143,227,.15) 0%,transparent 70%)}
+.sp2 .spotlight{background:radial-gradient(circle,rgba(201,148,58,.15) 0%,transparent 70%)}
+.sp3 .spotlight{background:radial-gradient(circle,rgba(26,143,227,.12) 0%,transparent 70%)}
+.sp4 .spotlight{background:radial-gradient(circle,rgba(201,148,58,.12) 0%,transparent 70%)}
+.sp5 .spotlight{background:radial-gradient(circle,rgba(26,143,227,.18) 0%,transparent 70%)}
+.spot-card .cbody{z-index:4}
+.spot-card:hover .ctitle{color:#fff}
+.spot-card:hover .cdesc{color:rgba(200,215,235,.55)}
+.spot-card .ctag{color:var(--azure)}
+.spot-card .cico{background:rgba(26,143,227,.1)}
+.spot-card .cico svg{stroke:var(--azure)}
+.spot-card:hover .cico{background:rgba(26,143,227,.22)}
+
+/* ════════════════════════════════════════
+   SECTION 7: TYPEWRITER REVEAL
+════════════════════════════════════════ */
+.tw-card{
+  position:relative;height:230px;border-radius:var(--r);
+  overflow:hidden;cursor:pointer;
+  background:var(--ink2);border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.tw-card .cfill{background:linear-gradient(180deg,rgba(14,30,50,.0) 0%,rgba(14,30,50,.95) 100%);clip-path:inset(60% 0 0 0);transition:clip-path .5s var(--ease)}
+.tw-card:hover .cfill{clip-path:inset(0 0 0 0)}
+.tw-card .cbody{z-index:4}
+.tw-card .ctag{opacity:0;transform:translateX(-8px);transition:opacity .35s .1s,transform .35s .1s}
+.tw-card .ctitle{overflow:hidden;white-space:nowrap;width:0;transition:width .6s .15s var(--ease);font-family:var(--fm);font-size:1rem;letter-spacing:.05em}
+.tw-card .cdesc{opacity:0;transform:translateY(6px);transition:opacity .3s .55s,transform .3s .55s}
+.tw-card .cursor{display:inline-block;width:2px;height:1em;background:var(--azure);vertical-align:middle;opacity:0;margin-left:2px;transition:opacity .1s .15s;animation:blink 1s infinite}
+.tw-card:hover .ctag{opacity:1;transform:translateX(0)}
+.tw-card:hover .ctitle{width:100%}
+.tw-card:hover .cdesc{opacity:1;transform:translateY(0)}
+.tw-card:hover .cursor{opacity:1}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.tw-card .preview-title{
+  position:absolute;bottom:18px;left:20px;z-index:5;
+  font-family:var(--fm);font-size:.85rem;color:rgba(200,215,235,.4);
+  transition:opacity .3s;
+}
+.tw-card:hover .preview-title{opacity:0}
+
+/* ════════════════════════════════════════
+   SECTION 8: LAYERED DEPTH / PARALLAX
+════════════════════════════════════════ */
+.par-card{
+  position:relative;height:230px;border-radius:var(--r);
+  overflow:hidden;cursor:pointer;
+  background:var(--ink2);border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 2px 20px rgba(0,0,0,.4);
+  transform-style:preserve-3d;perspective:600px;
+}
+.par-card .pl1,.par-card .pl2,.par-card .pl3{
+  position:absolute;inset:0;pointer-events:none;
+  transition:transform .5s var(--ease);
+  will-change:transform;
+}
+.par-card .pl1{
+  background:linear-gradient(135deg,var(--ink3) 0%,var(--steel) 100%);
+  z-index:1;
+}
+.par-card .pl2{
+  background:radial-gradient(ellipse 60% 50% at 30% 60%,rgba(26,143,227,.12) 0%,transparent 100%);
+  z-index:2;
+}
+.par-card .pl3{
+  background:radial-gradient(ellipse 40% 30% at 70% 30%,rgba(201,148,58,.08) 0%,transparent 100%);
+  z-index:3;
+}
+.par-card .cbody{z-index:5}
+.par-card:hover .ctitle{color:#fff}
+.par-card:hover .cdesc{color:rgba(200,215,235,.6)}
+.par-card .ctag{color:var(--gold2)}
+.par-card .cico{background:rgba(201,148,58,.1)}
+.par-card .cico svg{stroke:var(--gold2)}
+
+/* ════════════════════════════════════════
+   SECTION 9: FLIP CARD
+════════════════════════════════════════ */
+.flip-wrap{height:230px;perspective:1000px;cursor:pointer}
+.flip-inner{
+  position:relative;width:100%;height:100%;
+  transform-style:preserve-3d;
+  transition:transform .65s cubic-bezier(.4,0,.2,1);
+}
+.flip-wrap:hover .flip-inner{transform:rotateY(180deg)}
+.flip-front,.flip-back{
+  position:absolute;inset:0;backface-visibility:hidden;
+  border-radius:var(--r);border:1px solid rgba(255,255,255,.06);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:22px 20px 18px;overflow:hidden;
+}
+.flip-front{background:var(--ink2)}
+.flip-back{
+  background:linear-gradient(135deg,var(--steel),var(--ink3));
+  transform:rotateY(180deg);
+  justify-content:center;align-items:flex-start;gap:10px;
+}
+.flip-front .ctag{color:var(--azure)}
+.flip-front .ctitle{color:var(--mist)}
+.flip-front .cdesc{color:rgba(200,215,235,.35)}
+.flip-back .bk-tag{font-family:var(--fm);font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold2);margin-bottom:4px}
+.flip-back .bk-title{font-family:var(--fd);font-size:1.3rem;font-weight:700;color:#fff;line-height:1.1;margin-bottom:10px}
+.flip-back .bk-desc{font-size:.7rem;color:rgba(200,215,235,.65);line-height:1.6}
+.flip-back .bk-btn{
+  display:inline-flex;align-items:center;gap:6px;margin-top:14px;
+  font-family:var(--fm);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:8px 16px;border:1px solid rgba(26,143,227,.5);border-radius:40px;
+  color:var(--azure);
+}
+
+/* ════════════════════════════════════════
+   SECTION 10: SHIMMER / HOLOGRAPHIC
+════════════════════════════════════════ */
+.shim-card{
+  position:relative;height:230px;border-radius:var(--r);
+  overflow:hidden;cursor:pointer;
+  background:var(--ink2);border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.shim-card .shimmer{
+  position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.05) 50%,transparent 70%);
+  transform:translateX(-100%);
+  transition:transform .8s ease;
+}
+.shim-card:hover .shimmer{transform:translateX(100%)}
+.shim-card .holo{
+  position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:conic-gradient(from 220deg at 60% 40%,rgba(26,143,227,.08),rgba(201,148,58,.06),rgba(26,143,227,.08));
+  opacity:0;transition:opacity .5s;
+}
+.shim-card:hover .holo{opacity:1}
+.shim-card .cbody{z-index:4}
+.shim-card .ctag{color:var(--azure)}
+.shim-card:hover .ctitle{color:#fff}
+.shim-card:hover .cdesc{color:rgba(200,215,235,.55)}
+.shim-card .cico{background:rgba(26,143,227,.1)}
+.shim-card .cico svg{stroke:var(--azure)}
+
+/* ════════════════════════════════════════
+   BUTTONS — ADVANCED
+════════════════════════════════════════ */
+.btn-sec{padding:0 60px 80px}
+.btn-grid{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.btn{
+  position:relative;overflow:hidden;cursor:pointer;
+  font-family:var(--fm);font-weight:700;font-size:.65rem;
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:15px 34px;border-radius:8px;
+  display:inline-flex;align-items:center;gap:8px;
+  border:none;outline:none;
+  transition:color var(--t) var(--ease),transform .2s var(--spring);
+}
+.btn:active{transform:scale(.97)}
+.btn .bf{position:absolute;inset:0;z-index:0;pointer-events:none}
+.btn span,.btn svg{position:relative;z-index:1}
+.btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* B1 — Neon pulse */
+.b1{background:transparent;color:var(--azure);border:1px solid var(--azure)}
+.b1 .bf{background:var(--azure);transform:scale(0);border-radius:50%;transition:transform .5s var(--ease),border-radius .5s}
+.b1:hover .bf{transform:scale(3);border-radius:0}
+.b1:hover{color:var(--ink)}
+
+/* B2 — Liquid fill */
+.b2{background:var(--ink3);color:var(--fog);border:1px solid rgba(255,255,255,.1)}
+.b2 .bf{
+  background:linear-gradient(90deg,var(--ocean),var(--azure));
+  clip-path:ellipse(50% 0% at 50% 100%);
+  transition:clip-path .55s var(--ease);
+}
+.b2:hover .bf{clip-path:ellipse(150% 150% at 50% 100%)}
+.b2:hover{color:#fff}
+
+/* B3 — Split reveal */
+.b3{background:var(--gold);color:var(--ink);border-radius:40px}
+.b3 .t1,.b3 .t2{
+  position:absolute;inset:0;z-index:0;background:var(--ink);
+  transition:transform .4s var(--ease);
+}
+.b3 .t1{clip-path:polygon(0 0,50% 0,50% 100%,0 100%);transform:translateX(-100%)}
+.b3 .t2{clip-path:polygon(50% 0,100% 0,100% 100%,50% 100%);transform:translateX(100%)}
+.b3:hover .t1{transform:translateX(0)}
+.b3:hover .t2{transform:translateX(0)}
+.b3:hover{color:var(--gold2)}
+
+/* B4 — Magnetic shimmer */
+.b4{background:var(--ink2);color:var(--mist);border:1px solid rgba(255,255,255,.1)}
+.b4 .bf{
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.1) 50%,transparent 70%);
+  transform:translateX(-100%);
+  transition:transform .6s ease;
+}
+.b4:hover .bf{transform:translateX(100%)}
+.b4 .border-anim{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  border-radius:8px;
+  background:linear-gradient(90deg,transparent,var(--azure),var(--gold),var(--azure),transparent);
+  background-size:400%;
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite:xor;padding:1px;
+  opacity:0;transition:opacity .4s;
+  animation:borderFlow 3s linear infinite;
+}
+.b4:hover .border-anim{opacity:1}
+@keyframes borderFlow{to{background-position:400% 0}}
+
+/* B5 — Particle burst */
+.b5{background:var(--steel);color:var(--fog);border-radius:6px}
+.b5 .bf{background:radial-gradient(circle at 50% 50%,var(--azure),var(--ocean));transform:scale(0);border-radius:50%;transition:transform .5s var(--spring),border-radius .5s}
+.b5:hover .bf{transform:scale(3);border-radius:0}
+.b5:hover{color:#fff}
+
+/* B6 — Typewriter */
+.b6{background:transparent;color:var(--gold2);border:1px solid rgba(201,148,58,.4);font-family:var(--fm)}
+.b6 .bf{background:var(--gold2);clip-path:inset(0 100% 0 0);transition:clip-path .5s var(--ease)}
+.b6:hover .bf{clip-path:inset(0 0% 0 0)}
+.b6:hover{color:var(--ink)}
+
+/* B7 — Underline reveal */
+.b7{background:var(--ink2);color:var(--mist);border:none;border-radius:0;padding-bottom:18px}
+.b7::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--azure),var(--gold2));transition:width .5s var(--ease)}
+.b7::before{content:'';position:absolute;bottom:0;right:0;width:0;height:2px;background:linear-gradient(270deg,var(--azure),var(--gold2));transition:width .5s var(--ease) .05s}
+.b7 .bf{background:rgba(26,143,227,.06);clip-path:inset(100% 0 0 0);transition:clip-path .4s var(--ease)}
+.b7:hover::after,.b7:hover::before{width:50%}
+.b7:hover .bf{clip-path:inset(0 0 0 0)}
+
+/* B8 — Stagger fill */
+.b8{background:var(--ink3);color:var(--mist);border:1px solid rgba(255,255,255,.08)}
+.b8 .la,.b8 .lb,.b8 .lc{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  clip-path:inset(100% 0 0 0);
+}
+.b8 .la{background:rgba(26,95,143,.5);transition:clip-path .35s var(--ease) 0s}
+.b8 .lb{background:rgba(13,92,138,.7);transition:clip-path .35s var(--ease) .07s}
+.b8 .lc{background:rgba(26,143,227,.9);transition:clip-path .35s var(--ease) .14s}
+.b8:hover .la,.b8:hover .lb,.b8:hover .lc{clip-path:inset(0% 0 0 0)}
+.b8:hover{color:#fff}
+
+/* B9 — Corner + icon */
+.b9{background:var(--ink2);color:var(--azure);border:1px solid rgba(26,143,227,.2);border-radius:8px;gap:10px}
+.b9 .bf{
+  background:var(--azure);
+  clip-path:polygon(100% 0,100% 0,100% 0);
+  transition:clip-path .55s var(--ease);
+}
+.b9:hover .bf{clip-path:polygon(100% 0,-5% 0,-5% 110%,105% 110%)}
+.b9:hover{color:#fff}
+.b9 svg{transition:transform .4s var(--spring)}
+.b9:hover svg{transform:translateX(4px)}
+
+/* B10 — Outline expand */
+.b10{background:transparent;color:var(--mist);border:none;padding:15px 34px}
+.b10 .bf{
+  position:absolute;inset:0;z-index:0;border-radius:8px;
+  border:2px solid var(--azure);
+  transform:scaleX(.3);opacity:0;
+  transition:transform .4s var(--spring),opacity .3s;
+}
+.b10::after{
+  content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:0;height:2px;background:var(--azure);transition:width .5s var(--ease);
+}
+.b10:hover .bf{transform:scaleX(1);opacity:1}
+.b10:hover::after{width:80%}
+
+/* B11 — Glitch text */
+.b11{background:var(--ink3);color:var(--gold2);border:1px solid rgba(201,148,58,.2)}
+.b11 .bf{background:rgba(201,148,58,.08);opacity:0;transition:opacity .3s}
+.b11:hover .bf{opacity:1}
+.b11:hover{animation:glitchBtn .3s infinite}
+@keyframes glitchBtn{
+  0%,100%{transform:translate(0)}
+  25%{transform:translate(-1px,1px)}
+  50%{transform:translate(1px,-1px)}
+  75%{transform:translate(-1px,-1px)}
+}
+
+/* B12 — Magnetic scale */
+.b12{background:var(--ocean);color:#fff;border:none;border-radius:40px;padding:15px 40px;letter-spacing:.12em;transition:transform .3s var(--spring),box-shadow .3s}
+.b12:hover{transform:scale(1.05);box-shadow:0 0 30px rgba(26,143,227,.4)}
+.b12 .bf{background:linear-gradient(90deg,rgba(255,255,255,.0),rgba(255,255,255,.12),rgba(255,255,255,.0));transform:translateX(-100%);transition:transform .5s ease}
+.b12:hover .bf{transform:translateX(100%)}
+
+/* ════════════════════════════════════════
+   CAROUSEL SECTION
+════════════════════════════════════════ */
+.cr-wrap{padding:0 60px 70px}
+
+/* Base carousel */
+.carousel{position:relative;overflow:hidden;border-radius:14px;border:1px solid rgba(255,255,255,.06)}
+
+/* ── CAROUSEL 1: Classic Fade ── */
+.cr1{height:320px}
+.cr1 .slides{position:relative;width:100%;height:100%}
+.cr1 .slide{
+  position:absolute;inset:0;opacity:0;
+  transition:opacity .6s var(--ease);
+  display:flex;align-items:flex-end;padding:36px 40px;
+}
+.cr1 .slide.active{opacity:1}
+.cr1 .slide-bg{position:absolute;inset:0;background-size:cover;background-position:center}
+.cr1 .slide-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,12,16,.95) 0%,rgba(8,12,16,.3) 60%,transparent 100%)}
+.cr1 .slide-content{position:relative;z-index:2}
+.cr1 .slide-tag{font-family:var(--fm);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--azure);margin-bottom:8px}
+.cr1 .slide-title{font-family:var(--fd);font-size:2rem;font-weight:700;color:#fff;margin-bottom:6px}
+.cr1 .slide-sub{font-size:.75rem;color:rgba(200,215,235,.55)}
+.cr1 .cr-dots{position:absolute;bottom:20px;right:24px;display:flex;gap:6px;z-index:5}
+.cr1 .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:all .3s}
+.cr1 .dot.active{background:var(--azure);width:20px;border-radius:3px}
+.cr1 .cr-arrows{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;padding:0 16px;z-index:5;pointer-events:none}
+.cr-arrow{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;pointer-events:all;
+  transition:background .3s,transform .2s var(--spring);
+}
+.cr-arrow:hover{background:var(--azure);transform:scale(1.1)}
+.cr-arrow svg{width:14px;height:14px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round}
+
+/* ── CAROUSEL 2: 3D Cube ── */
+.cr2{height:320px;perspective:1200px}
+.cr2 .cube-wrap{
+  position:relative;width:100%;height:100%;
+  transform-style:preserve-3d;
+  transition:transform .7s cubic-bezier(.4,0,.2,1);
+}
+.cr2 .cube-face{
+  position:absolute;inset:0;
+  display:flex;align-items:flex-end;padding:36px 40px;
+  backface-visibility:hidden;background:var(--ink2);
+}
+.cr2 .cube-face.front{transform:translateZ(0px)}
+.cr2 .cube-face.right{transform:rotateY(90deg) translateZ(0px);background:var(--ink3)}
+.cr2 .cube-face.back{transform:rotateY(180deg) translateZ(0px);background:var(--ink2)}
+.cr2 .cube-face.left{transform:rotateY(-90deg) translateZ(0px);background:var(--ink3)}
+.cr2 .slide-tag{font-family:var(--fm);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold2);margin-bottom:8px}
+.cr2 .slide-title{font-family:var(--fd);font-size:2rem;font-weight:700;color:#fff;margin-bottom:6px}
+.cr2 .slide-sub{font-size:.75rem;color:rgba(200,215,235,.5)}
+.cr2 .cr-ctrl{position:absolute;bottom:20px;right:24px;display:flex;gap:8px;z-index:5}
+.cr2-btn{
+  font-family:var(--fm);font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:8px 18px;border:1px solid rgba(255,255,255,.15);border-radius:40px;
+  color:rgba(255,255,255,.6);cursor:pointer;background:transparent;
+  transition:all .3s;
+}
+.cr2-btn:hover,.cr2-btn.active{background:var(--gold2);color:var(--ink);border-color:var(--gold2)}
+
+/* ── CAROUSEL 3: Vertical Slider ── */
+.cr3{height:360px;display:flex}
+.cr3 .cr3-aside{
+  width:220px;flex-shrink:0;
+  border-right:1px solid rgba(255,255,255,.06);
+  overflow:hidden;position:relative;background:var(--ink3);
+}
+.cr3 .cr3-list{display:flex;flex-direction:column;transition:transform .5s var(--ease)}
+.cr3 .cr3-item{
+  padding:24px 24px;cursor:pointer;border-bottom:1px solid rgba(255,255,255,.04);
+  flex-shrink:0;height:90px;
+  transition:background .3s;
+}
+.cr3 .cr3-item.active{background:var(--ink2)}
+.cr3 .cr3-item-tag{font-family:var(--fm);font-size:.45rem;letter-spacing:.25em;text-transform:uppercase;color:var(--azure);margin-bottom:4px;opacity:.7}
+.cr3 .cr3-item-title{font-family:var(--fd);font-size:.95rem;font-weight:700;color:var(--fog)}
+.cr3 .cr3-item.active .cr3-item-title{color:#fff}
+.cr3 .cr3-item-line{width:0;height:2px;background:var(--azure);margin-top:6px;transition:width .4s var(--ease)}
+.cr3 .cr3-item.active .cr3-item-line{width:30px}
+.cr3 .cr3-main{flex:1;position:relative;overflow:hidden}
+.cr3 .cr3-panel{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;padding:36px 36px;
+  opacity:0;transform:translateY(20px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease);
+}
+.cr3 .cr3-panel.active{opacity:1;transform:translateY(0)}
+.cr3 .cr3-num{font-family:var(--fm);font-size:4rem;font-weight:700;color:rgba(26,143,227,.1);line-height:1;margin-bottom:8px}
+.cr3 .cr3-tag{font-family:var(--fm);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--azure);margin-bottom:10px}
+.cr3 .cr3-title{font-family:var(--fd);font-size:1.9rem;font-weight:700;color:#fff;margin-bottom:12px;line-height:1.1}
+.cr3 .cr3-desc{font-size:.78rem;color:rgba(200,215,235,.5);line-height:1.7;max-width:360px}
+
+/* ── CAROUSEL 4: Thumbnail Strip ── */
+.cr4{background:var(--ink2)}
+.cr4 .cr4-main{
+  position:relative;height:220px;overflow:hidden;
+}
+.cr4 .cr4-slides{display:flex;transition:transform .5s var(--ease)}
+.cr4 .cr4-slide{
+  min-width:100%;height:220px;
+  display:flex;align-items:flex-end;padding:28px 30px;
+  background:var(--ink3);flex-shrink:0;position:relative;
+}
+.cr4 .cr4-slide-bg{position:absolute;inset:0;opacity:.4;background-size:cover;background-position:center;transition:opacity .5s}
+.cr4 .cr4-slide.active .cr4-slide-bg{opacity:.6}
+.cr4 .cr4-slide-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,12,16,.9) 0%,transparent 60%)}
+.cr4 .cr4-slide-content{position:relative;z-index:2}
+.cr4 .cr4-slide-tag{font-family:var(--fm);font-size:.5rem;letter-spacing:.25em;text-transform:uppercase;color:var(--azure);margin-bottom:6px}
+.cr4 .cr4-slide-title{font-family:var(--fd);font-size:1.6rem;font-weight:700;color:#fff}
+.cr4 .cr4-thumbs{display:flex;height:90px;border-top:1px solid rgba(255,255,255,.05)}
+.cr4 .cr4-thumb{
+  flex:1;cursor:pointer;padding:12px 16px;
+  border-right:1px solid rgba(255,255,255,.05);
+  border-top:2px solid transparent;
+  transition:background .3s,border-color .3s;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.cr4 .cr4-thumb:last-child{border-right:none}
+.cr4 .cr4-thumb.active{background:rgba(26,143,227,.08);border-top-color:var(--azure)}
+.cr4 .cr4-thumb-tag{font-family:var(--fm);font-size:.45rem;letter-spacing:.2em;text-transform:uppercase;color:var(--azure);opacity:.6;margin-bottom:3px}
+.cr4 .cr4-thumb-title{font-size:.75rem;color:rgba(200,215,235,.6);font-weight:500}
+.cr4 .cr4-thumb.active .cr4-thumb-title{color:#fff}
+
+/* ── CAROUSEL 5: Stack / Cards ── */
+.cr5{height:320px;background:transparent;border:none;overflow:visible;position:relative}
+.cr5 .stack-wrap{position:relative;width:100%;height:100%}
+.cr5 .stack-card{
+  position:absolute;inset:0;border-radius:14px;
+  background:var(--ink2);border:1px solid rgba(255,255,255,.07);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:32px 36px;cursor:pointer;
+  transition:transform .5s var(--ease),opacity .5s var(--ease),box-shadow .5s;
+  overflow:hidden;
+}
+.cr5 .stack-card .sc-bg{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .4s}
+.cr5 .stack-card.active .sc-bg{opacity:.15}
+.cr5 .stack-card .sc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(8,12,16,.95) 0%,transparent 100%)}
+.cr5 .stack-card .sc-content{position:relative;z-index:2}
+.cr5 .stack-card.active{transform:translateY(0) scale(1);opacity:1;box-shadow:0 12px 40px rgba(0,0,0,.6);z-index:3}
+.cr5 .stack-card.prev1{transform:translateY(-12px) scale(.96);opacity:.8;z-index:2}
+.cr5 .stack-card.prev2{transform:translateY(-22px) scale(.92);opacity:.5;z-index:1}
+.cr5 .stack-card.hidden{transform:translateY(-32px) scale(.88);opacity:0;z-index:0}
+.cr5 .sc-tag{font-family:var(--fm);font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;color:var(--azure);margin-bottom:8px}
+.cr5 .sc-title{font-family:var(--fd);font-size:1.9rem;font-weight:700;color:#fff;margin-bottom:8px;line-height:1.1}
+.cr5 .sc-desc{font-size:.75rem;color:rgba(200,215,235,.5);line-height:1.6;max-width:500px}
+.cr5 .stack-ctrl{position:absolute;bottom:-50px;right:0;display:flex;gap:10px;z-index:5}
+.cr5 .stk-btn{
+  font-family:var(--fm);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;
+  padding:9px 20px;border:1px solid rgba(255,255,255,.15);border-radius:40px;
+  color:rgba(255,255,255,.5);cursor:pointer;background:transparent;
+  transition:all .3s;
+}
+.cr5 .stk-btn:hover,.cr5 .stk-btn.active{background:var(--azure);color:#fff;border-color:var(--azure)}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:60px 40px;border-top:1px solid rgba(26,95,143,.1)}
+.footer p{font-family:var(--fm);font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(26,95,143,.35)}
+
+/* bg alternation */
+.bg-dark{background:var(--ink)}
+.bg-mid{background:var(--ink2)}
+.bg-light{background:var(--ink3)}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="eyebrow">Professional Hover Collection V2</div>
+  <h1>Interactions<br>Made <em>Precise</em></h1>
+  <p>50+ advanced hover effects · 3D tilt · glitch · liquid · carousels</p>
+  <nav class="hnav">
+    <a href="#tilt">3D Tilt</a>
+    <a href="#glitch">Glitch</a>
+    <a href="#liquid">Liquid</a>
+    <a href="#gradient">Gradient</a>
+    <a href="#border">Border Draw</a>
+    <a href="#spotlight">Spotlight</a>
+    <a href="#typewriter">Typewriter</a>
+    <a href="#parallax">Parallax</a>
+    <a href="#flip">Flip</a>
+    <a href="#shimmer">Shimmer</a>
+    <a href="#buttons">Buttons</a>
+    <a href="#carousels">Carousels</a>
+  </nav>
+</header>
+
+<!-- ════════ SECTION 1: 3D TILT ════════ -->
+<div id="tilt" class="chapter bg-dark">
+  <h2>3D Magnetic Tilt</h2>
+  <span>Mouse position tracking · perspective transform · glow halo</span>
+</div>
+<div class="section bg-dark">
+  <div class="rlbl">Row 01 — Magnetic 3D Tilt with Glow</div>
+  <div class="row5">
+    <div class="tilt-card" id="tc1"><div class="glow"></div><div class="inner"><div class="shine"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="ctag">Security</div><div class="ctitle">Fortified</div><div class="cdesc">Every layer protected</div></div></div></div>
+    <div class="tilt-card" id="tc2"><div class="glow"></div><div class="inner"><div class="shine"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 010 20"/></svg></div><div class="ctag">Network</div><div class="ctitle">Global Reach</div><div class="cdesc">Connects the world</div></div></div></div>
+    <div class="tilt-card" id="tc3"><div class="glow"></div><div class="inner"><div class="shine"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="ctag">Analytics</div><div class="ctitle">Live Signal</div><div class="cdesc">Real-time precision</div></div></div></div>
+    <div class="tilt-card" id="tc4"><div class="glow"></div><div class="inner"><div class="shine"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="ctag">Quality</div><div class="ctitle">Excellence</div><div class="cdesc">Pixel-perfect craft</div></div></div></div>
+    <div class="tilt-card" id="tc5"><div class="glow"></div><div class="inner"><div class="shine"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><div class="ctag">System</div><div class="ctitle">Architecture</div><div class="cdesc">Purposeful structure</div></div></div></div>
+  </div>
+</div>
+
+<!-- ════════ SECTION 2: GLITCH ════════ -->
+<div id="glitch" class="chapter bg-mid">
+  <h2>Glitch & Scanline</h2>
+  <span>Digital distortion · CRT scanlines · accent bar draw</span>
+</div>
+<div class="section bg-mid">
+  <div class="rlbl">Row 02 — Glitch Effect Cards</div>
+  <div class="row5">
+    <div class="glitch-card"><div class="accent-bar"></div><div class="noise"></div><div class="scanlines"></div><div class="g-shift"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="ctag">System</div><div class="ctitle">TERMINAL</div><div class="cdesc">Access granted</div></div></div>
+    <div class="glitch-card"><div class="accent-bar"></div><div class="noise"></div><div class="scanlines"></div><div class="g-shift"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="ctag">Code</div><div class="ctitle">COMPILE</div><div class="cdesc">Execution complete</div></div></div>
+    <div class="glitch-card"><div class="accent-bar"></div><div class="noise"></div><div class="scanlines"></div><div class="g-shift"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="ctag">Power</div><div class="ctitle">SURGE</div><div class="cdesc">Voltage overflow</div></div></div>
+    <div class="glitch-card"><div class="accent-bar"></div><div class="noise"></div><div class="scanlines"></div><div class="g-shift"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="ctag">Pulse</div><div class="ctitle">SIGNAL</div><div class="cdesc">Frequency locked</div></div></div>
+    <div class="glitch-card"><div class="accent-bar"></div><div class="noise"></div><div class="scanlines"></div><div class="g-shift"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="ctag">Secure</div><div class="ctitle">ENCRYPT</div><div class="cdesc">Data sealed</div></div></div>
+  </div>
+</div>
+
+<!-- ════════ SECTION 3: LIQUID ════════ -->
+<div id="liquid" class="chapter bg-dark">
+  <h2>Liquid Morphing</h2>
+  <span>Organic blob fills · border-radius animation · fluid transitions</span>
+</div>
+<div class="section bg-dark">
+  <div class="rlbl">Row 03 — Liquid Blob Fill</div>
+  <div class="row5">
+    <div class="c liquid-card lq1"><div class="blob"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div><div class="ctag">Fluid</div><div class="ctitle">Morphic</div><div class="cdesc">Shapes that breathe</div></div></div>
+    <div class="c liquid-card lq2"><div class="blob"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9"/></svg></div><div class="ctag">Organic</div><div class="ctitle">Ripple</div><div class="cdesc">Energy flows freely</div></div></div>
+    <div class="c liquid-card lq3"><div class="blob"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20"/></svg></div><div class="ctag">Flow</div><div class="ctitle">Current</div><div class="cdesc">Unstoppable force</div></div></div>
+    <div class="c liquid-card lq4"><div class="blob"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/></svg></div><div class="ctag">Cloud</div><div class="ctitle">Vapor</div><div class="cdesc">Light as air</div></div></div>
+    <div class="c liquid-card lq5"><div class="blob"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M20 14.66V20a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2h5.34"/><polygon points="18 2 22 6 12 16 8 16 8 12 18 2"/></svg></div><div class="ctag">Edit</div><div class="ctitle">Sculpt</div><div class="cdesc">Form follows function</div></div></div>
+  </div>
+</div>
+
+<!-- ════════ SECTION 4: GRADIENT WIPE ════════ -->
+<div id="gradient" class="chapter bg-mid">
+  <h2>Gradient Wipe + Stagger</h2>
+  <span>Multi-stop gradient reveal · staggered text transitions · icon spring</span>
+</div>
+<div class="section bg-mid">
+  <div class="rlbl">Row 04 — Gradient Fill with Staggered Text</div>
+  <div class="row5">
+    <div class="c gw-card"><div class="gwfill"></div><div class="num">01</div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="ctag">Direction</div><div class="ctitle">Forward</div><div class="cdesc">Momentum builds here</div></div></div>
+    <div class="c gw-card"><div class="gwfill"></div><div class="num">02</div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div><div class="ctag">Connect</div><div class="ctitle">Networked</div><div class="cdesc">Every node a gateway</div></div></div>
+    <div class="c gw-card"><div class="gwfill"></div><div class="num">03</div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><div class="ctag">Growth</div><div class="ctitle">Ascend</div><div class="cdesc">Charts that tell stories</div></div></div>
+    <div class="c gw-card"><div class="gwfill"></div><div class="num">04</div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></div><div class="ctag">Access</div><div class="ctitle">Enter</div><div class="cdesc">Open the gateway</div></div></div>
+    <div class="c gw-card"><div class="gwfill"></div><div class="num">05</div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="ctag">Guard</div><div class="ctitle">Defend</div><div class="cdesc">Built to last</div></div></div>
+  </div>
+</div>
+
+<!-- ════════ SECTION 5: BORDER DRAW ════════ -->
+<div id="border" class="chapter bg-dark">
+  <h2>Border Draw + Icon Spin</h2>
+  <span>Sequential border animation · 360° icon rotation · spring physics</span>
+</div>
+<div class="section bg-dark">
+  <div class="rlbl">Row 05 — Sequential Border Draw</div>
+  <div class="row5">
+    <div class="c bd-card"><div class="bside-l"></div><div class="bside-r"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/></svg></div><div class="ctag">Universe</div><div class="ctitle">Orbit</div><div class="cdesc">Gravity in motion</div></div></div>
+    <div class="c bd-card"><div class="bside-l"></div><div class="bside-r"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><div class="ctag">Package</div><div class="ctitle">Bundle</div><div class="cdesc">Contained perfection</div></div></div>
+    <div class="c bd-card"><div class="bside-l"></div><div class="bside-r"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="ctag">Vital</div><div class="ctitle">Heartbeat</div><div class="cdesc">Alive and responsive</div></div></div>
+    <div class="c bd-card"><div class="bside-l"></div><div class="bside-r"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></div><div class="ctag">Craft</div><div class="ctitle">Refine</div><div class="cdesc">Always improvable</div></div></div>
+    <div class="c bd-card"><div class="bside-l"></div><div class="bside-r"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div><div class="ctag">Stack</div><div class="ctitle">Layers</div><div class="cdesc">Depth of system</div></div></div>
+  </div>
+</div>
+
+<!-- ════════ SECTION 6: SPOTLIGHT ════════ -->
+<div id="spotlight" class="chapter bg-mid">
+  <h2>Cursor Spotlight</h2>
+  <span>Mouse-tracked radial glow · follows cursor position in real time</span>
+</div>
+<div class="section bg-mid">
+  <div class="rlbl">Row 06 — Cursor-Follow Spotlight</div>
+  <div class="row5">
+    <div class="c spot-card sp1"><div class="spotlight"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="ctag">Discover</div><div class="ctitle">Search</div><div class="cdesc">Nothing stays hidden</div></div></div>
+    <div class="c spot-card sp2"><div class="spotlight"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="ctag">Vision</div><div class="ctitle">Observe</div><div class="cdesc">See what matters</div></div></div>
+    <div class="c spot-card sp3"><div class="spotlight"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="ctag">Feature</div><div class="ctitle">Highlight</div><div class="cdesc">Put it in the light</div></div></div>
+    <div class="c spot-card sp4"><div class="spotlight"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="ctag">Location</div><div class="ctitle">Pinpoint</div><div class="cdesc">Exact precision</div></div></div>
+    <div class="c spot-card sp5"><div class="spotlight"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div><div class="ctag">Source</div><div class="ctitle">Origin</div><div class="cdesc">Trace it to the root</div></div></div>
+  </div>
+</div>
+
+<!-- ════════ SECTION 7: TYPEWRITER ════════ -->
+<div id="typewriter" class="chapter bg-dark">
+  <h2>Typewriter Reveal</h2>
+  <span>Text width animation · staggered fade-in · blinking cursor</span>
+</div>
+<div class="section bg-dark">
+  <div class="rlbl">Row 07 — Typewriter Title Animation</div>
+  <div class="row5">
+    <div class="c tw-card"><div class="cfill"></div><div class="preview-title">Hover me</div><div class="cbody"><div class="ctag">Terminal</div><div class="ctitle">COMPILE<span class="cursor"></span></div><div class="cdesc">Code executed cleanly</div></div></div>
+    <div class="c tw-card"><div class="cfill"></div><div class="preview-title">Hover me</div><div class="cbody"><div class="ctag">System</div><div class="ctitle">DEPLOY<span class="cursor"></span></div><div class="cdesc">Ship without fear</div></div></div>
+    <div class="c tw-card"><div class="cfill"></div><div class="preview-title">Hover me</div><div class="cbody"><div class="ctag">Process</div><div class="ctitle">EXECUTE<span class="cursor"></span></div><div class="cdesc">Zero failures logged</div></div></div>
+    <div class="c tw-card"><div class="cfill"></div><div class="preview-title">Hover me</div><div class="cbody"><div class="ctag">Network</div><div class="ctitle">CONNECT<span class="cursor"></span></div><div class="cdesc">Handshake confirmed</div></div></div>
+    <div class="c tw-card"><div class="cfill"></div><div class="preview-title">Hover me</div><div class="cbody"><div class="ctag">Access</div><div class="ctitle">UNLOCK<span class="cursor"></span></div><div class="cdesc">Permissions granted</div></div></div>
+  </div>
+</div>
+
+<!-- ════════ SECTION 8: PARALLAX DEPTH ════════ -->
+<div id="parallax" class="chapter bg-mid">
+  <h2>Parallax Depth Layers</h2>
+  <span>Multi-layer mouse tracking · depth simulation · floating content</span>
+</div>
+<div class="section bg-mid">
+  <div class="rlbl">Row 08 — Parallax Multi-Layer</div>
+  <div class="row5">
+    <div class="c par-card" data-par><div class="pl1"></div><div class="pl2"></div><div class="pl3"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="ctag">Layer</div><div class="ctitle">Depth</div><div class="cdesc">Three planes of focus</div></div></div>
+    <div class="c par-card" data-par><div class="pl1"></div><div class="pl2"></div><div class="pl3"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="ctag">Space</div><div class="ctitle">Volume</div><div class="cdesc">Spatial intelligence</div></div></div>
+    <div class="c par-card" data-par><div class="pl1"></div><div class="pl2"></div><div class="pl3"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg></div><div class="ctag">Light</div><div class="ctitle">Radiant</div><div class="cdesc">Energy in all axes</div></div></div>
+    <div class="c par-card" data-par><div class="pl1"></div><div class="pl2"></div><div class="pl3"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div><div class="ctag">Motion</div><div class="ctitle">Transit</div><div class="cdesc">Movement with meaning</div></div></div>
+    <div class="c par-card" data-par><div class="pl1"></div><div class="pl2"></div><div class="pl3"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div class="ctag">Core</div><div class="ctitle">Essence</div><div class="cdesc">What you stand for</div></div></div>
+  </div>
+</div>
+
+<!-- ════════ SECTION 9: FLIP CARDS ════════ -->
+<div id="flip" class="chapter bg-dark">
+  <h2>3D Card Flip</h2>
+  <span>Perspective flip · front & back faces · backface-visibility hidden</span>
+</div>
+<div class="section bg-dark">
+  <div class="rlbl">Row 09 — Flip Cards (Hover to reveal back)</div>
+  <div class="row5">
+    <div class="flip-wrap"><div class="flip-inner"><div class="flip-front"><div class="ctag">Design</div><div class="ctitle">Interface</div><div class="cdesc">Hover to flip</div></div><div class="flip-back"><div class="bk-tag">Back Side</div><div class="bk-title">Design Systems</div><div class="bk-desc">Scalable components built for consistency across every surface and viewport.</div><div class="bk-btn">→ Explore</div></div></div></div>
+    <div class="flip-wrap"><div class="flip-inner"><div class="flip-front"><div class="ctag">Code</div><div class="ctitle">Engineer</div><div class="cdesc">Hover to flip</div></div><div class="flip-back"><div class="bk-tag">Back Side</div><div class="bk-title">Clean Code</div><div class="bk-desc">Written for humans first. Structured logic, readable patterns, zero waste.</div><div class="bk-btn">→ Explore</div></div></div></div>
+    <div class="flip-wrap"><div class="flip-inner"><div class="flip-front"><div class="ctag">Data</div><div class="ctitle">Analyse</div><div class="cdesc">Hover to flip</div></div><div class="flip-back"><div class="bk-tag">Back Side</div><div class="bk-title">Deep Insights</div><div class="bk-desc">Patterns in the noise. Signals that drive decisions before markets move.</div><div class="bk-btn">→ Explore</div></div></div></div>
+    <div class="flip-wrap"><div class="flip-inner"><div class="flip-front"><div class="ctag">Launch</div><div class="ctitle">Deploy</div><div class="cdesc">Hover to flip</div></div><div class="flip-back"><div class="bk-tag">Back Side</div><div class="bk-title">Ship It Fast</div><div class="bk-desc">From concept to production with zero regret. CI/CD that never sleeps.</div><div class="bk-btn">→ Explore</div></div></div></div>
+    <div class="flip-wrap"><div class="flip-inner"><div class="flip-front"><div class="ctag">Scale</div><div class="ctitle">Expand</div><div class="cdesc">Hover to flip</div></div><div class="flip-back"><div class="bk-tag">Back Side</div><div class="bk-title">Global Scale</div><div class="bk-desc">Infrastructure that grows as fast as your ambition. No ceiling in sight.</div><div class="bk-btn">→ Explore</div></div></div></div>
+  </div>
+</div>
+
+<!-- ════════ SECTION 10: SHIMMER / HOLO ════════ -->
+<div id="shimmer" class="chapter bg-mid">
+  <h2>Shimmer & Holographic</h2>
+  <span>Light sweep animation · conic gradient holo overlay · translucent depth</span>
+</div>
+<div class="section bg-mid">
+  <div class="rlbl">Row 10 — Holographic Shimmer</div>
+  <div class="row5">
+    <div class="c shim-card"><div class="holo"></div><div class="shimmer"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="ctag">Premium</div><div class="ctitle">Holographic</div><div class="cdesc">Light bends for you</div></div></div>
+    <div class="c shim-card"><div class="holo"></div><div class="shimmer"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M12 3h7a2 2 0 012 2v14a2 2 0 01-2 2h-7m0-18H5a2 2 0 00-2 2v14a2 2 0 002 2h7m0-18v18"/></svg></div><div class="ctag">Rare</div><div class="ctitle">Iridescent</div><div class="cdesc">Angles shift colors</div></div></div>
+    <div class="c shim-card"><div class="holo"></div><div class="shimmer"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div><div class="ctag">Radiant</div><div class="ctitle">Prismatic</div><div class="cdesc">Every wavelength</div></div></div>
+    <div class="c shim-card"><div class="holo"></div><div class="shimmer"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><path d="M6 3h12l4 6-10 13L2 9z"/></svg></div><div class="ctag">Gem</div><div class="ctitle">Faceted</div><div class="cdesc">Crystalline clarity</div></div></div>
+    <div class="c shim-card"><div class="holo"></div><div class="shimmer"></div><div class="cbody"><div class="cico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div><div class="ctag">Elite</div><div class="ctitle">Sovereign</div><div class="cdesc">Reserved for the few</div></div></div>
+  </div>
+</div>
+
+<!-- ════════ ADVANCED BUTTONS ════════ -->
+<div id="buttons" class="chapter bg-dark">
+  <h2>Advanced Buttons</h2>
+  <span>12 premium interactions · spring physics · magnetic fills · glitch</span>
+</div>
+<div class="btn-sec bg-dark">
+  <div class="rlbl" style="margin-bottom:28px">All 12 Button Styles</div>
+  <div class="btn-grid">
+    <button class="btn b1"><div class="bf"></div><span>Neon Pulse</span></button>
+    <button class="btn b2"><div class="bf"></div><span>Liquid Fill</span></button>
+    <button class="btn b3"><div class="t1"></div><div class="t2"></div><span>Split Reveal</span></button>
+    <button class="btn b4"><div class="bf"></div><div class="border-anim"></div><span>Shimmer Border</span></button>
+    <button class="btn b5"><div class="bf"></div><span>Radial Burst</span></button>
+    <button class="btn b6"><div class="bf"></div><span>Wipe Right</span></button>
+    <button class="btn b7"><div class="bf"></div><span>Dual Underline</span></button>
+    <button class="btn b8"><div class="la"></div><div class="lb"></div><div class="lc"></div><span>Stagger Fill</span></button>
+    <button class="btn b9"><div class="bf"></div><span>Corner Sweep <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></button>
+    <button class="btn b10"><div class="bf"></div><span>Outline Expand</span></button>
+    <button class="btn b11"><div class="bf"></div><span>Glitch Text</span></button>
+    <button class="btn b12"><div class="bf"></div><span>Magnetic Scale</span></button>
+  </div>
+</div>
+
+<!-- ════════ CAROUSELS ════════ -->
+<div id="carousels" class="chapter bg-mid">
+  <h2>5 Carousel Types</h2>
+  <span>Fade · 3D Cube · Vertical · Thumbnail Strip · Stack Cards</span>
+</div>
+<div class="cr-wrap bg-mid">
+
+  <!-- Carousel 1: Classic Fade -->
+  <div class="rlbl" style="margin-bottom:14px">Type 01 — Classic Fade with Image Overlay</div>
+  <div class="carousel cr1" style="margin-bottom:50px">
+    <div class="slides">
+      <div class="slide active">
+        <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80')"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-tag">Environment</div>
+          <div class="slide-title">Ancient Forest</div>
+          <div class="slide-sub">Where silence speaks loudest</div>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1200&q=80')"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-tag">Journey</div>
+          <div class="slide-title">Open Road</div>
+          <div class="slide-sub">Destination unknown, momentum certain</div>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=1200&q=80')"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-tag">Horizon</div>
+          <div class="slide-title">Mountain Dawn</div>
+          <div class="slide-sub">Every peak reveals another</div>
+        </div>
+      </div>
+      <div class="slide">
+        <div class="slide-bg" style="background-image:url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=1200&q=80')"></div>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <div class="slide-tag">Light</div>
+          <div class="slide-title">Field of Gold</div>
+          <div class="slide-sub">Ordinary landscapes, extraordinary light</div>
+        </div>
+      </div>
+    </div>
+    <div class="cr-arrows">
+      <div class="cr-arrow" id="cr1-prev"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></div>
+      <div class="cr-arrow" id="cr1-next"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div>
+    </div>
+    <div class="cr-dots" id="cr1-dots">
+      <div class="dot active" data-i="0"></div>
+      <div class="dot" data-i="1"></div>
+      <div class="dot" data-i="2"></div>
+      <div class="dot" data-i="3"></div>
+    </div>
+  </div>
+
+  <!-- Carousel 2: 3D Cube -->
+  <div class="rlbl" style="margin-bottom:14px">Type 02 — 3D Cube Rotation</div>
+  <div class="carousel cr2" style="margin-bottom:50px;overflow:visible">
+    <div class="cube-wrap" id="cube">
+      <div class="cube-face front" style="background:linear-gradient(135deg,#0d1e35,#1e3a5f)">
+        <div><div class="slide-tag">Strategy</div><div class="slide-title">Perspective</div><div class="slide-sub">Rotate to see all sides</div></div>
+      </div>
+      <div class="cube-face right" style="transform:rotateY(90deg) translateZ(0)">
+        <div><div class="slide-tag">Execution</div><div class="slide-title">Precision</div><div class="slide-sub">Details matter at scale</div></div>
+      </div>
+      <div class="cube-face back" style="transform:rotateY(180deg) translateZ(0);background:linear-gradient(135deg,#1a2535,#0d5c8a)">
+        <div><div class="slide-tag">Insight</div><div class="slide-title">Clarity</div><div class="slide-sub">What data reveals</div></div>
+      </div>
+      <div class="cube-face left" style="transform:rotateY(-90deg) translateZ(0)">
+        <div><div class="slide-tag">Vision</div><div class="slide-title">Foresight</div><div class="slide-sub">See before others do</div></div>
+      </div>
+    </div>
+    <div class="cr-ctrl">
+      <div class="cr2-btn active" data-face="0">Strategy</div>
+      <div class="cr2-btn" data-face="1">Execute</div>
+      <div class="cr2-btn" data-face="2">Insight</div>
+      <div class="cr2-btn" data-face="3">Vision</div>
+    </div>
+  </div>
+
+  <!-- Carousel 3: Vertical with sidebar -->
+  <div class="rlbl" style="margin-bottom:14px">Type 03 — Vertical Tabs + Content Panel</div>
+  <div class="carousel cr3" style="margin-bottom:50px">
+    <div class="cr3-aside">
+      <div class="cr3-list" id="cr3-list">
+        <div class="cr3-item active" data-idx="0"><div class="cr3-item-tag">Phase 01</div><div class="cr3-item-title">Discovery</div><div class="cr3-item-line"></div></div>
+        <div class="cr3-item" data-idx="1"><div class="cr3-item-tag">Phase 02</div><div class="cr3-item-title">Design</div><div class="cr3-item-line"></div></div>
+        <div class="cr3-item" data-idx="2"><div class="cr3-item-tag">Phase 03</div><div class="cr3-item-title">Build</div><div class="cr3-item-line"></div></div>
+        <div class="cr3-item" data-idx="3"><div class="cr3-item-tag">Phase 04</div><div class="cr3-item-title">Launch</div><div class="cr3-item-line"></div></div>
+      </div>
+    </div>
+    <div class="cr3-main" style="background:var(--ink2)">
+      <div class="cr3-panel active"><div class="cr3-num">01</div><div class="cr3-tag">Research & Discovery</div><div class="cr3-title">Understanding the Problem</div><div class="cr3-desc">Deep dives into user behaviour, market gaps, and opportunity spaces. We ask uncomfortable questions before touching a single pixel.</div></div>
+      <div class="cr3-panel"><div class="cr3-num">02</div><div class="cr3-tag">Interaction Design</div><div class="cr3-title">Crafting the Experience</div><div class="cr3-desc">Systems thinking applied to interfaces. Every component earns its place. Accessibility built in, not bolted on.</div></div>
+      <div class="cr3-panel"><div class="cr3-num">03</div><div class="cr3-tag">Engineering</div><div class="cr3-title">Built to Last</div><div class="cr3-desc">Clean architecture, tested code, and CI/CD that lets us move fast without breaking things. Performance is a feature.</div></div>
+      <div class="cr3-panel"><div class="cr3-num">04</div><div class="cr3-tag">Go to Market</div><div class="cr3-title">Shipped with Intent</div><div class="cr3-desc">Launches are just the beginning. We set up monitoring, iterate on feedback, and never call it done until the metrics prove it.</div></div>
+    </div>
+  </div>
+
+  <!-- Carousel 4: Thumbnail Strip -->
+  <div class="rlbl" style="margin-bottom:14px">Type 04 — Thumbnail Navigation Strip</div>
+  <div class="carousel cr4" style="margin-bottom:80px">
+    <div class="cr4-main">
+      <div class="cr4-slides" id="cr4-slides">
+        <div class="cr4-slide active">
+          <div class="cr4-slide-bg ia"></div>
+          <div class="cr4-slide-overlay"></div>
+          <div class="cr4-slide-content"><div class="cr4-slide-tag">Nature</div><div class="cr4-slide-title">Ancient Forest</div></div>
+        </div>
+        <div class="cr4-slide">
+          <div class="cr4-slide-bg ib"></div>
+          <div class="cr4-slide-overlay"></div>
+          <div class="cr4-slide-content"><div class="cr4-slide-tag">Texture</div><div class="cr4-slide-title">Moss & Stone</div></div>
+        </div>
+        <div class="cr4-slide">
+          <div class="cr4-slide-bg ic2"></div>
+          <div class="cr4-slide-overlay"></div>
+          <div class="cr4-slide-content"><div class="cr4-slide-tag">Terrain</div><div class="cr4-slide-title">Deep Canyon</div></div>
+        </div>
+        <div class="cr4-slide">
+          <div class="cr4-slide-bg id"></div>
+          <div class="cr4-slide-overlay"></div>
+          <div class="cr4-slide-content"><div class="cr4-slide-tag">Wilderness</div><div class="cr4-slide-title">Forest Canopy</div></div>
+        </div>
+        <div class="cr4-slide">
+          <div class="cr4-slide-bg ie"></div>
+          <div class="cr4-slide-overlay"></div>
+          <div class="cr4-slide-content"><div class="cr4-slide-tag">Light</div><div class="cr4-slide-title">Fern Glade</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="cr4-thumbs" id="cr4-thumbs">
+      <div class="cr4-thumb active" data-i="0"><div class="cr4-thumb-tag">Nature</div><div class="cr4-thumb-title">Ancient Forest</div></div>
+      <div class="cr4-thumb" data-i="1"><div class="cr4-thumb-tag">Texture</div><div class="cr4-thumb-title">Moss & Stone</div></div>
+      <div class="cr4-thumb" data-i="2"><div class="cr4-thumb-tag">Terrain</div><div class="cr4-thumb-title">Deep Canyon</div></div>
+      <div class="cr4-thumb" data-i="3"><div class="cr4-thumb-tag">Wilderness</div><div class="cr4-thumb-title">Forest Canopy</div></div>
+      <div class="cr4-thumb" data-i="4"><div class="cr4-thumb-tag">Light</div><div class="cr4-thumb-title">Fern Glade</div></div>
+    </div>
+  </div>
+
+  <!-- Carousel 5: Stack Cards -->
+  <div class="rlbl" style="margin-bottom:14px">Type 05 — Stacked Card Deck</div>
+  <div class="carousel cr5">
+    <div class="stack-wrap" id="stack">
+      <div class="stack-card hidden"><div class="sc-overlay"></div><div class="sc-content"><div class="sc-tag">Vision</div><div class="sc-title">See Farther</div><div class="sc-desc">The clearest view comes from standing where others don't. Elevated perspective, relentless curiosity.</div></div></div>
+      <div class="stack-card prev2"><div class="sc-overlay"></div><div class="sc-content"><div class="sc-tag">Craft</div><div class="sc-title">Make Better</div><div class="sc-desc">Every detail is a decision. Every decision shapes the outcome. We obsess over the ones that matter most.</div></div></div>
+      <div class="stack-card prev1"><div class="sc-overlay"></div><div class="sc-content"><div class="sc-tag">Speed</div><div class="sc-title">Move Faster</div><div class="sc-desc">Velocity without direction is chaos. Velocity with clarity is unstoppable. We know the difference.</div></div></div>
+      <div class="stack-card active"><div class="sc-overlay"></div><div class="sc-content"><div class="sc-tag">Impact</div><div class="sc-title">Build What Lasts</div><div class="sc-desc">The work that endures is built on truth, not trend. Foundations that hold when everything else shifts.</div></div></div>
+    </div>
+    <div class="stack-ctrl">
+      <div class="stk-btn" id="stk-prev">← Prev</div>
+      <div class="stk-btn active" id="stk-next">Next →</div>
+    </div>
+  </div>
+  <div style="height:80px"></div>
+</div>
+
+<footer class="footer">
+  <p>Premium Hover Showcase V2 · 50+ interactions · 5 carousel types · blue-gold prestige system</p>
+</footer>
+
+<!-- image helpers for cr4 -->
+<style>
 .ia{background-image:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=700&q=80')}
 .ib{background-image:url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=700&q=80')}
 .ic2{background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=700&q=80')}
 .id{background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&q=80')}
 .ie{background-image:url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=700&q=80')}
-.if{background-image:url('https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=700&q=80')}
-.ig{background-image:url('https://images.unsplash.com/photo-1421789665209-c9b2a435e3dc?w=700&q=80')}
-.ih{background-image:url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=700&q=80')}
-.ii{background-image:url('https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=700&q=80')}
-.ij{background-image:url('https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=700&q=80')}
-
-/* ──────── IMAGE ROW 1 — Image Reveal (text→image from bottom) ──────── */
-.ir1 .ic-img{opacity:0;transform:translateY(15px) scale(1.08);transition:opacity .55s ease,transform .55s cubic-bezier(.4,0,.2,1)}
-.ir1 .ic-fill{background:var(--d3);clip-path:inset(100% 0 0 0);transition:clip-path var(--tr)}
-.ir1 .ic:hover .ic-fill{clip-path:inset(0 0 0 0)}
-.ir1 .ic:hover .ic-img{opacity:1;transform:scale(1.04)}
-.ir1 .ic:hover .ic-title{color:var(--a2)}
-/* static text visible always */
-.ir1 .ic-body{justify-content:center;align-items:center;text-align:center}
-.ir1 .ic-title{font-size:1.6rem;color:var(--a2)}
-.ir1 .ic:hover .ic-tag{color:var(--a1)}
-
-/* ──────── IMAGE ROW 2 — Text Overlay (image→text top-down) ──────── */
-.ir2 .ic-img{opacity:.9}
-.ir2 .ic-fill{background:linear-gradient(180deg,var(--d3) 0%,var(--d2) 100%);clip-path:inset(0 0 100% 0);transition:clip-path var(--tr)}
-.ir2 .ic:hover .ic-fill{clip-path:inset(0 0 0% 0)}
-.ir2 .ic-body{opacity:0;transform:translateY(8px);transition:opacity .4s ease .15s,transform .4s ease .15s}
-.ir2 .ic:hover .ic-body{opacity:1;transform:translateY(0)}
-.ir2 .always-title{
-  position:absolute;bottom:18px;left:20px;z-index:3;
-  font-family:var(--fd);font-size:1.2rem;color:var(--a2);
-  transition:opacity .3s;font-weight:700;
-}
-.ir2 .ic:hover .always-title{opacity:0}
-
-/* ──────── IMAGE ROW 3 — Sliding Image (image slides from left) ──────── */
-.ir3 .ic-img{transform:translateX(-100%);opacity:.85;transition:transform .55s cubic-bezier(.4,0,.2,1),opacity .4s}
-.ir3 .ic:hover .ic-img{transform:translateX(0) scale(1.04);opacity:1}
-.ir3 .ic-fill{background:rgba(15,31,28,.7);clip-path:inset(0 0 0 100%);transition:clip-path var(--tr) .05s}
-.ir3 .ic:hover .ic-fill{clip-path:inset(0 0 0 0%)}
-.ir3 .ic-body{transition:transform .4s}
-.ir3 .ic:hover .ic-body{transform:translateY(-6px)}
-
-/* ──────── IMAGE ROW 4 — Blur to Sharp ──────── */
-.ir4 .ic-img{filter:blur(10px);transform:scale(1.12);opacity:.7;transition:filter .5s,transform .55s,opacity .4s}
-.ir4 .ic:hover .ic-img{filter:blur(0);transform:scale(1.04);opacity:1}
-.ir4 .ic-fill{
-  background:rgba(14,31,28,.6);border-radius:50%;
-  width:0;height:0;top:50%;left:50%;transform:translate(-50%,-50%);
-  transition:width .5s cubic-bezier(.4,0,.2,1),height .5s;
-}
-.ir4 .ic:hover .ic-fill{width:210%;height:210%}
-.ir4 .ic-body{opacity:0;transition:opacity .4s .15s}
-.ir4 .ic:hover .ic-body{opacity:1}
-
-/* ──────── IMAGE ROW 5 — Zoom with center expand ──────── */
-.ir5 .ic-img{opacity:1}
-.ir5 .ic-fill{background:rgba(14,31,28,.65);clip-path:inset(100% 0 0 0);transition:clip-path var(--tr)}
-.ir5 .ic:hover .ic-fill{clip-path:inset(0 0 0 0)}
-.ir5 .ic-body{transform:translateY(20px);opacity:0;transition:transform .4s .1s,opacity .4s .1s}
-.ir5 .ic:hover .ic-body{transform:translateY(0);opacity:1}
-
-/* ──────── IMAGE ROW 6 — Split Image Reveal ──────── */
-.ir6 .img-l,.ir6 .img-r{
-  position:absolute;inset:0;background-size:cover;background-position:center;
-  transition:transform .55s cubic-bezier(.4,0,.2,1);z-index:1;
-}
-.ir6 .img-l{clip-path:inset(0 50% 0 0)}
-.ir6 .img-r{clip-path:inset(0 0 0 50%)}
-.ir6 .ic:hover .img-l{transform:translateX(-105%)}
-.ir6 .ic:hover .img-r{transform:translateX(105%)}
-.ir6 .ic-fill{background:var(--d3);clip-path:inset(0 100% 0 0);transition:clip-path var(--tr) .1s;z-index:2}
-.ir6 .ic:hover .ic-fill{clip-path:inset(0 0% 0 0)}
-.ir6 .ic-body{opacity:0;transition:opacity .4s .3s}
-.ir6 .ic:hover .ic-body{opacity:1}
-
-/* ──────── IMAGE ROW 7 — Floating Content ──────── */
-.ir7 .ic-img{opacity:1}
-.ir7 .ic-overlay{position:absolute;inset:0;z-index:1;background:rgba(15,31,28,.3);transition:background .4s}
-.ir7 .ic:hover .ic-overlay{background:rgba(15,31,28,.0)}
-.ir7 .ft-t,.ir7 .ft-b{
-  position:absolute;left:0;right:0;z-index:2;background:rgba(14,31,28,.8);
-  height:50%;pointer-events:none;transition:transform var(--tr);
-}
-.ir7 .ft-t{top:0;transform:translateY(-100%)}
-.ir7 .ft-b{bottom:0;transform:translateY(100%)}
-.ir7 .ic:hover .ft-t{transform:translateY(0)}
-.ir7 .ic:hover .ft-b{transform:translateY(0)}
-.ir7 .ic-body{opacity:0;transform:translateY(20px);transition:opacity .4s .12s,transform .4s .12s}
-.ir7 .ic:hover .ic-body{opacity:1;transform:translateY(0)}
-
-/* ──────── IMAGE ROW 8 — Corner Overlay ──────── */
-.ir8 .ic-img{opacity:.85}
-.ir8 .ic-img-overlay{position:absolute;inset:0;z-index:1;background:rgba(15,31,28,.3)}
-.ir8 .ic-fill{
-  background:var(--d3);
-  clip-path:polygon(100% 100%,100% 100%,100% 100%);
-  transition:clip-path .6s cubic-bezier(.4,0,.2,1);z-index:2;
-}
-.ir8 .ic:hover .ic-fill{clip-path:polygon(100% 100%,-5% -5%,-5% 105%,105% 105%)}
-.ir8 .ic-body{opacity:0;transform:translateX(14px);transition:opacity .4s .18s,transform .4s .18s}
-.ir8 .ic:hover .ic-body{opacity:1;transform:translateX(0)}
-.ir8 .mini-t{
-  position:absolute;z-index:3;bottom:18px;left:20px;
-  font-family:var(--fd);font-size:1.15rem;color:var(--a2);transition:opacity .3s;
-}
-.ir8 .ic:hover .mini-t{opacity:0}
-
-/* ──────── IMAGE ROW 9 — Icon Reveal ──────── */
-.ir9 .ic-img{opacity:.9}
-.ir9 .ic-fill{background:var(--d2);clip-path:inset(0 0 100% 0);transition:clip-path var(--tr)}
-.ir9 .ic:hover .ic-fill{clip-path:inset(0 0 0% 0)}
-.ir9 .ic-body{opacity:0;transition:opacity .4s .1s}
-.ir9 .ic:hover .ic-body{opacity:1}
-.ir9 .ic-ico{width:48px;height:48px;transform:scale(.6);transition:transform .4s .25s,background var(--tr)}
-.ir9 .ic:hover .ic-ico{transform:scale(1)}
-.ir9 .ic-ico svg{width:20px;height:20px}
-.ir9 .mini-t{
-  position:absolute;z-index:3;bottom:18px;left:20px;
-  font-family:var(--fd);font-size:1.1rem;color:var(--a2);transition:opacity .3s;
-}
-.ir9 .ic:hover .mini-t{opacity:0}
-
-/* ──────── IMAGE ROW 10 — Circular Image Reveal ──────── */
-.ir10 .ic-img{clip-path:circle(0% at 50% 50%);transition:clip-path .6s cubic-bezier(.4,0,.2,1)}
-.ir10 .ic:hover .ic-img{clip-path:circle(75% at 50% 50%)}
-.ir10 .ic-fill{background:rgba(14,31,28,.6);clip-path:circle(0% at 50% 50%);transition:clip-path .6s cubic-bezier(.4,0,.2,1) .05s}
-.ir10 .ic:hover .ic-fill{clip-path:circle(75% at 50% 50%)}
-.ir10 .def-text{
-  position:absolute;inset:0;z-index:3;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:20px;transition:opacity .35s;
-}
-.ir10 .def-text .ic-title{font-size:1.6rem;text-align:center}
-.ir10 .ic:hover .def-text{opacity:0}
-.ir10 .ic-body{opacity:0;align-items:center;justify-content:center;text-align:center;transition:opacity .4s .25s}
-.ir10 .ic:hover .ic-body{opacity:1}
-
-/* ──────── IMAGE ROW 11 — Layered Text Animation ──────── */
-.ir11 .ic-img{opacity:.85}
-.ir11 .ic-img-ov{position:absolute;inset:0;z-index:1;background:rgba(15,31,28,.3)}
-.ir11 .lyr1,.ir11 .lyr2,.ir11 .lyr3{
-  position:absolute;left:0;right:0;z-index:2;
-  clip-path:inset(100% 0 0 0);pointer-events:none;
-  transition:clip-path .42s cubic-bezier(.4,0,.2,1);
-}
-.ir11 .lyr1{bottom:0;height:100%;background:rgba(30,74,64,.65);transition-delay:0s}
-.ir11 .lyr2{bottom:0;height:65%;background:rgba(23,54,48,.8);transition-delay:.07s}
-.ir11 .lyr3{bottom:0;height:42%;background:rgba(15,31,28,.95);transition-delay:.14s}
-.ir11 .ic:hover .lyr1,.ir11 .ic:hover .lyr2,.ir11 .ic:hover .lyr3{clip-path:inset(0% 0 0 0)}
-.ir11 .ic-body{opacity:0;transform:translateY(12px);transition:opacity .4s .3s,transform .4s .3s}
-.ir11 .ic:hover .ic-body{opacity:1;transform:translateY(0)}
-.ir11 .mini-t{
-  position:absolute;z-index:3;bottom:18px;left:20px;
-  font-family:var(--fd);font-size:1.1rem;color:var(--a2);transition:opacity .3s;
-}
-.ir11 .ic:hover .mini-t{opacity:0}
-
-/* ──────── IMAGE ROW 12 — Cinematic Overlay ──────── */
-.ir12 .ic-img{opacity:1;transition:transform .55s cubic-bezier(.4,0,.2,1),filter .5s}
-.ir12 .ic:hover .ic-img{transform:scale(1.05);filter:brightness(.7)}
-.ir12 .ic-fill{
-  background:linear-gradient(0deg,rgba(15,31,28,.97) 0%,rgba(15,31,28,.5) 50%,transparent 100%);
-  opacity:0;transition:opacity var(--tr);
-}
-.ir12 .ic:hover .ic-fill{opacity:1}
-.ir12 .ic-body{transform:translateY(24px);opacity:0;transition:transform .45s .08s,opacity .4s .08s}
-.ir12 .ic:hover .ic-body{transform:translateY(0);opacity:1}
-.ir12 .ic-ico{transform:scale(.7) translateY(8px);opacity:0;transition:transform .4s .2s,opacity .4s .2s,background var(--tr)}
-.ir12 .ic:hover .ic-ico{transform:scale(1) translateY(0);opacity:1}
-.ir12 .mini-t{
-  position:absolute;z-index:3;bottom:18px;left:20px;
-  font-family:var(--fd);font-size:1.15rem;color:var(--a2);
-  transition:opacity .3s,transform .3s;
-}
-.ir12 .ic:hover .mini-t{opacity:0;transform:translateY(-6px)}
-
-/* ══════════════════════════════════════════════════════
-   BUTTONS
-══════════════════════════════════════════════════════ */
-.btn-section{padding:0 50px 80px}
-.btn-grid{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
-
-/* Base button */
-.btn{
-  position:relative;overflow:hidden;cursor:pointer;
-  font-family:var(--fb);font-weight:600;font-size:.75rem;
-  letter-spacing:.15em;text-transform:uppercase;
-  padding:14px 32px;border-radius:8px;
-  display:inline-flex;align-items:center;gap:8px;
-  text-decoration:none;border:none;outline:none;
-  transition:color var(--tr),border-color var(--tr),box-shadow var(--tr);
-}
-.btn .btn-fill{position:absolute;inset:0;z-index:0;pointer-events:none}
-.btn span{position:relative;z-index:1;white-space:nowrap}
-
-/* ── Button 1 — Bottom fill ── */
-.b1{background:var(--d2);color:var(--a2);border:1px solid rgba(126,203,161,.2)}
-.b1 .btn-fill{background:var(--a2);clip-path:inset(100% 0 0 0);transition:clip-path var(--tr)}
-.b1:hover .btn-fill{clip-path:inset(0 0 0 0)}
-.b1:hover{color:var(--d1)}
-
-/* ── Button 2 — Left slide ── */
-.b2{background:transparent;color:var(--a2);border:1px solid rgba(126,203,161,.3)}
-.b2 .btn-fill{background:var(--d3);clip-path:inset(0 100% 0 0);transition:clip-path var(--tr)}
-.b2:hover .btn-fill{clip-path:inset(0 0% 0 0)}
-.b2:hover{color:var(--a2);border-color:var(--d3)}
-
-/* ── Button 3 — Right slide ── */
-.b3{background:var(--a1);color:var(--d1);border:1px solid transparent;border-radius:40px}
-.b3 .btn-fill{background:var(--d1);clip-path:inset(0 0 0 100%);transition:clip-path var(--tr)}
-.b3:hover .btn-fill{clip-path:inset(0 0 0 0%)}
-.b3:hover{color:var(--a2)}
-
-/* ── Button 4 — Circular fill ── */
-.b4{background:var(--d2);color:var(--a2);border:1px solid rgba(126,203,161,.2)}
-.b4 .btn-fill{
-  background:var(--a1);border-radius:50%;
-  width:0;height:0;top:50%;left:50%;transform:translate(-50%,-50%);
-  transition:width .5s cubic-bezier(.4,0,.2,1),height .5s;
-}
-.b4:hover .btn-fill{width:220%;height:220%}
-.b4:hover{color:var(--d1)}
-
-/* ── Button 5 — Dual-side fill ── */
-.b5{background:transparent;color:var(--d3);border:1.5px solid var(--d3);background:var(--light)}
-.b5 .fill-bl,.b5 .fill-br{
-  position:absolute;top:0;bottom:0;width:50%;z-index:0;
-  background:var(--d3);transition:transform var(--tr);
-}
-.b5 .fill-bl{left:0;transform:translateX(-100%)}
-.b5 .fill-br{right:0;transform:translateX(100%)}
-.b5:hover .fill-bl{transform:translateX(0)}
-.b5:hover .fill-br{transform:translateX(0)}
-.b5:hover{color:var(--a2)}
-
-/* ── Button 6 — Border to fill ── */
-.b6{background:transparent;color:var(--a2);border:1.5px solid var(--a2);border-radius:4px}
-.b6 .btn-fill{background:var(--a2);opacity:0;transition:opacity var(--tr)}
-.b6:hover .btn-fill{opacity:1}
-.b6:hover{color:var(--d1)}
-
-/* ── Button 7 — Underline animation ── */
-.b7{background:var(--d2);color:var(--a2);border:none;border-radius:0;padding-bottom:16px}
-.b7::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
-  background:var(--a2);transform:scaleX(0);transform-origin:left;
-  transition:transform var(--tr);
-}
-.b7 .btn-fill{background:rgba(126,203,161,.08);clip-path:inset(100% 0 0 0);transition:clip-path var(--tr)}
-.b7:hover::after{transform:scaleX(1)}
-.b7:hover .btn-fill{clip-path:inset(0 0 0 0)}
-.b7:hover{color:var(--a2)}
-
-/* ── Button 8 — Diagonal sweep ── */
-.b8{background:var(--d3);color:var(--a2);border:none;border-radius:6px}
-.b8 .btn-fill{
-  background:var(--a1);
-  clip-path:polygon(0 100%,0 100%,0 100%);
-  transition:clip-path .55s cubic-bezier(.4,0,.2,1);
-}
-.b8:hover .btn-fill{clip-path:polygon(-5% 105%,105% -5%,105% 105%)}
-.b8:hover{color:var(--d1)}
-
-/* ── Button 9 — Layered fill ── */
-.b9{background:var(--light);color:var(--d2);border:1px solid rgba(30,74,64,.2);border-radius:8px}
-.b9 .lyr-a,.b9 .lyr-b,.b9 .lyr-c{
-  position:absolute;inset:0;z-index:0;
-  clip-path:inset(100% 0 0 0);pointer-events:none;
-}
-.b9 .lyr-a{background:rgba(30,74,64,.4);transition:clip-path .38s cubic-bezier(.4,0,.2,1) 0s}
-.b9 .lyr-b{background:rgba(23,54,48,.6);transition:clip-path .38s cubic-bezier(.4,0,.2,1) .07s}
-.b9 .lyr-c{background:rgba(15,31,28,.9);transition:clip-path .38s cubic-bezier(.4,0,.2,1) .14s}
-.b9:hover .lyr-a,.b9:hover .lyr-b,.b9:hover .lyr-c{clip-path:inset(0% 0 0 0)}
-.b9:hover{color:var(--a2)}
-
-/* ── Button 10 — Corner sweep ── */
-.b10{background:var(--d2);color:var(--a2);border:1px solid rgba(126,203,161,.15);border-radius:8px}
-.b10 .btn-fill{
-  background:var(--a2);
-  clip-path:polygon(100% 0,100% 0,100% 0);
-  transition:clip-path .58s cubic-bezier(.4,0,.2,1);
-}
-.b10:hover .btn-fill{clip-path:polygon(100% 0,-5% 0,-5% 110%,105% 110%)}
-.b10:hover{color:var(--d1)}
-
-/* ── Button 11 — Top fill ── */
-.b11{background:var(--a1);color:var(--d1);border:none;border-radius:40px;padding:14px 36px}
-.b11 .btn-fill{background:var(--d1);clip-path:inset(0 0 100% 0);transition:clip-path var(--tr)}
-.b11:hover .btn-fill{clip-path:inset(0 0 0% 0)}
-.b11:hover{color:var(--a2)}
-
-/* ── Button 12 — Split fill ── */
-.b12{background:var(--d2);color:var(--a2);border:1px solid rgba(126,203,161,.2);border-radius:6px}
-.b12 .split-t,.b12 .split-b{
-  position:absolute;left:0;right:0;height:50%;z-index:0;
-  background:var(--a2);transition:transform var(--tr);
-}
-.b12 .split-t{top:0;transform:translateY(-100%)}
-.b12 .split-b{bottom:0;transform:translateY(100%)}
-.b12:hover .split-t{transform:translateY(0)}
-.b12:hover .split-b{transform:translateY(0)}
-.b12:hover{color:var(--d1)}
-
-/* ══════════════════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════════════════ */
-.footer{
-  text-align:center;padding:50px 40px;
-  border-top:1px solid rgba(77,140,106,.12);
-}
-.footer p{font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(77,140,106,.4);font-weight:500}
-
-/* ══════════════════════════════════════════════════════
-   SECTION BG OVERRIDE for image rows
-══════════════════════════════════════════════════════ */
-.sec-mid{background:var(--d2)}
-.sec-mid .chapter-hd h2{color:var(--a2)}
-.sec-mid .chapter-hd span{color:var(--a1)}
-.sec-mid .row-lbl{color:rgba(77,140,106,.55)}
-
-/* spacing between sections */
-.section{padding:0 50px 52px}
-.chapter{padding:60px 50px 0}
 </style>
-</head>
-<body>
-
-<!-- ══════════════ HERO ══════════════ -->
-<header class="hero">
-  <div class="hero-eyebrow">Premium Hover Showcase</div>
-  <h1>The Art of <em>Interaction</em></h1>
-  <p>36 unique hover effects — text cards, image cards, and buttons in a single cohesive system</p>
-  <nav class="hero-nav">
-    <a href="#text-cards">Text Cards</a>
-    <a href="#image-cards">Image Cards</a>
-    <a href="#buttons">Buttons</a>
-  </nav>
-</header>
-
-<!-- ══════════════════════════════════════════
-     TEXT-ONLY CARDS — 12 ROWS
-══════════════════════════════════════════ -->
-<div id="text-cards">
-
-<!-- Chapter Header -->
-<div class="chapter sec-dark">
-  <div class="chapter-hd">
-    <h2>Text Cards</h2>
-    <span>12 hover interactions · solid fill · smooth transitions</span>
-  </div>
-</div>
-
-<!-- ROW 1 — Bottom-to-top fill (dark bg, light cards) -->
-<div class="section sec-dark">
-  <div class="row-lbl">Row 01 — Bottom Fill</div>
-  <div class="row tr1">
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="tc-tag">Design</div><div class="tc-title">Foundation</div><div class="tc-desc">Solid principles build lasting interfaces</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 010 20M12 2a15 15 0 000 20"/></svg></div><div class="tc-tag">Reach</div><div class="tc-title">Global Scale</div><div class="tc-desc">Built to expand beyond boundaries</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div class="tc-tag">Analytics</div><div class="tc-title">Live Signal</div><div class="tc-desc">Real-time data at your fingertips</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="tc-tag">Quality</div><div class="tc-title">Excellence</div><div class="tc-desc">Precision in every pixel</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><div class="tc-tag">Structure</div><div class="tc-title">Architecture</div><div class="tc-desc">Every layer has a purpose</div></div></div>
-  </div>
-</div>
-
-<!-- ROW 2 — Top-to-bottom fill (light bg, dark cards) -->
-<div class="section sec-light">
-  <div class="row-lbl">Row 02 — Top Fill</div>
-  <div class="row tr2">
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="tc-tag">Vision</div><div class="tc-title">Perspective</div><div class="tc-desc">A new lens on the familiar</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="tc-tag">Layers</div><div class="tc-title">Depth</div><div class="tc-desc">Structured complexity simplified</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></div><div class="tc-tag">Network</div><div class="tc-title">Connected</div><div class="tc-desc">Every node matters in the grid</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><div class="tc-tag">Growth</div><div class="tc-title">Ascent</div><div class="tc-desc">Metrics that tell a story</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="tc-tag">Time</div><div class="tc-title">Timing</div><div class="tc-desc">When execution is everything</div></div></div>
-  </div>
-</div>
-
-<!-- ROW 3 — Left-to-right fill (dark bg) -->
-<div class="section sec-dark">
-  <div class="row-lbl">Row 03 — Left Slide Fill</div>
-  <div class="row tr3">
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="tc-tag">Motion</div><div class="tc-title">Direction</div><div class="tc-desc">Forward is the only option</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div><div class="tc-tag">Send</div><div class="tc-title">Transmit</div><div class="tc-desc">Ideas that reach far</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div><div class="tc-tag">Grid</div><div class="tc-title">System</div><div class="tc-desc">Order creates clarity</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div class="tc-tag">Core</div><div class="tc-title">Essence</div><div class="tc-desc">What you stand for</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="tc-tag">Done</div><div class="tc-title">Complete</div><div class="tc-desc">Shipped with intention</div></div></div>
-  </div>
-</div>
-
-<!-- ROW 4 — Right-to-left fill (light bg) -->
-<div class="section sec-light">
-  <div class="row-lbl">Row 04 — Right Slide Fill</div>
-  <div class="row tr4">
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></div><div class="tc-tag">Revert</div><div class="tc-title">Rewind</div><div class="tc-desc">Revisit what was before</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></div><div class="tc-tag">Exit</div><div class="tc-title">Departure</div><div class="tc-desc">Every ending is a beginning</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><div class="tc-tag">Past</div><div class="tc-title">History</div><div class="tc-desc">Patterns that inform the future</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></div><div class="tc-tag">Refresh</div><div class="tc-title">Restore</div><div class="tc-desc">Bring back what matters</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="tc-tag">Dialog</div><div class="tc-title">Feedback</div><div class="tc-desc">The loop that improves us</div></div></div>
-  </div>
-</div>
-
-<!-- ROW 5 — Center expand (dark bg) -->
-<div class="section sec-dark">
-  <div class="row-lbl">Row 05 — Center Expand</div>
-  <div class="row tr5">
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div><div class="tc-tag">Expand</div><div class="tc-title">Grow</div><div class="tc-desc">From the inside out</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M12 6v6l4 2"/></svg></div><div class="tc-tag">Center</div><div class="tc-title">Origin</div><div class="tc-desc">Everything starts from here</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg></div><div class="tc-tag">Scale</div><div class="tc-title">Amplify</div><div class="tc-desc">Radiate influence</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M8 12h8M12 8v8"/></svg></div><div class="tc-tag">Core</div><div class="tc-title">Nucleus</div><div class="tc-desc">The force at the centre</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/></svg></div><div class="tc-tag">Focus</div><div class="tc-title">Target</div><div class="tc-desc">Precision in every move</div></div></div>
-  </div>
-</div>
-
-<!-- ROW 6 — Diagonal sweep (light bg) -->
-<div class="section sec-light">
-  <div class="row-lbl">Row 06 — Diagonal Sweep</div>
-  <div class="row tr6">
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div><div class="tc-tag">Angle</div><div class="tc-title">Diagonal</div><div class="tc-desc">Sharp trajectory, bold move</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></div><div class="tc-tag">Create</div><div class="tc-title">Craft</div><div class="tc-desc">Intentional design language</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div><div class="tc-tag">Brand</div><div class="tc-title">Identity</div><div class="tc-desc">Make your mark distinctly</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg></div><div class="tc-tag">Stack</div><div class="tc-title">Layered</div><div class="tc-desc">Complexity made elegant</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M12 3h7a2 2 0 012 2v14a2 2 0 01-2 2h-7m0-18H5a2 2 0 00-2 2v14a2 2 0 002 2h7m0-18v18"/></svg></div><div class="tc-tag">Split</div><div class="tc-title">Divide</div><div class="tc-desc">Two views, one system</div></div></div>
-  </div>
-</div>
-
-<!-- ROW 7 — Dual-side fill (dark bg) -->
-<div class="section sec-dark">
-  <div class="row-lbl">Row 07 — Dual Side Fill</div>
-  <div class="row tr7">
-    <div class="tc lt"><div class="fill-l"></div><div class="fill-r"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/></svg></div><div class="tc-tag">Frame</div><div class="tc-title">Enclosed</div><div class="tc-desc">Boundaries define freedom</div></div></div>
-    <div class="tc lt"><div class="fill-l"></div><div class="fill-r"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 010 8h-1"/><path d="M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div><div class="tc-tag">Fuel</div><div class="tc-title">Energise</div><div class="tc-desc">Power up your workflow</div></div></div>
-    <div class="tc lt"><div class="fill-l"></div><div class="fill-r"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="tc-tag">Space</div><div class="tc-title">Habitat</div><div class="tc-desc">Design environments that breathe</div></div></div>
-    <div class="tc lt"><div class="fill-l"></div><div class="fill-r"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><div class="tc-tag">Work</div><div class="tc-title">Portfolio</div><div class="tc-desc">A body of meaningful work</div></div></div>
-    <div class="tc lt"><div class="fill-l"></div><div class="fill-r"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><div class="tc-tag">Deploy</div><div class="tc-title">Package</div><div class="tc-desc">Ship it clean</div></div></div>
-  </div>
-</div>
-
-<!-- ROW 8 — Vertical split (light bg) -->
-<div class="section sec-light">
-  <div class="row-lbl">Row 08 — Vertical Split</div>
-  <div class="row tr8">
-    <div class="tc dk"><div class="fill-t"></div><div class="fill-b"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="tc-tag">Split</div><div class="tc-title">Divide Top</div><div class="tc-desc">Meeting in the middle</div></div></div>
-    <div class="tc dk"><div class="fill-t"></div><div class="fill-b"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg></div><div class="tc-tag">Axis</div><div class="tc-title">Crossroads</div><div class="tc-desc">Where paths converge</div></div></div>
-    <div class="tc dk"><div class="fill-t"></div><div class="fill-b"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div><div class="tc-tag">List</div><div class="tc-title">Ordered</div><div class="tc-desc">Structured clarity wins</div></div></div>
-    <div class="tc dk"><div class="fill-t"></div><div class="fill-b"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg></div><div class="tc-tag">Grid</div><div class="tc-title">Quadrant</div><div class="tc-desc">Four zones of possibility</div></div></div>
-    <div class="tc dk"><div class="fill-t"></div><div class="fill-b"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="12" x2="21" y2="12"/></svg></div><div class="tc-tag">Half</div><div class="tc-title">Balance</div><div class="tc-desc">Equal weight, perfect tension</div></div></div>
-  </div>
-</div>
-
-<!-- ROW 9 — Horizontal split (dark bg) -->
-<div class="section sec-dark">
-  <div class="row-lbl">Row 09 — Horizontal Split</div>
-  <div class="row tr9">
-    <div class="tc lt"><div class="fill-hl"></div><div class="fill-hr"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg></div><div class="tc-tag">Write</div><div class="tc-title">Compose</div><div class="tc-desc">Words that carry weight</div></div></div>
-    <div class="tc lt"><div class="fill-hl"></div><div class="fill-hr"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h7"/></svg></div><div class="tc-tag">Copy</div><div class="tc-title">Narrative</div><div class="tc-desc">The story behind the product</div></div></div>
-    <div class="tc lt"><div class="fill-hl"></div><div class="fill-hr"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><div class="tc-tag">Doc</div><div class="tc-title">Reference</div><div class="tc-desc">Clear documentation always wins</div></div></div>
-    <div class="tc lt"><div class="fill-hl"></div><div class="fill-hr"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="tc-tag">Speak</div><div class="tc-title">Dialogue</div><div class="tc-desc">Listen before you respond</div></div></div>
-    <div class="tc lt"><div class="fill-hl"></div><div class="fill-hr"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div><div class="tc-tag">Edit</div><div class="tc-title">Refine</div><div class="tc-desc">Always room for better</div></div></div>
-  </div>
-</div>
-
-<!-- ROW 10 — Circular fill (light bg) -->
-<div class="section sec-light">
-  <div class="row-lbl">Row 10 — Circular Fill</div>
-  <div class="row tr10">
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div><div class="tc-tag">Circle</div><div class="tc-title">Orbit</div><div class="tc-desc">Revolving around purpose</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20A10 10 0 0112 2z"/><path d="M2 12h20"/></svg></div><div class="tc-tag">Sphere</div><div class="tc-title">Globe</div><div class="tc-desc">Worldly presence, local feel</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/><path d="M9 12l2 2 4-4"/></svg></div><div class="tc-tag">Verify</div><div class="tc-title">Confirm</div><div class="tc-desc">Certainty through clarity</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="1"/></svg></div><div class="tc-tag">Target</div><div class="tc-title">Bullseye</div><div class="tc-desc">Hit what you aim for</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="tc-tag">Pulse</div><div class="tc-title">Alive</div><div class="tc-desc">Constant rhythm, steady signal</div></div></div>
-  </div>
-</div>
-
-<!-- ROW 11 — Corner sweep (dark bg) -->
-<div class="section sec-dark">
-  <div class="row-lbl">Row 11 — Corner Sweep</div>
-  <div class="row tr11">
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><polyline points="15 3 21 3 21 9"/><line x1="21" y1="3" x2="14" y2="10"/></svg></div><div class="tc-tag">Corner</div><div class="tc-title">Sweep</div><div class="tc-desc">Origin from the edge</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="tc-tag">Connect</div><div class="tc-title">Reach Out</div><div class="tc-desc">Every call matters</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="tc-tag">Send</div><div class="tc-title">Outreach</div><div class="tc-desc">Messages that open doors</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-7 7V5h2v4h-2zm-4 0V5h2v4h-2z"/></svg></div><div class="tc-tag">Chat</div><div class="tc-title">Discourse</div><div class="tc-desc">Conversations that build things</div></div></div>
-    <div class="tc lt"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><div class="tc-tag">Team</div><div class="tc-title">Together</div><div class="tc-desc">Shared vision, aligned goals</div></div></div>
-  </div>
-</div>
-
-<!-- ROW 12 — Underline expansion (light bg) -->
-<div class="section sec-light">
-  <div class="row-lbl">Row 12 — Underline Expansion</div>
-  <div class="row tr12">
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 10h16M4 14h8"/></svg></div><div class="tc-tag">Line</div><div class="tc-title">Underline</div><div class="tc-desc">Mark what is essential</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div><div class="tc-tag">Rise</div><div class="tc-title">Elevate</div><div class="tc-desc">Lift above the baseline</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg></div><div class="tc-tag">Code</div><div class="tc-title">Source</div><div class="tc-desc">Where quality starts</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><div class="tc-tag">Dev</div><div class="tc-title">Syntax</div><div class="tc-desc">Elegant logic, clean code</div></div></div>
-    <div class="tc dk"><div class="tc-fill"></div><div class="tc-body"><div class="tc-ico"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div class="tc-tag">Display</div><div class="tc-title">Showcase</div><div class="tc-desc">Put your best work forward</div></div></div>
-  </div>
-</div>
-
-</div><!-- end text-cards -->
-
-<!-- ══════════════════════════════════════════
-     IMAGE CARDS — 12 ROWS
-══════════════════════════════════════════ -->
-<div id="image-cards">
-
-<div class="chapter sec-mid" style="padding-top:70px">
-  <div class="chapter-hd">
-    <h2>Image Cards</h2>
-    <span>12 image hover interactions · reveal · overlay · motion</span>
-  </div>
-</div>
-
-<!-- IR1 — Image Reveal -->
-<div class="section sec-mid">
-  <div class="row-lbl">Row 01 — Image Reveal (hover to see image)</div>
-  <div class="row ir1">
-    <div class="ic"><div class="ic-img ia"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-tag">Nature</div><div class="ic-title">Ancient Forest</div></div></div>
-    <div class="ic"><div class="ic-img ib"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-tag">Texture</div><div class="ic-title">Moss & Stone</div></div></div>
-    <div class="ic"><div class="ic-img ic2"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-tag">Terrain</div><div class="ic-title">Deep Canyon</div></div></div>
-    <div class="ic"><div class="ic-img id"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-tag">Water</div><div class="ic-title">Silent Lake</div></div></div>
-    <div class="ic"><div class="ic-img ie"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-tag">Light</div><div class="ic-title">Fern Canopy</div></div></div>
-  </div>
-</div>
-
-<!-- IR2 — Text Overlay -->
-<div class="section sec-dark">
-  <div class="row-lbl">Row 02 — Text Overlay</div>
-  <div class="row ir2">
-    <div class="ic"><div class="ic-img if"></div><div class="ic-fill"></div><div class="always-title">Solitude</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="ic-tag">Peace</div><div class="ic-title">Solitude</div><div class="ic-sub">Find your stillness within</div></div></div>
-    <div class="ic"><div class="ic-img ig"></div><div class="ic-fill"></div><div class="always-title">Voyage</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15 15 0 010 20"/></svg></div><div class="ic-tag">Explore</div><div class="ic-title">Voyage</div><div class="ic-sub">Beyond the known horizon</div></div></div>
-    <div class="ic"><div class="ic-img ih"></div><div class="ic-fill"></div><div class="always-title">Ascent</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div><div class="ic-tag">Rise</div><div class="ic-title">Ascent</div><div class="ic-sub">Rise with every dawn</div></div></div>
-    <div class="ic"><div class="ic-img ii"></div><div class="ic-fill"></div><div class="always-title">Bloom</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M12 22V12m0 0C12 6 6 2 6 2s0 6 6 10zm0 0c0-6 6-10 6-10s0 6-6 10z"/></svg></div><div class="ic-tag">Growth</div><div class="ic-title">Bloom</div><div class="ic-sub">Unfold every potential</div></div></div>
-    <div class="ic"><div class="ic-img ij"></div><div class="ic-fill"></div><div class="always-title">Clarity</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg></div><div class="ic-tag">Vision</div><div class="ic-title">Clarity</div><div class="ic-sub">See what truly matters</div></div></div>
-  </div>
-</div>
-
-<!-- IR3 — Sliding Image -->
-<div class="section sec-mid">
-  <div class="row-lbl">Row 03 — Sliding Image</div>
-  <div class="row ir3">
-    <div class="ic"><div class="ic-img ia"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div><div class="ic-tag">Motion</div><div class="ic-title">Slide In</div><div class="ic-sub">Images that arrive with purpose</div></div></div>
-    <div class="ic"><div class="ic-img ib"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div><div class="ic-tag">Play</div><div class="ic-title">Motion</div><div class="ic-sub">Bring stillness to life</div></div></div>
-    <div class="ic"><div class="ic-img ic2"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M22 17H2a3 3 0 000 6h20a3 3 0 000-6zm-11-4h2l2-6H9l2 6zm5-12H8L5 7h14l-3-6z"/></svg></div><div class="ic-tag">Arrive</div><div class="ic-title">Landing</div><div class="ic-sub">First impressions, lasting impact</div></div></div>
-    <div class="ic"><div class="ic-img id"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div><div class="ic-tag">Send</div><div class="ic-title">Deliver</div><div class="ic-sub">Speed is a feature</div></div></div>
-    <div class="ic"><div class="ic-img ie"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div class="ic-tag">Fast</div><div class="ic-title">Instant</div><div class="ic-sub">Zero latency in every move</div></div></div>
-  </div>
-</div>
-
-<!-- IR4 — Blur to Sharp -->
-<div class="section sec-dark">
-  <div class="row-lbl">Row 04 — Blur to Sharp</div>
-  <div class="row ir4">
-    <div class="ic"><div class="ic-img if"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="ic-tag">Clarity</div><div class="ic-title">Focus</div><div class="ic-sub">Sharpen your attention</div></div></div>
-    <div class="ic"><div class="ic-img ig"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="ic-tag">Sight</div><div class="ic-title">Reveal</div><div class="ic-sub">Nothing stays hidden</div></div></div>
-    <div class="ic"><div class="ic-img ih"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="4"/></svg></div><div class="ic-tag">See</div><div class="ic-title">Observe</div><div class="ic-sub">The detail is everything</div></div></div>
-    <div class="ic"><div class="ic-img ii"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div><div class="ic-tag">Zoom</div><div class="ic-title">Enlarge</div><div class="ic-sub">Get closer to the truth</div></div></div>
-    <div class="ic"><div class="ic-img ij"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="ic-tag">Star</div><div class="ic-title">Emerge</div><div class="ic-sub">Brilliance in the blur</div></div></div>
-  </div>
-</div>
-
-<!-- IR5 — Zoom with content -->
-<div class="section sec-mid">
-  <div class="row-lbl">Row 05 — Zoom Image + Content Rise</div>
-  <div class="row ir5">
-    <div class="ic"><div class="ic-img ia"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><div class="ic-tag">Drop</div><div class="ic-title">Descend</div><div class="ic-sub">Depth of character</div></div></div>
-    <div class="ic"><div class="ic-img ib"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 002-2v-4M17 8l-5-5-5 5M12 3v13"/></svg></div><div class="ic-tag">Rise</div><div class="ic-title">Ascend</div><div class="ic-sub">Upward is the direction</div></div></div>
-    <div class="ic"><div class="ic-img ic2"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4"/></svg></div><div class="ic-tag">Shine</div><div class="ic-title">Radiate</div><div class="ic-sub">Energy in all directions</div></div></div>
-    <div class="ic"><div class="ic-img id"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M12 22V12m0 0C6 12 2 6 2 6s4 0 10 6zm0 0c6 0 10-6 10-6s-4 0-10 6z"/></svg></div><div class="ic-tag">Branch</div><div class="ic-title">Spread</div><div class="ic-sub">Grow in every direction</div></div></div>
-    <div class="ic"><div class="ic-img ie"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div class="ic-tag">Heart</div><div class="ic-title">Cherish</div><div class="ic-sub">What you love, you protect</div></div></div>
-  </div>
-</div>
-
-<!-- IR6 — Split Image Reveal -->
-<div class="section sec-dark">
-  <div class="row-lbl">Row 06 — Split Image Reveal</div>
-  <div class="row ir6">
-    <div class="ic"><div class="img-l ia" style="background-image:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=700&q=80')"></div><div class="img-r ia" style="background-image:url('https://images.unsplash.com/photo-1448375240586-882707db888b?w=700&q=80')"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-tag">Split</div><div class="ic-title">Hidden Depth</div><div class="ic-sub">Beneath the surface</div></div></div>
-    <div class="ic"><div class="img-l ib" style="background-image:url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=700&q=80')"></div><div class="img-r ib" style="background-image:url('https://images.unsplash.com/photo-1504701954957-2010ec3bcec1?w=700&q=80')"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-tag">Part</div><div class="ic-title">Divide</div><div class="ic-sub">Two halves, one story</div></div></div>
-    <div class="ic"><div class="img-l ic2" style="background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=700&q=80')"></div><div class="img-r ic2" style="background-image:url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=700&q=80')"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-tag">Open</div><div class="ic-title">Unveil</div><div class="ic-sub">Open what was closed</div></div></div>
-    <div class="ic"><div class="img-l id" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&q=80')"></div><div class="img-r id" style="background-image:url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=700&q=80')"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-tag">Mirror</div><div class="ic-title">Reflect</div><div class="ic-sub">Perfect symmetry breaks</div></div></div>
-    <div class="ic"><div class="img-l ie" style="background-image:url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=700&q=80')"></div><div class="img-r ie" style="background-image:url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=700&q=80')"></div><div class="ic-fill"></div><div class="ic-body"><div class="ic-tag">Light</div><div class="ic-title">Between</div><div class="ic-sub">Revealed at the seam</div></div></div>
-  </div>
-</div>
-
-<!-- IR7 — Floating Content -->
-<div class="section sec-mid">
-  <div class="row-lbl">Row 07 — Floating Content</div>
-  <div class="row ir7">
-    <div class="ic"><div class="ic-img if"></div><div class="ic-overlay"></div><div class="ft-t"></div><div class="ft-b"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div><div class="ic-tag">Float</div><div class="ic-title">Emerge</div><div class="ic-sub">Rise into view</div></div></div>
-    <div class="ic"><div class="ic-img ig"></div><div class="ic-overlay"></div><div class="ft-t"></div><div class="ft-b"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg></div><div class="ic-tag">Shelter</div><div class="ic-title">Refuge</div><div class="ic-sub">A place to land</div></div></div>
-    <div class="ic"><div class="ic-img ih"></div><div class="ic-overlay"></div><div class="ft-t"></div><div class="ft-b"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><div class="ic-tag">People</div><div class="ic-title">Community</div><div class="ic-sub">Built for human connection</div></div></div>
-    <div class="ic"><div class="ic-img ii"></div><div class="ic-overlay"></div><div class="ft-t"></div><div class="ft-b"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="ic-tag">Place</div><div class="ic-title">Locate</div><div class="ic-sub">Every place has meaning</div></div></div>
-    <div class="ic"><div class="ic-img ij"></div><div class="ic-overlay"></div><div class="ft-t"></div><div class="ft-b"></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="ic-tag">Done</div><div class="ic-title">Achieved</div><div class="ic-sub">Milestones that matter</div></div></div>
-  </div>
-</div>
-
-<!-- IR8 — Corner Overlay -->
-<div class="section sec-dark">
-  <div class="row-lbl">Row 08 — Corner Overlay</div>
-  <div class="row ir8">
-    <div class="ic"><div class="ic-img ia"></div><div class="ic-img-overlay"></div><div class="ic-fill"></div><div class="mini-t">Sweep</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></div><div class="ic-tag">Corner</div><div class="ic-title">Diagonal</div><div class="ic-sub">Sharp elegant approach</div></div></div>
-    <div class="ic"><div class="ic-img ib"></div><div class="ic-img-overlay"></div><div class="ic-fill"></div><div class="mini-t">Angle</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div><div class="ic-tag">Direction</div><div class="ic-title">Trajectory</div><div class="ic-sub">Always moving forward</div></div></div>
-    <div class="ic"><div class="ic-img ic2"></div><div class="ic-img-overlay"></div><div class="ic-fill"></div><div class="mini-t">Unfurl</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3"/></svg></div><div class="ic-tag">Open</div><div class="ic-title">Unfurl</div><div class="ic-sub">Reveal with elegance</div></div></div>
-    <div class="ic"><div class="ic-img id"></div><div class="ic-img-overlay"></div><div class="ic-fill"></div><div class="mini-t">Edge</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5"/></svg></div><div class="ic-tag">Stack</div><div class="ic-title">Edge</div><div class="ic-sub">The power at the margin</div></div></div>
-    <div class="ic"><div class="ic-img ie"></div><div class="ic-img-overlay"></div><div class="ic-fill"></div><div class="mini-t">Arc</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="ic-tag">Signal</div><div class="ic-title">Transmit</div><div class="ic-sub">Messages that land</div></div></div>
-  </div>
-</div>
-
-<!-- IR9 — Icon Reveal -->
-<div class="section sec-mid">
-  <div class="row-lbl">Row 09 — Icon Reveal</div>
-  <div class="row ir9">
-    <div class="ic"><div class="ic-img if"></div><div class="ic-fill"></div><div class="mini-t">Navigate</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg></div><div class="ic-tag">Go</div><div class="ic-title">Navigate</div><div class="ic-sub">Find the right path</div></div></div>
-    <div class="ic"><div class="ic-img ig"></div><div class="ic-fill"></div><div class="mini-t">Capture</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg></div><div class="ic-tag">Shot</div><div class="ic-title">Capture</div><div class="ic-sub">Freeze the moment</div></div></div>
-    <div class="ic"><div class="ic-img ih"></div><div class="ic-fill"></div><div class="mini-t">Store</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg></div><div class="ic-tag">Archive</div><div class="ic-title">Store</div><div class="ic-sub">Preserve what endures</div></div></div>
-    <div class="ic"><div class="ic-img ii"></div><div class="ic-fill"></div><div class="mini-t">Secure</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div><div class="ic-tag">Safe</div><div class="ic-title">Secure</div><div class="ic-sub">Protection by design</div></div></div>
-    <div class="ic"><div class="ic-img ij"></div><div class="ic-fill"></div><div class="mini-t">Unlock</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 019.9-1"/></svg></div><div class="ic-tag">Open</div><div class="ic-title">Unlock</div><div class="ic-sub">Access opens everything</div></div></div>
-  </div>
-</div>
-
-<!-- IR10 — Circular Reveal -->
-<div class="section sec-dark">
-  <div class="row-lbl">Row 10 — Circular Reveal</div>
-  <div class="row ir10">
-    <div class="ic"><div class="ic-img ia"></div><div class="ic-fill"></div><div class="def-text"><div class="ic-tag">Circle</div><div class="ic-title">Orbit</div></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg></div><div class="ic-tag">Sphere</div><div class="ic-title">Orbit</div><div class="ic-sub">Revolving with precision</div></div></div>
-    <div class="ic"><div class="ic-img ib"></div><div class="ic-fill"></div><div class="def-text"><div class="ic-tag">Lens</div><div class="ic-title">Focus</div></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div class="ic-tag">Lens</div><div class="ic-title">Focus</div><div class="ic-sub">See through the noise</div></div></div>
-    <div class="ic"><div class="ic-img ic2"></div><div class="ic-fill"></div><div class="def-text"><div class="ic-tag">Core</div><div class="ic-title">Center</div></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="10"/></svg></div><div class="ic-tag">Core</div><div class="ic-title">Center</div><div class="ic-sub">Everything from the core</div></div></div>
-    <div class="ic"><div class="ic-img id"></div><div class="ic-fill"></div><div class="def-text"><div class="ic-tag">Pulse</div><div class="ic-title">Wave</div></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="ic-tag">Pulse</div><div class="ic-title">Rhythm</div><div class="ic-sub">The beat that never stops</div></div></div>
-    <div class="ic"><div class="ic-img ie"></div><div class="ic-fill"></div><div class="def-text"><div class="ic-tag">Expand</div><div class="ic-title">Bloom</div></div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 110 20"/></svg></div><div class="ic-tag">Grow</div><div class="ic-title">Bloom</div><div class="ic-sub">Expand from within</div></div></div>
-  </div>
-</div>
-
-<!-- IR11 — Layered Text -->
-<div class="section sec-mid">
-  <div class="row-lbl">Row 11 — Layered Text Animation</div>
-  <div class="row ir11">
-    <div class="ic"><div class="ic-img if"></div><div class="ic-img-ov"></div><div class="lyr1"></div><div class="lyr2"></div><div class="lyr3"></div><div class="mini-t">Strata</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div><div class="ic-tag">Depth</div><div class="ic-title">Strata</div><div class="ic-sub">Layer upon layer</div></div></div>
-    <div class="ic"><div class="ic-img ig"></div><div class="ic-img-ov"></div><div class="lyr1"></div><div class="lyr2"></div><div class="lyr3"></div><div class="mini-t">Build</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></div><div class="ic-tag">Stack</div><div class="ic-title">Build</div><div class="ic-sub">Constructed with care</div></div></div>
-    <div class="ic"><div class="ic-img ih"></div><div class="ic-img-ov"></div><div class="lyr1"></div><div class="lyr2"></div><div class="lyr3"></div><div class="mini-t">Ascend</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg></div><div class="ic-tag">Rise</div><div class="ic-title">Ascend</div><div class="ic-sub">Layer by layer upward</div></div></div>
-    <div class="ic"><div class="ic-img ii"></div><div class="ic-img-ov"></div><div class="lyr1"></div><div class="lyr2"></div><div class="lyr3"></div><div class="mini-t">Archive</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg></div><div class="ic-tag">Archive</div><div class="ic-title">Memory</div><div class="ic-sub">Stored with precision</div></div></div>
-    <div class="ic"><div class="ic-img ij"></div><div class="ic-img-ov"></div><div class="lyr1"></div><div class="lyr2"></div><div class="lyr3"></div><div class="mini-t">Reveal</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div><div class="ic-tag">Unveil</div><div class="ic-title">Reveal</div><div class="ic-sub">The final layer</div></div></div>
-  </div>
-</div>
-
-<!-- IR12 — Cinematic Overlay -->
-<div class="section sec-dark">
-  <div class="row-lbl">Row 12 — Cinematic Overlay</div>
-  <div class="row ir12">
-    <div class="ic"><div class="ic-img ia"></div><div class="ic-fill"></div><div class="mini-t">Scene</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="2.18"/><line x1="7" y1="2" x2="7" y2="22"/><line x1="17" y1="2" x2="17" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="2" y1="7" x2="7" y2="7"/><line x1="2" y1="17" x2="7" y2="17"/><line x1="17" y1="17" x2="22" y2="17"/><line x1="17" y1="7" x2="22" y2="7"/></svg></div><div class="ic-tag">Cinema</div><div class="ic-title">The Scene</div><div class="ic-sub">Composed with intent</div></div></div>
-    <div class="ic"><div class="ic-img ib"></div><div class="ic-fill"></div><div class="mini-t">Frame</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div><div class="ic-tag">Film</div><div class="ic-title">The Frame</div><div class="ic-sub">Every frame tells something</div></div></div>
-    <div class="ic"><div class="ic-img ic2"></div><div class="ic-fill"></div><div class="mini-t">Cut</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div><div class="ic-tag">Edit</div><div class="ic-title">The Cut</div><div class="ic-sub">Precision in post</div></div></div>
-    <div class="ic"><div class="ic-img id"></div><div class="ic-fill"></div><div class="mini-t">Score</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div><div class="ic-tag">Sound</div><div class="ic-title">The Score</div><div class="ic-sub">Emotion through sound</div></div></div>
-    <div class="ic"><div class="ic-img ie"></div><div class="ic-fill"></div><div class="mini-t">Roll</div><div class="ic-body"><div class="ic-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg></div><div class="ic-tag">Play</div><div class="ic-title">Roll It</div><div class="ic-sub">Action. Always.</div></div></div>
-  </div>
-</div>
-
-</div><!-- end image-cards -->
-
-<!-- ══════════════════════════════════════════
-     BUTTONS — 12 DESIGNS
-══════════════════════════════════════════ -->
-<div id="buttons">
-
-<div class="chapter sec-dark" style="padding-top:70px">
-  <div class="chapter-hd">
-    <h2>Buttons</h2>
-    <span>12 unique hover interactions · bold · minimal · premium</span>
-  </div>
-</div>
-
-<div class="btn-section">
-  <div class="row-lbl" style="margin-bottom:28px">All 12 Button Styles</div>
-  <div class="btn-grid">
-
-    <!-- B1 Bottom fill -->
-    <button class="btn b1"><div class="btn-fill"></div><span>Bottom Fill</span></button>
-
-    <!-- B2 Left slide -->
-    <button class="btn b2"><div class="btn-fill"></div><span>Left Slide</span></button>
-
-    <!-- B3 Right slide -->
-    <button class="btn b3"><div class="btn-fill"></div><span>Right Slide</span></button>
-
-    <!-- B4 Circular -->
-    <button class="btn b4"><div class="btn-fill"></div><span>Circular Fill</span></button>
-
-    <!-- B5 Dual-side -->
-    <button class="btn b5"><div class="fill-bl"></div><div class="fill-br"></div><span>Dual Side</span></button>
-
-    <!-- B6 Border-to-fill -->
-    <button class="btn b6"><div class="btn-fill"></div><span>Border → Fill</span></button>
-
-    <!-- B7 Underline -->
-    <button class="btn b7"><div class="btn-fill"></div><span>Underline Expand</span></button>
-
-    <!-- B8 Diagonal -->
-    <button class="btn b8"><div class="btn-fill"></div><span>Diagonal Sweep</span></button>
-
-    <!-- B9 Layered -->
-    <button class="btn b9"><div class="lyr-a"></div><div class="lyr-b"></div><div class="lyr-c"></div><span>Layered Fill</span></button>
-
-    <!-- B10 Corner sweep -->
-    <button class="btn b10"><div class="btn-fill"></div><span>Corner Sweep</span></button>
-
-    <!-- B11 Top fill -->
-    <button class="btn b11"><div class="btn-fill"></div><span>Top Fill</span></button>
-
-    <!-- B12 Split -->
-    <button class="btn b12"><div class="split-t"></div><div class="split-b"></div><span>Split Fill</span></button>
-
-  </div>
-
-  <!-- Buttons repeated on alternating bg -->
-  <div style="margin-top:50px;padding:40px;background:var(--lighter);border-radius:16px">
-    <div class="row-lbl" style="color:rgba(30,74,64,.5);margin-bottom:28px">Light Background Variant</div>
-    <div class="btn-grid">
-      <button class="btn b1" style="background:var(--light);color:var(--d2);border-color:rgba(30,74,64,.2)"><div class="btn-fill" style="background:var(--d3)"></div><span>Bottom Fill</span></button>
-      <button class="btn b2" style="color:var(--d2);border-color:rgba(30,74,64,.3)"><div class="btn-fill" style="background:var(--d3)"></div><span>Left Slide</span></button>
-      <button class="btn b3" style="background:var(--d3);color:var(--a2)"><div class="btn-fill" style="background:var(--a2)"></div><span>Right Slide</span></button>
-      <button class="btn b4" style="background:var(--light);color:var(--d2);border-color:rgba(30,74,64,.2)"><div class="btn-fill" style="background:var(--d3)"></div><span>Circular Fill</span></button>
-      <button class="btn b6" style="color:var(--d2);border-color:var(--d3)"><div class="btn-fill" style="background:var(--d3)"></div><span>Border → Fill</span></button>
-      <button class="btn b8" style="background:var(--light);color:var(--d2)"><div class="btn-fill" style="background:var(--d3)"></div><span>Diagonal</span></button>
-    </div>
-  </div>
-</div>
-
-</div><!-- end buttons -->
-
-<footer class="footer">
-  <p>Premium Hover Showcase · 36 unique interactions · dark green futuristic aesthetic</p>
-</footer>
 
 <script>
-// Center-expand buttons & cards — ensure circle covers fully on hover
-document.querySelectorAll('.tr5 .tc, .tr10 .tc').forEach(card => {
-  const fill = card.querySelector('.tc-fill');
-  card.addEventListener('mouseenter', () => {
-    fill.style.width = '220%';
-    fill.style.height = '220%';
+/* ── 3D TILT ── */
+document.querySelectorAll('.tilt-card').forEach(card=>{
+  const inner=card.querySelector('.inner');
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    inner.style.transform=`rotateY(${x*18}deg) rotateX(${-y*18}deg)`;
+    card.style.setProperty('--a',`${Math.atan2(y,x)*180/Math.PI}deg`);
   });
-  card.addEventListener('mouseleave', () => {
-    fill.style.width = '0';
-    fill.style.height = '0';
-  });
-});
-
-// IR4 blur to sharp circle
-document.querySelectorAll('.ir4 .ic').forEach(card => {
-  const fill = card.querySelector('.ic-fill');
-  card.addEventListener('mouseenter', () => {
-    fill.style.width = '210%';
-    fill.style.height = '210%';
-  });
-  card.addEventListener('mouseleave', () => {
-    fill.style.width = '0';
-    fill.style.height = '0';
+  card.addEventListener('mouseleave',()=>{
+    inner.style.transform='rotateY(0deg) rotateX(0deg)';
   });
 });
 
-// B4 circular button
-document.querySelectorAll('.b4').forEach(btn => {
-  const fill = btn.querySelector('.btn-fill');
-  btn.addEventListener('mouseenter', () => {
-    fill.style.width = '220%';
-    fill.style.height = '220%';
+/* ── GLITCH ── */
+document.querySelectorAll('.glitch-card').forEach(card=>{
+  const shift=card.querySelector('.g-shift');
+  let gi;
+  card.addEventListener('mouseenter',()=>{
+    gi=setInterval(()=>{
+      const y=Math.random()*80;
+      const h=Math.random()*15+5;
+      const tx=Math.random()*10-5;
+      shift.style.clipPath=`polygon(0 ${y}%,100% ${y}%,100% ${y+h}%,0 ${y+h}%)`;
+      shift.style.transform=`translateX(${tx}px)`;
+      shift.style.opacity=Math.random()>.5?'1':'0';
+    },120);
   });
-  btn.addEventListener('mouseleave', () => {
-    fill.style.width = '0';
-    fill.style.height = '0';
+  card.addEventListener('mouseleave',()=>{
+    clearInterval(gi);
+    shift.style.opacity='0';
   });
+});
+
+/* ── SPOTLIGHT ── */
+document.querySelectorAll('.spot-card').forEach(card=>{
+  const spot=card.querySelector('.spotlight');
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    spot.style.left=(e.clientX-r.left)+'px';
+    spot.style.top=(e.clientY-r.top)+'px';
+  });
+});
+
+/* ── PARALLAX ── */
+document.querySelectorAll('.par-card').forEach(card=>{
+  const l1=card.querySelector('.pl1');
+  const l2=card.querySelector('.pl2');
+  const l3=card.querySelector('.pl3');
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    l1.style.transform=`translate(${x*6}px,${y*6}px)`;
+    l2.style.transform=`translate(${x*14}px,${y*14}px)`;
+    l3.style.transform=`translate(${x*22}px,${y*22}px)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    l1.style.transform=l2.style.transform=l3.style.transform='translate(0,0)';
+  });
+});
+
+/* ── CAROUSEL 1: Fade ── */
+let cr1Current=0;
+const cr1Slides=document.querySelectorAll('.cr1 .slide');
+const cr1Dots=document.querySelectorAll('.cr1 .dot');
+function cr1Go(n){
+  cr1Slides[cr1Current].classList.remove('active');
+  cr1Dots[cr1Current].classList.remove('active');
+  cr1Current=(n+cr1Slides.length)%cr1Slides.length;
+  cr1Slides[cr1Current].classList.add('active');
+  cr1Dots[cr1Current].classList.add('active');
+}
+document.getElementById('cr1-next').addEventListener('click',()=>cr1Go(cr1Current+1));
+document.getElementById('cr1-prev').addEventListener('click',()=>cr1Go(cr1Current-1));
+cr1Dots.forEach(d=>d.addEventListener('click',()=>cr1Go(+d.dataset.i)));
+setInterval(()=>cr1Go(cr1Current+1),4000);
+
+/* ── CAROUSEL 2: Cube ── */
+let cubeAngle=0;
+const cube=document.getElementById('cube');
+const cr2Btns=document.querySelectorAll('.cr2-btn');
+const faceAngles=[0,-90,-180,-270];
+cr2Btns.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const f=+btn.dataset.face;
+    const w=document.querySelector('.cr2').offsetWidth;
+    cube.style.transform=`rotateY(${faceAngles[f]}deg)`;
+    cube.querySelectorAll('.cube-face').forEach(face=>{
+      const angle=+face.style.transform.match(/-?\d+/)?.[0]||0;
+      face.style.transform=face.style.transform.replace(/translateZ\([^)]+\)/,`translateZ(${w/2}px)`);
+    });
+    cr2Btns.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+// Set proper translateZ after load
+window.addEventListener('load',()=>{
+  const w=document.querySelector('.cr2').offsetWidth;
+  document.querySelectorAll('.cube-face').forEach(face=>{
+    const cur=face.style.transform;
+    if(cur.includes('translateZ')) return;
+    face.style.transform=cur+` translateZ(${w/2}px)`;
+  });
+});
+
+/* ── CAROUSEL 3: Vertical tabs ── */
+const cr3Items=document.querySelectorAll('.cr3-item');
+const cr3Panels=document.querySelectorAll('.cr3-panel');
+cr3Items.forEach(item=>{
+  item.addEventListener('click',()=>{
+    const idx=+item.dataset.idx;
+    cr3Items.forEach(i=>i.classList.remove('active'));
+    cr3Panels.forEach(p=>p.classList.remove('active'));
+    item.classList.add('active');
+    cr3Panels[idx].classList.add('active');
+  });
+});
+
+/* ── CAROUSEL 4: Thumbnail strip ── */
+let cr4Current=0;
+const cr4Slides=document.querySelectorAll('.cr4-slide');
+const cr4Thumbs=document.querySelectorAll('.cr4-thumb');
+const cr4SlidesWrap=document.getElementById('cr4-slides');
+function cr4Go(n){
+  cr4Slides[cr4Current].classList.remove('active');
+  cr4Thumbs[cr4Current].classList.remove('active');
+  cr4Current=n;
+  cr4Slides[cr4Current].classList.add('active');
+  cr4Thumbs[cr4Current].classList.add('active');
+  cr4SlidesWrap.style.transform=`translateX(-${cr4Current*100}%)`;
+}
+cr4Thumbs.forEach(t=>t.addEventListener('click',()=>cr4Go(+t.dataset.i)));
+
+/* ── CAROUSEL 5: Stack ── */
+const cards=[...document.querySelectorAll('.stack-card')];
+let stackIdx=cards.length-1;
+const classes=['hidden','prev2','prev1','active'];
+function stackRender(){
+  cards.forEach((c,i)=>{
+    c.className='stack-card';
+    const diff=stackIdx-i;
+    if(diff>=0&&diff<4) c.classList.add(classes[3-diff]);
+    else c.classList.add('hidden');
+  });
+}
+document.getElementById('stk-next').addEventListener('click',()=>{
+  if(stackIdx>0){stackIdx--;stackRender();}
+});
+document.getElementById('stk-prev').addEventListener('click',()=>{
+  if(stackIdx<cards.length-1){stackIdx++;stackRender();}
 });
 </script>
 </body>
 </html>
-
