@@ -6,7 +6,7 @@
   <title>Collaborate — Molmet Biotech</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Roboto+Slab:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
   <style>
     :root {
@@ -28,7 +28,9 @@
       --clr-on-dark-2: rgba(242,255,243,0.75);
       --clr-on-dark-3: rgba(242,255,243,0.45);
       --ff-display: 'Fraunces','Palatino Linotype',serif;
-      --ff-body: 'DM Sans','Arial',sans-serif;
+      --ff-body: 'Roboto Slab',Georgia,serif;
+      --space-lg: 48px;
+      --space-xl: 80px;
       --nav-h: 80px;
       --radius-sm: 10px;
       --radius-md: 18px;
@@ -36,30 +38,40 @@
       --radius-xl: 48px;
       --radius-full: 100px;
       --ease-out: cubic-bezier(0.22,1,0.36,1);
-      --ease-smooth: cubic-bezier(0.4,0,0.2,1);
       --shadow-sm: 0 2px 12px rgba(23,54,48,0.08);
       --shadow-md: 0 8px 32px rgba(23,54,48,0.12);
+      --shadow-lg: 0 20px 64px rgba(23,54,48,0.16);
+      --transition: 0.35s var(--ease-out);
     }
 
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
     html{scroll-behavior:smooth;}
     body{font-family:var(--ff-body);font-size:16px;line-height:1.6;color:var(--clr-text);background:var(--clr-bg);overflow-x:hidden;}
 
-    body::before{
-      content:'';position:fixed;inset:0;
-      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-      pointer-events:none;z-index:9999;opacity:0.4;
-    }
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4;}
 
     img{max-width:100%;display:block;}
     a{text-decoration:none;color:inherit;}
     ul{list-style:none;}
+
     h1,h2,h3,h4,h5{font-family:var(--ff-display);font-weight:500;line-height:1.1;color:var(--clr-text);}
     h1{font-size:clamp(40px,5.5vw,78px);}
     h2{font-size:clamp(32px,4vw,60px);}
     h3{font-size:clamp(20px,2.2vw,28px);}
     h4{font-size:clamp(16px,1.5vw,20px);}
-    p{font-size:clamp(14px,1.1vw,16px);line-height:1.75;color:var(--clr-text-2);font-weight:300;}
+    h5{font-size:clamp(14px,1.2vw,18px);}
+    p{font-family:var(--ff-body);font-size:clamp(14px,2vw,17px);line-height:1.75;color:var(--clr-text-2);font-weight:400;}
+
+    /* ══ PAGE ALERT ══ */
+    .page-alert{position:fixed;top:calc(var(--nav-h) + 12px);right:20px;z-index:2000;display:flex;align-items:center;gap:10px;padding:10px 16px 10px 14px;background:rgba(23,54,48,0.96);backdrop-filter:blur(16px);border:1px solid rgba(126,203,161,0.35);border-radius:var(--radius-md);box-shadow:0 8px 32px rgba(0,0,0,0.25);animation:alertSlideIn 0.5s var(--ease-out) forwards;max-width:300px;}
+    @keyframes alertSlideIn{from{opacity:0;transform:translateX(40px) scale(0.95);}to{opacity:1;transform:translateX(0) scale(1);}}
+    .page-alert.hiding{animation:alertSlideOut 0.35s var(--ease-out) forwards;}
+    @keyframes alertSlideOut{from{opacity:1;transform:translateX(0) scale(1);}to{opacity:0;transform:translateX(40px) scale(0.92);}}
+    .page-alert-dot{width:8px;height:8px;min-width:8px;border-radius:50%;background:var(--clr-accent);box-shadow:0 0 0 3px rgba(126,203,161,0.2);animation:alertPulse 2s infinite;}
+    @keyframes alertPulse{0%,100%{box-shadow:0 0 0 3px rgba(126,203,161,0.2);}50%{box-shadow:0 0 0 6px rgba(126,203,161,0.08);}}
+    .page-alert-text{font-family:var(--ff-body);font-size:12px;font-weight:500;color:var(--clr-on-dark);letter-spacing:.02em;flex:1;}
+    .page-alert-close{display:flex;align-items:center;justify-content:center;width:22px;height:22px;min-width:22px;background:rgba(242,255,243,0.08);border:1px solid rgba(242,255,243,0.12);border-radius:6px;cursor:pointer;color:var(--clr-on-dark-2);font-size:13px;transition:background .2s,color .2s,border-color .2s;line-height:1;}
+    .page-alert-close:hover{background:rgba(242,255,243,0.15);border-color:rgba(242,255,243,0.25);color:#fff;}
 
     /* ── NAVBAR ── */
     .navbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;padding:0 56px;background:rgba(242,255,243,0.88);backdrop-filter:blur(24px);border-bottom:1px solid rgba(110,175,136,0.15);transition:background 0.4s var(--ease-out),box-shadow 0.4s var(--ease-out);}
@@ -68,25 +80,25 @@
     .nav-logo img{width:180px;}
     .nav-links{flex:1;display:flex;justify-content:center;align-items:center;gap:2px;}
     .nav-item{position:relative;}
-    .nav-link{display:flex;align-items:center;gap:4px;padding:10px 14px;font-family:var(--ff-body);font-size:13.5px;font-weight:400;color:var(--clr-text-2);border-radius:var(--radius-sm);background:none;border:none;cursor:pointer;transition:color 0.25s var(--ease-smooth),background 0.25s var(--ease-smooth);white-space:nowrap;}
+    .nav-link{display:flex;align-items:center;gap:4px;padding:10px 14px;font-family:var(--ff-body);font-size:14.5px;font-weight:400;color:var(--clr-text-2);border-radius:var(--radius-sm);background:none;border:none;cursor:pointer;transition:color 0.25s,background 0.25s;white-space:nowrap;}
     .nav-link:hover{color:var(--clr-dark-2);background:rgba(23,54,48,0.06);}
-    .nav-link i{font-size:13px;opacity:0.5;transition:transform 0.3s var(--ease-out),opacity 0.3s var(--ease-smooth);}
+    .nav-link i{font-size:13px;opacity:0.5;transition:transform 0.3s var(--ease-out),opacity 0.3s;}
     .nav-item:hover .nav-link i{transform:rotate(180deg);opacity:0.8;}
     .dropdown{position:absolute;top:calc(100% + 1px);left:50%;transform:translateX(-50%) translateY(-8px) scale(0.97);min-width:220px;background:rgba(249,255,254,0.98);backdrop-filter:blur(32px);border:1px solid rgba(110,175,136,0.2);border-radius:var(--radius-md);padding:8px;opacity:0;pointer-events:none;transition:opacity 0.25s var(--ease-out),transform 0.25s var(--ease-out);transform-origin:top center;box-shadow:var(--shadow-md);}
     .nav-item:hover .dropdown{opacity:1;pointer-events:all;transform:translateX(-50%) translateY(0) scale(1);}
     .dropdown-label{font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--clr-text-faint);padding:8px 12px 4px;}
-    .dropdown-link{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--radius-sm);font-size:13px;color:var(--clr-text-2);transition:background 0.2s var(--ease-smooth),color 0.2s var(--ease-smooth),padding-left 0.2s var(--ease-smooth);}
-    .dropdown-link i{font-size:14px;color:var(--clr-sage);width:16px;text-align:center;transition:transform 0.25s var(--ease-out),color 0.2s var(--ease-smooth);}
+    .dropdown-link{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--radius-sm);font-size:13px;color:var(--clr-text-2);transition:background 0.2s,color 0.2s,padding-left 0.2s;}
+    .dropdown-link i{font-size:14px;color:var(--clr-sage);width:16px;text-align:center;transition:transform 0.25s var(--ease-out),color 0.2s;}
     .dropdown-link:hover{background:rgba(23,54,48,0.06);color:var(--clr-dark-2);padding-left:16px;}
     .dropdown-link:hover i{transform:translateX(2px);}
     .nav-cta-wrap{flex:0 0 auto;margin-left:16px;}
-    .nav-cta{display:inline-flex;align-items:center;gap:6px;padding:9px 22px;background:linear-gradient(135deg,var(--clr-dark-2) 0%,var(--clr-dark-3) 100%);color:var(--clr-on-dark);font-family:var(--ff-body);font-size:13px;font-weight:500;border-radius:var(--radius-full);transition:filter 0.3s var(--ease-smooth),transform 0.3s var(--ease-out),box-shadow 0.3s var(--ease-smooth);overflow:hidden;position:relative;will-change:transform;}
+    .nav-cta{display:inline-flex;align-items:center;gap:6px;padding:9px 22px;background:linear-gradient(135deg,var(--clr-dark-2) 0%,var(--clr-dark-3) 100%);color:var(--clr-on-dark);font-family:var(--ff-body);font-size:13px;font-weight:500;border-radius:var(--radius-full);transition:filter 0.3s,transform 0.3s var(--ease-out),box-shadow 0.3s;overflow:hidden;position:relative;will-change:transform;}
     .nav-cta::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.22),transparent);transform:translateX(-100%);transition:transform 0.6s var(--ease-out);}
     .nav-cta:hover{filter:brightness(1.12);transform:translateY(-1px);box-shadow:0 6px 20px rgba(23,54,48,0.3);}
     .nav-cta:hover::after{transform:translateX(100%);}
-    .hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;background:none;border:none;cursor:pointer;margin-left:auto;border-radius:var(--radius-sm);transition:background 0.2s var(--ease-smooth);padding:4px;}
+    .hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:40px;height:40px;background:none;border:none;cursor:pointer;margin-left:auto;border-radius:var(--radius-sm);transition:background 0.2s;padding:4px;}
     .hamburger:hover{background:rgba(23,54,48,0.07);}
-    .hamburger span{display:block;width:20px;height:1.5px;background:var(--clr-text);border-radius:2px;transition:transform 0.35s var(--ease-out),opacity 0.35s var(--ease-smooth);}
+    .hamburger span{display:block;width:20px;height:1.5px;background:var(--clr-text);border-radius:2px;transition:transform 0.35s var(--ease-out),opacity 0.35s;}
     .hamburger.active span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
     .hamburger.active span:nth-child(2){opacity:0;transform:scaleX(0);}
     .hamburger.active span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
@@ -98,21 +110,19 @@
     .mobile-nav-link{display:flex;align-items:center;justify-content:space-between;padding:14px 4px;font-size:15px;font-weight:400;color:var(--clr-text);background:none;border:none;font-family:var(--ff-body);width:100%;cursor:pointer;}
     .mobile-dropdown{display:none;padding:4px 0 10px;}
     .mobile-dropdown.open{display:block;}
-    .mobile-dropdown-link{display:block;padding:9px 12px;font-size:13px;color:var(--clr-text-2);border-radius:var(--radius-sm);transition:background 0.2s var(--ease-smooth),color 0.2s var(--ease-smooth);}
+    .mobile-dropdown-link{display:block;padding:9px 12px;font-size:13px;color:var(--clr-text-2);border-radius:var(--radius-sm);transition:background 0.2s,color 0.2s;}
     .mobile-dropdown-link:hover{background:rgba(23,54,48,0.06);color:var(--clr-dark-2);}
-    .mobile-cta{display:block;margin-top:24px;padding:13px;text-align:center;background:linear-gradient(135deg,var(--clr-dark-2),var(--clr-dark-3));color:var(--clr-on-dark);border-radius:var(--radius-md);font-weight:500;font-size:14px;transition:filter 0.25s var(--ease-smooth),transform 0.25s var(--ease-out);}
+    .mobile-cta{display:block;margin-top:24px;padding:13px;text-align:center;background:linear-gradient(135deg,var(--clr-dark-2),var(--clr-dark-3));color:var(--clr-on-dark);border-radius:var(--radius-md);font-weight:500;font-size:14px;transition:filter 0.25s,transform 0.25s var(--ease-out);}
     .mobile-cta:hover{filter:brightness(1.1);transform:translateY(-1px);}
 
     /* ── BUTTONS ── */
-    .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:linear-gradient(135deg,var(--clr-dark-2) 0%,var(--clr-dark-3) 100%);color:var(--clr-on-dark);font-family:var(--ff-body);font-size:14px;font-weight:500;border-radius:var(--radius-full);border:1px solid rgba(242,255,243,0.35);cursor:pointer;box-shadow:0 4px 24px rgba(23,54,48,0.4);transition:transform 0.3s var(--ease-out),filter 0.3s var(--ease-smooth),box-shadow 0.3s var(--ease-smooth);position:relative;overflow:hidden;will-change:transform;backface-visibility:hidden;}
+    .btn-primary{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:linear-gradient(135deg,var(--clr-dark-2) 0%,var(--clr-dark-3) 100%);color:var(--clr-on-dark);font-family:var(--ff-body);font-size:14px;font-weight:500;border-radius:var(--radius-full);border:1px solid rgba(242,255,243,0.35);cursor:pointer;box-shadow:0 4px 24px rgba(23,54,48,0.4);transition:transform 0.3s var(--ease-out),filter 0.3s,box-shadow 0.3s;position:relative;overflow:hidden;will-change:transform;backface-visibility:hidden;}
     .btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.25),transparent);transform:translateX(-100%);transition:transform 0.6s var(--ease-out);}
     .btn-primary:hover{transform:translateY(-3px);filter:brightness(1.1);box-shadow:0 10px 36px rgba(23,54,48,0.45);}
     .btn-primary:hover::after{transform:translateX(100%);}
-    .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;color:rgba(242,255,243,0.9);font-family:var(--ff-body);font-size:14px;font-weight:400;border-radius:var(--radius-full);border:1px solid rgba(242,255,243,0.2);background:rgba(242,255,243,0.06);backdrop-filter:blur(8px);transition:background 0.3s var(--ease-smooth),border-color 0.3s var(--ease-smooth),transform 0.3s var(--ease-out);will-change:transform;}
+    .btn-ghost{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;color:rgba(242,255,243,0.9);font-family:var(--ff-body);font-size:14px;font-weight:400;border-radius:var(--radius-full);border:1px solid rgba(242,255,243,0.2);background:rgba(242,255,243,0.06);backdrop-filter:blur(8px);transition:background 0.3s,border-color 0.3s,transform 0.3s var(--ease-out);will-change:transform;}
     .btn-ghost:hover{background:rgba(242,255,243,0.12);border-color:rgba(242,255,243,0.35);transform:translateY(-2px);}
-
-    /* icon swap */
-    .btn-primary .icon-default,.btn-ghost .icon-default,.form-btn .icon-default{display:inline-block;transition:opacity 0.2s var(--ease-smooth),transform 0.25s var(--ease-out);}
+    .btn-primary .icon-default,.btn-ghost .icon-default,.form-btn .icon-default{display:inline-block;transition:opacity 0.2s,transform 0.25s var(--ease-out);}
     .btn-primary .icon-hover,.btn-ghost .icon-hover,.form-btn .icon-hover{display:none;opacity:0;}
     .btn-primary:hover .icon-default,.btn-ghost:hover .icon-default,.form-btn:hover .icon-default{display:none;}
     .btn-primary:hover .icon-hover,.btn-ghost:hover .icon-hover,.form-btn:hover .icon-hover{display:inline-block;opacity:1;}
@@ -125,6 +135,12 @@
     .section-tag.light .section-tag-dot{background:var(--clr-accent);}
     .section-tag.light .section-tag-text{color:var(--clr-on-dark-2);}
 
+    /* ── CARD FILL HOVER (bottom-to-top dark fill) ── */
+    .card-fill{position:relative;overflow:hidden;isolation:isolate;}
+    .card-fill::before{content:'';position:absolute;inset:0;background:var(--clr-dark-2);transform:scaleY(0);transform-origin:bottom center;transition:transform 0.55s cubic-bezier(0.22,1,0.36,1);border-radius:inherit;z-index:0;will-change:transform;}
+    .card-fill:hover::before{transform:scaleY(1);}
+    .card-fill>*{position:relative;z-index:1;}
+
     /* flip icon helper */
     .card-icon-flipper{position:relative;width:22px;height:22px;transform-style:preserve-3d;transition:transform 0.6s var(--ease-out);}
     .card-icon-front,.card-icon-back{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
@@ -132,351 +148,317 @@
     .card-icon-back{transform:rotateY(180deg);}
     .card-icon-back i{font-size:20px;color:var(--clr-accent);}
 
-    /* ── BOTTOM-FILL HOVER MIXIN (shared by all cards) ──
-       The ::before is the dark fill panel, anchored to the bottom.
-       transform: scaleY(0) → scaleY(1) creates a smooth rise effect.
-       transform-origin: bottom center is critical.
-    ── */
-    .card-fill{
-      position:relative;
-      overflow:hidden;
-      isolation:isolate;
-    }
-    .card-fill::before{
-      content:'';
-      position:absolute;
-      inset:0;
-      background:var(--clr-dark-2);
-      transform:scaleY(0);
-      transform-origin:bottom center;
-      transition:transform 0.55s cubic-bezier(0.22,1,0.36,1);
-      border-radius:inherit;
-      z-index:0;
-      will-change:transform;
-    }
-    .card-fill:hover::before{
-      transform:scaleY(1);
-    }
-    .card-fill>*{
-      position:relative;
-      z-index:1;
-    }
-
     /* ── ANIMATIONS ── */
     @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(126,203,161,0.25);}50%{box-shadow:0 0 0 8px rgba(126,203,161,0.06);}}
     @keyframes fadeUp{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
     @keyframes revealUp{from{opacity:0;transform:translateY(32px);}to{opacity:1;transform:translateY(0);}}
     @keyframes spin{to{transform:rotate(360deg);}}
-
     .fade-up{opacity:0;animation:fadeUp 0.9s var(--ease-out) forwards;}
     .fade-up.d1{animation-delay:0.1s;}.fade-up.d2{animation-delay:0.22s;}.fade-up.d3{animation-delay:0.34s;}.fade-up.d4{animation-delay:0.46s;}.fade-up.d5{animation-delay:0.58s;}.fade-up.d6{animation-delay:0.70s;}
     .reveal{opacity:0;}
     .reveal.in-view{animation:revealUp 0.8s var(--ease-out) forwards;}
 
     /* ═══════════════════════════════════════════
-       SECTION 1 — HERO
+       SECTION 1 — HERO (80vh)
     ═══════════════════════════════════════════ */
-    .hero{padding-top:var(--nav-h);min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--clr-dark);position:relative;overflow:hidden;text-align:center;}
+    .hero{padding-top:var(--nav-h);height:80vh;min-height:500px;display:flex;align-items:center;justify-content:center;background:var(--clr-dark);position:relative;overflow:hidden;text-align:center;}
     .hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1800&q=85');background-size:cover;background-position:center;transform:scale(1.04);animation:heroParallax 18s ease-in-out infinite alternate;}
     @keyframes heroParallax{from{transform:scale(1.04) translateY(0);}to{transform:scale(1.08) translateY(-16px);}}
     .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(3,10,8,0.88) 0%,rgba(6,19,16,0.82) 50%,rgba(5,19,16,0.76) 100%);}
     .hero-ambient{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 20% 70%,rgba(126,203,161,0.14) 0%,transparent 55%),radial-gradient(ellipse at 80% 20%,rgba(77,140,106,0.09) 0%,transparent 45%);}
-    .hero-inner{position:relative;z-index:2;max-width:860px;margin:0 auto;padding:120px 48px 100px;display:flex;flex-direction:column;align-items:center;width:100%;}
-    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 16px 5px 10px;background:rgba(106,175,136,0.15);border:1px solid rgba(106,175,136,0.3);border-radius:var(--radius-full);margin-bottom:32px;}
+    .hero-inner{position:relative;z-index:2;max-width:860px;margin:0 auto;padding:0 48px;display:flex;flex-direction:column;align-items:center;width:100%;}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 16px 5px 10px;background:rgba(106,175,136,0.15);border:1px solid rgba(106,175,136,0.3);border-radius:var(--radius-full);margin-bottom:28px;}
     .hero-eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--clr-accent);box-shadow:0 0 0 3px rgba(126,203,161,0.25);animation:pulse 2.5s ease-in-out infinite;}
     .hero-eyebrow span{font-size:11px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:rgba(242,255,243,0.65);}
-    .hero-headline{font-family:var(--ff-display);font-size:clamp(48px,6vw,96px);font-weight:500;color:#fff;line-height:1.02;letter-spacing:-0.035em;margin-bottom:20px;}
+    .hero-headline{font-family:var(--ff-display);font-size:clamp(42px,6vw,86px);font-weight:500;color:#fff;line-height:1.02;letter-spacing:-0.03em;margin-bottom:18px;}
     .hero-headline em{font-style:italic;color:var(--clr-accent);}
-    .hero-divider{width:48px;height:1px;background:linear-gradient(to right,transparent,var(--clr-accent),transparent);margin:0 auto 24px;}
-    .hero-sub{font-size:clamp(17px,1.8vw,24px);color:var(--clr-on-dark-2);font-family:var(--ff-display);font-weight:400;font-style:italic;line-height:1.5;margin-bottom:28px;}
-    .hero-opening-text{font-size:clamp(14px,1.2vw,16px);color:var(--clr-on-dark-2);font-weight:300;line-height:1.8;max-width:720px;margin-bottom:44px;}
-    .hero-opening-text p{color:var(--clr-on-dark-2);font-size:inherit;line-height:inherit;margin-bottom:0;}
+    .hero-divider{width:48px;height:1px;background:linear-gradient(to right,transparent,var(--clr-accent),transparent);margin:0 auto 20px;}
+    .hero-sub{font-size:clamp(15px,1.8vw,22px);color:var(--clr-on-dark-2);font-family:var(--ff-display);font-weight:400;font-style:italic;line-height:1.5;margin-bottom:36px;}
     .hero-actions{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;}
 
     /* ═══════════════════════════════════════════
-       SECTION 2 — OUR APPROACH (4 cards, no image)
+       INTRO STRIP
     ═══════════════════════════════════════════ */
-    .approach-section{padding:108px 80px;background:var(--clr-bg);}
-    .approach-inner{max-width:1160px;margin:0 auto;}
-    .approach-header{text-align:center;margin-bottom:20px;}
-    .approach-header h2{color:var(--clr-dark);margin-bottom:14px;}
-    .approach-header p{color:var(--clr-text-2);max-width:620px;margin:0 auto 6px;}
-    .approach-tagline{display:inline-flex;align-items:center;gap:10px;margin-top:12px;padding:16px 28px;background:linear-gradient(135deg,var(--clr-dark-2),var(--clr-dark-3));border-radius:var(--radius-lg);}
-    .approach-tagline i{font-size:17px;color:var(--clr-accent);}
-    .approach-tagline p{font-size:14px;font-weight:500;color:var(--clr-on-dark);margin:0;}
-    .approach-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:52px;}
+    .intro-strip{background:var(--clr-bg);padding:30px 5px;border-bottom:1px solid rgba(77,140,106,0.15);}
+    .intro-strip p{font-family:var(--ff-body);font-size:clamp(15px,1.6vw,22px);font-weight:400;line-height:1.75;color:var(--clr-on-dark-2);max-width:1200px;margin:0 auto;letter-spacing:1.2px;text-align:center;border:2px solid var(--clr-dark);padding:50px 30px;border-radius:25px;background-color:var(--clr-dark);}
 
-    /* approach card */
-    .appr-card{background:var(--clr-surface);border:1px solid rgba(23,54,48,0.08);border-radius:var(--radius-lg);padding:32px 24px;cursor:default;transition:border-color 0.55s cubic-bezier(0.22,1,0.36,1),transform 0.55s cubic-bezier(0.22,1,0.36,1),box-shadow 0.55s cubic-bezier(0.22,1,0.36,1);will-change:transform;backface-visibility:hidden;}
-    .appr-card:hover{border-color:rgba(126,203,161,0.35);transform:translateY(-5px) scale(1.01);box-shadow:0 20px 56px rgba(23,54,48,0.22);}
-    .appr-card-icon{width:44px;height:44px;background:var(--clr-bg-3);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:18px;border:1px solid rgba(23,54,48,0.1);transition:background 0.4s var(--ease-smooth),border-color 0.4s var(--ease-smooth),transform 0.4s var(--ease-out);perspective:400px;}
-    .appr-card:hover .appr-card-icon{background:rgba(126,203,161,0.15);border-color:rgba(126,203,161,0.4);transform:scale(1.08);}
-    .appr-card:hover .card-icon-flipper{transform:rotateY(180deg);}
-    .appr-card h4{font-family:var(--ff-display);font-size:16px;font-weight:500;color:var(--clr-dark-2);margin-bottom:8px;transition:color 0.5s cubic-bezier(0.22,1,0.36,1);}
-    .appr-card p{font-size:13px;color:var(--clr-text-muted);line-height:1.65;transition:color 0.5s cubic-bezier(0.22,1,0.36,1);}
-    .appr-card:hover h4{color:#fff;}
-    .appr-card:hover p{color:rgba(242,255,243,0.65);}
+    /* ═══════════════════════════════════════════
+       SECTION 2 — HOW WE PARTNER (UPDATED LAYOUT)
+    ═══════════════════════════════════════════ */
+    .partner-section{padding:100px 80px;background:var(--clr-bg-2);}
+    .partner-inner{max-width:1200px;margin:0 auto;}
+
+    /* Heading block — centred */
+    .partner-top{text-align:center;margin-bottom:60px;}
+    .partner-top h2{color:var(--clr-dark);margin-bottom:10px;}
+    .partner-top .partner-sub{font-size:clamp(18px,2vw,24px);font-family:var(--ff-display);font-weight:500;color:var(--clr-sage);margin-bottom:18px;font-style:italic;}
+
+    /* Two-column body: left = text+strategic, right = list */
+    .partner-body{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start;}
+    .partner-body-left{}
+    .partner-body-left p{color:var(--clr-text-2);margin-bottom:16px;}
+    .partner-strategic{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:14px 28px;background:linear-gradient(135deg,var(--clr-dark-2),var(--clr-dark-3));border-radius:var(--radius-lg);}
+    .partner-strategic i{font-size:17px;color:var(--clr-accent);}
+    .partner-strategic p{font-size:14px;font-weight:500;color:var(--clr-on-dark);margin:0;letter-spacing:0.02em;}
+
+    .partner-body-right h3{font-size:clamp(17px,1.8vw,22px);color:var(--clr-dark);margin-bottom:24px;}
+    .partner-list{display:flex;flex-direction:column;gap:14px;}
+    .partner-list-item{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--clr-surface);border:1px solid rgba(23,54,48,0.08);border-radius:var(--radius-md);transition:border-color 0.3s,transform 0.3s var(--ease-out),box-shadow 0.3s;}
+    .partner-list-item:hover{border-color:rgba(77,140,106,0.3);transform:translateX(6px);box-shadow:var(--shadow-sm);}
+    .partner-list-dot{width:8px;height:8px;min-width:8px;border-radius:50%;background:var(--clr-accent);margin-top:7px;}
+    .partner-list-item span{font-family:var(--ff-body);font-size:clamp(13px,1.2vw,15px);color:var(--clr-text-2);line-height:1.6;}
+
+    /* Cards grid stays below body columns, full width */
+    .partner-cards-section{margin-top:60px;}
+    .partner-cards-section h3{font-size:clamp(17px,1.8vw,22px);color:var(--clr-dark);margin-bottom:24px;text-align:center;}
+    .partner-cards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+    .partner-img-card{border-radius:var(--radius-lg);overflow:hidden;height:260px;margin-top:16px;}
+    .partner-img-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s var(--ease-out);}
+    .partner-img-card:hover img{transform:scale(1.05);}
+
+    .p-card{background:var(--clr-surface);border:1px solid rgba(23,54,48,0.08);border-radius:var(--radius-lg);padding:28px 22px;cursor:default;transition:border-color 0.55s cubic-bezier(0.22,1,0.36,1),transform 0.55s cubic-bezier(0.22,1,0.36,1),box-shadow 0.55s cubic-bezier(0.22,1,0.36,1);will-change:transform;backface-visibility:hidden;}
+    .p-card:hover{border-color:rgba(126,203,161,0.35);transform:translateY(-5px) scale(1.01);box-shadow:0 20px 56px rgba(23,54,48,0.22);}
+    .p-card-icon{width:44px;height:44px;background:var(--clr-bg-3);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:16px;border:1px solid rgba(23,54,48,0.1);transition:background 0.4s,border-color 0.4s,transform 0.4s var(--ease-out);perspective:400px;}
+    .p-card:hover .p-card-icon{background:rgba(126,203,161,0.15);border-color:rgba(126,203,161,0.4);transform:scale(1.08);}
+    .p-card:hover .card-icon-flipper{transform:rotateY(180deg);}
+    .p-card h4{font-family:var(--ff-display);font-size:clamp(14px,1.3vw,17px);font-weight:500;color:var(--clr-dark-2);margin-bottom:8px;transition:color 0.5s cubic-bezier(0.22,1,0.36,1);}
+    .p-card p{font-size:13px;color:var(--clr-text-muted);line-height:1.65;transition:color 0.5s cubic-bezier(0.22,1,0.36,1);}
+    .p-card:hover h4{color:#fff;}
+    .p-card:hover p{color:rgba(242,255,243,0.65);}
 
     /* ═══════════════════════════════════════════
        SECTION 3 — COLLABORATION MODELS
-       scrollable list left + image right
     ═══════════════════════════════════════════ */
-    .models-section{padding:108px 80px;background:var(--clr-dark-2);position:relative;overflow:hidden;}
+    .models-section{padding:100px 80px;background:var(--clr-dark-2);position:relative;overflow:hidden;}
     .models-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 80% 30%,rgba(126,203,161,0.07) 0%,transparent 60%);pointer-events:none;}
-    .models-inner{max-width:1160px;margin:0 auto;}
-    .models-header{margin-bottom:56px;}
-    .models-header h2{color:var(--clr-on-dark);margin-bottom:10px;}
-    .models-header p{color:var(--clr-on-dark-2);max-width:480px;}
+    .models-inner{max-width:1200px;margin:0 auto;}
+    .models-header{text-align:center;margin-bottom:56px;}
+    .models-header h2{color:var(--clr-on-dark);margin-bottom:8px;}
+    .models-strategic{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:12px 24px;background:rgba(126,203,161,0.08);border:1px solid rgba(126,203,161,0.2);border-radius:var(--radius-lg);}
+    .models-strategic p{font-size:13px;font-style:italic;color:var(--clr-on-dark-2);margin:0;}
 
-    .models-layout{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+    .models-grid-row1{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:18px;}
+    .models-grid-row2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
 
-    /* scrollable list */
-    .models-list{display:flex;flex-direction:column;gap:0;max-height:480px;overflow-y:auto;padding-right:12px;scrollbar-width:thin;scrollbar-color:rgba(126,203,161,0.3) transparent;}
-    .models-list::-webkit-scrollbar{width:3px;}
-    .models-list::-webkit-scrollbar-track{background:transparent;}
-    .models-list::-webkit-scrollbar-thumb{background:rgba(126,203,161,0.3);border-radius:4px;}
-
-    .model-item{display:flex;align-items:flex-start;gap:18px;padding:22px 20px;border-radius:var(--radius-md);cursor:pointer;transition:background 0.3s var(--ease-smooth),transform 0.3s var(--ease-out);border:1px solid transparent;position:relative;}
-    .model-item:not(:last-child)::after{content:'';position:absolute;bottom:0;left:20px;right:20px;height:1px;background:rgba(242,255,243,0.06);}
-    .model-item.active,.model-item:hover{background:rgba(242,255,243,0.05);border-color:rgba(126,203,161,0.18);transform:translateX(4px);}
-    .model-item.active{border-color:rgba(126,203,161,0.28);background:rgba(126,203,161,0.06);}
-
-    .model-item-icon{width:40px;height:40px;min-width:40px;background:rgba(126,203,161,0.08);border:1px solid rgba(126,203,161,0.15);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;transition:background 0.3s var(--ease-smooth),border-color 0.3s var(--ease-smooth);}
-    .model-item.active .model-item-icon,.model-item:hover .model-item-icon{background:rgba(126,203,161,0.15);border-color:rgba(126,203,161,0.35);}
-    .model-item-icon i{font-size:18px;color:var(--clr-accent);}
-
-    .model-item-body strong{display:block;font-size:14px;font-weight:500;color:var(--clr-on-dark);margin-bottom:5px;transition:color 0.3s var(--ease-smooth);}
-    .model-item-body span{font-size:12.5px;color:var(--clr-on-dark-3);line-height:1.6;transition:color 0.3s var(--ease-smooth);}
-    .model-item.active .model-item-body strong,.model-item:hover .model-item-body strong{color:#fff;}
-    .model-item.active .model-item-body span,.model-item:hover .model-item-body span{color:rgba(242,255,243,0.65);}
-
-    .model-active-dot{width:6px;height:6px;border-radius:50%;background:var(--clr-accent);margin-top:8px;opacity:0;transition:opacity 0.3s var(--ease-smooth);}
-    .model-item.active .model-active-dot{opacity:1;}
-
-    /* image right */
-    .models-img-wrap{position:sticky;top:120px;border-radius:var(--radius-xl);overflow:hidden;height:480px;}
-    .models-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s var(--ease-out),opacity 0.5s var(--ease-smooth);}
-    .models-img-wrap:hover img{transform:scale(1.04);}
-    .models-img-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,31,28,0.6) 0%,transparent 60%);}
+    .model-card{background:rgba(242,255,243,0.04);border:1px solid rgba(242,255,243,0.08);border-radius:var(--radius-lg);padding:30px 26px;cursor:default;transition:border-color 0.55s cubic-bezier(0.22,1,0.36,1),transform 0.55s cubic-bezier(0.22,1,0.36,1),box-shadow 0.55s cubic-bezier(0.22,1,0.36,1);will-change:transform;backface-visibility:hidden;}
+    .model-card:hover{border-color:rgba(126,203,161,0.35);transform:translateY(-5px) scale(1.01);box-shadow:0 20px 56px rgba(0,0,0,0.3);}
+    .model-card-icon{width:44px;height:44px;background:rgba(126,203,161,0.08);border:1px solid rgba(126,203,161,0.15);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:18px;transition:background 0.4s,border-color 0.4s,transform 0.4s var(--ease-out);perspective:400px;}
+    .model-card:hover .model-card-icon{background:rgba(126,203,161,0.18);border-color:rgba(126,203,161,0.4);transform:scale(1.08);}
+    .model-card:hover .card-icon-flipper{transform:rotateY(180deg);}
+    .model-card h4{font-family:var(--ff-display);font-size:clamp(15px,1.4vw,18px);font-weight:500;color:var(--clr-on-dark);margin-bottom:10px;transition:color 0.5s;}
+    .model-card p{font-size:13px;color:var(--clr-on-dark-3);line-height:1.65;transition:color 0.5s;}
+    .model-card:hover h4{color:#fff;}
+    .model-card:hover p{color:rgba(242,255,243,0.65);}
 
     /* ═══════════════════════════════════════════
-       SECTION 4 — WHO WE WORK WITH (5 cards, 1 row)
+       SECTION 4 — WHO WE ENGAGE WITH
     ═══════════════════════════════════════════ */
-    .who-section{padding:108px 80px;background:var(--clr-bg-2);}
-    .who-inner{max-width:1300px;margin:0 auto;}
-    .who-header{margin-bottom:52px;}
-    .who-header h2{color:var(--clr-dark);margin-bottom:10px;}
-    .who-header p{color:var(--clr-text-2);max-width:520px;}
-    .who-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+    .who-section{padding:100px 80px;background:var(--clr-bg-2);}
+    .who-inner{max-width:1200px;margin:0 auto;}
+    .who-top{text-align:center;margin-bottom:52px;}
+    .who-top h2{color:var(--clr-dark);margin-bottom:8px;}
+    .who-top .who-sub{font-size:clamp(17px,1.8vw,22px);font-family:var(--ff-display);font-style:italic;color:var(--clr-sage);margin-bottom:14px;}
+    .who-top p{color:var(--clr-text-2);max-width:700px;margin:0 auto;}
 
-    .who-card{background:var(--clr-surface);border:1px solid rgba(23,54,48,0.08);border-radius:var(--radius-lg);padding:28px 20px 24px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;cursor:default;transition:border-color 0.55s cubic-bezier(0.22,1,0.36,1),transform 0.55s cubic-bezier(0.22,1,0.36,1),box-shadow 0.55s cubic-bezier(0.22,1,0.36,1);will-change:transform;backface-visibility:hidden;}
-    .who-card:hover{border-color:rgba(77,140,106,0.3);transform:translateY(-5px) scale(1.01);box-shadow:0 18px 50px rgba(23,54,48,0.2);}
-    .who-card-icon{width:44px;height:44px;background:var(--clr-bg-3);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;transition:background 0.4s var(--ease-smooth),transform 0.4s var(--ease-out);perspective:400px;}
-    .who-card:hover .who-card-icon{background:rgba(126,203,161,0.15);transform:scale(1.08);}
-    .who-card:hover .card-icon-flipper{transform:rotateY(180deg);}
-    .who-card strong{display:block;font-size:13.5px;font-weight:500;color:var(--clr-dark-2);margin-bottom:4px;line-height:1.35;transition:color 0.5s cubic-bezier(0.22,1,0.36,1);}
-    .who-card span{font-size:12px;color:var(--clr-text-muted);line-height:1.55;transition:color 0.5s cubic-bezier(0.22,1,0.36,1);}
-    .who-card:hover strong{color:#fff;}
-    .who-card:hover span{color:rgba(242,255,243,0.6);}
+    .who-layout{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;}
+    .who-list{display:flex;flex-direction:column;gap:14px;}
+    .who-list-item{display:flex;align-items:flex-start;gap:14px;padding:18px 22px;background:var(--clr-surface);border:1px solid rgba(23,54,48,0.08);border-radius:var(--radius-md);transition:border-color 0.3s,transform 0.3s var(--ease-out),box-shadow 0.3s;}
+    .who-list-item:hover{border-color:rgba(77,140,106,0.3);transform:translateX(6px);box-shadow:var(--shadow-sm);}
+    .who-list-dot{width:8px;height:8px;min-width:8px;border-radius:50%;background:var(--clr-accent);margin-top:7px;}
+    .who-list-item span{font-family:var(--ff-body);font-size:clamp(13px,1.2vw,15px);color:var(--clr-text-2);line-height:1.6;}
+    .who-img{border-radius:var(--radius-xl);overflow:hidden;height:440px;}
+    .who-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.7s var(--ease-out);}
+    .who-img:hover img{transform:scale(1.04);}
 
     /* ═══════════════════════════════════════════
-       SECTION 5 — WHAT WE OFFER (image right)
+       SECTION 5 — WHAT WE BRING (UPDATED LAYOUT)
+       Core Strengths LEFT, Image RIGHT
     ═══════════════════════════════════════════ */
-    .offer-section{padding:0;background:var(--clr-dark);position:relative;overflow:hidden;}
-    .offer-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(126,203,161,0.06) 0%,transparent 55%),radial-gradient(ellipse at 85% 20%,rgba(77,140,106,0.05) 0%,transparent 40%);pointer-events:none;}
+    .bring-section{padding:100px 80px;background:var(--clr-dark);position:relative;overflow:hidden;}
+    .bring-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(126,203,161,0.06) 0%,transparent 55%);pointer-events:none;}
+    .bring-inner{max-width:1200px;margin:0 auto;}
+    .bring-top{text-align:center;margin-bottom:56px;}
+    .bring-top h2{color:var(--clr-on-dark);margin-bottom:10px;}
 
-    .offer-header-band{padding:88px 80px 68px;max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-    .offer-header-band h2{color:var(--clr-on-dark);margin-bottom:14px;}
-    .offer-header-band>div>p{color:var(--clr-on-dark-2);max-width:440px;}
-    .offer-img-right{height:340px;border-radius:var(--radius-xl);overflow:hidden;}
-    .offer-img-right img{width:100%;height:100%;object-fit:cover;opacity:0.85;transition:transform 0.7s var(--ease-out),opacity 0.4s var(--ease-smooth);}
-    .offer-img-right:hover img{transform:scale(1.04);opacity:0.95;}
+    /* Updated: strengths left, image right */
+    .bring-layout{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:start;}
 
-    .offer-assets-band{border-top:1px solid rgba(242,255,243,0.07);border-bottom:1px solid rgba(242,255,243,0.07);}
-    .offer-assets-inner{max-width:1160px;margin:0 auto;padding:0 80px;display:grid;grid-template-columns:1fr 1fr;gap:0;}
+    .bring-left h3{font-size:clamp(16px,1.6vw,20px);color:var(--clr-on-dark);margin-bottom:22px;}
+    .bring-list{display:flex;flex-direction:column;gap:12px;}
+    .bring-list-item{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:rgba(242,255,243,0.04);border:1px solid rgba(242,255,243,0.07);border-radius:var(--radius-md);transition:border-color 0.3s,transform 0.3s var(--ease-out),background 0.3s;}
+    .bring-list-item:hover{border-color:rgba(126,203,161,0.25);transform:translateX(5px);background:rgba(242,255,243,0.06);}
+    .bring-list-dot{width:8px;height:8px;min-width:8px;border-radius:50%;background:var(--clr-accent);margin-top:7px;}
+    .bring-list-item span{font-family:var(--ff-body);font-size:clamp(13px,1.2vw,15px);color:var(--clr-on-dark-2);line-height:1.6;}
+    .bring-strategic{margin-top:28px;padding:16px 22px;background:rgba(126,203,161,0.08);border:1px solid rgba(126,203,161,0.2);border-radius:var(--radius-md);}
+    .bring-strategic p{font-size:clamp(13px,1.2vw,15px);color:var(--clr-on-dark-2);font-style:italic;margin:0;}
+    .bring-strategic em{color:var(--clr-accent);font-style:normal;}
 
-    .offer-asset-item{display:flex;align-items:flex-start;gap:24px;padding:36px 0;border-bottom:1px solid rgba(242,255,243,0.07);border-right:1px solid rgba(242,255,243,0.07);padding-right:48px;transition:background 0.35s var(--ease-smooth);position:relative;}
-    .offer-asset-item:nth-child(even){padding-right:0;padding-left:48px;border-right:none;}
-    .offer-asset-item:nth-last-child(-n+2){border-bottom:none;}
-    .offer-asset-item:hover{background:rgba(242,255,243,0.025);}
-    .offer-asset-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--clr-accent),transparent);border-radius:2px;opacity:0;transition:opacity 0.4s var(--ease-smooth);}
-    .offer-asset-item:nth-child(even)::before{left:48px;}
-    .offer-asset-item:hover::before{opacity:1;}
-
-    .offer-asset-num{font-family:var(--ff-display);font-size:11px;font-weight:500;color:var(--clr-accent);opacity:0.6;min-width:28px;padding-top:4px;letter-spacing:0.05em;}
-    .offer-asset-icon-wrap{width:48px;height:48px;min-width:48px;background:rgba(126,203,161,0.1);border:1px solid rgba(126,203,161,0.2);border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;transition:background 0.35s var(--ease-smooth),border-color 0.35s var(--ease-smooth),transform 0.35s var(--ease-out);will-change:transform;}
-    .offer-asset-item:hover .offer-asset-icon-wrap{background:rgba(126,203,161,0.18);border-color:rgba(126,203,161,0.4);transform:scale(1.08) rotate(3deg);}
-    .offer-asset-icon-wrap i{font-size:20px;color:var(--clr-accent);}
-    .offer-asset-body strong{display:block;font-size:15px;font-weight:500;color:var(--clr-on-dark);margin-bottom:6px;transition:color 0.3s var(--ease-smooth);}
-    .offer-asset-body span{font-size:13px;color:var(--clr-on-dark-3);line-height:1.65;transition:color 0.3s var(--ease-smooth);}
-    .offer-asset-item:hover .offer-asset-body strong{color:#fff;}
-    .offer-asset-item:hover .offer-asset-body span{color:rgba(242,255,243,0.6);}
-
-    .offer-strategic-line{max-width:1160px;margin:0 auto;padding:48px 80px;text-align:center;}
-    .offer-strategic-line p{font-family:var(--ff-display);font-size:clamp(16px,1.6vw,21px);font-style:italic;color:var(--clr-on-dark-2);line-height:1.7;}
-    .offer-strategic-line p em{color:var(--clr-accent);font-style:normal;}
+    .bring-img-wrap{border-radius:var(--radius-xl);overflow:hidden;height:420px;position:sticky;top:120px;}
+    .bring-img-wrap img{width:100%;height:100%;object-fit:cover;opacity:0.85;transition:transform 0.7s var(--ease-out),opacity 0.4s;}
+    .bring-img-wrap:hover img{transform:scale(1.04);opacity:0.95;}
 
     /* ═══════════════════════════════════════════
-       SECTION 6 — FOCUS AREAS (8 cards, 2 rows of 4)
+       SECTION 6 — STRATEGIC FOCUS AREAS
     ═══════════════════════════════════════════ */
-    .focus-section{padding:108px 80px;background:var(--clr-bg-4);}
-    .focus-inner{max-width:1160px;margin:0 auto;}
-    .focus-header{margin-bottom:52px;}
-    .focus-header h2{color:var(--clr-dark);margin-bottom:10px;}
-    .focus-header p{color:var(--clr-text-2);max-width:560px;}
-    .focus-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+    .focus-section{padding:100px 80px;background:var(--clr-bg-3);}
+    .focus-inner{max-width:1200px;margin:0 auto;}
+    .focus-top{text-align:center;margin-bottom:52px;}
+    .focus-top h2{color:var(--clr-dark);margin-bottom:10px;}
+    .focus-top p{color:var(--clr-text-2);max-width:680px;margin:0 auto;}
 
-    .focus-card{padding:24px 20px;background:var(--clr-surface);border:1px solid rgba(23,54,48,0.08);border-radius:var(--radius-lg);display:flex;flex-direction:column;align-items:flex-start;gap:14px;cursor:default;transition:border-color 0.55s cubic-bezier(0.22,1,0.36,1),transform 0.55s cubic-bezier(0.22,1,0.36,1),box-shadow 0.55s cubic-bezier(0.22,1,0.36,1);will-change:transform;backface-visibility:hidden;}
-    .focus-card:hover{border-color:rgba(77,140,106,0.3);transform:translateY(-4px) scale(1.02);box-shadow:0 14px 40px rgba(23,54,48,0.18);}
-    .focus-card span{font-size:13.5px;font-weight:400;color:var(--clr-text-2);line-height:1.4;transition:color 0.5s cubic-bezier(0.22,1,0.36,1);}
-    .focus-card:hover span{color:rgba(242,255,243,0.8);}
-    .focus-card-icon{width:40px;height:40px;background:var(--clr-bg-3);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;transition:background 0.4s var(--ease-smooth),transform 0.4s var(--ease-out);perspective:400px;}
-    .focus-card:hover .focus-card-icon{background:rgba(126,203,161,0.15);transform:scale(1.1);}
+    .focus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .focus-card{padding:28px 22px;background:var(--clr-dark-2);border:1px solid rgba(242,255,243,0.08);border-radius:var(--radius-lg);display:flex;flex-direction:column;align-items:flex-start;gap:16px;cursor:default;position:relative;overflow:hidden;isolation:isolate;transition:border-color 0.55s cubic-bezier(0.22,1,0.36,1),transform 0.55s cubic-bezier(0.22,1,0.36,1),box-shadow 0.55s cubic-bezier(0.22,1,0.36,1);will-change:transform;backface-visibility:hidden;}
+    .focus-card::before{content:'';position:absolute;inset:0;background:var(--clr-bg-4);transform:scaleY(0);transform-origin:bottom center;transition:transform 0.55s cubic-bezier(0.22,1,0.36,1);border-radius:inherit;z-index:0;}
+    .focus-card:hover::before{transform:scaleY(1);}
+    .focus-card>*{position:relative;z-index:1;}
+    .focus-card:hover{border-color:rgba(77,140,106,0.35);transform:translateY(-4px) scale(1.02);box-shadow:0 14px 40px rgba(23,54,48,0.22);}
+    .focus-card-icon{width:44px;height:44px;background:rgba(126,203,161,0.1);border:1px solid rgba(126,203,161,0.18);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;transition:background 0.4s,border-color 0.4s,transform 0.4s var(--ease-out);perspective:400px;}
+    .focus-card:hover .focus-card-icon{background:var(--clr-bg-3);border-color:rgba(23,54,48,0.15);transform:scale(1.1);}
     .focus-card:hover .card-icon-flipper{transform:rotateY(180deg);}
+    .focus-card-icon .card-icon-front i{color:var(--clr-accent);}
+    .focus-card:hover .focus-card-icon .card-icon-front i{color:var(--clr-sage);}
+    .focus-card span{font-size:clamp(13px,1.2vw,15px);font-weight:400;color:var(--clr-on-dark-2);line-height:1.5;transition:color 0.45s;}
+    .focus-card:hover span{color:var(--clr-text-2);}
 
     /* ═══════════════════════════════════════════
        SECTION 7 — BIOPROSPECTING OPPORTUNITY
-       (image right layout)
     ═══════════════════════════════════════════ */
-    .opp-section{padding:108px 80px;background:var(--clr-dark-2);position:relative;overflow:hidden;}
+    .opp-section{padding:100px 80px;background:var(--clr-dark-2);position:relative;overflow:hidden;}
     .opp-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 60% 40%,rgba(126,203,161,0.1) 0%,transparent 60%);pointer-events:none;}
-    .opp-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-    .opp-left h2{color:var(--clr-on-dark);margin-bottom:18px;font-size:clamp(28px,3vw,44px);}
-    .opp-left p{color:var(--clr-on-dark-2);max-width:480px;margin-bottom:14px;}
-    .opp-strategic{margin-top:8px;padding:14px 20px;background:rgba(126,203,161,0.1);border:1px solid rgba(126,203,161,0.2);border-radius:var(--radius-md);}
-    .opp-strategic p{font-size:13px;color:var(--clr-on-dark-2);font-style:italic;margin:0;}
-    .opp-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;}
+    .opp-inner{max-width:1200px;margin:0 auto;}
+    .opp-header{text-align:center;margin-bottom:56px;}
+    .opp-header h2{color:var(--clr-on-dark);margin-bottom:8px;}
+
+    .opp-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+    .opp-left p{color:var(--clr-on-dark-2);margin-bottom:14px;}
     .opp-tag{display:inline-flex;align-items:center;gap:7px;padding:5px 13px 5px 9px;background:rgba(126,203,161,0.12);border:1px solid rgba(126,203,161,0.25);border-radius:var(--radius-full);margin-bottom:20px;}
     .opp-tag span{font-size:10.5px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--clr-accent);}
     .opp-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--clr-accent);animation:pulse 2s ease-in-out infinite;}
-    .opp-img{height:420px;border-radius:var(--radius-xl);overflow:hidden;}
-    .opp-img img{width:100%;height:100%;object-fit:cover;opacity:0.85;transition:transform 0.7s var(--ease-out),opacity 0.4s var(--ease-smooth);}
+    .opp-strategic{margin-top:8px;margin-bottom:28px;padding:14px 20px;background:rgba(126,203,161,0.08);border:1px solid rgba(126,203,161,0.18);border-radius:var(--radius-md);}
+    .opp-strategic p{font-size:13px;color:var(--clr-on-dark-2);font-style:italic;margin:0;}
+    .opp-actions{display:flex;flex-wrap:wrap;gap:12px;}
+    .opp-img{border-radius:var(--radius-xl);overflow:hidden;height:440px;}
+    .opp-img img{width:100%;height:100%;object-fit:cover;opacity:0.85;transition:transform 0.7s var(--ease-out),opacity 0.4s;}
     .opp-img:hover img{transform:scale(1.04);opacity:0.95;}
 
     /* ═══════════════════════════════════════════
-       SECTION 8 — CONTACT FORM
+       SECTION 8 — START A COLLABORATION (UPDATED)
+       Text LEFT, Form RIGHT
     ═══════════════════════════════════════════ */
-    .contact-section{padding:108px 80px;background:var(--clr-bg-2);}
-    .contact-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-    .contact-left h2{color:var(--clr-dark);margin-bottom:18px;}
-    .contact-left>p{margin-bottom:40px;max-width:440px;}
-    .contact-steps{display:flex;flex-direction:column;gap:0;}
-    .c-step{display:flex;gap:18px;padding:20px 0;border-bottom:1px solid rgba(23,54,48,0.08);transition:padding-left 0.3s var(--ease-out);}
-    .c-step:last-child{border-bottom:none;}
-    .c-step:hover{padding-left:6px;}
-    .c-step-num{font-family:var(--ff-display);font-size:12px;font-weight:500;color:var(--clr-sage);width:26px;min-width:26px;padding-top:2px;transition:color 0.3s var(--ease-smooth);}
-    .c-step:hover .c-step-num{color:var(--clr-dark-2);}
-    .c-step-body strong{display:block;font-size:14px;font-weight:500;color:var(--clr-dark-2);margin-bottom:4px;}
-    .c-step-body span{font-size:13px;color:var(--clr-text-muted);line-height:1.6;}
+    .contact-section{padding:100px 80px;background:var(--clr-bg-2);}
+    .contact-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
 
-    .contact-form{background:var(--clr-surface);border:1px solid rgba(23,54,48,0.1);border-radius:var(--radius-xl);padding:40px 36px;box-shadow:var(--shadow-md);transition:box-shadow 0.4s var(--ease-smooth);}
+    /* text on left */
+    .contact-left{padding-top:8px;}
+    .contact-left h2{color:var(--clr-dark);margin-bottom:18px;}
+    .contact-left>p{margin-bottom:16px;max-width:460px;}
+
+    /* form on right */
+    .contact-form{background:var(--clr-surface);border:1px solid rgba(23,54,48,0.1);border-radius:var(--radius-xl);padding:40px 36px;box-shadow:var(--shadow-md);transition:box-shadow 0.4s;}
     .contact-form:focus-within{box-shadow:0 16px 56px rgba(23,54,48,0.16);}
     .form-title{font-family:var(--ff-display);font-size:22px;font-weight:500;color:var(--clr-dark);margin-bottom:6px;}
     .form-sub{font-size:13px;color:var(--clr-text-muted);margin-bottom:28px;}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
     .form-group{margin-bottom:14px;}
     .form-group label{display:block;font-size:11.5px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;color:var(--clr-text-muted);margin-bottom:8px;}
-    .form-group input,.form-group select,.form-group textarea{width:100%;padding:13px 16px;border:1px solid rgba(23,54,48,0.15);border-radius:var(--radius-md);font-family:var(--ff-body);font-size:14px;font-weight:300;color:var(--clr-text);background:var(--clr-bg);transition:border-color 0.25s var(--ease-smooth),box-shadow 0.25s var(--ease-smooth);outline:none;appearance:none;}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:13px 16px;border:1px solid rgba(23,54,48,0.15);border-radius:var(--radius-md);font-family:var(--ff-body);font-size:14px;font-weight:400;color:var(--clr-text);background:var(--clr-bg);transition:border-color 0.25s,box-shadow 0.25s;outline:none;appearance:none;}
     .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--clr-sage);box-shadow:0 0 0 3px rgba(77,140,106,0.1);}
     .form-group input.error,.form-group select.error,.form-group textarea.error{border-color:#e05e5e;box-shadow:0 0 0 3px rgba(224,94,94,0.1);}
     .form-group textarea{resize:vertical;min-height:110px;}
     .form-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;}
-    .form-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:linear-gradient(135deg,var(--clr-dark-2),var(--clr-dark-3));color:var(--clr-on-dark);font-family:var(--ff-body);font-size:14px;font-weight:500;border:none;border-radius:var(--radius-full);cursor:pointer;transition:filter 0.3s var(--ease-smooth),transform 0.3s var(--ease-out),box-shadow 0.3s var(--ease-smooth);position:relative;overflow:hidden;will-change:transform;}
+    .form-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:linear-gradient(135deg,var(--clr-dark-2),var(--clr-dark-3));color:var(--clr-on-dark);font-family:var(--ff-body);font-size:14px;font-weight:500;border:none;border-radius:var(--radius-full);cursor:pointer;transition:filter 0.3s,transform 0.3s var(--ease-out),box-shadow 0.3s;position:relative;overflow:hidden;will-change:transform;}
     .form-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.22),transparent);transform:translateX(-100%);transition:transform 0.55s var(--ease-out);}
     .form-btn:hover{filter:brightness(1.1);transform:translateY(-2px);box-shadow:0 8px 28px rgba(23,54,48,0.35);}
     .form-btn:hover::after{transform:translateX(100%);}
     .form-btn:disabled{opacity:0.7;cursor:not-allowed;transform:none;}
 
     /* ═══════════════════════════════════════════
-       SECTION 9 — TRUST & POSITIONING
+       SECTION 9 — FINAL POSITIONING BLOCK (UPDATED)
+       Background image with overlay
     ═══════════════════════════════════════════ */
-    .trust-section{padding:88px 80px;background:var(--clr-bg);}
-    .trust-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
-    .trust-left h2{color:var(--clr-dark);margin-bottom:14px;font-size:clamp(26px,3vw,44px);}
-    .trust-left p{color:var(--clr-text-2);max-width:460px;margin-bottom:24px;}
-    .trust-global-line{display:inline-flex;align-items:center;gap:10px;padding:10px 18px;background:var(--clr-bg-3);border-radius:var(--radius-full);font-size:12.5px;color:var(--clr-text-muted);transition:background 0.3s var(--ease-smooth),transform 0.3s var(--ease-out);will-change:transform;}
-    .trust-global-line:hover{background:var(--clr-bg-2);transform:translateX(4px);}
-    .trust-global-line i{font-size:15px;color:var(--clr-sage);}
-    .trust-right{padding:36px;background:var(--clr-dark-2);border-radius:var(--radius-xl);border:1px solid rgba(126,203,161,0.15);position:relative;overflow:hidden;transition:border-color 0.4s var(--ease-smooth),box-shadow 0.4s var(--ease-smooth),transform 0.4s var(--ease-out);will-change:transform;}
-    .trust-right:hover{border-color:rgba(126,203,161,0.3);box-shadow:0 16px 48px rgba(0,0,0,0.25);transform:translateY(-3px);}
-    .trust-right::before{content:'"';position:absolute;top:-10px;left:20px;font-family:var(--ff-display);font-size:120px;font-weight:500;color:rgba(126,203,161,0.08);line-height:1;pointer-events:none;}
-    .trust-right p{font-size:15px;font-style:italic;color:var(--clr-on-dark-2);line-height:1.85;margin-bottom:24px;position:relative;z-index:1;}
-    .trust-sig{display:flex;align-items:center;gap:14px;}
-    .trust-sig-line{width:24px;height:1.5px;background:var(--clr-accent);flex-shrink:0;transition:width 0.35s var(--ease-out);}
-    .trust-right:hover .trust-sig-line{width:40px;}
-    .trust-sig-text{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--clr-accent);}
-    .trust-cta{display:flex;align-items:center;gap:14px;margin-top:28px;flex-wrap:wrap;}
-    .trust-btn-primary{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:linear-gradient(135deg,var(--clr-dark-2),var(--clr-dark-3));color:var(--clr-on-dark);font-family:var(--ff-body);font-size:14px;font-weight:500;border-radius:var(--radius-full);border:1px solid rgba(242,255,243,0.2);transition:filter 0.3s var(--ease-smooth),transform 0.3s var(--ease-out),box-shadow 0.3s var(--ease-smooth);will-change:transform;}
-    .trust-btn-primary:hover{filter:brightness(1.12);transform:translateY(-2px);box-shadow:0 8px 28px rgba(23,54,48,0.35);}
+    .final-section{padding:120px 80px;position:relative;overflow:hidden;}
+    .final-section-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1576086213369-97a306d36557?w=1800&q=85');background-size:cover;background-position:center;transform:scale(1.04);}
+    .final-section-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(3,10,8,0.92) 0%,rgba(15,31,28,0.88) 50%,rgba(23,54,48,0.85) 100%);}
+    .final-section-ambient{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 30% 60%,rgba(126,203,161,0.12) 0%,transparent 55%),radial-gradient(ellipse at 75% 25%,rgba(77,140,106,0.08) 0%,transparent 50%);}
+    .final-inner{max-width:1200px;margin:0 auto;text-align:center;position:relative;z-index:2;}
+    .final-inner h2{color:var(--clr-on-dark);margin-bottom:22px;}
+    .final-inner p{color:var(--clr-on-dark-2);max-width:700px;margin:0 auto 18px;}
+    .final-closing{display:inline-flex;align-items:center;gap:10px;margin:28px 0;padding:12px 24px;background:rgba(126,203,161,0.08);border:1px solid rgba(126,203,161,0.2);border-radius:var(--radius-full);}
+    .final-closing i{font-size:16px;color:var(--clr-accent);}
+    .final-closing span{font-size:13px;color:var(--clr-on-dark-2);font-style:italic;}
+    .final-cta{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:8px;flex-wrap:wrap;}
 
     /* ── FOOTER ── */
-    footer{background:var(--clr-dark);color:var(--clr-on-dark);padding:64px 80px 36px;position:relative;overflow:hidden;}
+    footer{background:var(--clr-dark);color:var(--clr-on-dark);padding:64px 80px 36px;position:relative;overflow:hidden;border-top:1px solid rgba(242,255,243,0.06);}
     footer::before{content:'MOLMET';position:absolute;bottom:-12px;right:-4px;font-family:var(--ff-display);font-size:170px;font-weight:600;color:rgba(242,255,243,0.022);line-height:1;pointer-events:none;letter-spacing:-0.04em;}
     .footer-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px;padding-bottom:40px;border-bottom:1px solid rgba(242,255,243,0.07);}
     .footer-brand h3{font-family:var(--ff-display);font-size:24px;font-weight:400;line-height:1.25;color:var(--clr-on-dark);margin-bottom:14px;}
     .footer-brand h3 em{color:var(--clr-accent);}
     .footer-brand p{font-size:13px;line-height:1.72;color:var(--clr-on-dark-3);max-width:260px;margin-bottom:22px;}
     .footer-socials{display:flex;gap:8px;}
-    .footer-socials a{width:34px;height:34px;border:1px solid rgba(242,255,243,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--clr-on-dark-3);font-size:13px;font-weight:600;transition:border-color 0.25s var(--ease-smooth),color 0.25s var(--ease-smooth),background 0.25s var(--ease-smooth),transform 0.25s var(--ease-out);will-change:transform;}
+    .footer-socials a{width:34px;height:34px;border:1px solid rgba(242,255,243,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;color:var(--clr-on-dark-3);font-size:13px;font-weight:600;transition:border-color 0.25s,color 0.25s,background 0.25s,transform 0.25s var(--ease-out);will-change:transform;}
     .footer-socials a:hover{border-color:var(--clr-accent);color:var(--clr-accent);background:rgba(126,203,161,0.08);transform:translateY(-2px);}
     .footer-col h5{font-family:var(--ff-body);font-size:10px;font-weight:500;letter-spacing:0.18em;text-transform:uppercase;color:var(--clr-on-dark-3);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid rgba(242,255,243,0.07);}
     .footer-col ul{display:flex;flex-direction:column;gap:10px;}
-    .footer-col ul li a{font-size:13.5px;font-weight:300;color:rgba(242,255,243,0.5);transition:color 0.25s var(--ease-smooth),padding-left 0.25s var(--ease-out);display:inline-block;}
+    .footer-col ul li a{font-size:13.5px;font-weight:300;color:rgba(242,255,243,0.5);transition:color 0.25s,padding-left 0.25s var(--ease-out);display:inline-block;}
     .footer-col ul li a:hover{color:var(--clr-on-dark);padding-left:5px;}
     .footer-bottom{display:flex;align-items:center;justify-content:space-between;}
     .footer-bottom p{font-size:11.5px;color:rgba(242,255,243,0.35);letter-spacing:0.06em;}
     .footer-bottom-links{display:flex;gap:24px;}
-    .footer-bottom-links a{font-size:11.5px;color:rgba(242,255,243,0.35);transition:color 0.25s var(--ease-smooth);}
+    .footer-bottom-links a{font-size:11.5px;color:rgba(242,255,243,0.35);transition:color 0.25s;}
     .footer-bottom-links a:hover{color:var(--clr-on-dark);}
 
     /* ── RESPONSIVE ── */
     @media(max-width:1100px){
-      .approach-cards{grid-template-columns:repeat(2,1fr);}
-      .who-grid{grid-template-columns:repeat(3,1fr);}
-      .focus-grid{grid-template-columns:repeat(2,1fr);}
-      .models-layout{grid-template-columns:1fr;}
-      .models-img-wrap{position:relative;top:0;height:300px;}
-      .opp-inner{grid-template-columns:1fr;}
+      .partner-body{grid-template-columns:1fr;}
+      .partner-cards-grid{grid-template-columns:repeat(2,1fr);}
+      .who-layout{grid-template-columns:1fr;}
+      .who-img{height:300px;}
+      .bring-layout{grid-template-columns:1fr;}
+      .bring-img-wrap{position:relative;top:0;height:300px;}
+      .opp-layout{grid-template-columns:1fr;}
       .opp-img{height:300px;}
+      .contact-inner{grid-template-columns:1fr;gap:48px;}
+      .focus-grid{grid-template-columns:repeat(2,1fr);}
     }
     @media(max-width:900px){
-      .approach-section,.who-section,.offer-section,.focus-section,.opp-section,.contact-section,.trust-section,.models-section{padding-left:32px;padding-right:32px;}
-      .offer-assets-inner{padding:0 32px;}
-      .offer-header-band,.offer-strategic-line{padding-left:32px;padding-right:32px;}
-      .contact-inner,.trust-inner,.offer-header-band{grid-template-columns:1fr;gap:48px;}
-      .offer-assets-inner{grid-template-columns:1fr;}
-      .offer-asset-item{border-right:none!important;padding-right:0!important;padding-left:0!important;border-bottom:1px solid rgba(242,255,243,0.07)!important;}
-      .offer-asset-item::before{left:0!important;}
-      .offer-asset-item:last-child{border-bottom:none!important;}
+      .partner-section,.who-section,.bring-section,.focus-section,.opp-section,.contact-section,.final-section,.models-section{padding-left:32px;padding-right:32px;}
+      .models-grid-row1{grid-template-columns:1fr 1fr;}
     }
     @media(max-width:768px){
       .navbar{padding:0 20px;}
       .nav-links,.nav-cta-wrap{display:none;}
       .hamburger{display:flex;}
-      .approach-cards{grid-template-columns:1fr 1fr;}
-      .who-grid{grid-template-columns:repeat(2,1fr);}
+      .partner-cards-grid{grid-template-columns:1fr;}
+      .models-grid-row1{grid-template-columns:1fr;}
+      .models-grid-row2{grid-template-columns:1fr;}
       .focus-grid{grid-template-columns:1fr 1fr;}
       .form-row{grid-template-columns:1fr;}
       .footer-top{grid-template-columns:1fr 1fr;}
       footer{padding:48px 24px 28px;}
       .footer-bottom{flex-direction:column;align-items:flex-start;gap:12px;}
-      .approach-section,.who-section,.focus-section,.opp-section,.contact-section,.trust-section,.models-section{padding-left:20px;padding-right:20px;}
-      .hero-inner{padding:80px 24px 60px;}
-      .offer-assets-inner{padding:0 20px;}
-      .offer-header-band,.offer-strategic-line{padding-left:20px;padding-right:20px;}
+      .partner-section,.who-section,.bring-section,.focus-section,.opp-section,.contact-section,.final-section,.models-section{padding-left:20px;padding-right:20px;}
+      .hero-inner{padding:0 24px;}
     }
     @media(max-width:480px){
-      .approach-cards,.who-grid,.focus-grid{grid-template-columns:1fr;}
+      .focus-grid{grid-template-columns:1fr;}
       .footer-top{grid-template-columns:1fr;}
       .hero-actions{flex-direction:column;align-items:stretch;width:100%;}
       .btn-primary,.btn-ghost{justify-content:center;}
     }
     @media(hover:none){
-      .appr-card:hover,.who-card:hover,.focus-card:hover,.btn-primary:hover,.btn-ghost:hover,.form-btn:hover{transform:none;}
+      .p-card:hover,.model-card:hover,.focus-card:hover,.btn-primary:hover,.btn-ghost:hover,.form-btn:hover{transform:none;}
     }
   </style>
 </head>
 <body>
+
+  <!-- PAGE ALERT -->
+  <div class="page-alert" id="page-alert">
+    <div class="page-alert-dot"></div>
+    <span class="page-alert-text">You are on the Collaborate page</span>
+    <button class="page-alert-close" id="page-alert-close" aria-label="Close alert">✕</button>
+  </div>
 
   <!-- NAVBAR -->
   <nav class="navbar" id="navbar">
@@ -489,9 +471,9 @@
         <a href="/aboutpage/about.html"><button class="nav-link">About <i class="ri-arrow-down-s-line"></i></button></a>
         <div class="dropdown">
           <div class="dropdown-label">About Molmet</div>
-          <a href="/aboutpage/about.html#vision" class="dropdown-link"><i class="ri-compass-3-line"></i> Vision &amp; Mission</a>
-          <a href="/aboutpage/about.html#who" class="dropdown-link"><i class="ri-user-star-line"></i> Leadership</a>
-          <a href="/aboutpage/about.html#leadership" class="dropdown-link"><i class="ri-building-4-line"></i> Infrastructure</a>
+          <a href="/aboutpage/about.html#vision" class="dropdown-link"><i class="ri-compass-3-line"></i> Vision & Mission</a>
+          <a href="/aboutpage/about.html#leadership" class="dropdown-link"><i class="ri-user-star-line"></i> Leadership</a>
+          <a href="/aboutpage/about.html#infra" class="dropdown-link"><i class="ri-building-4-line"></i> Infrastructure</a>
           <a href="/aboutpage/about.html#approach" class="dropdown-link"><i class="ri-lightbulb-line"></i> Approach</a>
           <a href="/aboutpage/about.html#network" class="dropdown-link"><i class="ri-global-line"></i> Network</a>
         </div>
@@ -501,15 +483,15 @@
         <div class="dropdown">
           <div class="dropdown-label">Explore Discovery</div>
           <a href="/Discoverypage/dics.html#bioprospecting" class="dropdown-link"><i class="ri-microscope-line"></i> Bioprospecting</a>
-          <a href="/Discoverypage/dics.html#molecules" class="dropdown-link"><i class="ri-flask-line"></i> Molecule Discovery</a>
+          <a href="/Discoverypage/dics.html#pipeline" class="dropdown-link"><i class="ri-flask-line"></i> Molecule Discovery</a>
           <a href="/Discoverypage/dics.html#strain" class="dropdown-link"><i class="ri-settings-3-line"></i> Strain Engineering</a>
-          <a href="/Discoverypage/dics.html#libraries" class="dropdown-link"><i class="ri-database-2-line"></i> Natural Libraries</a>
+          <a href="/Discoverypage/dics.html#biobank" class="dropdown-link"><i class="ri-database-2-line"></i> Biobank</a>
         </div>
       </li>
       <li class="nav-item">
-        <button class="nav-link">CRO &amp; Solutions <i class="ri-arrow-down-s-line"></i></button>
+        <a href="/cropage/cro.html"><button class="nav-link">CRO & Solutions <i class="ri-arrow-down-s-line"></i></button></a>
         <div class="dropdown">
-          <div class="dropdown-label">R&amp;D Solutions</div>
+          <div class="dropdown-label">R&D Solutions</div>
           <a href="/cropage/cro.html#capabilities" class="dropdown-link"><i class="ri-briefcase-line"></i> Our Capabilities</a>
           <a href="/cropage/cro.html#how-we-engage" class="dropdown-link"><i class="ri-tools-line"></i> How We Engage</a>
           <a href="/cropage/cro.html#best-suited" class="dropdown-link"><i class="ri-search-eye-line"></i> Best Suited For</a>
@@ -517,31 +499,28 @@
         </div>
       </li>
       <li class="nav-item">
-        <button class="nav-link">Biological Assets <i class="ri-arrow-down-s-line"></i></button>
+        <a href="/bioassestpage/bio.html"><button class="nav-link">Biological Assets <i class="ri-arrow-down-s-line"></i></button></a>
         <div class="dropdown">
           <div class="dropdown-label">Our Assets</div>
-          <a href="#" class="dropdown-link"><i class="ri-dna-line"></i> Culture Library</a>
-          <a href="#" class="dropdown-link"><i class="ri-flask-fill"></i> Metabolite Platform</a>
-          <a href="#" class="dropdown-link"><i class="ri-archive-line"></i> Discovery Collection</a>
-          <a href="#" class="dropdown-link"><i class="ri-links-line"></i> Strain Access</a>
+          <a href="/bioassestpage/bio.html#culture-library" class="dropdown-link"><i class="ri-dna-line"></i> Culture Library</a>
+          <a href="/bioassestpage/bio.html#metabolite-platform" class="dropdown-link"><i class="ri-flask-fill"></i> Metabolite Platform</a>
+          <a href="/bioassestpage/bio.html#discovery-collections" class="dropdown-link"><i class="ri-archive-line"></i> Discovery Collection</a>
+          <a href="/bioassestpage/bio.html#access" class="dropdown-link"><i class="ri-links-line"></i> Strain Access</a>
         </div>
       </li>
       <li class="nav-item">
-        <button class="nav-link">Insights <i class="ri-arrow-down-s-line"></i></button>
+        <a href="/research/reaserchpage.html"><button class="nav-link">Research Exposure <i class="ri-arrow-down-s-line"></i></button></a>
         <div class="dropdown">
-          <div class="dropdown-label">Knowledge Hub</div>
-          <a href="#" class="dropdown-link"><i class="ri-article-line"></i> Blogs</a>
-          <a href="#" class="dropdown-link"><i class="ri-file-text-line"></i> Whitepapers</a>
-          <a href="#" class="dropdown-link"><i class="ri-bar-chart-line"></i> Research Highlights</a>
-          <a href="#" class="dropdown-link"><i class="ri-lightbulb-flash-line"></i> Perspectives</a>
+          <div class="dropdown-label">Exposure</div>
+          <a href="/research/reaserchpage.html#tracks" class="dropdown-link"><i class="ri-article-line"></i> Program Track</a>
+          <a href="/research/reaserchpage.html#structure" class="dropdown-link"><i class="ri-file-text-line"></i> Program Structure</a>
+          <a href="/research/reaserchpage.html#who" class="dropdown-link"><i class="ri-bar-chart-line"></i> Who Apply</a>
+          <a href="/research/reaserchpage.html#apply" class="dropdown-link"><i class="ri-lightbulb-flash-line"></i> Apply Now</a>
         </div>
       </li>
     </ul>
     <div class="nav-cta-wrap">
-      <a href="#contact" class="nav-cta">
-        Start a Collaboration
-        <i class="ri-arrow-right-up-line"></i>
-      </a>
+      <a href="#contact" class="nav-cta">Start a Collaboration <i class="ri-arrow-right-up-line"></i></a>
     </div>
     <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
   </nav>
@@ -549,38 +528,52 @@
   <div class="mobile-overlay" id="mobile-overlay"></div>
   <div class="mobile-menu" id="mobile-menu">
     <div class="mobile-nav-item">
+      <a href="/index.html"><button class="mobile-nav-link">Home</button></a>
+    </div>
+    <div class="mobile-nav-item">
       <button class="mobile-nav-link" data-target="mob-about">About <i class="ri-arrow-down-s-line"></i></button>
       <div class="mobile-dropdown" id="mob-about">
-        <a href="/aboutpage/about.html" class="mobile-dropdown-link">Vision &amp; Mission</a>
-        <a href="/aboutpage/about.html" class="mobile-dropdown-link">Leadership</a>
+        <a href="/aboutpage/about.html#vision" class="mobile-dropdown-link">Vision & Mission</a>
+        <a href="/aboutpage/about.html#leadership" class="mobile-dropdown-link">Leadership</a>
+        <a href="/aboutpage/about.html#infra" class="mobile-dropdown-link">Infrastructure</a>
+        <a href="/aboutpage/about.html#approach" class="mobile-dropdown-link">Approach</a>
+        <a href="/aboutpage/about.html#network" class="mobile-dropdown-link">Network</a>
       </div>
     </div>
     <div class="mobile-nav-item">
       <button class="mobile-nav-link" data-target="mob-disc">Discovery <i class="ri-arrow-down-s-line"></i></button>
       <div class="mobile-dropdown" id="mob-disc">
-        <a href="#" class="mobile-dropdown-link">Bioprospecting</a>
-        <a href="#" class="mobile-dropdown-link">Molecule Discovery</a>
+        <a href="/Discoverypage/dics.html#bioprospecting" class="mobile-dropdown-link">Bioprospecting</a>
+        <a href="/Discoverypage/dics.html#pipeline" class="mobile-dropdown-link">Molecule Discovery</a>
+        <a href="/Discoverypage/dics.html#strain" class="mobile-dropdown-link">Strain Engineering</a>
+        <a href="/Discoverypage/dics.html#biobank" class="mobile-dropdown-link">Biobank</a>
       </div>
     </div>
     <div class="mobile-nav-item">
-      <button class="mobile-nav-link" data-target="mob-cro">CRO &amp; Solutions <i class="ri-arrow-down-s-line"></i></button>
+      <button class="mobile-nav-link" data-target="mob-cro">CRO & Solutions <i class="ri-arrow-down-s-line"></i></button>
       <div class="mobile-dropdown" id="mob-cro">
-        <a href="#" class="mobile-dropdown-link">Contract Research</a>
-        <a href="#" class="mobile-dropdown-link">Assay Development</a>
+        <a href="/cropage/cro.html#capabilities" class="mobile-dropdown-link">Our Capabilities</a>
+        <a href="/cropage/cro.html#how-we-engage" class="mobile-dropdown-link">How We Engage</a>
+        <a href="/cropage/cro.html#best-suited" class="mobile-dropdown-link">Best Suited For</a>
+        <a href="/cropage/cro.html#contact" class="mobile-dropdown-link">Submit Requirement</a>
       </div>
     </div>
     <div class="mobile-nav-item">
       <button class="mobile-nav-link" data-target="mob-assets">Biological Assets <i class="ri-arrow-down-s-line"></i></button>
       <div class="mobile-dropdown" id="mob-assets">
-        <a href="#" class="mobile-dropdown-link">Culture Library</a>
-        <a href="#" class="mobile-dropdown-link">Metabolite Platform</a>
+        <a href="/bioassestpage/bio.html#culture-library" class="mobile-dropdown-link">Culture Library</a>
+        <a href="/bioassestpage/bio.html#metabolite-platform" class="mobile-dropdown-link">Metabolite Platform</a>
+        <a href="/bioassestpage/bio.html#discovery-collections" class="mobile-dropdown-link">Discovery Collection</a>
+        <a href="/bioassestpage/bio.html#access" class="mobile-dropdown-link">Strain Access</a>
       </div>
     </div>
     <div class="mobile-nav-item">
-      <button class="mobile-nav-link" data-target="mob-ins">Insights <i class="ri-arrow-down-s-line"></i></button>
+      <button class="mobile-nav-link" data-target="mob-ins">Research Exposure <i class="ri-arrow-down-s-line"></i></button>
       <div class="mobile-dropdown" id="mob-ins">
-        <a href="#" class="mobile-dropdown-link">Blogs</a>
-        <a href="#" class="mobile-dropdown-link">Research Highlights</a>
+        <a href="/research/reaserchpage.html#tracks" class="mobile-dropdown-link">Program Track</a>
+        <a href="/research/reaserchpage.html#structure" class="mobile-dropdown-link">Program Structure</a>
+        <a href="/research/reaserchpage.html#who" class="mobile-dropdown-link">Who Apply</a>
+        <a href="/research/reaserchpage.html#apply" class="mobile-dropdown-link">Apply Now</a>
       </div>
     </div>
     <a href="#contact" class="mobile-cta">Start a Collaboration <i class="ri-arrow-right-up-line"></i></a>
@@ -588,24 +581,16 @@
 
   <main>
 
-    <!-- ─────────────────────────────────────────
-         SECTION 1 — HERO
-    ───────────────────────────────────────── -->
+    <!-- ═══ SECTION 1 — HERO ═══ -->
     <section class="hero" id="hero">
       <div class="hero-bg"></div>
       <div class="hero-ambient"></div>
       <div class="hero-inner">
-        <div class="hero-eyebrow fade-up d1">
-          <div class="hero-eyebrow-dot"></div>
-          <span>Advanced Microbial Discovery Platform</span>
-        </div>
-        <h1 class="hero-headline fade-up d2">Collaborate With <em>Molmet</em></h1>
+       
+        <h1 class="hero-headline fade-up d2">Collaborate With Molmet</h1>
         <div class="hero-divider fade-up d3"></div>
-        <h3 class="hero-sub fade-up d3">Partnering to Discover, Develop, and Translate Microbial Innovations</h3>
-        <div class="hero-opening-text fade-up d4">
-          <p>At Molmet Biotech, collaboration is at the core of how we convert microbial discovery into real-world solutions. We work with industry partners, research institutions, and innovation-driven organizations to co-develop solutions derived from microbial biodiversity and bioactive discovery.</p>
-        </div>
-        <div class="hero-actions fade-up d6">
+        <p class="hero-sub fade-up d3">Partnering to Advance Discovery, Innovation, and Biological Value</p>
+        <div class="hero-actions fade-up d5">
           <a href="#contact" class="btn-primary">
             Start a Collaboration
             <i class="ri-arrow-right-line icon-default"></i>
@@ -620,298 +605,281 @@
       </div>
     </section>
 
-    <!-- ─────────────────────────────────────────
-         SECTION 2 — OUR APPROACH (4 cards, no image)
-    ───────────────────────────────────────── -->
-    <section class="approach-section" id="approach">
-      <div class="approach-inner">
-        <div class="approach-header reveal">
-          <div class="section-tag" style="margin:0 auto 16px;">
-            <div class="section-tag-dot"></div>
-            <span class="section-tag-text">Our Approach</span>
+    <!-- ═══ INTRO STRIP ═══ -->
+    <div class="intro-strip">
+      <p>Molmet Biotech works with industries, research institutions, and innovation-driven organizations to develop discovery programs built around microbial diversity, biological assets, and bioactive innovation.<br><br>Our collaborations are designed to bridge scientific exploration with application-focused outcomes across pharmaceutical, agricultural, industrial, and environmental biotechnology.</p>
+    </div>
+
+    <!-- ═══ SECTION 2 — HOW WE PARTNER (UPDATED) ═══ -->
+    <section class="partner-section" id="approach">
+      <div class="partner-inner">
+
+        <!-- Heading centred -->
+        <div class="partner-top reveal">
+         
+          <h2>How We Partner</h2>
+          <p class="partner-sub">Strategic Collaboration Framework</p>
+        </div>
+
+        <!-- Two-column: paragraph+strategic LEFT | core principles list RIGHT -->
+        <div class="partner-body" style="margin-top:48px;">
+          <div class="partner-body-left reveal">
+            <p>We believe transformative innovation emerges through aligned scientific vision, complementary expertise, and long-term strategic engagement.</p>
+            <p>Our collaboration approach is structured to accelerate discovery, strengthen translational potential, and generate meaningful scientific and commercial value.</p>
+            <div class="partner-strategic" style="display:inline-flex;margin-top:22px;">
+              <i class="ri-fire-line"></i>
+              <p>Structured partnerships built around discovery, biological assets, and scalable innovation.</p>
+            </div>
           </div>
-          <h2>How We Partner for Impact</h2>
-          <p>We believe that impactful discoveries emerge from the convergence of scientific expertise, shared vision, and strategic alignment.</p>
-          <p style="margin-top:6px;">Our collaboration model is designed to translate microbial discovery into defined scientific and commercial outcomes.</p>
-          <div class="approach-tagline" style="display:inline-flex;margin-top:22px;">
-            <i class="ri-star-line"></i>
-            <p>Structured partnerships—focused on outcomes, not transactions.</p>
+
+          <div class="partner-body-right reveal">
+            <h3>Core Principles</h3>
+            <div class="partner-list">
+              <div class="partner-list-item">
+                <div class="partner-list-dot"></div>
+                <span>Shared scientific and innovation goals</span>
+              </div>
+              <div class="partner-list-item">
+                <div class="partner-list-dot"></div>
+                <span>Flexible engagement structures</span>
+              </div>
+              <div class="partner-list-item">
+                <div class="partner-list-dot"></div>
+                <span>Confidential and responsible research practices</span>
+              </div>
+              <div class="partner-list-item">
+                <div class="partner-list-dot"></div>
+                <span>Long-term value creation and scientific impact</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="approach-cards">
-          <div class="appr-card card-fill reveal">
-            <div class="appr-card-icon">
-              <div class="card-icon-flipper">
-                <div class="card-icon-front"><i class="ri-share-circle-line"></i></div>
-                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+
+        <!-- Cards below, full width -->
+        <div class="partner-cards-section">
+          <div class="partner-cards-grid">
+            <div class="p-card card-fill reveal">
+              <div class="p-card-icon">
+                <div class="card-icon-flipper">
+                  <div class="card-icon-front"><i class="ri-share-circle-line"></i></div>
+                  <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+                </div>
               </div>
+              <h4>Aligned Scientific Vision</h4>
+              <p>We align deeply on objectives before we begin, ensuring every milestone serves both scientific and strategic aims.</p>
             </div>
-            <h4>Shared scientific and innovation goals</h4>
-            <p>We align deeply on objectives before we begin, ensuring every milestone serves both scientific and strategic aims.</p>
-          </div>
-          <div class="appr-card card-fill reveal">
-            <div class="appr-card-icon">
-              <div class="card-icon-flipper">
-                <div class="card-icon-front"><i class="ri-git-branch-line"></i></div>
-                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+            <div class="p-card card-fill reveal">
+              <div class="p-card-icon">
+                <div class="card-icon-flipper">
+                  <div class="card-icon-front"><i class="ri-git-branch-line"></i></div>
+                  <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+                </div>
               </div>
+              <h4>Flexible Engagement</h4>
+              <p>From sponsored programs to co-development, our models are designed to fit your constraints and context.</p>
             </div>
-            <h4>Flexible engagement structures</h4>
-            <p>From sponsored programs to co-development, our models are designed to fit your constraints and context.</p>
-          </div>
-          <div class="appr-card card-fill reveal">
-            <div class="appr-card-icon">
-              <div class="card-icon-flipper">
-                <div class="card-icon-front"><i class="ri-eye-line"></i></div>
-                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+            <div class="p-card card-fill reveal">
+              <div class="p-card-icon">
+                <div class="card-icon-flipper">
+                  <div class="card-icon-front"><i class="ri-shield-check-line"></i></div>
+                  <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+                </div>
               </div>
+              <h4>Responsible Research</h4>
+              <p>Confidential and ethically grounded practices at every stage of our collaborative research engagements.</p>
             </div>
-            <h4>Transparency in research and outcomes</h4>
-            <p>Open communication on data, timelines, and findings at every stage of the engagement.</p>
-          </div>
-          <div class="appr-card card-fill reveal">
-            <div class="appr-card-icon">
-              <div class="card-icon-flipper">
-                <div class="card-icon-front"><i class="ri-seedling-line"></i></div>
-                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+            <div class="p-card card-fill reveal">
+              <div class="p-card-icon">
+                <div class="card-icon-flipper">
+                  <div class="card-icon-front"><i class="ri-seedling-line"></i></div>
+                  <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+                </div>
               </div>
+              <h4>Long-Term Impact</h4>
+              <p>We think beyond the project — building partnerships that compound in value and generate lasting scientific impact.</p>
             </div>
-            <h4>Long-term value creation and shared impact</h4>
-            <p>We think beyond the project — building partnerships that compound in value and generate lasting scientific impact.</p>
           </div>
+         
         </div>
+
       </div>
     </section>
 
-    <!-- ─────────────────────────────────────────
-         SECTION 3 — COLLABORATION MODELS
-         scrollable list left + image right
-    ───────────────────────────────────────── -->
+    <!-- ═══ SECTION 3 — COLLABORATION MODELS ═══ -->
     <section class="models-section" id="models">
       <div class="models-inner">
         <div class="models-header reveal">
-          <div class="section-tag light">
-            <div class="section-tag-dot"></div>
-            <span class="section-tag-text">Partnership Models</span>
-          </div>
+          
           <h2>Collaboration Models</h2>
-          <p>Flexible structures designed to meet your scientific goals at every stage of discovery.</p>
-        </div>
-        <div class="models-layout">
-          <div class="models-list reveal" id="models-list">
-
-            <div class="model-item active" data-img="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80">
-              <div class="model-item-icon"><i class="ri-funds-line"></i></div>
-              <div class="model-item-body">
-                <strong>Sponsored Discovery Programs</strong>
-                <span>Fund targeted discovery initiatives aligned with specific scientific or commercial objectives.</span>
-              </div>
-              <div class="model-active-dot"></div>
-            </div>
-
-            <div class="model-item" data-img="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=80">
-              <div class="model-item-icon"><i class="ri-git-merge-line"></i></div>
-              <div class="model-item-body">
-                <strong>Co-Development Partnerships</strong>
-                <span>Jointly develop novel bioactive molecules, microbial strains, or technologies with shared outcomes.</span>
-              </div>
-              <div class="model-active-dot"></div>
-            </div>
-
-            <div class="model-item" data-img="https://images.unsplash.com/photo-1532094349884-543559304ffe?w=900&q=80">
-              <div class="model-item-icon"><i class="ri-settings-4-line"></i></div>
-              <div class="model-item-body">
-                <strong>Custom Discovery Projects</strong>
-                <span>Execute tailored research pipelines designed to address specific R&D challenges.</span>
-              </div>
-              <div class="model-active-dot"></div>
-            </div>
-
-            <div class="model-item" data-img="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=900&q=80">
-              <div class="model-item-icon"><i class="ri-archive-drawer-line"></i></div>
-              <div class="model-item-body">
-                <strong>Biological Resource Access</strong>
-                <span>Engage with our microbial culture library, discovery collections, and metabolite systems for collaborative research and development.</span>
-              </div>
-              <div class="model-active-dot"></div>
-            </div>
-
-            <div class="model-item" data-img="https://images.unsplash.com/photo-1541692641319-981cc79ee10a?w=900&q=80">
-              <div class="model-item-icon"><i class="ri-government-line"></i></div>
-              <div class="model-item-body">
-                <strong>Grant &amp; Institutional Collaborations</strong>
-                <span>Participate in national and international research programs, consortiums, and funded initiatives.</span>
-              </div>
-              <div class="model-active-dot"></div>
-            </div>
-
+          <div class="models-strategic reveal" style="display:inline-flex;">
+            <p>Flexible collaboration structures designed to support discovery at multiple stages of innovation.</p>
           </div>
+        </div>
 
-          <div class="models-img-wrap reveal" id="models-img-wrap">
-            <img id="models-img" src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80" alt="Collaboration model" loading="lazy" />
-            <div class="models-img-overlay"></div>
+        <div class="models-grid-row1">
+          <div class="model-card card-fill reveal">
+            <div class="model-card-icon">
+              <div class="card-icon-flipper">
+                <div class="card-icon-front"><i class="ri-links-line"></i></div>
+                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+              </div>
+            </div>
+            <h4>Joint Discovery Initiatives</h4>
+            <p>Collaborative exploration and investigation programs focused on microbial diversity, bioactive molecules, and novel biological systems.</p>
+          </div>
+          <div class="model-card card-fill reveal">
+            <div class="model-card-icon">
+              <div class="card-icon-flipper">
+                <div class="card-icon-front"><i class="ri-funds-line"></i></div>
+                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+              </div>
+            </div>
+            <h4>Sponsored Discovery Programs</h4>
+            <p>Targeted discovery initiatives aligned with defined scientific, technological, or commercial objectives.</p>
+          </div>
+          <div class="model-card card-fill reveal">
+            <div class="model-card-icon">
+              <div class="card-icon-flipper">
+                <div class="card-icon-front"><i class="ri-git-merge-line"></i></div>
+                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+              </div>
+            </div>
+            <h4>Co-Development Partnerships</h4>
+            <p>Integrated development of microbial strains, metabolites, biological systems, or application-focused technologies with shared strategic outcomes.</p>
+          </div>
+        </div>
+
+        <div class="models-grid-row2">
+          <div class="model-card card-fill reveal">
+            <div class="model-card-icon">
+              <div class="card-icon-flipper">
+                <div class="card-icon-front"><i class="ri-archive-drawer-line"></i></div>
+                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+              </div>
+            </div>
+            <h4>Resource &amp; Platform Sharing</h4>
+            <p>Collaborative access to microbial culture collections, discovery platforms, biological assets, and experimental capabilities.</p>
+          </div>
+          <div class="model-card card-fill reveal">
+            <div class="model-card-icon">
+              <div class="card-icon-flipper">
+                <div class="card-icon-front"><i class="ri-settings-4-line"></i></div>
+                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+              </div>
+            </div>
+            <h4>Custom Discovery Projects</h4>
+            <p>Execute tailored research pipelines designed to address specific R&amp;D challenges.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ─────────────────────────────────────────
-         SECTION 4 — WHO WE WORK WITH (5 cards, 1 row)
-    ───────────────────────────────────────── -->
+    <!-- ═══ SECTION 4 — WHO WE ENGAGE WITH ═══ -->
     <section class="who-section" id="who">
       <div class="who-inner">
-        <div class="who-header reveal">
-          <div class="section-tag">
-            <div class="section-tag-dot"></div>
-            <span class="section-tag-text">Who We Work With</span>
-          </div>
-          <h2>Who We Work With</h2>
-          <p>We collaborate with organizations across sectors — from early-stage startups to established pharmaceutical companies and government research bodies.</p>
+        <div class="who-top reveal">
+          
+          <h2>Who We Engage With</h2>
+          <p class="who-sub">Who We Work With</p>
+          <p>We engage with organizations operating across biotechnology, pharmaceutical research, sustainable agriculture, industrial biotechnology, environmental innovation, and translational life sciences.<br>Our network includes:</p>
         </div>
-        <div class="who-grid">
-
-          <div class="who-card card-fill reveal">
-            <div class="who-card-icon">
-              <div class="card-icon-flipper">
-                <div class="card-icon-front"><i class="ri-hospital-line"></i></div>
-                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
+        <div class="who-layout">
+          <div class="reveal">
+            <div class="who-list">
+              <div class="who-list-item">
+                <div class="who-list-dot"></div>
+                <span>Biotechnology and pharmaceutical companies</span>
+              </div>
+              <div class="who-list-item">
+                <div class="who-list-dot"></div>
+                <span>Agri-biotech and sustainability-focused organizations</span>
+              </div>
+              <div class="who-list-item">
+                <div class="who-list-dot"></div>
+                <span>Academic and research institutions</span>
+              </div>
+              <div class="who-list-item">
+                <div class="who-list-dot"></div>
+                <span>Government and funding agencies</span>
+              </div>
+              <div class="who-list-item">
+                <div class="who-list-dot"></div>
+                <span>Innovation-driven startups and emerging biotech ventures</span>
               </div>
             </div>
-            <strong>Biotechnology and pharmaceutical companies</strong>
-            <span>Expanding discovery pipelines with novel microbial bioactives and research-grade execution.</span>
           </div>
-
-          <div class="who-card card-fill reveal">
-            <div class="who-card-icon">
-              <div class="card-icon-flipper">
-                <div class="card-icon-front"><i class="ri-plant-line"></i></div>
-                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
-              </div>
-            </div>
-            <strong>Agri-biotech and sustainability-focused organizations</strong>
-            <span>Partners exploring microbial inputs for next-generation sustainable agricultural applications.</span>
+          <div class="who-img reveal">
+            <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=900&q=80" alt="Organizations we work with" loading="lazy" />
           </div>
-
-          <div class="who-card card-fill reveal">
-            <div class="who-card-icon">
-              <div class="card-icon-flipper">
-                <div class="card-icon-front"><i class="ri-building-4-line"></i></div>
-                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
-              </div>
-            </div>
-            <strong>Academic and research institutions</strong>
-            <span>University labs seeking field-access, biological resources, or co-publication opportunities.</span>
-          </div>
-
-          <div class="who-card card-fill reveal">
-            <div class="who-card-icon">
-              <div class="card-icon-flipper">
-                <div class="card-icon-front"><i class="ri-government-line"></i></div>
-                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
-              </div>
-            </div>
-            <strong>Government agencies and funding bodies</strong>
-            <span>National programs and biotechnology policy councils aligned with discovery science.</span>
-          </div>
-
-          <div class="who-card card-fill reveal">
-            <div class="who-card-icon">
-              <div class="card-icon-flipper">
-                <div class="card-icon-front"><i class="ri-rocket-line"></i></div>
-                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
-              </div>
-            </div>
-            <strong>Innovation-driven startups</strong>
-            <span>Early-stage companies building on microbial science who need discovery capabilities and scientific credibility.</span>
-          </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ─────────────────────────────────────────
-         SECTION 5 — WHAT WE OFFER (image right)
-    ───────────────────────────────────────── -->
-    <section class="offer-section" id="bring">
-      <div class="offer-header-band">
-        <div class="reveal">
-          <div class="section-tag light">
+    <!-- ═══ SECTION 5 — WHAT WE BRING (UPDATED: strengths LEFT, image RIGHT) ═══ -->
+    <section class="bring-section" id="bring">
+      <div class="bring-inner">
+        <div class="bring-top reveal">
+          <div class="section-tag light" style="margin:0 auto 16px;">
             <div class="section-tag-dot"></div>
-            <span class="section-tag-text">What We Offer</span>
+            <span class="section-tag-text">What We Bring to the Table</span>
           </div>
           <h2>What We Offer</h2>
-          <p>Our core strength lies in combining discovery, experimentation, and biological assets into a unified, execution driven platform:</p>
+          <p style="color:var(--clr-on-dark-2);max-width:640px;margin:0 auto;">Molmet combines discovery workflows, biological assets, and multidisciplinary experimentation within a unified research platform.</p>
         </div>
-        <div class="offer-img-right reveal">
-          <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=900&q=80" alt="Molmet Discovery Platform" loading="lazy" />
-        </div>
-      </div>
 
-      <div class="offer-assets-band">
-        <div class="offer-assets-inner">
-          <div class="offer-asset-item reveal">
-            <div class="offer-asset-num">01</div>
-            <div class="offer-asset-icon-wrap"><i class="ri-map-2-line"></i></div>
-            <div class="offer-asset-body">
-              <strong>Access to underexplored microbial ecosystems</strong>
-              <span>Bioprospecting capabilities across India's diverse ecological zones — extreme habitats, endemic niches, and undersampled environments rarely reached by conventional programs.</span>
+        <div class="bring-layout">
+          <!-- LEFT: core strengths list -->
+          <div class="bring-left reveal">
+            <h3>Core Strengths</h3>
+            <div class="bring-list">
+              <div class="bring-list-item">
+                <div class="bring-list-dot"></div>
+                <span>Access to underexplored microbial ecosystems</span>
+              </div>
+              <div class="bring-list-item">
+                <div class="bring-list-dot"></div>
+                <span>Established bioprospecting and screening workflows</span>
+              </div>
+              <div class="bring-list-item">
+                <div class="bring-list-dot"></div>
+                <span>Integrated discovery-to-validation capabilities</span>
+              </div>
+              <div class="bring-list-item">
+                <div class="bring-list-dot"></div>
+                <span>Curated biological asset platform</span>
+              </div>
+              <div class="bring-list-item">
+                <div class="bring-list-dot"></div>
+                <span>Flexible experimental execution and research adaptability</span>
+              </div>
+            </div>
+            <div class="bring-strategic reveal" style="margin-top:28px;">
+              <p>Enabling partners to move from <em>biological exploration</em> to validated discovery pathways.</p>
             </div>
           </div>
-          <div class="offer-asset-item reveal">
-            <div class="offer-asset-num">02</div>
-            <div class="offer-asset-icon-wrap"><i class="ri-route-line"></i></div>
-            <div class="offer-asset-body">
-              <strong>Established bioprospecting workflows</strong>
-              <span>Optimized, reproducible pipelines from field sampling through bioactivity screening — built for reliability and scientific rigor at every step.</span>
-            </div>
-          </div>
-          <div class="offer-asset-item reveal">
-            <div class="offer-asset-num">03</div>
-            <div class="offer-asset-icon-wrap"><i class="ri-layers-line"></i></div>
-            <div class="offer-asset-body">
-              <strong>Integrated discovery-to-validation capabilities</strong>
-              <span>End-to-end in-house capabilities that reduce handoff complexity, compress timelines, and maintain scientific continuity from first isolate to validated lead.</span>
-            </div>
-          </div>
-          <div class="offer-asset-item reveal">
-            <div class="offer-asset-num">04</div>
-            <div class="offer-asset-icon-wrap"><i class="ri-database-2-line"></i></div>
-            <div class="offer-asset-body">
-              <strong>Biological asset platform (strains, extracts, discovery collections)</strong>
-              <span>An expanding, curated repository of characterized microbial strains, crude extracts, and partially purified metabolites — ready for targeted screening or licensing discussions.</span>
-            </div>
-          </div>
-          <div class="offer-asset-item reveal" style="border-bottom:none;">
-            <div class="offer-asset-num">05</div>
-            <div class="offer-asset-icon-wrap"><i class="ri-refresh-line"></i></div>
-            <div class="offer-asset-body">
-              <strong>Strong experimental execution with flexibility</strong>
-              <span>Agile research execution that adapts to evolving hypotheses, regulatory needs, and partner-specific requirements without sacrificing scientific depth.</span>
+
+          <!-- RIGHT: image -->
+          <div>
+            <div class="bring-img-wrap reveal">
+              <img src="https://images.unsplash.com/photo-1532094349884-543559304ffe?w=900&q=80" alt="Molmet Research Platform" loading="lazy" />
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="offer-strategic-line reveal">
-        <p>We enable partners to move from <em>biological exploration</em> to validated, application-ready discovery.</p>
       </div>
     </section>
 
-    <!-- ─────────────────────────────────────────
-         SECTION 6 — STRATEGIC FOCUS AREAS (8 cards, 2 rows of 4)
-    ───────────────────────────────────────── -->
+    <!-- ═══ SECTION 6 — STRATEGIC FOCUS AREAS ═══ -->
     <section class="focus-section" id="focus">
       <div class="focus-inner">
-        <div class="focus-header reveal">
-          <div class="section-tag">
+        <div class="focus-top reveal">
+          <div class="section-tag" style="margin:0 auto 16px;">
             <div class="section-tag-dot"></div>
             <span class="section-tag-text">Strategic Focus Areas</span>
           </div>
           <h2>Strategic Focus Areas</h2>
-          <p>Our collaboration programs are aligned with high-impact application areas where microbial science can drive transformative outcomes.</p>
+          <p>Our collaborative programs are aligned with high-impact areas of scientific and industrial relevance:</p>
         </div>
         <div class="focus-grid">
-
           <div class="focus-card card-fill reveal">
             <div class="focus-card-icon">
               <div class="card-icon-flipper">
@@ -919,9 +887,8 @@
                 <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
               </div>
             </div>
-            <span>Antimicrobial resistance solutions</span>
+            <span>Antimicrobial and anti-infective discovery</span>
           </div>
-
           <div class="focus-card card-fill reveal">
             <div class="focus-card-icon">
               <div class="card-icon-flipper">
@@ -929,9 +896,8 @@
                 <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
               </div>
             </div>
-            <span>Anticancer bioactive discovery</span>
+            <span>Anticancer and therapeutic bioactives</span>
           </div>
-
           <div class="focus-card card-fill reveal">
             <div class="focus-card-icon">
               <div class="card-icon-flipper">
@@ -939,19 +905,8 @@
                 <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
               </div>
             </div>
-            <span>Antidiabetic and Anti-inflammatory therapeutics</span>
+            <span>Anti-inflammatory and metabolic disorder research</span>
           </div>
-
-          <div class="focus-card card-fill reveal">
-            <div class="focus-card-icon">
-              <div class="card-icon-flipper">
-                <div class="card-icon-front"><i class="ri-capsule-line"></i></div>
-                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
-              </div>
-            </div>
-            <span>Pharmacologically active bioactives</span>
-          </div>
-
           <div class="focus-card card-fill reveal">
             <div class="focus-card-icon">
               <div class="card-icon-flipper">
@@ -959,9 +914,8 @@
                 <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
               </div>
             </div>
-            <span>Sustainable agricultural inputs</span>
+            <span>Sustainable agricultural solutions</span>
           </div>
-
           <div class="focus-card card-fill reveal">
             <div class="focus-card-icon">
               <div class="card-icon-flipper">
@@ -969,9 +923,8 @@
                 <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
               </div>
             </div>
-            <span>Industrial enzymes and metabolites</span>
+            <span>Industrial enzymes and functional metabolites</span>
           </div>
-
           <div class="focus-card card-fill reveal">
             <div class="focus-card-icon">
               <div class="card-icon-flipper">
@@ -979,112 +932,94 @@
                 <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
               </div>
             </div>
-            <span>Environmental and ecological applications</span>
+            <span>Environmental and ecological biotechnology</span>
           </div>
-
-          <div class="focus-card card-fill reveal" style="background:linear-gradient(135deg,rgba(23,54,48,0.06),rgba(77,140,106,0.08));border-color:rgba(77,140,106,0.25);">
-            <div class="focus-card-icon" style="background:var(--clr-bg-3);">
-              <div class="card-icon-flipper">
-                <div class="card-icon-front"><i class="ri-add-circle-line"></i></div>
-                <div class="card-icon-back"><i class="ri-arrow-right-line"></i></div>
-              </div>
-            </div>
-            <span style="color:var(--clr-sage);font-weight:500;">And many more — let's explore together</span>
-          </div>
-
         </div>
       </div>
     </section>
 
-    <!-- ─────────────────────────────────────────
-         SECTION 7 — BIOPROSPECTING OPPORTUNITY (image right)
-    ───────────────────────────────────────── -->
+    <!-- ═══ SECTION 7 — FEATURED BIOPROSPECTING OPPORTUNITY ═══ -->
     <section class="opp-section" id="opportunity">
       <div class="opp-inner">
-        <div class="opp-left reveal">
-          <div class="opp-tag">
-            <div class="opp-tag-dot"></div>
-            <span>Current Opportunity</span>
+        <div class="opp-header reveal">
+          <div class="section-tag light" style="margin:0 auto 16px;">
+            <div class="section-tag-dot"></div>
+            <span class="section-tag-text">Featured Bioprospecting Opportunity</span>
           </div>
           <h2>Current Opportunity: Microbial Bioprospecting Programs</h2>
-          <p>We are actively expanding our bioprospecting initiatives across India's diverse ecosystems to unlock novel microbial diversity.</p>
-          <p>We invite partners to co-develop discovery pipelines focused on high-value microbial species and novel microbial metabolites with defined application potential.</p>
-          <div class="opp-strategic">
-            <p>Early collaboration enables partners at the forefront of high-value discovery streams.</p>
-          </div>
-          <div class="opp-actions">
-            <a href="#contact" class="btn-primary">
-              Express Interest
-              <i class="ri-arrow-right-line icon-default"></i>
-              <i class="ri-arrow-right-up-line icon-hover"></i>
-            </a>
-            <a href="#models" class="btn-ghost">
-              View Partnership Models
-            </a>
-          </div>
         </div>
-        <div class="opp-img reveal">
-          <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80" alt="Bioprospecting Programs" loading="lazy" />
+
+        <div class="opp-layout">
+          <div class="opp-left reveal">
+            <div class="opp-tag">
+              <div class="opp-tag-dot"></div>
+              <span>Currently Active</span>
+            </div>
+            <p>We are actively expanding our bioprospecting initiatives across diverse ecological regions of India to identify novel microbial systems and functionally relevant metabolites.</p>
+            <p>We invite strategic partners to participate in discovery programs centered around microbial diversity, biological assets, and application-oriented innovation.</p>
+            <div class="opp-strategic">
+              <p>Early engagement provides strategic access to emerging discovery pipelines and biological assets.</p>
+            </div>
+            <div class="opp-actions">
+              <a href="#contact" class="btn-primary">
+                Express Interest
+                <i class="ri-arrow-right-line icon-default"></i>
+                <i class="ri-arrow-right-up-line icon-hover"></i>
+              </a>
+              <a href="#models" class="btn-ghost">View Partnership Models</a>
+            </div>
+          </div>
+
+          <div class="opp-img reveal">
+            <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=900&q=80" alt="Bioprospecting Programs" loading="lazy" />
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ─────────────────────────────────────────
-         SECTION 8 — START A COLLABORATION (form)
-    ───────────────────────────────────────── -->
+    <!-- ═══ SECTION 8 — START A COLLABORATION (UPDATED: text LEFT, form RIGHT) ═══ -->
     <section class="contact-section" id="contact">
       <div class="contact-inner">
+
+        <!-- TEXT on LEFT -->
         <div class="contact-left reveal">
           <div class="section-tag">
             <div class="section-tag-dot"></div>
             <span class="section-tag-text">Get In Touch</span>
           </div>
           <h2>Start a Collaboration</h2>
-          <p>Share your research interest or collaboration idea — our team will connect to explore potential alignment.</p>
-          <div class="contact-steps">
-            <div class="c-step">
-              <div class="c-step-num">01</div>
-              <div class="c-step-body">
-                <strong>Submit Your Inquiry</strong>
-                <span>Share your organization details and collaboration interest using the form.</span>
-              </div>
+          <p>Share your scientific interest, innovation objective, or collaboration concept — our team will connect to explore strategic alignment and partnership opportunities.</p>
+          <p style="margin-top:12px;color:var(--clr-text-muted);font-size:14px;">We work with teams at every stage — from early-concept discovery to advanced translational programs. No inquiry is too early or too complex to explore.</p>
+          <div style="margin-top:32px;display:flex;flex-direction:column;gap:14px;">
+            <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--clr-surface);border:1px solid rgba(23,54,48,0.08);border-radius:var(--radius-md);">
+              <div style="width:36px;height:36px;min-width:36px;background:var(--clr-bg-3);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;"><i class="ri-send-plane-line" style="color:var(--clr-sage);font-size:16px;"></i></div>
+              <div><strong style="display:block;font-size:13px;font-weight:500;color:var(--clr-dark-2);margin-bottom:3px;">Submit Your Inquiry</strong><span style="font-size:12px;color:var(--clr-text-muted);">Share your organization details and collaboration interest using the form.</span></div>
             </div>
-            <div class="c-step">
-              <div class="c-step-num">02</div>
-              <div class="c-step-body">
-                <strong>Initial Scientific Discussion</strong>
-                <span>We schedule a focused call to understand your scientific needs and assess alignment.</span>
-              </div>
+            <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--clr-surface);border:1px solid rgba(23,54,48,0.08);border-radius:var(--radius-md);">
+              <div style="width:36px;height:36px;min-width:36px;background:var(--clr-bg-3);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;"><i class="ri-discuss-line" style="color:var(--clr-sage);font-size:16px;"></i></div>
+              <div><strong style="display:block;font-size:13px;font-weight:500;color:var(--clr-dark-2);margin-bottom:3px;">Scientific Discussion</strong><span style="font-size:12px;color:var(--clr-text-muted);">We schedule a focused call to understand your needs and assess alignment.</span></div>
             </div>
-            <div class="c-step">
-              <div class="c-step-num">03</div>
-              <div class="c-step-body">
-                <strong>Collaboration Design</strong>
-                <span>We co-create a structured engagement model tailored to your objectives and timeline.</span>
-              </div>
-            </div>
-            <div class="c-step">
-              <div class="c-step-num">04</div>
-              <div class="c-step-body">
-                <strong>Partnership Begins</strong>
-                <span>Formalize the agreement and launch your discovery program with our team.</span>
-              </div>
+            <div style="display:flex;align-items:flex-start;gap:14px;padding:16px;background:var(--clr-surface);border:1px solid rgba(23,54,48,0.08);border-radius:var(--radius-md);">
+              <div style="width:36px;height:36px;min-width:36px;background:var(--clr-bg-3);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;"><i class="ri-rocket-line" style="color:var(--clr-sage);font-size:16px;"></i></div>
+              <div><strong style="display:block;font-size:13px;font-weight:500;color:var(--clr-dark-2);margin-bottom:3px;">Partnership Begins</strong><span style="font-size:12px;color:var(--clr-text-muted);">Formalize the agreement and launch your discovery program with our team.</span></div>
             </div>
           </div>
         </div>
 
+        <!-- FORM on RIGHT -->
         <form class="contact-form reveal" id="collab-form" action="https://formspree.io/f/xnjlkbwb" method="POST" novalidate>
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name="subject" value="Collaboration form - partnership opportunities" />
 
           <div id="form-success" style="display:none;padding:32px 0;text-align:center;">
-            <i class="ri-checkbox-circle-line" style="font-size:44px;color:var(--clr-accent);display:block;margin-bottom:16px;"></i>
-            <p style="font-family:var(--ff-display);font-size:22px;font-weight:500;color:var(--clr-dark);margin-bottom:10px;">Request Received</p>
-            <p style="font-size:13px;color:var(--clr-text-muted);">Thank you — our team will be in touch within 5 business days.</p>
+            <i class="ri-checkbox-circle-line" style="font-size:48px;color:var(--clr-accent);display:block;margin-bottom:16px;"></i>
+            <p style="font-family:var(--ff-display);font-size:22px;font-weight:500;color:var(--clr-dark);margin-bottom:14px;">Thank You!</p>
+            <p style="font-size:14px;color:var(--clr-text-muted);line-height:1.8;max-width:360px;margin:0 auto;">We sincerely appreciate your interest in collaborating with Molmet Biotech. Your request has been received and our scientific team will carefully review your inquiry. We look forward to exploring a meaningful partnership that can drive discovery and innovation together. You can expect to hear from us within 5 business days.</p>
           </div>
 
           <div id="form-fields">
             <p class="form-title">Collaboration Request</p>
-            <p class="form-sub">All fields marked * are required to help us understand your needs.</p>
+            <p class="form-sub">Share your scientific interest or partnership concept — all fields marked * required.</p>
             <div class="form-row">
               <div class="form-group">
                 <label for="f-name">Name *</label>
@@ -1109,9 +1044,10 @@
               <label for="f-collab">Type of Collaboration Interest *</label>
               <select id="f-collab" name="collaboration_type" required>
                 <option value="" disabled selected>Select a model…</option>
-                <option>Sponsored Research</option>
-                <option>Co-Development</option>
-                <option>Discovery Project</option>
+                <option>Joint Discovery Initiative</option>
+                <option>Sponsored Discovery Program</option>
+                <option>Co-Development Partnership</option>
+                <option>Resource &amp; Platform Access</option>
                 <option>Biological Asset Access</option>
                 <option>Other</option>
               </select>
@@ -1129,36 +1065,33 @@
             </div>
           </div>
         </form>
+
       </div>
     </section>
 
-    <!-- ─────────────────────────────────────────
-         SECTION 9 — TRUST & POSITIONING
-    ───────────────────────────────────────── -->
-    <section class="trust-section" id="trust">
-      <div class="trust-inner">
-        <div class="trust-left reveal">
-          <div class="section-tag">
+    <!-- ═══ SECTION 9 — FINAL POSITIONING BLOCK (UPDATED: background image) ═══ -->
+    <section class="final-section" id="trust">
+      <div class="final-section-bg"></div>
+      <div class="final-section-ambient"></div>
+      <div class="final-inner">
+        <div class="reveal">
+          <div class="section-tag light" style="margin:0 auto 18px;">
             <div class="section-tag-dot"></div>
             <span class="section-tag-text">Our Commitment</span>
           </div>
-          <h2>Open, Flexible, and Science-Driven</h2>
-          <p>We are committed to building meaningful, long-term collaborations that translate scientific discovery into real-world impact.</p>
-          <div class="trust-global-line">
+          <h2>Built for Long-Term Scientific Partnerships</h2>
+          <p>Molmet Biotech is committed to building high-value scientific partnerships that advance discovery, strengthen innovation pipelines, and translate biological potential into impactful applications.</p>
+          <div class="final-closing">
             <i class="ri-global-line"></i>
-            Open to global collaborations and funded research initiatives
+            <span>Open to global collaborations, strategic research alliances, and funded innovation initiatives.</span>
           </div>
-          <div class="trust-cta">
-            <a href="#contact" class="trust-btn-primary">
-              Start a Collaboration <i class="ri-arrow-right-up-line"></i>
+          <div class="final-cta">
+            <a href="#contact" class="btn-primary">
+              Start a Collaboration
+              <i class="ri-arrow-right-line icon-default"></i>
+              <i class="ri-arrow-right-up-line icon-hover"></i>
             </a>
-          </div>
-        </div>
-        <div class="trust-right reveal">
-          <p>"We are committed to building meaningful, long-term collaborations that translate scientific discovery into real-world impact — openly, flexibly, and with full scientific integrity."</p>
-          <div class="trust-sig">
-            <div class="trust-sig-line"></div>
-            <div class="trust-sig-text">Molmet Biotech — Open, Flexible &amp; Science-Driven</div>
+            <a href="#models" class="btn-ghost">View Partnership Models</a>
           </div>
         </div>
       </div>
@@ -1168,65 +1101,71 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-top">
-      <div class="footer-brand">
-        <h3>Building a <em>healthier</em><br>tomorrow, today.</h3>
-        <p>A passionate team of scientists and innovators dedicated to responsible biotech discovery that creates lasting impact for people and planet.</p>
-        <div class="footer-socials">
-          <a href="#" title="X/Twitter">𝕏</a>
-          <a href="#" title="LinkedIn">in</a>
-          <a href="#" title="Instagram">◉</a>
-          <a href="#" title="Facebook">ƒ</a>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h3>Discovering Nature. Advancing Biotechnology.</h3>
+                <p>Driving biotech innovation through microbial discovery, research collaboration, and bioactive solutions.</p>
+                <div class="footer-socials">
+                    <a href="#" title="X/Twitter">X</a>
+                    <a href="#" title="LinkedIn">in</a>
+                    <a href="#" title="Instagram">◉</a>
+                    <a href="#" title="Facebook">ƒ</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h5>Navigate</h5>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="/Discoverypage/dics.html">Discovery</a></li>
+                    <li><a href="/bioassestpage/bio.html">Biological Assets</a></li>
+                    <li><a href="/collabratepage/colla.html">Collaborate</a></li>
+                    <li><a href="/research/reaserchpage.html">Research Exposure</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Company</h5>
+                <ul>
+                    <li><a href="/aboutpage/about.html">About Us</a></li>
+                    <li><a href="/aboutpage/about.html#leadership">Leadership</a></li>
+                    <li><a href="/cropage/cro.html">CRO &amp; Solutions</a></li>
+                    <li><a href="/cropage/cro.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h5>Contact</h5>
+                <ul>
+                    <li><a href="/collabratepage/colla.html#contact">Get in Touch</a></li>
+                    <li><a href="/collabratepage/colla.html">Partnerships</a></li>
+                    <li><a href="/cropage/cro.html#contact">Submit Requirement</a></li>
+                    <li><a href="#">Legal</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
-      <div class="footer-col">
-        <h5>Navigate</h5>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Our Research</a></li>
-          <li><a href="#">Pipeline</a></li>
-          <li><a href="#">Portfolio</a></li>
-          <li><a href="#">Impact Report</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Company</h5>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Leadership</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
-          <li><a href="#">Investors</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h5>Contact</h5>
-        <ul>
-          <li><a href="#">Get in Touch</a></li>
-          <li><a href="#">Partnerships</a></li>
-          <li><a href="#">Media Enquiries</a></li>
-          <li><a href="#">Legal</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 Molmet Biotech. All rights reserved.</p>
-      <div class="footer-bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-        <a href="#">Cookie Settings</a>
-      </div>
-    </div>
-  </footer>
+        <div class="footer-bottom">
+            <p>&#169; 2026 Molmet Biotech Research Pvt Ltd. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Use</a>
+                <a href="#">Cookie Settings</a>
+            </div>
+        </div>
+    </footer>
 
   <script>
-    // navbar scroll
+    // ── PAGE ALERT CLOSE ──
+    const alertEl = document.getElementById('page-alert');
+    document.getElementById('page-alert-close').addEventListener('click', () => {
+      alertEl.classList.add('hiding');
+      setTimeout(() => alertEl.remove(), 400);
+    });
+
+    // ── NAVBAR SCROLL ──
     const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
       navbar.classList.toggle('scrolled', window.scrollY > 20);
     }, { passive: true });
 
-    // hamburger
+    // ── HAMBURGER / MOBILE MENU ──
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobile-menu');
     const mobileOverlay = document.getElementById('mobile-overlay');
@@ -1245,44 +1184,7 @@
       });
     });
 
-    // models list — image swap
-    const modelItems = document.querySelectorAll('.model-item');
-    const modelsImg = document.getElementById('models-img');
-    modelItems.forEach(item => {
-      item.addEventListener('click', () => {
-        modelItems.forEach(i => i.classList.remove('active'));
-        item.classList.add('active');
-        const newSrc = item.dataset.img;
-        if (newSrc && modelsImg) {
-          modelsImg.style.opacity = '0';
-          modelsImg.style.transform = 'scale(1.03)';
-          setTimeout(() => {
-            modelsImg.src = newSrc;
-            modelsImg.style.opacity = '0.85';
-            modelsImg.style.transform = 'scale(1)';
-          }, 220);
-        }
-      });
-    });
-    if (modelsImg) {
-      modelsImg.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-    }
-
-    // stagger delays
-    const staggerGroups = [
-      '.approach-cards .appr-card',
-      '.who-grid .who-card',
-      '.focus-grid .focus-card',
-      '.contact-steps .c-step',
-      '.models-list .model-item',
-    ];
-    staggerGroups.forEach(selector => {
-      document.querySelectorAll(selector).forEach((el, i) => {
-        el.dataset.delay = (i * 0.07).toFixed(2);
-      });
-    });
-
-    // intersection observer
+    // ── SCROLL REVEAL ──
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1293,9 +1195,24 @@
         }
       });
     }, { threshold: 0.07, rootMargin: '0px 0px -50px 0px' });
+
+    const staggerGroups = [
+      '.partner-cards-grid .p-card',
+      '.models-grid-row1 .model-card',
+      '.models-grid-row2 .model-card',
+      '.focus-grid .focus-card',
+      '.who-list .who-list-item',
+      '.bring-list .bring-list-item',
+      '.partner-list .partner-list-item',
+    ];
+    staggerGroups.forEach(selector => {
+      document.querySelectorAll(selector).forEach((el, i) => {
+        el.dataset.delay = (i * 0.08).toFixed(2);
+      });
+    });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // form submission
+    // ── FORM SUBMIT ──
     const collabForm = document.getElementById('collab-form');
     collabForm.addEventListener('submit', async function(e) {
       e.preventDefault();
@@ -1323,8 +1240,15 @@
         });
         if (response.ok) {
           document.getElementById('form-fields').style.display = 'none';
-          document.getElementById('form-success').style.display = 'block';
+          const successEl = document.getElementById('form-success');
+          successEl.style.display = 'block';
           collabForm.reset();
+          setTimeout(() => {
+            successEl.style.display = 'none';
+            document.getElementById('form-fields').style.display = 'block';
+            btn.disabled = false;
+            btn.innerHTML = originalHTML;
+          }, 5000);
         } else {
           const data = await response.json();
           const msg = data?.errors?.map(e => e.message).join(', ') || 'Submission failed. Please try again.';
