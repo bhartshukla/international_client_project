@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=DM+Sans:ital,opsz,wght@0,9..40,200;0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Roboto+Slab:wght@300;400;500;600&display=swap"
         rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet" />
     <style>
@@ -31,7 +31,9 @@
             --clr-on-dark-2: rgba(242, 255, 243, 0.75);
             --clr-on-dark-3: rgba(242, 255, 243, 0.45);
             --ff-display: 'Fraunces', 'Palatino Linotype', serif;
-            --ff-body: 'DM Sans', 'Arial', sans-serif;
+            --ff-body: 'Roboto Slab', Georgia, serif;
+            --space-lg: 48px;
+            --space-xl: 80px;
             --nav-h: 80px;
             --radius-sm: 10px;
             --radius-md: 18px;
@@ -41,6 +43,7 @@
             --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
             --shadow-sm: 0 2px 12px rgba(23, 54, 48, 0.08);
             --shadow-md: 0 8px 32px rgba(23, 54, 48, 0.12);
+            --shadow-lg: 0 20px 64px rgba(23, 54, 48, 0.16);
         }
 
         *,
@@ -116,13 +119,115 @@
         }
 
         p {
-            font-size: clamp(14px, 1.1vw, 16px);
+            font-family: var(--ff-body);
+            font-size: clamp(14px, 2vw, 17px);
             line-height: 1.75;
             color: var(--clr-text-2);
-            font-weight: 300;
+            font-weight: 400;
         }
 
-        /* ── NAVBAR ── */
+        /* ══ PAGE ALERT ══ */
+        .page-alert {
+            position: fixed;
+            top: calc(var(--nav-h) + 12px);
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px 10px 14px;
+            background: rgba(23, 54, 48, 0.96);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(126, 203, 161, 0.35);
+            border-radius: var(--radius-md);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            animation: alertSlideIn 0.5s var(--ease-out) forwards;
+            max-width: 320px;
+        }
+
+        @keyframes alertSlideIn {
+            from {
+                opacity: 0;
+                transform: translateX(40px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        .page-alert.hiding {
+            animation: alertSlideOut 0.35s var(--ease-out) forwards;
+        }
+
+        @keyframes alertSlideOut {
+            from {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+
+            to {
+                opacity: 0;
+                transform: translateX(40px) scale(0.92);
+            }
+        }
+
+        .page-alert-dot {
+            width: 8px;
+            height: 8px;
+            min-width: 8px;
+            border-radius: 50%;
+            background: var(--clr-accent);
+            box-shadow: 0 0 0 3px rgba(126, 203, 161, 0.2);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 3px rgba(126, 203, 161, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 0 6px rgba(126, 203, 161, 0.08);
+            }
+        }
+
+        .page-alert-text {
+            font-family: var(--ff-body);
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--clr-on-dark);
+            letter-spacing: .02em;
+            flex: 1;
+        }
+
+        .page-alert-close {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            background: rgba(242, 255, 243, 0.08);
+            border: 1px solid rgba(242, 255, 243, 0.12);
+            border-radius: 6px;
+            cursor: pointer;
+            color: var(--clr-on-dark-2);
+            font-size: 13px;
+            transition: background .2s, color .2s, border-color .2s;
+            line-height: 1;
+        }
+
+        .page-alert-close:hover {
+            background: rgba(242, 255, 243, 0.15);
+            border-color: rgba(242, 255, 243, 0.25);
+            color: #fff;
+        }
+
+        /* ══ NAVBAR ══ */
         .navbar {
             position: fixed;
             top: 0;
@@ -186,7 +291,7 @@
             gap: 4px;
             padding: 10px 14px;
             font-family: var(--ff-body);
-            font-size: 13.5px;
+            font-size: 14.5px;
             font-weight: 400;
             color: var(--clr-text-2);
             border-radius: var(--radius-sm);
@@ -439,7 +544,7 @@
             font-size: 14px;
         }
 
-        /* ── BUTTONS ── */
+        /* ══ BUTTONS ══ */
         .btn-primary {
             display: inline-flex;
             align-items: center;
@@ -500,28 +605,7 @@
             transform: translateY(-2px);
         }
 
-        .btn-outline {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 13px 26px;
-            color: var(--clr-dark-2);
-            font-family: var(--ff-body);
-            font-size: 14px;
-            font-weight: 400;
-            border-radius: var(--radius-full);
-            border: 1px solid rgba(23, 54, 48, 0.25);
-            background: rgba(23, 54, 48, 0.05);
-            transition: background 0.22s, border-color 0.22s, transform 0.22s;
-        }
-
-        .btn-outline:hover {
-            background: rgba(23, 54, 48, 0.1);
-            border-color: rgba(23, 54, 48, 0.4);
-            transform: translateY(-2px);
-        }
-
-        /* ── SECTION TAG ── */
+        /* ══ SECTION TAG ══ */
         .section-tag {
             display: inline-flex;
             align-items: center;
@@ -561,14 +645,13 @@
             color: var(--clr-on-dark-2);
         }
 
-        /* ════════════════════════════════
-       HERO
-    ════════════════════════════════ */
+        /* ══ HERO ══ */
         .hero {
             padding-top: var(--nav-h);
-            min-height: 100vh;
-            display: grid;
-            grid-template-rows: 1fr auto;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             background: var(--clr-dark-2);
             position: relative;
             overflow: hidden;
@@ -580,7 +663,7 @@
             background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1800&q=85');
             background-size: cover;
             background-position: center;
-            opacity: 0.18;
+            opacity: 0.22;
         }
 
         .hero-bg-img::after {
@@ -598,8 +681,10 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 100px 40px 60px;
+            padding: 0 40px;
             gap: 28px;
+            max-width: 900px;
+            width: 100%;
         }
 
         .hero-eyebrow {
@@ -621,7 +706,7 @@
             animation: pulse 2.5s ease-in-out infinite;
         }
 
-        @keyframes pulse {
+        @keyframes heroPulse {
 
             0%,
             100% {
@@ -634,6 +719,7 @@
         }
 
         .hero-eyebrow span {
+            font-family: var(--ff-body);
             font-size: 11px;
             font-weight: 500;
             letter-spacing: 0.1em;
@@ -643,12 +729,12 @@
 
         .hero-headline {
             font-family: var(--ff-display);
-            font-size: clamp(52px, 8vw, 100px);
+            font-size: clamp(36px, 6vw, 76px);
             font-weight: 500;
             color: #fff;
-            line-height: 1.02;
+            line-height: 1.05;
             letter-spacing: -0.03em;
-            max-width: 900px;
+            max-width: 820px;
         }
 
         .hero-headline em {
@@ -656,12 +742,14 @@
             color: var(--clr-accent);
         }
 
-        .hero-desc {
-            font-size: clamp(15px, 1.3vw, 18px);
+        .hero-sub {
+            font-family: var(--ff-body);
+            font-size: clamp(14px, 1.4vw, 18px);
             color: var(--clr-on-dark-2);
-            max-width: 560px;
+            max-width: 620px;
             font-weight: 300;
             line-height: 1.8;
+            letter-spacing: 0.3px;
         }
 
         .hero-actions {
@@ -672,574 +760,827 @@
             justify-content: center;
         }
 
-        /* ════════════════════════════════
-       INTRO SECTION
-    ════════════════════════════════ */
-        .intro-section {
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-up {
+            opacity: 0;
+            animation: fadeUp 0.9s var(--ease-out) forwards;
+        }
+
+        .fade-up.d1 {
+            animation-delay: 0.1s;
+        }
+
+        .fade-up.d2 {
+            animation-delay: 0.22s;
+        }
+
+        .fade-up.d3 {
+            animation-delay: 0.34s;
+        }
+
+        .fade-up.d4 {
+            animation-delay: 0.46s;
+        }
+
+        .fade-up.d5 {
+            animation-delay: 0.56s;
+        }
+
+        /* ══ INTRO STRIP ══ */
+        .intro-strip {
             background: var(--clr-bg);
-            padding: 100px 80px;
+            padding: 30px 40px;
+            border-bottom: 1px solid rgba(77, 140, 106, 0.15);
         }
 
-        .intro-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
+        .intro-strip p {
+            font-family: var(--ff-body);
+            font-size: clamp(15px, 1.6vw, 20px);
+            font-weight: 400;
+            line-height: 1.75;
+            color: var(--clr-on-dark-2);
+            max-width: 1200px;
+            margin: 0 auto;
+            letter-spacing: 1.2px;
+            text-align: center;
+            border: 2px solid var(--clr-dark);
+            padding: 50px 40px;
+            border-radius: 25px;
+            background-color: var(--clr-dark);
         }
 
-        .intro-left h2 {
-            color: var(--clr-dark);
-            margin-bottom: 20px;
-        }
-
-        .intro-left > p {
-            margin-bottom: 20px;
-            max-width: 480px;
-        }
-
-        .intro-right {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .intro-card {
-            background: var(--clr-surface);
-            border: 1px solid rgba(23, 54, 48, 0.08);
-            border-radius: var(--radius-md);
-            padding: 20px 22px;
-            display: flex;
-            align-items: flex-start;
-            gap: 14px;
-            transition: background 0.2s, transform 0.2s, border-color 0.2s;
-        }
-
-        .intro-card:hover {
-            background: var(--clr-bg-2);
-            border-color: rgba(77, 140, 106, 0.3);
-            transform: translateX(4px);
-        }
-
-        .intro-card-icon {
-            width: 36px;
-            height: 36px;
-            min-width: 36px;
-            background: var(--clr-bg-3);
-            border-radius: var(--radius-sm);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .intro-card-icon i {
-            font-size: 16px;
-            color: var(--clr-dark-2);
-        }
-
-        .intro-card strong {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--clr-dark-2);
-            margin-bottom: 3px;
-        }
-
-        .intro-card span {
-            font-size: 12.5px;
-            color: var(--clr-text-muted);
-            line-height: 1.55;
-        }
-
-        /* ════════════════════════════════
-       APPROACH SECTION (reused for "Our Approach")
-    ════════════════════════════════ */
+        /* ══ SECTION 2: OUR APPROACH ══ */
         .approach-section {
             background: var(--clr-bg-2);
-            padding: 100px 80px;
+            padding: 90px 80px;
         }
 
-        .approach-inner {
-            display: grid;
-            grid-template-columns: 1fr 520px;
-            gap: 80px;
-            align-items: start;
+        .approach-heading {
+            text-align: center;
+            margin-bottom: 56px;
         }
 
-        .approach-left h2 {
+        .approach-heading .section-tag {
+            margin: 0 auto 16px;
+        }
+
+        .approach-heading h2 {
             color: var(--clr-dark);
-            margin-bottom: 16px;
+            margin-bottom: 0;
         }
 
-        .approach-left > p {
-            margin-bottom: 48px;
-            max-width: 440px;
+        .approach-content {
+            display: grid;
+            grid-template-columns: 1fr 480px;
+            gap: 72px;
+            align-items: center;
         }
 
-        .approach-timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-
-        .a-step {
-            display: flex;
-            gap: 20px;
-            padding: 24px 0;
-            border-bottom: 1px solid rgba(23, 54, 48, 0.08);
-            transition: padding-left 0.25s var(--ease-out);
-        }
-
-        .a-step:last-child {
-            border-bottom: none;
-        }
-
-        .a-step:hover {
-            padding-left: 8px;
-        }
-
-        .a-step-num {
+        .approach-text h3 {
             font-family: var(--ff-display);
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--clr-sage);
-            width: 26px;
-            min-width: 26px;
-            padding-top: 3px;
+            color: var(--clr-dark);
+            margin-bottom: 18px;
         }
 
-        .a-step-body strong {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--clr-dark-2);
-            margin-bottom: 5px;
+        .approach-text p {
+            margin-bottom: 16px;
+            color: var(--clr-text-2);
         }
 
-        .a-step-body span {
+        .approach-text p:last-of-type {
+            margin-bottom: 24px;
+        }
+
+        .approach-strategic {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 22px;
+            background: var(--clr-dark);
+            border-radius: var(--radius-md);
+            margin-top: 8px;
+        }
+
+        .approach-strategic span {
+            font-family: var(--ff-body);
             font-size: 13px;
-            color: var(--clr-text-muted);
-            line-height: 1.6;
+            color: var(--clr-on-dark-2);
+            letter-spacing: 0.5px;
+            line-height: 1.5;
         }
 
-        .approach-right {
-            position: sticky;
-            top: 120px;
-        }
-
-        .approach-img-stack {
-            position: relative;
-        }
-
-        .approach-img-main {
-            width: 100%;
-            height: 420px;
+        .approach-img-wrap {
             border-radius: var(--radius-xl);
             overflow: hidden;
-        }
-
-        .approach-img-main img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .approach-img-small {
-            position: absolute;
-            bottom: -28px;
-            left: -28px;
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid var(--clr-bg-2);
-        }
-
-        .approach-img-small img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .approach-badge {
-            position: absolute;
-            top: 24px;
-            right: -16px;
-            background: var(--clr-dark-2);
-            border-radius: var(--radius-md);
-            padding: 16px 20px;
-            border: 1px solid rgba(126, 203, 161, 0.25);
-            box-shadow: var(--shadow-md);
-        }
-
-        .approach-badge i {
-            font-size: 20px;
-            color: var(--clr-accent);
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .approach-badge strong {
-            display: block;
-            font-size: 13px;
-            color: var(--clr-on-dark);
-            margin-bottom: 4px;
-        }
-
-        .approach-badge span {
-            font-size: 11px;
-            color: var(--clr-on-dark-3);
-        }
-
-        /* ════════════════════════════════
-       PROGRAM TRACKS — MISSION GRID STYLE
-    ════════════════════════════════ */
-        .tracks-section {
-            background: var(--clr-dark-2);
-            padding: 100px 80px;
+            aspect-ratio: 4/3;
             position: relative;
-            overflow: hidden;
         }
 
-        .tracks-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 80% 50%, rgba(126, 203, 161, 0.07) 0%, transparent 60%);
-            pointer-events: none;
+        .approach-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
-        .tracks-header {
+        /* ══ SECTION 3: RESEARCH TRACKS ══ */
+        .tracks-section {
+            background: var(--clr-bg);
+            padding: 90px 80px;
+        }
+
+        .tracks-heading {
             text-align: center;
             margin-bottom: 64px;
         }
 
-        .tracks-header h2 {
+        .tracks-heading .section-tag {
+            margin: 0 auto 16px;
+        }
+
+        .tracks-heading h2 {
+            color: var(--clr-dark);
+        }
+
+        .track-block {
+            display: grid;
+            gap: 64px;
+        }
+
+        .track-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: center;
+            padding: 48px;
+            background: var(--clr-surface);
+            border-radius: var(--radius-xl);
+            border: 1px solid rgba(23, 54, 48, 0.08);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .track-row.reverse {
+            direction: rtl;
+        }
+
+        .track-row.reverse>* {
+            direction: ltr;
+        }
+
+        .track-text-col {}
+
+        .track-num {
+            font-family: var(--ff-display);
+            font-size: 60px;
+            font-weight: 300;
+            color: rgba(77, 140, 106, 0.12);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .track-text-col h3 {
+            font-family: var(--ff-display);
+            color: var(--clr-dark);
+            margin-bottom: 12px;
+        }
+
+        .track-text-col>p {
+            margin-bottom: 20px;
+            color: var(--clr-text-2);
+        }
+
+        .exposure-label {
+            font-family: var(--ff-body);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--clr-sage);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .track-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .track-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-family: var(--ff-body);
+            font-size: 13.5px;
+            color: var(--clr-text-2);
+            line-height: 1.55;
+        }
+
+        .track-list li i {
+            font-size: 12px;
+            color: var(--clr-sage);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .track-img-col {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            position: relative;
+        }
+
+        .track-img-col img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s var(--ease-out);
+        }
+
+        .track-row:hover .track-img-col img {
+            transform: scale(1.04);
+        }
+
+        /* ══ SECTION 4: HOW PARTICIPANTS ENGAGE ══ */
+        .engage-section {
+            background: var(--clr-dark-2);
+            padding: 90px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .engage-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 30%, rgba(126, 203, 161, 0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .engage-heading {
+            text-align: center;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .engage-heading .section-tag {
+            margin: 0 auto 16px;
+        }
+
+        .engage-heading h2 {
             color: var(--clr-on-dark);
             margin-bottom: 14px;
         }
 
-        .tracks-header p {
+        .engage-heading>p {
+            font-family: var(--ff-body);
             color: var(--clr-on-dark-2);
-            max-width: 520px;
+            max-width: 680px;
             margin: 0 auto;
         }
 
-        .tracks-grid {
+        .engage-cols {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 48px;
+            position: relative;
+            z-index: 2;
         }
 
-        .track-card {
+        .engage-col {
             background: rgba(242, 255, 243, 0.05);
             border: 1px solid rgba(242, 255, 243, 0.1);
             border-radius: var(--radius-lg);
-            padding: 36px 24px;
-            transition: background 0.3s, border-color 0.3s, transform 0.3s var(--ease-out);
-            cursor: pointer;
+            padding: 36px 32px;
         }
 
-        .track-card:hover {
-            background: rgba(242, 255, 243, 0.08);
+        .engage-col h4 {
+            font-family: var(--ff-display);
+            font-size: 20px;
+            color: var(--clr-on-dark);
+            margin-bottom: 20px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(242, 255, 243, 0.1);
+        }
+
+        .engage-col h4 i {
+            margin-right: 8px;
+            color: var(--clr-accent);
+        }
+
+        .engage-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .engage-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-family: var(--ff-body);
+            font-size: 14px;
+            color: var(--clr-on-dark-2);
+            line-height: 1.6;
+        }
+
+        .engage-list li i {
+            font-size: 14px;
+            color: var(--clr-accent);
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .engage-strategic {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 40px;
+            padding: 20px 28px;
+            background: rgba(126, 203, 161, 0.08);
+            border: 1px solid rgba(126, 203, 161, 0.2);
+            border-radius: var(--radius-md);
+            position: relative;
+            z-index: 2;
+        }
+
+        .engage-strategic span {
+            font-family: var(--ff-body);
+            font-size: 14px;
+            color: var(--clr-on-dark-2);
+            letter-spacing: 0.5px;
+            font-style: italic;
+        }
+
+        /* ══ SECTION 5: WHO THIS IS FOR ══ */
+        .who-section {
+            background: var(--clr-bg-4);
+            padding: 90px 80px;
+        }
+
+        .who-heading {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .who-heading .section-tag {
+            margin: 0 auto 16px;
+        }
+
+        .who-heading h2 {
+            color: var(--clr-dark);
+        }
+
+        .who-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        /* Card hover: light → dark fill bottom-to-top */
+        .who-card {
+            background: var(--clr-surface);
+            border: 1px solid rgba(23, 54, 48, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 36px 28px;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.4s, transform 0.4s var(--ease-out), box-shadow 0.4s;
+            cursor: default;
+        }
+
+        .who-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            height: 0%;
+            background: var(--clr-dark-2);
+            transition: height 0.5s var(--ease-out);
+            z-index: 0;
+            border-radius: 0;
+        }
+
+        .who-card:hover::before {
+            height: 100%;
+        }
+
+        .who-card:hover {
             border-color: rgba(126, 203, 161, 0.3);
             transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
         }
 
-        .track-card-num {
-            font-family: var(--ff-display);
-            font-size: 52px;
-            font-weight: 300;
-            color: rgba(126, 203, 161, 0.18);
-            line-height: 1;
-            margin-bottom: 20px;
+        .who-card-inner {
+            position: relative;
+            z-index: 1;
         }
 
-        .track-card-icon {
-            width: 44px;
-            height: 44px;
-            background: rgba(126, 203, 161, 0.1);
-            border-radius: var(--radius-sm);
+        .who-card-icon {
+            width: 52px;
+            height: 52px;
+            background: var(--clr-bg-3);
+            border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 16px;
-            border: 1px solid rgba(126, 203, 161, 0.2);
+            margin-bottom: 20px;
+            transition: background 0.4s;
         }
 
-        .track-card-icon i {
-            font-size: 20px;
+        .who-card:hover .who-card-icon {
+            background: rgba(126, 203, 161, 0.15);
+        }
+
+        .who-card-icon i {
+            font-size: 24px;
+            color: var(--clr-dark-2);
+            transition: color 0.4s;
+        }
+
+        .who-card:hover .who-card-icon i {
             color: var(--clr-accent);
         }
 
-        .track-card h4 {
+        .who-card h4 {
             font-family: var(--ff-display);
-            font-size: 17px;
-            font-weight: 500;
-            color: var(--clr-on-dark);
+            font-size: 18px;
+            color: var(--clr-dark);
             margin-bottom: 10px;
+            transition: color 0.4s;
         }
 
-        .track-card-focus {
-            font-size: 11px;
-            font-weight: 500;
+        .who-card:hover h4 {
+            color: var(--clr-on-dark);
+        }
+
+        .who-card p {
+            font-size: 13.5px;
+            color: var(--clr-text-muted);
+            line-height: 1.65;
+            transition: color 0.4s;
+        }
+
+        .who-card:hover p {
+            color: var(--clr-on-dark-2);
+        }
+
+        .who-note {
+            margin-top: 40px;
+            padding: 22px 28px;
+            background: rgba(77, 140, 106, 0.08);
+            border: 1px solid rgba(77, 140, 106, 0.2);
+            border-radius: var(--radius-md);
+            text-align: center;
+        }
+
+        .who-note strong {
+            font-family: var(--ff-display);
+            font-size: 15px;
+            color: var(--clr-sage);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .who-note p {
+            font-size: 13.5px;
+            color: var(--clr-text-muted);
+            margin: 0;
+        }
+
+        /* ══ SECTION 6: APPLICATION FORM ══ */
+        .apply-section {
+            background: var(--clr-bg-2);
+            padding: 90px 80px;
+        }
+
+        .apply-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .apply-left {}
+
+        .apply-left .section-tag {
+            margin-bottom: 18px;
+        }
+
+        .apply-left h2 {
+            color: var(--clr-dark);
+            margin-bottom: 20px;
+        }
+
+        .apply-left>p {
+            margin-bottom: 16px;
+            color: var(--clr-text-2);
+        }
+
+        .apply-right {}
+
+        .apply-form {
+            background: var(--clr-surface);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            border: 1px solid rgba(23, 54, 48, 0.1);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-family: var(--ff-body);
+            font-size: 12px;
+            font-weight: 600;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--clr-accent);
-            margin-bottom: 10px;
-            opacity: 0.8;
+            color: var(--clr-sage);
+            margin-bottom: 8px;
         }
 
-        .track-card p {
-            font-size: 13px;
-            color: var(--clr-on-dark-3);
-            line-height: 1.65;
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1.5px solid rgba(23, 54, 48, 0.15);
+            border-radius: var(--radius-sm);
+            font-family: var(--ff-body);
+            font-size: 14px;
+            color: var(--clr-text);
+            background: var(--clr-bg);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--clr-sage);
+            box-shadow: 0 0 0 3px rgba(77, 140, 106, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 90px;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--clr-dark-2), var(--clr-dark-3));
+            color: var(--clr-on-dark);
+            font-family: var(--ff-body);
+            font-size: 14px;
+            font-weight: 500;
+            border: none;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: filter 0.25s, transform 0.25s var(--ease-out);
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+
+        .form-submit:hover {
+            filter: brightness(1.12);
+            transform: translateY(-2px);
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 24px;
+            background: rgba(77, 140, 106, 0.08);
+            border: 1px solid rgba(77, 140, 106, 0.25);
+            border-radius: var(--radius-md);
+            margin-top: 16px;
+        }
+
+        .form-success p {
+            color: var(--clr-sage);
+            font-weight: 500;
+        }
+
+        /* ══ SECTION 7: REGISTRATION ══ */
+        .registration-section {
+            background: var(--clr-dark);
+            padding: 90px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .registration-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 70%, rgba(126, 203, 161, 0.06) 0%, transparent 55%);
+            pointer-events: none;
+        }
+
+        .reg-heading {
+            text-align: center;
+            margin-bottom: 56px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reg-heading .section-tag {
+            margin: 0 auto 16px;
+        }
+
+        .reg-heading h2 {
+            color: var(--clr-on-dark);
+            margin-bottom: 14px;
+        }
+
+        .reg-heading>p {
+            font-family: var(--ff-body);
+            color: var(--clr-on-dark-2);
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .reg-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .reg-card {
+            background: rgba(242, 255, 243, 0.05);
+            border: 1px solid rgba(242, 255, 243, 0.1);
+            border-radius: var(--radius-lg);
+            padding: 32px 28px;
+        }
+
+        .reg-card h4 {
+            font-family: var(--ff-display);
+            font-size: 18px;
+            color: var(--clr-on-dark);
             margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(242, 255, 243, 0.1);
         }
 
-        .track-card-list {
+        .reg-card h4 i {
+            margin-right: 8px;
+            color: var(--clr-accent);
+        }
+
+        .reg-list {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 10px;
         }
 
-        .track-card-list li {
+        .reg-list li {
             display: flex;
             align-items: flex-start;
-            gap: 8px;
-            font-size: 12px;
-            color: rgba(242, 255, 243, 0.45);
-            line-height: 1.5;
+            gap: 10px;
+            font-family: var(--ff-body);
+            font-size: 13.5px;
+            color: var(--clr-on-dark-2);
+            line-height: 1.55;
         }
 
-        .track-card-list li i {
-            font-size: 11px;
+        .reg-list li i {
+            font-size: 12px;
             color: var(--clr-accent);
             margin-top: 3px;
             flex-shrink: 0;
         }
 
-        /* ════════════════════════════════
-       PROGRAM STRUCTURE
-    ════════════════════════════════ */
-        .structure-section {
-            background: var(--clr-bg-4);
-            padding: 100px 80px;
-        }
-
-        .structure-inner {
+        .reg-qr-block {
+            position: relative;
+            z-index: 2;
+            margin-top: 48px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 40px;
             align-items: center;
         }
 
-        .structure-left h2 {
-            color: var(--clr-dark);
-            margin-bottom: 16px;
+        .reg-qr-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
         }
 
-        .structure-left > p {
-            margin-bottom: 24px;
-            max-width: 460px;
+        .reg-qr-card {
+            background: var(--clr-surface);
+            border: 1px solid rgba(126, 203, 161, 0.2);
+            border-radius: var(--radius-xl);
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .structure-note {
-            padding: 18px 20px;
-            background: rgba(77, 140, 106, 0.08);
-            border: 1px solid rgba(77, 140, 106, 0.2);
+        .reg-qr-card .qr-placeholder {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, var(--clr-bg-3), var(--clr-bg));
             border-radius: var(--radius-md);
-            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 56px;
+            border: 2px dashed rgba(77, 140, 106, 0.3);
         }
 
-        .structure-note p {
+        .reg-qr-card p {
+            font-family: var(--ff-body);
+            font-size: 12px;
+            text-align: center;
+            color: var(--clr-text-muted);
+        }
+
+        .reg-qr-label {
+            font-family: var(--ff-body);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--clr-on-dark-3);
+        }
+
+        .reg-note {
+            background: rgba(126, 203, 161, 0.07);
+            border: 1px solid rgba(126, 203, 161, 0.15);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .reg-note i {
+            font-size: 18px;
+            color: var(--clr-accent);
+            margin-top: 1px;
+            flex-shrink: 0;
+        }
+
+        .reg-note p {
             font-size: 13px;
-            color: var(--clr-sage);
-            font-style: italic;
+            color: var(--clr-on-dark-2);
             margin: 0;
         }
 
-        .structure-right {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        .s-card {
-            background: var(--clr-surface);
-            border: 1px solid rgba(23, 54, 48, 0.09);
-            border-radius: var(--radius-lg);
-            padding: 28px 22px;
-            transition: transform 0.3s var(--ease-out), box-shadow 0.3s, border-color 0.3s;
-        }
-
-        .s-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-md);
-            border-color: rgba(77, 140, 106, 0.3);
-        }
-
-        .s-card-icon {
-            width: 42px;
-            height: 42px;
-            background: var(--clr-bg-3);
-            border-radius: var(--radius-sm);
+        .reg-strategic {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 14px;
-        }
-
-        .s-card-icon i {
-            font-size: 18px;
-            color: var(--clr-dark-2);
-        }
-
-        .s-card h4 {
-            font-family: var(--ff-display);
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--clr-dark);
-            margin-bottom: 8px;
-        }
-
-        .s-card p {
-            font-size: 12.5px;
-            color: var(--clr-text-muted);
-            line-height: 1.55;
-        }
-
-        /* ════════════════════════════════
-       WHO SHOULD APPLY — NETWORK STYLE
-    ════════════════════════════════ */
-        .who-section {
-            background: var(--clr-bg-2);
-            padding: 100px 80px;
-        }
-
-        .who-header {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: end;
-            margin-bottom: 56px;
-        }
-
-        .who-header h2 {
-            color: var(--clr-dark);
-        }
-
-        .who-header p {
-            color: var(--clr-text-2);
-        }
-
-        .who-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-
-        .who-card {
-            background: var(--clr-surface);
-            border: 1px solid rgba(23, 54, 48, 0.08);
-            border-radius: var(--radius-lg);
-            padding: 28px 24px;
-            display: flex;
-            align-items: flex-start;
-            gap: 18px;
-            transition: background 0.22s, transform 0.22s, border-color 0.22s;
-        }
-
-        .who-card:hover {
-            background: var(--clr-bg);
-            border-color: rgba(77, 140, 106, 0.3);
-            transform: translateY(-4px);
-        }
-
-        .who-card-icon {
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            background: var(--clr-bg-3);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .who-card-icon i {
-            font-size: 20px;
-            color: var(--clr-dark-2);
-        }
-
-        .who-card strong {
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--clr-dark-2);
-            margin-bottom: 6px;
-        }
-
-        .who-card span {
-            font-size: 12.5px;
-            color: var(--clr-text-muted);
-            line-height: 1.55;
-        }
-
-        /* ════════════════════════════════
-       FINAL CTA
-    ════════════════════════════════ */
-        .cta-section {
-            background: var(--clr-dark-2);
-            padding: 100px 80px;
-            display: grid;
-            grid-template-columns: 1fr auto;
-            gap: 64px;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=1800&q=80') center/cover no-repeat;
-            opacity: 0.1;
-        }
-
-        .cta-left {
+            gap: 12px;
+            margin-top: 40px;
             position: relative;
             z-index: 2;
         }
 
-        .cta-left h2 {
-            font-size: clamp(32px, 4vw, 60px);
-            color: var(--clr-on-dark);
-            margin-bottom: 16px;
-        }
-
-        .cta-left h2 em {
-            color: var(--clr-accent);
+        .reg-strategic span {
+            font-family: var(--ff-body);
+            font-size: 14px;
+            color: var(--clr-on-dark-3);
+            letter-spacing: 0.5px;
             font-style: italic;
         }
 
-        .cta-left p {
-            color: var(--clr-on-dark-2);
-            max-width: 480px;
-        }
-
-        .cta-right {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            align-items: flex-end;
-        }
-
-        /* ════════════════════════════════
-       FOOTER
-    ════════════════════════════════ */
+        /* ══ FOOTER ══ */
         footer {
             background: var(--clr-dark);
             color: var(--clr-on-dark);
@@ -1375,51 +1716,54 @@
             color: var(--clr-on-dark);
         }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 1100px) {
-            .tracks-grid {
+        /* ══ RESPONSIVE ══ */
+        @media(max-width:1100px) {
+
+            .approach-content,
+            .apply-inner {
+                grid-template-columns: 1fr;
+            }
+
+            .approach-img-wrap {
+                max-height: 360px;
+            }
+
+            .reg-grid {
                 grid-template-columns: 1fr 1fr;
+            }
+
+            .reg-qr-block {
+                grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 1024px) {
-            .intro-inner,
-            .approach-inner,
-            .structure-inner {
+        @media(max-width:900px) {
+            .track-row {
                 grid-template-columns: 1fr;
             }
 
-            .who-header {
-                grid-template-columns: 1fr;
-                gap: 16px;
+            .track-row.reverse {
+                direction: ltr;
             }
 
-            .who-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .cta-section {
+            .engage-cols,
+            .who-cards {
                 grid-template-columns: 1fr;
             }
 
-            .cta-right {
-                align-items: flex-start;
-                flex-direction: row;
-                flex-wrap: wrap;
-            }
-
-            .footer-top {
-                grid-template-columns: 1fr 1fr;
+            .reg-grid {
+                grid-template-columns: 1fr;
             }
         }
 
-        @media (max-width: 768px) {
-            .intro-section,
+        @media(max-width:768px) {
+
             .approach-section,
             .tracks-section,
-            .structure-section,
+            .engage-section,
             .who-section,
-            .cta-section {
+            .apply-section,
+            .registration-section {
                 padding-left: 24px;
                 padding-right: 24px;
             }
@@ -1438,27 +1782,15 @@
             }
 
             .hero-inner {
-                padding: 80px 24px 48px;
-            }
-
-            .tracks-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .who-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .structure-right {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-top {
-                grid-template-columns: 1fr;
+                padding: 0 24px;
             }
 
             footer {
                 padding: 48px 24px 28px;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
             }
 
             .footer-bottom {
@@ -1466,420 +1798,571 @@
                 align-items: flex-start;
                 gap: 12px;
             }
-        }
 
-        /* ── ANIMATIONS ── */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
+            .form-row {
+                grid-template-columns: 1fr;
             }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            .intro-strip {
+                padding: 24px 20px;
             }
-        }
 
-        .fade-up {
-            opacity: 0;
-            animation: fadeUp 0.9s var(--ease-out) forwards;
-        }
-
-        .fade-up.d1 {
-            animation-delay: 0.1s;
-        }
-
-        .fade-up.d2 {
-            animation-delay: 0.22s;
-        }
-
-        .fade-up.d3 {
-            animation-delay: 0.34s;
-        }
-
-        .fade-up.d4 {
-            animation-delay: 0.46s;
+            .intro-strip p {
+                padding: 32px 20px;
+                letter-spacing: 0.5px;
+            }
         }
     </style>
 </head>
 
 <body>
 
+    <!-- ══ PAGE ALERT ══ -->
+    <div class="page-alert" id="pageAlert">
+        <div class="page-alert-dot"></div>
+        <span class="page-alert-text">You are on the Research Exposure page</span>
+        <button class="page-alert-close" id="alertClose" aria-label="Close alert">✕</button>
+    </div>
+
     <!-- ══ NAVBAR ══ -->
     <nav class="navbar" id="navbar">
         <a href="#" class="nav-logo">
-            <span><img src="/logo.png" alt=""></span>
+            <span><img src="/logo.png" alt="Molmet Biotech" /></span>
         </a>
         <ul class="nav-links">
+            <li class="nav-item"><a href="/index.html"><button class="nav-link">Home</button></a></li>
             <li class="nav-item">
-                <a href="/index.html"><button class="nav-link">Home</button></a>
+                <a href="/aboutpage/about.html"><button class="nav-link">About <i
+                            class="ri-arrow-down-s-line"></i></button></a>
+                <div class="dropdown">
+                    <div class="dropdown-label">About Molmet</div>
+                    <a href="/aboutpage/about.html#vision" class="dropdown-link"><i class="ri-compass-3-line"></i>Vision
+                        & Mission</a>
+                    <a href="/aboutpage/about.html#leadership" class="dropdown-link"><i
+                            class="ri-user-star-line"></i>Leadership</a>
+                    <a href="/aboutpage/about.html#infra" class="dropdown-link"><i
+                            class="ri-building-4-line"></i>Infrastructure</a>
+                    <a href="/aboutpage/about.html#approach" class="dropdown-link"><i
+                            class="ri-lightbulb-line"></i>Approach</a>
+                    <a href="/aboutpage/about.html#network" class="dropdown-link"><i
+                            class="ri-global-line"></i>Network</a>
+                </div>
             </li>
             <li class="nav-item">
-                <a href="/Discoverypage/dics.html"><button class="nav-link">Discovery <i class="ri-arrow-down-s-line"></i></button></a>
+                <a href="/Discoverypage/dics.html"><button class="nav-link">Discovery <i
+                            class="ri-arrow-down-s-line"></i></button></a>
                 <div class="dropdown">
                     <div class="dropdown-label">Explore Discovery</div>
-                    <a href="/Discoverypage/dics.html#bioprospecting" class="dropdown-link"><i class="ri-microscope-line"></i> Bioprospecting</a>
-                    <a href="/Discoverypage/dics.html#molecules" class="dropdown-link"><i class="ri-flask-line"></i> Molecule Discovery</a>
-                    <a href="/Discoverypage/dics.html#strain" class="dropdown-link"><i class="ri-settings-3-line"></i> Strain Engineering</a>
-                    <a href="/Discoverypage/dics.html#libraries" class="dropdown-link"><i class="ri-database-2-line"></i> Natural Libraries</a>
+                    <a href="/Discoverypage/dics.html#bioprospecting" class="dropdown-link"><i
+                            class="ri-microscope-line"></i>Bioprospecting</a>
+                    <a href="/Discoverypage/dics.html#pipeline" class="dropdown-link"><i
+                            class="ri-flask-line"></i>Molecule Discovery</a>
+                    <a href="/Discoverypage/dics.html#strain" class="dropdown-link"><i
+                            class="ri-settings-3-line"></i>Strain Engineering</a>
+                    <a href="/Discoverypage/dics.html#biobank" class="dropdown-link"><i
+                            class="ri-database-2-line"></i>Biobank</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a href="/collabratepage/colla.html"><button class="nav-link">Collaborate <i class="ri-arrow-down-s-line"></i></button></a>
+                <a href="/collabratepage/colla.html"><button class="nav-link">Collaborate <i
+                            class="ri-arrow-down-s-line"></i></button></a>
                 <div class="dropdown">
                     <div class="dropdown-label">Partner With Us</div>
-                    <a href="/collabratepage/colla.html#who" class="dropdown-link"><i class="ri-building-line"></i> Industry Partnerships</a>
-                    <a href="/collabratepage/colla.html#we" class="dropdown-link"><i class="ri-government-line"></i> We Collaborate</a>
-                    <a href="/collabratepage/colla.html#models" class="dropdown-link"><i class="ri-handshake-line"></i> Collaboration Models</a>
-                    <a href="/collabratepage/colla.html#bring" class="dropdown-link"><i class="ri-funds-line"></i>What We Bring</a>
+                    <a href="/collabratepage/colla.html#who" class="dropdown-link"><i
+                            class="ri-building-line"></i>Industry Partnerships</a>
+                    <a href="/collabratepage/colla.html#approach" class="dropdown-link"><i
+                            class="ri-government-line"></i>Our Approach</a>
+                    <a href="/collabratepage/colla.html#models" class="dropdown-link"><i
+                            class="ri-handshake-line"></i>Collaboration Models</a>
+                    <a href="/collabratepage/colla.html#bring" class="dropdown-link"><i class="ri-funds-line"></i>What
+                        We Bring</a>
                 </div>
             </li>
             <li class="nav-item">
-                <a href="/cropage/cro.html"></a><button class="nav-link">CRO & Solutions <i class="ri-arrow-down-s-line"></i></button>
+                <a href="/cropage/cro.html"><button class="nav-link">CRO & Solutions <i
+                            class="ri-arrow-down-s-line"></i></button></a>
                 <div class="dropdown">
                     <div class="dropdown-label">R&D Solutions</div>
-                    <a href="/cropage/cro.html#capabilities" class="dropdown-link"><i class="ri-briefcase-line"></i> Our Capabilities</a>
-                    <a href="/cropage/cro.html#how-we-engage" class="dropdown-link"><i class="ri-tools-line"></i> How We Engage</a>
-                    <a href="/cropage/cro.html#best-suited" class="dropdown-link"><i class="ri-search-eye-line"></i> Best Suited For</a>
-                    <a href="/cropage/cro.html#contact" class="dropdown-link"><i class="ri-mail-send-line"></i> Submit Requirement</a>
+                    <a href="/cropage/cro.html#capabilities" class="dropdown-link"><i class="ri-briefcase-line"></i>Our
+                        Capabilities</a>
+                    <a href="/cropage/cro.html#how-we-engage" class="dropdown-link"><i class="ri-tools-line"></i>How We
+                        Engage</a>
+                    <a href="/cropage/cro.html#best-suited" class="dropdown-link"><i class="ri-search-eye-line"></i>Best
+                        Suited For</a>
+                    <a href="/cropage/cro.html#contact" class="dropdown-link"><i class="ri-mail-send-line"></i>Submit
+                        Requirement</a>
                 </div>
             </li>
             <li class="nav-item">
-                <button class="nav-link">Biological Assets <i class="ri-arrow-down-s-line"></i></button>
+                <a href="/bioassestpage/bio.html"><button class="nav-link">Biological Assets <i
+                            class="ri-arrow-down-s-line"></i></button></a>
                 <div class="dropdown">
                     <div class="dropdown-label">Our Assets</div>
-                    <a href="#" class="dropdown-link"><i class="ri-dna-line"></i> Culture Library</a>
-                    <a href="#" class="dropdown-link"><i class="ri-flask-fill"></i> Metabolite Platform</a>
-                    <a href="#" class="dropdown-link"><i class="ri-archive-line"></i> Discovery Collection</a>
-                    <a href="#" class="dropdown-link"><i class="ri-links-line"></i> Strain Access</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <button class="nav-link">Insights <i class="ri-arrow-down-s-line"></i></button>
-                <div class="dropdown">
-                    <div class="dropdown-label">Knowledge Hub</div>
-                    <a href="#" class="dropdown-link"><i class="ri-article-line"></i> Blogs</a>
-                    <a href="#" class="dropdown-link"><i class="ri-file-text-line"></i> Whitepapers</a>
-                    <a href="#" class="dropdown-link"><i class="ri-bar-chart-line"></i> Research Highlights</a>
-                    <a href="#" class="dropdown-link"><i class="ri-lightbulb-flash-line"></i> Perspectives</a>
+                    <a href="/bioassestpage/bio.html#culture-library" class="dropdown-link"><i
+                            class="ri-dna-line"></i>Culture Library</a>
+                    <a href="/bioassestpage/bio.html#metabolite-platform" class="dropdown-link"><i
+                            class="ri-flask-fill"></i>Metabolite Platform</a>
+                    <a href="/bioassestpage/bio.html#discovery-collections" class="dropdown-link"><i
+                            class="ri-archive-line"></i>Discovery Collection</a>
+                    <a href="/bioassestpage/bio.html#access" class="dropdown-link"><i class="ri-links-line"></i>Strain
+                        Access</a>
                 </div>
             </li>
         </ul>
         <div class="nav-cta-wrap">
-            <a href="/collabratepage/colla.html#contact" class="nav-cta">Contact Us <i class="ri-arrow-right-up-line"></i></a>
+            <a href="/collabratepage/colla.html#contact" class="nav-cta">Contact Us <i
+                    class="ri-arrow-right-up-line"></i></a>
         </div>
         <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
     </nav>
 
     <div class="mobile-overlay" id="mobile-overlay"></div>
     <div class="mobile-menu" id="mobile-menu">
-        <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-about">About <i class="ri-arrow-down-s-line"></i></button>
-            <div class="mobile-dropdown" id="mob-about"><a href="#" class="mobile-dropdown-link">Vision & Mission</a><a href="#" class="mobile-dropdown-link">Who We Are</a><a href="#" class="mobile-dropdown-link">Our Approach</a><a href="#" class="mobile-dropdown-link">Leadership</a><a href="#" class="mobile-dropdown-link">Network</a></div>
+        <div class="mobile-nav-item"><a href="/index.html"><button class="mobile-nav-link">Home</button></a></div>
+        <div class="mobile-nav-item">
+            <button class="mobile-nav-link" data-target="mob-about">About <i class="ri-arrow-down-s-line"></i></button>
+            <div class="mobile-dropdown" id="mob-about">
+                <a href="/aboutpage/about.html#vision" class="mobile-dropdown-link">Vision & Mission</a>
+                <a href="/aboutpage/about.html#leadership" class="mobile-dropdown-link">Leadership</a>
+                <a href="/aboutpage/about.html#infra" class="mobile-dropdown-link">Infrastructure</a>
+                <a href="/aboutpage/about.html#approach" class="mobile-dropdown-link">Approach</a>
+                <a href="/aboutpage/about.html#network" class="mobile-dropdown-link">Network</a>
+            </div>
         </div>
-        <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-disc">Discovery <i class="ri-arrow-down-s-line"></i></button>
-            <div class="mobile-dropdown" id="mob-disc"><a href="#" class="mobile-dropdown-link">Bioprospecting</a><a href="#" class="mobile-dropdown-link">Molecule Discovery</a></div>
+        <div class="mobile-nav-item">
+            <button class="mobile-nav-link" data-target="mob-disc">Discovery <i
+                    class="ri-arrow-down-s-line"></i></button>
+            <div class="mobile-dropdown" id="mob-disc">
+                <a href="/Discoverypage/dics.html#bioprospecting" class="mobile-dropdown-link">Bioprospecting</a>
+                <a href="/Discoverypage/dics.html#pipeline" class="mobile-dropdown-link">Molecule Discovery</a>
+                <a href="/Discoverypage/dics.html#strain" class="mobile-dropdown-link">Strain Engineering</a>
+                <a href="/Discoverypage/dics.html#biobank" class="mobile-dropdown-link">Biobank</a>
+            </div>
         </div>
-        <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-coll">Collaborate <i class="ri-arrow-down-s-line"></i></button>
-            <div class="mobile-dropdown" id="mob-coll"><a href="#" class="mobile-dropdown-link">Industry Partnerships</a><a href="#" class="mobile-dropdown-link">Co-development</a></div>
+        <div class="mobile-nav-item">
+            <button class="mobile-nav-link" data-target="mob-coll">Collaborate <i
+                    class="ri-arrow-down-s-line"></i></button>
+            <div class="mobile-dropdown" id="mob-coll">
+                <a href="/collabratepage/colla.html#who" class="mobile-dropdown-link">Industry Partnerships</a>
+                <a href="/collabratepage/colla.html#approach" class="mobile-dropdown-link">Our Approach</a>
+                <a href="/collabratepage/colla.html#models" class="mobile-dropdown-link">Collaboration Models</a>
+                <a href="/collabratepage/colla.html#bring" class="mobile-dropdown-link">What We Bring</a>
+            </div>
         </div>
-        <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-cro">CRO & Solutions <i class="ri-arrow-down-s-line"></i></button>
-            <div class="mobile-dropdown" id="mob-cro"><a href="#" class="mobile-dropdown-link">Contract Research</a><a href="#" class="mobile-dropdown-link">Assay Development</a></div>
+        <div class="mobile-nav-item">
+            <button class="mobile-nav-link" data-target="mob-cro">CRO & Solutions <i
+                    class="ri-arrow-down-s-line"></i></button>
+            <div class="mobile-dropdown" id="mob-cro">
+                <a href="/cropage/cro.html#capabilities" class="mobile-dropdown-link">Our Capabilities</a>
+                <a href="/cropage/cro.html#how-we-engage" class="mobile-dropdown-link">How We Engage</a>
+                <a href="/cropage/cro.html#best-suited" class="mobile-dropdown-link">Best Suited For</a>
+                <a href="/cropage/cro.html#contact" class="mobile-dropdown-link">Submit Requirement</a>
+            </div>
         </div>
-        <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-assets">Biological Assets <i class="ri-arrow-down-s-line"></i></button>
-            <div class="mobile-dropdown" id="mob-assets"><a href="#" class="mobile-dropdown-link">Culture Library</a><a href="#" class="mobile-dropdown-link">Metabolite Platform</a></div>
+        <div class="mobile-nav-item">
+            <button class="mobile-nav-link" data-target="mob-assets">Biological Assets <i
+                    class="ri-arrow-down-s-line"></i></button>
+            <div class="mobile-dropdown" id="mob-assets">
+                <a href="/bioassestpage/bio.html#culture-library" class="mobile-dropdown-link">Culture Library</a>
+                <a href="/bioassestpage/bio.html#metabolite-platform" class="mobile-dropdown-link">Metabolite
+                    Platform</a>
+                <a href="/bioassestpage/bio.html#discovery-collections" class="mobile-dropdown-link">Discovery
+                    Collection</a>
+                <a href="/bioassestpage/bio.html#access" class="mobile-dropdown-link">Strain Access</a>
+            </div>
         </div>
-        <div class="mobile-nav-item"><button class="mobile-nav-link" data-target="mob-ins">Insights <i class="ri-arrow-down-s-line"></i></button>
-            <div class="mobile-dropdown" id="mob-ins"><a href="#" class="mobile-dropdown-link">Blogs</a><a href="#" class="mobile-dropdown-link">Research Highlights</a></div>
-        </div>
-        <a href="#" class="mobile-cta">Contact Us <i class="ri-arrow-right-up-line"></i></a>
+        <a href="/collabratepage/colla.html#contact" class="mobile-cta">Contact Us <i
+                class="ri-arrow-right-up-line"></i></a>
     </div>
 
     <main>
 
-        <!-- ══ HERO ══ -->
+        <!-- ══ SECTION 1: HERO ══ -->
         <section class="hero">
             <div class="hero-bg-img"></div>
             <div class="hero-inner">
-                <div class="hero-eyebrow fade-up d1">
-                    <div class="hero-eyebrow-dot"></div>
-                    <span>Research Exposure for Students & Scholars</span>
-                </div>
+               
                 <h1 class="hero-headline fade-up d2">
-                    Research <em>Exposure</em><br>Programs
+                    Selective <em>Scientific</em> Immersion<br>within Discovery-Driven<br>Research Environments
                 </h1>
-                <p class="hero-desc fade-up d3">
-                    We offer limited, high-quality research exposure opportunities aligned with our ongoing discovery and experimental programs. Participants engage with real laboratory workflows across microbial bioprospecting, bioactive discovery, and in-vitro validation systems.
-                </p>
                 <div class="hero-actions fade-up d4">
-                    <a href="#apply" class="btn-primary">Apply Now</a>
-                    <a href="#tracks" class="btn-ghost">Explore Program Tracks <i class="ri-arrow-right-line"></i></a>
+                    <a href="#apply" class="btn-primary">Apply for Exposure <i class="ri-arrow-right-line"></i></a>
+                    <a href="#tracks" class="btn-ghost">Explore Tracks <i class="ri-arrow-down-line"></i></a>
                 </div>
             </div>
         </section>
 
-        <!-- ══ INTRO ══ -->
-        <section class="intro-section" id="intro">
-            <div class="intro-inner">
-                <div class="intro-left">
-                    <div class="section-tag">
-                        <div class="section-tag-dot"></div><span class="section-tag-text">Introduction</span>
-                    </div>
-                    <h2>Research Exposure for Students and Scholars</h2>
-                    <p>We offer limited, high-quality research exposure opportunities aligned with our ongoing discovery and experimental programs.</p>
-                    <p>Participants engage with real laboratory workflows across microbial bioprospecting, bioactive discovery, and in-vitro validation systems.</p>
-                    <p>Participants may align their exposure with application domains such as pharmaceutical, agricultural, industrial, environmental, and life sciences, within the framework of real bioprospecting and discovery workflows.</p>
-                </div>
-                <div class="intro-right">
-                    <div class="intro-card">
-                        <div class="intro-card-icon"><i class="ri-flask-line"></i></div>
-                        <div>
-                            <strong>Not Routine Training Modules</strong>
-                            <span>These are structured research exposure programs designed to provide hands-on understanding of applied biotechnology and discovery-driven workflows.</span>
-                        </div>
-                    </div>
-                    <div class="intro-card">
-                        <div class="intro-card-icon"><i class="ri-filter-line"></i></div>
-                        <div>
-                            <strong>Selective Participation</strong>
-                            <span>Participation is selective and aligned with ongoing research activities and laboratory capacity.</span>
-                        </div>
-                    </div>
-                    <div class="intro-card">
-                        <div class="intro-card-icon"><i class="ri-microscope-line"></i></div>
-                        <div>
-                            <strong>Real Laboratory Workflows</strong>
-                            <span>Engage directly with active discovery programs spanning bioprospecting, metabolite discovery, and in-vitro validation.</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- ══ INTRO STRIP ══ -->
+        <section class="intro-strip">
+            <p>Molmet Biotech offers limited research exposure opportunities aligned with ongoing discovery,
+                experimental, and translational biotechnology programs. Participants engage with real laboratory
+                workflows across microbial bioprospecting, bioactive discovery, metabolite investigation, and in-vitro
+                validation systems. These programs are designed for individuals seeking practical understanding of
+                applied biotechnology within active research environments.</p>
         </section>
 
-        <!-- ══ PROGRAM TRACKS ══ -->
-        <section class="tracks-section" id="tracks">
-            <div class="tracks-header">
-                <div class="section-tag light" style="margin:0 auto 16px;">
-                    <div class="section-tag-dot"></div><span class="section-tag-text">Program Tracks</span>
-                </div>
-                <h2>Program Tracks</h2>
-                <p>Explore our structured research exposure tracks, each designed to immerse participants in a specific domain of applied biotechnology and discovery science.</p>
-            </div>
-            <div class="tracks-grid">
-                <div class="track-card">
-                    <div class="track-card-num">01</div>
-                    <div class="track-card-icon"><i class="ri-map-pin-2-line"></i></div>
-                    <div class="track-card-focus">Focus</div>
-                    <h4>Microbial Bioprospecting & Isolation Track</h4>
-                    <p>Exploration, isolation, and comprehensive characterization of microorganisms from diverse environmental samples.</p>
-                    <ul class="track-card-list">
-                        <li><i class="ri-checkbox-circle-line"></i>Environmental sampling strategies (soil, water, niche habitats)</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Isolation and purification of microbial strains</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Morphological and biochemical characterization</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Molecular identification of microbial strains (16S rRNA for bacteria / ITS for fungi)</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Basic bioinformatics analysis for sequence identification and phylogenetic insights</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Culture preservation and maintenance techniques</li>
-                    </ul>
-                </div>
-                <div class="track-card">
-                    <div class="track-card-num">02</div>
-                    <div class="track-card-icon"><i class="ri-flask-line"></i></div>
-                    <div class="track-card-focus">Focus</div>
-                    <h4>Molecule & Metabolite Discovery Track</h4>
-                    <p>Identification and screening of bioactive metabolites from microbial and plant sources.</p>
-                    <ul class="track-card-list">
-                        <li><i class="ri-checkbox-circle-line"></i>Microbial metabolite extraction techniques</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Phytochemical extraction and fractionation</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Bioactivity-guided screening approaches</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Preliminary identification of active fractions</li>
-                    </ul>
-                </div>
-                <div class="track-card">
-                    <div class="track-card-num">03</div>
-                    <div class="track-card-icon"><i class="ri-settings-3-line"></i></div>
-                    <div class="track-card-focus">Focus</div>
-                    <h4>Metabolite Production & Bioprocess Track</h4>
-                    <p>Optimization of microbial systems for targeted metabolite production.</p>
-                    <ul class="track-card-list">
-                        <li><i class="ri-checkbox-circle-line"></i>Media formulation and optimization</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Fermentation parameter tuning (pH, temperature, nutrients, aeration)</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Strain-specific cultivation strategies</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Understanding multi-metabolite expression in microbial systems</li>
-                    </ul>
-                </div>
-                <div class="track-card">
-                    <div class="track-card-num">04</div>
-                    <div class="track-card-icon"><i class="ri-test-tube-line"></i></div>
-                    <div class="track-card-focus">Focus</div>
-                    <h4>Bioactivity & In-vitro Validation Track</h4>
-                    <p>Functional evaluation of bioactive compounds.</p>
-                    <ul class="track-card-list">
-                        <li><i class="ri-checkbox-circle-line"></i>Antimicrobial assays</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Enzyme inhibition studies</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Cytotoxicity screening methods</li>
-                        <li><i class="ri-checkbox-circle-line"></i>In-vitro pharmacological models</li>
-                    </ul>
-                </div>
-                <div class="track-card">
-                    <div class="track-card-num">05</div>
-                    <div class="track-card-icon"><i class="ri-heart-pulse-line"></i></div>
-                    <div class="track-card-focus">Focus</div>
-                    <h4>Cell Culture & Anticancer Screening Track</h4>
-                    <p>Cell-based evaluation of bioactive molecules.</p>
-                    <ul class="track-card-list">
-                        <li><i class="ri-checkbox-circle-line"></i>Cell culture handling techniques</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Cytotoxicity assays (MTT and related methods)</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Anticancer screening workflows</li>
-                        <li><i class="ri-checkbox-circle-line"></i>Experimental design for cell-based studies</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- ══ PROGRAM STRUCTURE ══ -->
-        <section class="structure-section" id="structure">
-            <div class="structure-inner">
-                <div class="structure-left">
-                    <div class="section-tag">
-                        <div class="section-tag-dot"></div><span class="section-tag-text">Program Structure</span>
-                    </div>
-                    <h2>Program Structure</h2>
-                    <p>Our programs are structured to offer meaningful, immersive research exposure through hands-on laboratory work, guided experimental workflows, and direct integration with ongoing discovery programs.</p>
-                    <div class="structure-note">
-                        <p>Opportunities are limited and curated — we only onboard scholars whose work aligns with our active discovery programs.</p>
-                    </div>
-                </div>
-                <div class="structure-right">
-                    <div class="s-card">
-                        <div class="s-card-icon"><i class="ri-time-line"></i></div>
-                        <h4>Short-term Exposure</h4>
-                        <p>2–4 weeks of focused, hands-on immersion in a selected research track.</p>
-                    </div>
-                    <div class="s-card">
-                        <div class="s-card-icon"><i class="ri-calendar-line"></i></div>
-                        <h4>Medium-term Programs</h4>
-                        <p>4–8 weeks of deeper engagement with guided experimental workflows and discovery programs.</p>
-                    </div>
-                    <div class="s-card">
-                        <div class="s-card-icon"><i class="ri-graduation-cap-line"></i></div>
-                        <h4>Project-based Engagement</h4>
-                        <p>Structured project-based engagement for M.Sc and PhD scholars aligned with ongoing research.</p>
-                    </div>
-                    <div class="s-card">
-                        <div class="s-card-icon"><i class="ri-lightbulb-flash-line"></i></div>
-                        <h4>Concept-to-Application</h4>
-                        <p>Integration with ongoing discovery programs for concept-to-application understanding of applied biotechnology.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ══ OUR APPROACH ══ -->
+        <!-- ══ SECTION 2: OUR APPROACH ══ -->
         <section class="approach-section" id="approach">
-            <div class="approach-inner">
-                <div class="approach-left">
-                    <div class="section-tag">
-                        <div class="section-tag-dot"></div><span class="section-tag-text">Our Approach</span>
-                    </div>
-                    <h2>Our Approach</h2>
-                    <p>These are not routine training modules — they are structured research exposure programs designed to provide hands-on understanding of applied biotechnology and discovery-driven workflows.</p>
-                    <div class="approach-timeline">
-                        <div class="a-step">
-                            <div class="a-step-num">01</div>
-                            <div class="a-step-body">
-                                <strong>Hands-on Laboratory Exposure</strong>
-                                <span>Direct participation in active laboratory workflows across microbiology, molecular biology, and bioassay platforms.</span>
-                            </div>
-                        </div>
-                        <div class="a-step">
-                            <div class="a-step-num">02</div>
-                            <div class="a-step-body">
-                                <strong>Guided Experimental Workflows</strong>
-                                <span>Step-by-step guidance through real experimental processes with mentorship from experienced researchers.</span>
-                            </div>
-                        </div>
-                        <div class="a-step">
-                            <div class="a-step-num">03</div>
-                            <div class="a-step-body">
-                                <strong>Concept-to-Application Understanding</strong>
-                                <span>Bridging foundational science with real-world application contexts in pharmaceutical, agricultural, and industrial domains.</span>
-                            </div>
-                        </div>
-                        <div class="a-step">
-                            <div class="a-step-num">04</div>
-                            <div class="a-step-body">
-                                <strong>Integration with Ongoing Discovery Programs</strong>
-                                <span>Participants are embedded within active research programs, working alongside ongoing discovery and validation workflows.</span>
-                            </div>
-                        </div>
+            <div class="approach-heading">
+                
+                <h2>Research Immersion Approach</h2>
+            </div>
+            <div class="approach-content">
+                <div class="approach-text">
+                    <h3>Not Routine Training. Selective Immersion.</h3>
+                    <p>These are not routine academic training modules or standardized laboratory courses. Our programs
+                        are structured as selective research immersion experiences designed around ongoing scientific
+                        activities, biological exploration, and application-focused experimentation.</p>
+                    <p>Participation is aligned with laboratory capacity, research relevance, and scientific engagement
+                        objectives.</p>
+                    <div class="approach-strategic">
+                        <i class="ri-fire-line" style="font-size:20px;color:var(--clr-accent);flex-shrink:0;"></i>
+                        <span>Structured exposure to discovery, experimentation, and translational research
+                            culture.</span>
                     </div>
                 </div>
-                <div class="approach-right">
-                    <div class="approach-img-stack">
-                        <div class="approach-img-main">
-                            <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80" alt="Research Exposure" loading="lazy" />
-                        </div>
-                        <div class="approach-img-small">
-                            <img src="https://images.unsplash.com/photo-1559757175-0eb30cd8c063?w=300&q=80" alt="Lab Culture" loading="lazy" />
-                        </div>
-                        <div class="approach-badge">
-                            <i class="ri-award-line"></i>
-                            <strong>Discovery-Driven</strong>
-                            <span>Real programs. Real workflows.</span>
-                        </div>
-                    </div>
+                <div class="approach-img-wrap">
+                    <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=900&q=80"
+                        alt="Research Lab" loading="lazy" />
                 </div>
             </div>
         </section>
 
-        <!-- ══ WHO SHOULD APPLY ══ -->
+        <!-- ══ SECTION 3: RESEARCH IMMERSION TRACKS ══ -->
+        <section class="tracks-section" id="tracks">
+            <div class="tracks-heading">
+                
+                <h2>Research Immersion Tracks</h2>
+            </div>
+
+            <div class="track-block">
+
+                <!-- Track 1: Text left, Image right -->
+                <div class="track-row">
+                    <div class="track-text-col">
+                        <div class="track-num">01</div>
+                        <h3>Microbial Discovery &amp; Bioprospecting</h3>
+                        <p>Exposure to environmental sampling, microbial isolation, molecular identification, and basic
+                            bioinformatics workflows associated with microbial discovery programs.</p>
+                        <span class="exposure-label">Exposure Includes</span>
+                        <ul class="track-list">
+                            <li><i class="ri-checkbox-circle-line"></i>Environmental sampling strategies</li>
+                            <li><i class="ri-checkbox-circle-line"></i>Isolation and characterization of microbial
+                                strains</li>
+                            <li><i class="ri-checkbox-circle-line"></i>16S rRNA / ITS-based molecular identification
+                            </li>
+                            <li><i class="ri-checkbox-circle-line"></i>Sequence analysis and phylogenetic interpretation
+                            </li>
+                            <li><i class="ri-checkbox-circle-line"></i>Culture preservation and maintenance</li>
+                        </ul>
+                    </div>
+                    <div class="track-img-col">
+                        <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800&q=80"
+                            alt="Microbial Discovery" loading="lazy" />
+                    </div>
+                </div>
+
+                <!-- Track 2: Image left, Text right -->
+                <div class="track-row reverse">
+                    
+                    <div class="track-text-col">
+                        <div class="track-num">02</div>
+                        <h3>Molecule &amp; Metabolite Discovery</h3>
+                        <p>Exposure to workflows associated with extraction, screening, and preliminary evaluation of
+                            microbial metabolites and natural bioactive compounds.</p>
+                        <span class="exposure-label">Exposure Includes</span>
+                        <ul class="track-list">
+                            <li><i class="ri-checkbox-circle-line"></i>Microbial metabolite extraction techniques</li>
+                            <li><i class="ri-checkbox-circle-line"></i>Phytochemical extraction and nanoparticle
+                                synthesis</li>
+                            <li><i class="ri-checkbox-circle-line"></i>Bioactivity-oriented screening approaches</li>
+                            <li><i class="ri-checkbox-circle-line"></i>Fractionation and preliminary evaluation
+                                workflows</li>
+                        </ul>
+                    </div>
+
+                    <div class="track-img-col">
+                        <img src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&q=80"
+                            alt="Molecule Discovery" loading="lazy" />
+                    </div>
+                </div>
+
+                <!-- Track 3: Text left, Image right -->
+                <div class="track-row">
+                    <div class="track-text-col">
+                        <div class="track-num">03</div>
+                        <h3>Metabolite Production &amp; Bioprocess Systems</h3>
+                        <p>Exposure to fermentation optimization and microbial cultivation strategies associated with
+                            targeted metabolite production.</p>
+                        <span class="exposure-label">Exposure Includes</span>
+                        <ul class="track-list">
+                            <li><i class="ri-checkbox-circle-line"></i>Media formulation and optimization</li>
+                            <li><i class="ri-checkbox-circle-line"></i>Fermentation parameter tuning (pH, temperature,
+                                nutrients, aeration)</li>
+                            <li><i class="ri-checkbox-circle-line"></i>Strain-specific cultivation approaches</li>
+                            <li><i class="ri-checkbox-circle-line"></i>Multi-metabolite expression concepts in microbial
+                                systems</li>
+                        </ul>
+                    </div>
+                    <div class="track-img-col">
+                        <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&q=80"
+                            alt="Bioprocess Systems" loading="lazy" />
+                    </div>
+                </div>
+
+                <!-- Track 4 (extra): Image left, Text right — displayed as part of the block -->
+                <div class="track-row reverse">
+                    
+                    <div class="track-text-col">
+                        <div class="track-num">04</div>
+                        <h3>Bioactivity &amp; In-vitro Validation</h3>
+                        <p>Exposure to biological evaluation systems used for functional assessment of compounds,
+                            metabolites, and biological systems.</p>
+                        <span class="exposure-label">Exposure Includes</span>
+                        <ul class="track-list">
+                            <li><i class="ri-checkbox-circle-line"></i>Antimicrobial and biochemical assays</li>
+                            <li><i class="ri-checkbox-circle-line"></i>Enzyme inhibition studies</li>
+                            <li><i class="ri-checkbox-circle-line"></i>Cytotoxicity and functional screening</li>
+                            <li><i class="ri-checkbox-circle-line"></i>In-vitro pharmacological evaluation models</li>
+                        </ul>
+                    </div>
+                    <div class="track-img-col">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80"
+                            alt="Bioactivity Validation" loading="lazy" />
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ══ SECTION 4: HOW PARTICIPANTS ENGAGE ══ -->
+        <section class="engage-section" id="engage">
+            <div class="engage-heading">
+               
+                <h2>Program Structure</h2>
+                <p>Programs are designed to provide guided exposure to laboratory environments, scientific workflows,
+                    and experimental systems associated with ongoing research activities.</p>
+            </div>
+
+            <div class="engage-cols">
+                <div class="engage-col">
+                    <h4><i class="ri-time-line"></i>Engagement Formats</h4>
+                    <ul class="engage-list">
+                        <li><i class="ri-checkbox-circle-line"></i>Short-term immersion (2–4 weeks)</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Medium-term research exposure (4–8 weeks)</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Project-linked engagement for M.Sc. and PhD scholars
+                        </li>
+                    </ul>
+                </div>
+                <div class="engage-col">
+                    <h4><i class="ri-flask-line"></i>Program Elements</h4>
+                    <ul class="engage-list">
+                        <li><i class="ri-checkbox-circle-line"></i>Guided laboratory participation</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Workflow-oriented learning</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Exposure to real research systems</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Integration with ongoing discovery programs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="engage-strategic">
+                <i class="ri-fire-line" style="font-size:20px;color:var(--clr-accent);flex-shrink:0;"></i>
+                <span>Focused exposure to scientific workflows operating within real discovery environments.</span>
+            </div>
+        </section>
+
+        <!-- ══ SECTION 5: WHO THIS IS FOR ══ -->
         <section class="who-section" id="who">
-            <div class="who-header">
-                <div>
-                    <div class="section-tag">
-                        <div class="section-tag-dot"></div><span class="section-tag-text">Eligibility</span>
-                    </div>
-                    <h2>Who Should Apply</h2>
-                </div>
-                <p>We welcome applications from motivated students and early-stage researchers who are passionate about applied biotechnology and discovery-driven science.</p>
+            <div class="who-heading">
+              
+                <h2>Who Should Apply</h2>
             </div>
-            <div class="who-grid">
+
+            <div class="who-cards">
                 <div class="who-card">
-                    <div class="who-card-icon"><i class="ri-graduation-cap-line"></i></div>
-                    <div>
-                        <strong>M.Sc Students</strong>
-                        <span>M.Sc Biotechnology, Microbiology, and Life Sciences students seeking hands-on research exposure.</span>
+                    <div class="who-card-inner">
+                        <div class="who-card-icon"><i class="ri-graduation-cap-line"></i></div>
+                        <h4>Students in Life Sciences</h4>
+                        <p>B.Sc, B.Tech, M.Sc. &amp; M.Tech students in Biotechnology, Microbiology, and Life Sciences
+                            seeking active research exposure beyond classrooms.</p>
                     </div>
                 </div>
                 <div class="who-card">
-                    <div class="who-card-icon"><i class="ri-book-open-line"></i></div>
-                    <div>
-                        <strong>PhD Scholars</strong>
-                        <span>PhD scholars looking to deepen their applied research skills within discovery-driven laboratory environments.</span>
+                    <div class="who-card-inner">
+                        <div class="who-card-icon"><i class="ri-microscope-line"></i></div>
+                        <h4>PhD Scholars &amp; Researchers</h4>
+                        <p>PhD scholars and early-stage researchers looking to deepen applied research skills within
+                            discovery-driven laboratory environments.</p>
                     </div>
                 </div>
                 <div class="who-card">
-                    <div class="who-card-icon"><i class="ri-microscope-line"></i></div>
-                    <div>
-                        <strong>Early-stage Researchers</strong>
-                        <span>Early-stage researchers interested in applied biotechnology who want to engage with real discovery programs.</span>
+                    <div class="who-card-inner">
+                        <div class="who-card-icon"><i class="ri-flask-line"></i></div>
+                        <h4>Applied Biotech Enthusiasts</h4>
+                        <p>Individuals interested in applied biotechnology and discovery-oriented research who seek
+                            practical, real-world scientific understanding.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="who-note">
+                <strong>Selective Participation Note</strong>
+                <p>Participation is selective and based on research alignment, laboratory capacity, and program
+                    availability.</p>
+            </div>
+        </section>
+
+        <!-- ══ SECTION 6: APPLICATION FORM ══ -->
+        <section class="apply-section" id="apply">
+            <div class="apply-inner">
+                <div class="apply-left">
+                  
+                    <h2>Apply for Research Exposure</h2>
+                    <p>Share your research interest, preferred area of exposure, or project objective to explore
+                        participation opportunities within our ongoing programs.</p>
+                    <p>We review each application individually to ensure alignment with active laboratory workflows and
+                        research relevance.</p>
+                    <p style="margin-top:24px;font-size:13px;color:var(--clr-text-muted);">All fields marked are
+                        reviewed for program suitability. Shortlisted applicants will be contacted by the Molmet team
+                        for further discussion.</p>
+                </div>
+                <div class="apply-right">
+                    <div class="apply-form">
+                        <form id="applyForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="fname">Full Name</label>
+                                    <input type="text" id="fname" name="name" placeholder="Your full name" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="email" id="email" name="email" placeholder="your@email.com" required />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="institution">Institution / Organization</label>
+                                <input type="text" id="institution" name="institution"
+                                    placeholder="Your institution or organization" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="qualification">Academic Qualification</label>
+                                <select id="qualification" name="qualification" required>
+                                    <option value="" disabled selected>Select your qualification</option>
+                                    <option>B.Sc / B.Tech</option>
+                                    <option>M.Sc / M.Tech</option>
+                                    <option>PhD Scholar</option>
+                                    <option>Post-doctoral Researcher</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="track">Area of Interest / Preferred Track</label>
+                                <select id="track" name="track" required>
+                                    <option value="" disabled selected>Select a track</option>
+                                    <option>Microbial Discovery &amp; Bioprospecting</option>
+                                    <option>Molecule &amp; Metabolite Discovery</option>
+                                    <option>Metabolite Production &amp; Bioprocess Systems</option>
+                                    <option>Bioactivity &amp; In-vitro Validation</option>
+                                    <option>Open / To be discussed</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="project">Project Interest (Optional)</label>
+                                <textarea id="project" name="project"
+                                    placeholder="Briefly describe your project objective or research interest…"></textarea>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="duration">Duration Preference</label>
+                                    <select id="duration" name="duration">
+                                        <option value="" disabled selected>Select duration</option>
+                                        <option>2–4 weeks</option>
+                                        <option>4–8 weeks</option>
+                                        <option>Project-linked (discuss)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contact">Contact Number</label>
+                                    <input type="tel" id="contact" name="contact" placeholder="+91 XXXXX XXXXX" />
+                                </div>
+                            </div>
+                            <button type="submit" class="form-submit">Request Participation <i
+                                    class="ri-arrow-right-line"></i></button>
+                        </form>
+                        <div class="form-success" id="formSuccess">
+                            <p>✅ Your application has been received. The Molmet team will review and reach out to you
+                                shortly.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ══ FINAL CTA ══ -->
-        <section class="cta-section" id="apply">
-            <div class="cta-left">
-                <div class="section-tag light" style="margin-bottom:20px;">
-                    <div class="section-tag-dot"></div><span class="section-tag-text">Apply for Research Exposure</span>
+        <!-- ══ SECTION 7: REGISTRATION & CONFIRMATION ══ -->
+        <section class="registration-section" id="registration">
+            <div class="reg-heading">
+                <div class="section-tag light">
+                    <div class="section-tag-dot"></div><span class="section-tag-text"> Registration &amp;
+                        Confirmation</span>
                 </div>
-                <h2>Ready to <em>Explore</em><br>Real Research?</h2>
-                <p>Explore opportunities to work alongside ongoing discovery programs and gain real-world laboratory experience.</p>
+                <h2>Research Exposure Registration</h2>
+                <p>Selected applicants may proceed with program registration following confirmation and communication
+                    from the Molmet team.</p>
             </div>
-            <div class="cta-right">
-                <a href="#" class="btn-primary">Apply Now <i class="ri-arrow-right-line"></i></a>
-                <a href="#" class="btn-ghost">Discuss a Project-Based Program <i class="ri-arrow-right-line"></i></a>
+
+            <div class="reg-grid">
+                <div class="reg-card">
+                    <h4><i class="ri-list-check-2"></i>Registration Includes</h4>
+                    <ul class="reg-list">
+                        <li><i class="ri-checkbox-circle-line"></i>Program onboarding</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Assigned laboratory exposure</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Participation within designated workflows</li>
+                        <li><i class="ri-checkbox-circle-line"></i>Experimental participation support</li>
+                    </ul>
+                </div>
+                <div class="reg-card">
+                    <h4><i class="ri-bank-card-line"></i>Payment Options</h4>
+                    <ul class="reg-list">
+                        <li><i class="ri-qr-code-line"></i>QR-based payment</li>
+                        <li><i class="ri-smartphone-line"></i>UPI transfer</li>
+                        <li><i class="ri-building-2-line"></i>Bank transfer</li>
+                    </ul>
+                </div>
+                <div class="reg-card">
+                    <h4><i class="ri-lock-line"></i>Important Note</h4>
+                    <ul class="reg-list">
+                        <li><i class="ri-information-line"></i>Registration is confirmed only after review of
+                            application details, scientific alignment, and program availability.</li>
+                        <li><i class="ri-information-line"></i>Confirmation and onboarding details will be shared via
+                            email upon selection.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="reg-qr-block">
+                <div class="reg-note">
+                    <i class="ri-shield-check-line"></i>
+                    <p>Scan the QR code to complete your registration payment after receiving confirmation from the
+                        Molmet team. Do not make any payment before receiving official confirmation.</p>
+                </div>
+                <div class="reg-qr-center">
+                    <span class="reg-qr-label">Scan to Complete Registration</span>
+                    <div class="reg-qr-card">
+                        <div class="qr-placeholder">⬛</div>
+                        <p>Place your official QR code here<br />for UPI / payment gateway</p>
+                    </div>
+                </div>
+                <div class="reg-note">
+                    <i class="ri-information-line"></i>
+                    <p>For queries regarding registration or payment, contact the Molmet team directly at your
+                        registered email or through the application form above.</p>
+                </div>
+            </div>
+
+            <div class="reg-strategic">
+                <i class="ri-fire-line" style="font-size:18px;color:var(--clr-accent);"></i>
+                <span>Designed for serious scientific engagement within active biotechnology research
+                    environments.</span>
             </div>
         </section>
 
@@ -1889,10 +2372,10 @@
     <footer>
         <div class="footer-top">
             <div class="footer-brand">
-                <h3>Building a <em>healthier</em><br>tomorrow, today.</h3>
-                <p>A passionate team of scientists and innovators dedicated to responsible biotech discovery that creates lasting impact for people and planet.</p>
+                <h3>Discovering Nature. Advancing Biotechnology.</h3>
+                <p>Driving biotech innovation through microbial discovery, research collaboration, and bioactive solutions.</p>
                 <div class="footer-socials">
-                    <a href="#" title="X/Twitter">𝕏</a>
+                    <a href="#" title="X/Twitter">X</a>
                     <a href="#" title="LinkedIn">in</a>
                     <a href="#" title="Instagram">◉</a>
                     <a href="#" title="Facebook">ƒ</a>
@@ -1902,34 +2385,33 @@
                 <h5>Navigate</h5>
                 <ul>
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Our Research</a></li>
-                    <li><a href="#">Pipeline</a></li>
-                    <li><a href="#">Portfolio</a></li>
-                    <li><a href="#">Impact Report</a></li>
+                    <li><a href="/Discoverypage/dics.html">Discovery</a></li>
+                    <li><a href="/bioassestpage/bio.html">Biological Assets</a></li>
+                    <li><a href="/collabratepage/colla.html">Collaborate</a></li>
+                    <li><a href="/research/reaserchpage.html">Research Exposure</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h5>Company</h5>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Leadership</a></li>
-                    <li><a href="#">Careers</a></li>
-                    <li><a href="#">Press</a></li>
-                    <li><a href="#">Investors</a></li>
+                    <li><a href="/aboutpage/about.html">About Us</a></li>
+                    <li><a href="/aboutpage/about.html#leadership">Leadership</a></li>
+                    <li><a href="/cropage/cro.html">CRO &amp; Solutions</a></li>
+                    <li><a href="/cropage/cro.html">Blog</a></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h5>Contact</h5>
                 <ul>
-                    <li><a href="#">Get in Touch</a></li>
-                    <li><a href="#">Partnerships</a></li>
-                    <li><a href="#">Media Enquiries</a></li>
+                    <li><a href="/collabratepage/colla.html#contact">Get in Touch</a></li>
+                    <li><a href="/collabratepage/colla.html">Partnerships</a></li>
+                    <li><a href="/cropage/cro.html#contact">Submit Requirement</a></li>
                     <li><a href="#">Legal</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Molmet Biotech. All rights reserved.</p>
+            <p>&#169; 2026 Molmet Biotech Research Pvt Ltd. All rights reserved.</p>
             <div class="footer-bottom-links">
                 <a href="#">Privacy Policy</a>
                 <a href="#">Terms of Use</a>
@@ -1938,12 +2420,23 @@
         </div>
     </footer>
 
+
     <script>
+        /* ── Navbar scroll ── */
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             navbar.classList.toggle('scrolled', window.scrollY > 20);
         }, { passive: true });
 
+        /* ── Page Alert ── */
+        const alertEl = document.getElementById('pageAlert');
+        const alertClose = document.getElementById('alertClose');
+        alertClose.addEventListener('click', () => {
+            alertEl.classList.add('hiding');
+            setTimeout(() => alertEl.remove(), 400);
+        });
+
+        /* ── Mobile menu ── */
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileOverlay = document.getElementById('mobile-overlay');
@@ -1962,11 +2455,33 @@
             });
         });
 
-        const observerOpts = { threshold: 0.1, rootMargin: '0px 0px -60px 0px' };
+        /* ── Form submission (Formspree) ── */
+        const applyForm = document.getElementById('applyForm');
+        const formSuccess = document.getElementById('formSuccess');
+        applyForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = new FormData(applyForm);
+            try {
+                const res = await fetch(applyForm.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (res.ok) {
+                    applyForm.style.display = 'none';
+                    formSuccess.style.display = 'block';
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        });
+
+        /* ── Scroll reveal ── */
+        const observerOpts = { threshold: 0.08, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) forwards';
+                    entry.target.style.animation = 'fadeUp 0.85s cubic-bezier(0.22,1,0.36,1) forwards';
                     entry.target.style.opacity = '1';
                     observer.unobserve(entry.target);
                 }
@@ -1974,11 +2489,9 @@
         }, observerOpts);
 
         const reveals = [
-            '.intro-left', '.intro-right',
-            '.track-card', '.a-step',
-            '.s-card', '.who-card',
-            '.approach-img-stack',
-            '.cta-left', '.cta-right'
+            '.track-row', '.approach-content', '.engage-col',
+            '.who-card', '.reg-card', '.apply-left', '.apply-form',
+            '.reg-qr-block', '.who-note', '.engage-strategic'
         ];
         reveals.forEach(sel => {
             document.querySelectorAll(sel).forEach((el, i) => {
@@ -1986,10 +2499,6 @@
                 el.style.animationDelay = `${i * 0.1}s`;
                 observer.observe(el);
             });
-        });
-
-        document.querySelectorAll('.track-card').forEach((el, i) => {
-            el.style.animationDelay = `${i * 0.12}s`;
         });
     </script>
 </body>
